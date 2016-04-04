@@ -2,7 +2,10 @@ import { connect } from 'react-redux';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import * as appActions from '../actions/index';
+import * as calendarActions from '../actions/calendarActions';
 const cookieUtil = require('../utils/cookieUtil').default;
+
+import CalendarSelection from '../components/calendarSelection';
 
 const mapState = ({appState}) => {
     return {
@@ -12,7 +15,8 @@ const mapState = ({appState}) => {
 
 const mapDispatch = (dispatch) => {
     return bindActionCreators({
-        ...appActions
+        ...appActions,
+        ...calendarActions
     }, dispatch);
 }
 
@@ -42,6 +46,7 @@ function addScriptToPage(userId) {
 const component = React.createClass({
     componentDidMount() {
         this.props.getUser();
+        this.props.getCalendars();
     },
     componentWillReceiveProps(props) {
         if (props.appState.user && props.appState.user.calendarAuthorised) {
@@ -52,6 +57,7 @@ const component = React.createClass({
         return (
             <div className="container">
                 this is the dashboard
+                {this.props.appState.calendars && <CalendarSelection calendars={this.props.appState.user.calendars}/>}
                 {this.props.appState.user && !this.props.appState.user.calendarAuthorised ?
                     <div><a href={`http://localhost:3000/authenticate?token=${cookieUtil.getItem('eventcal-admin')}`}>authroise</a></div>
                 : ''}
