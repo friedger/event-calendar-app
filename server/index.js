@@ -3,10 +3,17 @@ require('babel-core/register');
 const app = require('express')();
 const renderApp = require('./renderApp');
 const path = require('path');
+const cookieParser = require('cookie-parser');
 
 // view engine setup
 app.set('views', path.join(__dirname, ''));
 app.set('view engine', 'hbs');
+
+app.use('/favicon.ico', function (req, res, next) {
+    res.send('');
+});
+
+app.use(cookieParser());
 
 const webpack = require('webpack');
 const webpackConfig = require('../webpack.config');

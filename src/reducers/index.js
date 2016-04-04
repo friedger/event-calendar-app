@@ -1,12 +1,18 @@
-const initialState = {
-    number: 1
-};
+import { combineReducers } from 'redux'
+import {reducer as formReducer} from 'redux-form';
+import {LOGIN, LOGIN_SUCCESS, GET_USER_SUCCESS, GET_USER_FAILURE} from '../actions';
 
-export default function reducer(state = initialState, action) {
-
-    if (action.type === 'ADD_NUMBER') {
-        return Object.assign({}, state, {number: state.number + 1});
+function appState(state = {}, action) {
+    switch(action.type) {
+        case GET_USER_SUCCESS:
+        console.log(action.payload.body, 'payload')
+        return Object.assign({}, state, {user: action.payload.body});
     }
 
     return state;
 }
+
+export default combineReducers({
+    appState: appState,
+    form: formReducer
+});
