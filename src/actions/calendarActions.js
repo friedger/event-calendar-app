@@ -59,6 +59,9 @@ export function putCalendars(calendarId, selected) {
                     payload: res
                 });
 
+                var a = new MouseEvent('refreshCalendar', {});
+                document.dispatchEvent(a);
+
             });
     }
 }
