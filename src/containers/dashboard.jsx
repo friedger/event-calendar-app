@@ -33,10 +33,6 @@ function addScriptToPage(userId) {
     stylesheet.setAttribute('rel','stylesheet');
     document.head.appendChild(stylesheet);
 
-    var googleMaps = document.createElement('script');
-    googleMaps.setAttribute('src','https://maps.googleapis.com/maps/api/js');
-    document.head.appendChild(googleMaps);
-
     var fontAwesome = document.createElement('link');
     fontAwesome.setAttribute('href','https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css');
     fontAwesome.setAttribute('rel','stylesheet');
@@ -53,11 +49,22 @@ const component = React.createClass({
             addScriptToPage(props.appState.user.userId);
         }
     },
+    _getFormInitialValues() {
+        return Object.keys(this.props.appState.user.calendars).reduce((collection, current) => {
+            collection[current] = this.props.appState.user.calendars[current].selected;
+            return collection;
+        }, {});
+    },
     render() {
         return (
             <div className="container">
                 this is the dashboard
-                {this.props.appState.calendars && <CalendarSelection calendars={this.props.appState.user.calendars}/>}
+                {this.props.appState.user &&
+                    <CalendarSelection
+                        onChange={this.props.putCalendars}
+                        initialValues={this._getFormInitialValues()}
+                        fields={Object.keys(this.props.appState.user.calendars)}
+                        calendars={this.props.appState.user.calendars}/>}
                 {this.props.appState.user && !this.props.appState.user.calendarAuthorised ?
                     <div><a href={`http://localhost:3000/authenticate?token=${cookieUtil.getItem('eventcal-admin')}`}>authroise</a></div>
                 : ''}
