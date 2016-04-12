@@ -1,3 +1,7 @@
+if (typeof window !== 'undefined') {
+    require('./globalStyles.scss');
+}
+
 import ReactDOM from 'react-dom';
 import React from 'react'; //eslint-disable-line
 import routes from './routes.jsx';
