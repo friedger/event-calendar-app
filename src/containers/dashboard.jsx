@@ -3,13 +3,18 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import * as appActions from '../actions/index';
 import * as calendarActions from '../actions/calendarActions';
+
 const cookieUtil = require('../utils/cookieUtil').default;
 
+import DashboardHeader from '../components/dashboardHeader';
 import CalendarSelection from '../components/calendarSelection';
+import CalendarCodeTextArea from '../components/calendarCodeTextArea';
+import EventCal from '../components/eventCal';
 
-const mapState = ({appState}) => {
+const mapState = ({appState, form}) => {
     return {
-        appState
+        appState,
+        form
     }
 }
 
@@ -21,33 +26,15 @@ const mapDispatch = (dispatch) => {
 }
 
 function addScriptToPage(userId) {
-
-    window.eventCalId = userId;
-
-    var mainScript = document.createElement('script');
-    mainScript.setAttribute('src','http://localhost:3000/calendar-build/main.js');
-    document.head.appendChild(mainScript);
-
-    var stylesheet = document.createElement('link');
-    stylesheet.setAttribute('href','http://localhost:3000/calendar-build/styles.css');
-    stylesheet.setAttribute('rel','stylesheet');
-    document.head.appendChild(stylesheet);
-
-    var fontAwesome = document.createElement('link');
-    fontAwesome.setAttribute('href','https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css');
-    fontAwesome.setAttribute('rel','stylesheet');
-    document.head.appendChild(fontAwesome);
+    addEventcalScript(userId);
 }
+
+var calendarHasBeenRendered;
 
 const component = React.createClass({
     componentDidMount() {
         this.props.getUser();
         this.props.getCalendars();
-    },
-    componentWillReceiveProps(props) {
-        if (props.appState.user && props.appState.user.calendarAuthorised) {
-            addScriptToPage(props.appState.user.userId);
-        }
     },
     _getFormInitialValues() {
         return Object.keys(this.props.appState.user.calendars).reduce((collection, current) => {
@@ -55,10 +42,25 @@ const component = React.createClass({
             return collection;
         }, {});
     },
+    _getSelectedCalendars() {
+        if (!this.props.form.calendarSelection) {
+            return [];
+        }
+
+        return Object.keys(this.props.form.calendarSelection)
+        .filter(key => key.charAt(0) !== '_')
+        .reduce((collection, current) => {
+            if (this.props.form.calendarSelection[current].value) {
+                collection.push(current);
+            }
+            return collection;
+        }, []);
+    },
     render() {
+        console.log(this._getSelectedCalendars())
         return (
             <div className="container">
-                this is the dashboard
+                <DashboardHeader/>
                 {this.props.appState.user &&
                     <CalendarSelection
                         onChange={this.props.putCalendars}
@@ -68,9 +70,11 @@ const component = React.createClass({
                 {this.props.appState.user && !this.props.appState.user.calendarAuthorised ?
                     <div><a href={`http://localhost:3000/authenticate?token=${cookieUtil.getItem('eventcal-admin')}`}>authroise</a></div>
                 : ''}
-                <div id="app-container"></div>
                 {this.props.appState.user && this.props.appState.user.calendarAuthorised ?
-                <textarea defaultValue={'window.eventCalId='+ this.props.appState.user.userId +';var mainScript=document.createElement("script");mainScript.setAttribute("src","http://localhost:3000/calendar-build/main.js"),document.head.appendChild(mainScript);var stylesheet=document.createElement("link");stylesheet.setAttribute("href","http://localhost:3000/calendar-build/styles.css"),stylesheet.setAttribute("rel","stylesheet"),document.head.appendChild(stylesheet);var googleMaps=document.createElement("script");googleMaps.setAttribute("src","https://maps.googleapis.com/maps/api/js"),document.head.appendChild(googleMaps);var fontAwesome=document.createElement("link");fontAwesome.setAttribute("href","https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"),fontAwesome.setAttribute("rel","stylesheet"),document.head.appendChild(fontAwesome);'} />
+                    <div>
+                        <EventCal userId={this.props.appState.user.userId} activeCalendars={this._getSelectedCalendars().length}/>
+                        <CalendarCodeTextArea userId={this.props.appState.user.userId}/>
+                    </div>
                 :
                 ''}
             </div>
