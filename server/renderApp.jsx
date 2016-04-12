@@ -12,15 +12,9 @@ module.exports = (req, res, next) => {
     }
 
     match({routes, location: req.url}, (error, redirectLocation, renderProps) => {
-        var html = ReactDOM.renderToString(
-            <Provider store={store} key="provider">
-                <RouterContext {...renderProps}/>
-            </Provider>
-        );
 
-        res.render('index.hbs', {
-            html: html
-        });
+
+        res.render('index.hbs');
     });
 
 }
