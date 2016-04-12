@@ -1,0 +1,92 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    margin: 0;
+    color: #444;
+}
+
+.navigation {
+    text-align:right;
+}
+
+.navigation li{
+    display: inline;
+    list-style: none;
+}
+
+.navigation li a{
+    color: #333;
+    padding: 12px;
+    margin: 0px 0px 0px 12px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.demo-header p {
+    color: #999999;
+    font-size: 20px;
+    font-weight: 100;
+}
+
+.demo-header h1 {
+    font-size: 55px;
+    color: #444;
+    font-weight: bold;
+}
+
+.catch-line {
+    text-align: center;
+    padding:20px; 0px;
+}
+
+.features h3, .features p {
+    text-align:center;
+    line-height:23px;
+}
+
+.features__icon {
+    text-align: center;
+    font-size: 52px;
+}
+
+.buy {
+    text-decoration: none;
+    border: 2px solid #444;
+    color: #444;
+    padding: 17px;
+    margin: 27px;
+    display: inline-block;
+}
+
+.buy:hover {
+    color: #444;
+}
+
+.built-by {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 10px;
+}
+
+.built-by a {
+    color: #444;
+}
+
+.built-by a:hover {
+    color: #444;
+    text-decoration:none;
+}
+
+.built-by img {
+    width:40px;
+    border-radius:200px;
+}
+
+.built-by span {
+    padding-left:5px;
+}
+
+textarea {
+    width: 100%;
+}

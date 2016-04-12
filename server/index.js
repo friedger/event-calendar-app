@@ -1,9 +1,11 @@
 require('babel-core/register');
 
+const express = require('express');
 const app = require('express')();
 const renderApp = require('./renderApp');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const url = require('url');
 
 // view engine setup
 app.set('views', path.join(__dirname, ''));
@@ -22,10 +24,20 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 
 const compiler = webpack(webpackConfig);
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(webpackDevMiddleware(compiler));
 app.use(webpackHotMiddleware(compiler));
 
-app.use(renderApp);
+
+app.use('/login', renderApp);
+app.use('/register', renderApp);
+app.use('/dashboard', renderApp);
+
+app.use('/', function (req, res, next) {
+    res.render('./staticSite/index.hbs');
+});
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
