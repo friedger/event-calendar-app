@@ -57,7 +57,6 @@ const component = React.createClass({
         }, []);
     },
     render() {
-        console.log(this._getSelectedCalendars())
         return (
             <div className="container">
                 <DashboardHeader/>

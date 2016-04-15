@@ -4,9 +4,9 @@ import { bindActionCreators } from 'redux';
 import * as appActions from '../actions/index';
 import Login from '../components/login';
 
-const mapState = ({number}) => {
+const mapState = ({loginState}) => {
     return {
-        number
+        loginState
     }
 }
 
@@ -23,7 +23,7 @@ const component = React.createClass({
     render() {
         return (
             <div className="container">
-                <Login submitAction={this.props.login.bind(null, this.context)} history={this.props.history}/>
+                <Login submitAction={this.props.login.bind(null, this.context)} router={this.context.router}/>
             </div>
         )
     }
