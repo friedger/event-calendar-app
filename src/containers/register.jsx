@@ -18,10 +18,13 @@ const mapDispatch = (dispatch) => {
 }
 
 const component = React.createClass({
+    contextTypes: {
+        router: React.PropTypes.object.isRequired
+    },
     render() {
         return (
             <div className="container">
-                <RegistrationForm submitAction={this.props.addUser}/>
+                <RegistrationForm router={this.context.router}/>
             </div>
         )
     }

@@ -23,7 +23,7 @@ const component = React.createClass({
     render() {
         return (
             <div className="container">
-                <Login submitAction={this.props.login.bind(null, this.context)} router={this.context.router}/>
+                <Login router={this.context.router}/>
             </div>
         )
     }

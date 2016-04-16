@@ -1,0 +1,44 @@
+import request from 'superagent';
+const cookieUtil = require('../utils/cookieUtil').default;
+
+export const postUsers = (formState) => {
+    return new Promise((resolve, reject) => {
+        request
+            .post('http://localhost:3000/users')
+            .send({
+                username: formState.username,
+                password: formState.password,
+                email: formState.email
+            })
+            .end((err, res) => {
+                if (err) {
+                    const error = {_error: 'Login Failed.'};
+                    if (res.body.error === 'This username already exists') {
+                        error.username = res.body.error;
+                    }
+                    if (res.body.error === 'This email already exists') {
+                        error.email = res.body.error;
+                    }
+                    return reject(error);
+                }
+                resolve();
+            });
+    });
+}
+
+export const postLogin = (formState) => {
+    return new Promise((resolve, reject) => {
+        request
+        .post('http://localhost:3000/login')
+        .send({username: formState.username, password: formState.password})
+        .end((err, res) => {
+            if (err) {
+                return reject();
+            }
+
+            cookieUtil.setItem('eventcal-admin', res.body.token, 2333000); //Expires in roughly 27 days
+            resolve()
+        });
+    });
+
+}
