@@ -5,6 +5,7 @@ import * as appActions from '../actions/index';
 import * as calendarActions from '../actions/calendarActions';
 
 const cookieUtil = require('../utils/cookieUtil').default;
+const config = require('../../config');
 
 import DashboardHeader from '../components/dashboardHeader';
 import CalendarSelection from '../components/calendarSelection';
@@ -67,12 +68,12 @@ const component = React.createClass({
                         fields={Object.keys(this.props.appState.user.calendars)}
                         calendars={this.props.appState.user.calendars}/>}
                 {this.props.appState.user && !this.props.appState.user.calendarAuthorised ?
-                    <div><a href={`http://localhost:3000/authenticate?token=${cookieUtil.getItem('eventcal-admin')}`}>authroise</a></div>
+                    <div><a href={`${config.apiUrl}/authenticate?token=${cookieUtil.getItem('eventcal-admin')}`}>authroise</a></div>
                 : ''}
                 {this.props.appState.user && this.props.appState.user.calendarAuthorised ?
                     <div>
                         <EventCal userId={this.props.appState.user.userId} activeCalendars={this._getSelectedCalendars().length}/>
-                        <CalendarCodeTextArea userId={this.props.appState.user.userId}/>
+                        <CalendarCodeTextArea calendarBuildUrl={config.calendarBuildUrl} userId={this.props.appState.user.userId}/>
                     </div>
                 :
                 ''}

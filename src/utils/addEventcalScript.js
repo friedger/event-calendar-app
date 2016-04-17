@@ -1,12 +1,14 @@
+const config = require('../../config');
+
 export default function addScriptToPage(userId) {
     window.eventCalId = userId;
 
     var mainScript = document.createElement('script');
-    mainScript.setAttribute('src','http://localhost:3000/calendar-build/main.js');
+    mainScript.setAttribute('src',`${config.calendarBuildUrl}/main.js`);
     document.head.appendChild(mainScript);
 
     var stylesheet = document.createElement('link');
-    stylesheet.setAttribute('href','http://localhost:3000/calendar-build/styles.css');
+    stylesheet.setAttribute('href',`${config.calendarBuildUrl}/styles.css`);
     stylesheet.setAttribute('rel','stylesheet');
     document.head.appendChild(stylesheet);
 

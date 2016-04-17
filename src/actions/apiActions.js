@@ -1,10 +1,11 @@
 import request from 'superagent';
 const cookieUtil = require('../utils/cookieUtil').default;
+const config = require('../../config');
 
 export const postUsers = (formState) => {
     return new Promise((resolve, reject) => {
         request
-            .post('http://localhost:3000/users')
+            .post(`${config.apiUrl}/users`)
             .send({
                 username: formState.username,
                 password: formState.password,
@@ -27,9 +28,10 @@ export const postUsers = (formState) => {
 }
 
 export const postLogin = (formState) => {
+    console.log(config)
     return new Promise((resolve, reject) => {
         request
-        .post('http://localhost:3000/login')
+        .post(`${config.apiUrl}/login`)
         .send({username: formState.username, password: formState.password})
         .end((err, res) => {
             if (err) {

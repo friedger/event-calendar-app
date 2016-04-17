@@ -13,8 +13,7 @@ module.exports = (req, res, next) => {
 
     match({routes, location: req.url}, (error, redirectLocation, renderProps) => {
 
-
-        res.render('index.hbs');
+        res.render('index.hbs', {NODE_ENV: process.env.NODE_ENV, isDev: process.env.NODE_ENV === 'development'});
     });
 
 }

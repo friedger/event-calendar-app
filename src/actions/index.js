@@ -7,6 +7,7 @@ export const ADD_USER_SUCCESS = 'GET_USER_SUCCESS';
 export const ADD_USER_FAILURE = 'GET_USER_FAILURE';
 
 import request from 'superagent';
+const config = require('../../config');
 
 import { browserHistory } from 'react-router'
 
@@ -23,7 +24,7 @@ export function getUser() {
             type: GET_USER
         });
         request
-            .get(`http://localhost:3000/user?token=${token}`)
+            .get(`${config.apiUrl}/user?token=${token}`)
             .end((err, res) => {
                 if (err) {
                     return dispatch({
@@ -47,7 +48,7 @@ export function addUser(formState) {
             type: ADD_USER
         });
         request
-            .post('http://localhost:3000/users')
+            .post(`${config.apiUrl}/users`)
             .send({username: formState.username.value, password: formState.password.value, email: formState.email.value})
             .end((err, res) => {
                 if (err) {

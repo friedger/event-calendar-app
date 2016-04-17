@@ -11,6 +11,7 @@ if (typeof window !== 'undefined') {
 }
 
 import request from 'superagent';
+const config = require('../../config');
 
 export function getCalendars() {
     return (dispatch) => {
@@ -18,7 +19,7 @@ export function getCalendars() {
             type: GET_CALENDARS
         });
         const token = cookieUtil.getItem('eventcal-admin');
-        request.get(`http://localhost:3000/calendars?token=${token}`)
+        request.get(`${config.apiUrl}/calendars?token=${token}`)
         .end((err, res) => {
             if (err) {
                 return dispatch({
@@ -42,7 +43,7 @@ export function putCalendars(calendarId, selected) {
         });
         const token = cookieUtil.getItem('eventcal-admin');
         request
-            .put(`http://localhost:3000/calendars?token=${token}`)
+            .put(`${config.apiUrl}/calendars?token=${token}`)
             .send({calendarId: calendarId, selected: selected})
             .end((err, res) => {
                 console.log(err)
