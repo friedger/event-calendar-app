@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=development node bin/www",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config ./webpack.dist.js"
   },
   "author": "",
