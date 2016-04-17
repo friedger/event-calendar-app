@@ -17,18 +17,20 @@ app.use('/favicon.ico', function (req, res, next) {
 
 app.use(cookieParser());
 
-const webpack = require('webpack');
-const webpackConfig = require('../webpack.config');
-const webpackDevMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
+if (process.env.NODE_ENV === 'development') {
+    const webpack = require('webpack');
+    const webpackConfig = require('../webpack.config');
+    const webpackDevMiddleware = require('webpack-dev-middleware');
+    const webpackHotMiddleware = require('webpack-hot-middleware');
 
-const compiler = webpack(webpackConfig);
+    const compiler = webpack(webpackConfig);
+
+    app.use(webpackDevMiddleware(compiler));
+    app.use(webpackHotMiddleware(compiler));
+}
+
 
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use(webpackDevMiddleware(compiler));
-app.use(webpackHotMiddleware(compiler));
-
 
 app.use('/login', renderApp);
 app.use('/register', renderApp);
