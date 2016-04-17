@@ -1,0 +1,9 @@
+machine:
+  node:
+    version: 4.2.1
+deployment:
+  production:
+    branch: master
+    commands:
+      - npm run build
+      - shipit production deploy
