@@ -18,7 +18,7 @@ module.exports = function (shipit) {
         }
     });
     shipit.on('updated', function () {
-        var buildDirectory = path.resolve('./public/build/');
+        var buildDirectory = path.resolve('./server/public/build/');
         shipit.remoteCopy(buildDirectory, shipit.releasePath);
     });
     shipit.on('published', function () {
