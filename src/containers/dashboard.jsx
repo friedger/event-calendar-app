@@ -12,6 +12,8 @@ import CalendarSelection from '../components/calendarSelection';
 import CalendarCodeTextArea from '../components/calendarCodeTextArea';
 import EventCal from '../components/eventCal';
 
+import {Row, Col} from 'react-bootstrap';
+
 const mapState = ({appState, form}) => {
     return {
         appState,
@@ -72,8 +74,8 @@ const component = React.createClass({
                 : ''}
                 {this.props.appState.user && this.props.appState.user.calendarAuthorised ?
                     <div>
-                        <EventCal userId={this.props.appState.user.userId} activeCalendars={this._getSelectedCalendars().length}/>
                         <CalendarCodeTextArea calendarBuildUrl={config.calendarBuildUrl} userId={this.props.appState.user.userId}/>
+                        <EventCal userId={this.props.appState.user.userId} activeCalendars={this._getSelectedCalendars().length}/>
                     </div>
                 :
                 ''}

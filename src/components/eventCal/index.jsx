@@ -16,9 +16,12 @@ var Component = React.createClass({
     },
     render() {
         return (
-            <div>
-                <div id="app-container" className={this.props.activeCalendars > 0 ? 'show': 'hide'}></div>
-            </div>
+            <Row>
+                <Col md={12}>
+                    <p>Your calendar will look like this:</p>
+                    <div id="app-container" className={this.props.activeCalendars > 0 ? 'show': 'hide'}></div>
+                </Col>
+            </Row>
         )
     }
 });

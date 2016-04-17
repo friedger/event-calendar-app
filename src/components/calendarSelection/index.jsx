@@ -14,6 +14,8 @@ var Component = React.createClass({
         const { fields, handleSubmit, submitting } = this.props;
         return (
             <Row>
+                <Col md={12}>
+                <p>1) Choose which of your calendars to display</p>
                 <form>
                     {Object.keys(fields).map((calendar, index) => {
                         const field = fields[calendar];
@@ -24,6 +26,7 @@ var Component = React.createClass({
                         )
                     })}
                 </form>
+            </Col>
             </Row>
         )
     }
