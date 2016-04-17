@@ -8,6 +8,7 @@ import store from '../../store/index.js';
 import {Input, ButtonInput} from 'react-bootstrap';
 import {reduxForm} from 'redux-form';
 import {postLogin} from '../../actions/apiActions';
+import {Row, Col} from 'react-bootstrap';
 
 import request from 'superagent';
 
@@ -15,21 +16,26 @@ var Component = React.createClass({
     render() {
         const {fields: {username, password}, error, handleSubmit, history} = this.props;
         return (
-            <div className="loginForm">
-                <form onSubmit={handleSubmit((values, dispatch) => {
-                        return postLogin(values).then(() => {
-                            this.props.router.push('/dashboard');
-                            dispatch(values);
-                        }, (err) => {
-                            return Promise.reject({_error: 'Login Failed. Wrong username or password'});
-                        });
-                    })}>
-                    <Input type="text" label="Username" placeholder="Enter text" {...username}/>
-                    <Input type="password" label="Password" {...password}/>
-                    <ButtonInput type="submit" value="Login" />
-                    {error && <div className="error">{error}</div>}
-                </form>
-            </div>
+            <Row className="loginForm">
+                <Col md={12}>
+                    <h1>Login</h1>
+                </Col>
+                <Col md={12}>
+                    <form onSubmit={handleSubmit((values, dispatch) => {
+                            return postLogin(values).then(() => {
+                                this.props.router.push('/dashboard');
+                                dispatch(values);
+                            }, (err) => {
+                                return Promise.reject({_error: 'Login Failed. Wrong username or password'});
+                            });
+                        })}>
+                        <Input type="text" label="Username or Email" placeholder="Enter text" {...username}/>
+                        <Input type="password" label="Password" {...password}/>
+                        <ButtonInput type="submit" value="Login" />
+                        {error && <div className="error">{error}</div>}
+                    </form>
+                </Col>
+            </Row>
         );
     }
 })
