@@ -1,5 +1,3 @@
-require('babel-core/register');
-
 const express = require('express');
 const app = require('express')();
 const renderApp = require('./renderApp');
