@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=development node bin/www",
-    "build": "webpack --config ./webpack.dist.js"
+    "build": "webpack --config ./webpack.dist.js",
+    "deploy": "npm run build && shipit production deploy"
   },
   "author": "Alex Perry",
   "license": "ISC",
