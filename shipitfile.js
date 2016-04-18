@@ -19,7 +19,7 @@ module.exports = function (shipit) {
     });
     shipit.on('updated', function () {
         var buildDirectory = path.resolve('./server/public/build/');
-        shipit.remoteCopy(buildDirectory, shipit.releasePath);
+        shipit.remoteCopy(buildDirectory, path.join(shipit.releasePath, 'server/public'));
     });
     shipit.on('published', function () {
           shipit.remote('cd ' + shipit.releasePath + ' && npm install --production').then(function(){
