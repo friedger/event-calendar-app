@@ -10,7 +10,7 @@ const config = {
         calendarBuildUrl: 'http://localhost:3434/calendar-build'
     },
     production: {
-        apiUrl: 'http://46.101.54.208:1212/',
+        apiUrl: 'http://46.101.54.208:1212',
         calendarBuildUrl: 'http://46.101.54.208:1212/calendar-build'
     }
 }
