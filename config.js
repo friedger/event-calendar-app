@@ -11,7 +11,7 @@ const config = {
     },
     production: {
         apiUrl: 'http://46.101.54.208:3434',
-        calendarBuildUrl: 'http://46.101.54.208:1212/calendar-build'
+        calendarBuildUrl: 'http://46.101.54.208:3434/calendar-build'
     }
 }
 
