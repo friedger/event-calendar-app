@@ -30,7 +30,7 @@ export default React.createClass({
         const {user, authUrl} = this.props;
         return (
             <div>
-                 {user && user.calendarAuthorised ?
+                 {user.calendarAuthorised ?
                      <div>
                          <FirstTimeLinkMessage />
                          <CalendarSelection onChange={this.props.putCalendars}
