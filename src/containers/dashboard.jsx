@@ -7,13 +7,8 @@ import * as calendarActions from '../actions/calendarActions';
 const cookieUtil = require('../utils/cookieUtil').default;
 const config = require('../../config');
 
-import DashboardHeader from '../components/dashboardHeader';
-import CalendarSelection from '../components/calendarSelection';
 import CalendarCodeTextArea from '../components/calendarCodeTextArea';
-import EventCal from '../components/eventCal';
-import WelcomePageHeader from '../components/welcomePageHeader';
-import BeginTrial from '../components/beginTrial';
-import FirstTimeLinkMessage from '../components/firstTimeLinkMessage';
+import RegisteredUser from '../components/registeredUser';
 
 import {Row, Col} from 'react-bootstrap';
 
@@ -42,51 +37,16 @@ const component = React.createClass({
         this.props.getUser();
         this.props.getCalendars();
     },
-    _getFormInitialValues() {
-        return Object.keys(this.props.appState.user.calendars).reduce((collection, current) => {
-            collection[current] = this.props.appState.user.calendars[current].selected;
-            return collection;
-        }, {});
-    },
-    _getSelectedCalendars() {
-        if (!this.props.form.calendarSelection) {
-            return [];
-        }
-
-        return Object.keys(this.props.form.calendarSelection)
-        .filter(key => key.charAt(0) !== '_')
-        .reduce((collection, current) => {
-            if (this.props.form.calendarSelection[current].value) {
-                collection.push(current);
-            }
-            return collection;
-        }, []);
-    },
     render() {
         const {user} = this.props.appState;
         const authUrl = `${config.apiUrl}/authenticate?token=${cookieUtil.getItem('eventcal-admin')}`;
         return (
             <div className="container">
-                {user && user.status === 'registered' ?
-                    <div>
-                         {user && user.calendarAuthorised ?
-                             <div>
-                                 <FirstTimeLinkMessage />
-                                 <CalendarSelection onChange={this.props.putCalendars}
-                                     initialValues={this._getFormInitialValues()}
-                                     fields={Object.keys(this.props.appState.user.calendars)}
-                                     calendars={this.props.appState.user.calendars}/>
-                                 <EventCal userId={this.props.appState.user.userId} activeCalendars={this._getSelectedCalendars().length}/>
-                                 <BeginTrial/>
-                                 </div>
-                                 :
-                                 <div>
-                                 <WelcomePageHeader />
-                                 <a href={authUrl} className="start-trial">Link my calendar</a>
-                             </div>
-                         }
-                     </div>
-                     : false}
+                {user && user.status === 'registered' &&
+                    <RegisteredUser putCalendars={this.props.putCalendars}
+                        user={this.props.appState.user}
+                        calendarSelectionForm={this.props.form.calendarSelection}
+                        authUrl={`${config.apiUrl}/authenticate?token=${cookieUtil.getItem('eventcal-admin')}`} />}
             </div>
         )
     }

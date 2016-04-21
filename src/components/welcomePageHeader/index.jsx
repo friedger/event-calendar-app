@@ -18,12 +18,3 @@ export default React.createClass({
         )
     }
 });
-
-
-// {user.calendarAuthorised ?
-//     <EventCal activeCalendars={1} userId={user.userId}/>
-//     :
-//     <a href={authUrl} className="start-trial">Link my calendar</a>
-// }
-// <p>Once you&#39;re ready to add your calendar to you&#39;re site, all new customers are entitled to a <strong>7 day trial</strong>. Only after that point, if you do not cancel, will your card be charged</p>
-// <a href="#" className="start-trial">Start your free trial</a>
