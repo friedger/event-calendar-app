@@ -18,7 +18,7 @@ var Component = React.createClass({
         return (
             <Row>
                 <Col md={12}>
-                    <p>Your calendar will look like this:</p>
+                    <p>{this.props.headerText}</p>
                     <div id="app-container" className={this.props.activeCalendars > 0 ? 'show': 'hide'}></div>
                 </Col>
             </Row>
@@ -29,3 +29,5 @@ var Component = React.createClass({
 export default Component;
 
 import React from 'react';
+
+// <p>Your calendar will look like this:</p>

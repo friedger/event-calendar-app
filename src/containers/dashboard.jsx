@@ -11,6 +11,9 @@ import DashboardHeader from '../components/dashboardHeader';
 import CalendarSelection from '../components/calendarSelection';
 import CalendarCodeTextArea from '../components/calendarCodeTextArea';
 import EventCal from '../components/eventCal';
+import WelcomePageHeader from '../components/welcomePageHeader';
+import BeginTrial from '../components/beginTrial';
+import FirstTimeLinkMessage from '../components/firstTimeLinkMessage';
 
 import {Row, Col} from 'react-bootstrap';
 
@@ -60,28 +63,51 @@ const component = React.createClass({
         }, []);
     },
     render() {
+        const {user} = this.props.appState;
+        const authUrl = `${config.apiUrl}/authenticate?token=${cookieUtil.getItem('eventcal-admin')}`;
         return (
             <div className="container">
-                <DashboardHeader/>
-                {this.props.appState.user &&
-                    <CalendarSelection
-                        onChange={this.props.putCalendars}
-                        initialValues={this._getFormInitialValues()}
-                        fields={Object.keys(this.props.appState.user.calendars)}
-                        calendars={this.props.appState.user.calendars}/>}
-                {this.props.appState.user && !this.props.appState.user.calendarAuthorised ?
-                    <div><a href={`${config.apiUrl}/authenticate?token=${cookieUtil.getItem('eventcal-admin')}`}>authroise</a></div>
-                : ''}
-                {this.props.appState.user && this.props.appState.user.calendarAuthorised ?
+                {user && user.status === 'registered' ?
                     <div>
-                        <CalendarCodeTextArea calendarBuildUrl={config.calendarBuildUrl} userId={this.props.appState.user.userId}/>
-                        <EventCal userId={this.props.appState.user.userId} activeCalendars={this._getSelectedCalendars().length}/>
-                    </div>
-                :
-                ''}
+                         {user && user.calendarAuthorised ?
+                             <div>
+                                 <FirstTimeLinkMessage />
+                                 <CalendarSelection onChange={this.props.putCalendars}
+                                     initialValues={this._getFormInitialValues()}
+                                     fields={Object.keys(this.props.appState.user.calendars)}
+                                     calendars={this.props.appState.user.calendars}/>
+                                 <EventCal userId={this.props.appState.user.userId} activeCalendars={this._getSelectedCalendars().length}/>
+                                 <BeginTrial/>
+                                 </div>
+                                 :
+                                 <div>
+                                 <WelcomePageHeader />
+                                 <a href={authUrl} className="start-trial">Link my calendar</a>
+                             </div>
+                         }
+                     </div>
+                     : false}
             </div>
         )
     }
 });
 
 export default connect(mapState, mapDispatch)(component)
+
+
+// {this.props.appState.user &&
+    // <CalendarSelection
+    //     onChange={this.props.putCalendars}
+    //     initialValues={this._getFormInitialValues()}
+    //     fields={Object.keys(this.props.appState.user.calendars)}
+    //     calendars={this.props.appState.user.calendars}/>}
+//         {this.props.appState.user && !this.props.appState.user.calendarAuthorised ?
+//             <div><a href={`${config.apiUrl}/authenticate?token=${cookieUtil.getItem('eventcal-admin')}`}>authroise</a></div>
+//             : ''}
+//             {this.props.appState.user && this.props.appState.user.calendarAuthorised ?
+//                 <div>
+//                     <CalendarCodeTextArea calendarBuildUrl={config.calendarBuildUrl} userId={this.props.appState.user.userId}/>
+//                     <EventCal userId={this.props.appState.user.userId} activeCalendars={this._getSelectedCalendars().length}/>
+//                 </div>
+//                 :
+//                 ''}

@@ -15,7 +15,6 @@ var Component = React.createClass({
         return (
             <Row>
                 <Col md={12}>
-                <p>1) Choose which of your calendars to display</p>
                 <form>
                     {Object.keys(fields).map((calendar, index) => {
                         const field = fields[calendar];
@@ -37,3 +36,5 @@ export default Component = reduxForm({ // <----- THIS IS THE IMPORTANT PART!
 })(Component);
 
 import React from 'react';
+
+// <p>1) Choose which of your calendars to display</p>
