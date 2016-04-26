@@ -9,6 +9,7 @@ const config = require('../../config');
 
 import CalendarCodeTextArea from '../components/calendarCodeTextArea';
 import RegisteredUser from '../components/registeredUser';
+import SubscriptionUser from '../components/subscriptionUser';
 
 import {Row, Col} from 'react-bootstrap';
 
@@ -37,6 +38,29 @@ const component = React.createClass({
         this.props.getUser();
         this.props.getCalendars();
     },
+
+    _getSelectedCalendars() {
+        if (!this.props.form.calendarSelection) {
+            return [];
+        }
+
+        return Object.keys(this.props.form.calendarSelection)
+        .filter(key => key.charAt(0) !== '_')
+        .reduce((collection, current) => {
+            if (this.props.form.calendarSelection[current].value) {
+                collection.push(current);
+            }
+            return collection;
+        }, []);
+    },
+
+    _getCalendarFormInitialValues() {
+        return Object.keys(this.props.appState.user.calendars).reduce((collection, current) => {
+            collection[current] = this.props.appState.user.calendars[current].selected;
+            return collection;
+        }, {});
+    },
+
     render() {
         const {user} = this.props.appState;
         const authUrl = `${config.apiUrl}/authenticate?token=${cookieUtil.getItem('eventcal-admin')}`;
@@ -44,7 +68,18 @@ const component = React.createClass({
             <div className="container">
                 {user && user.status === 'registered' &&
                     <RegisteredUser putCalendars={this.props.putCalendars}
+                        selectedCalendars={this._getSelectedCalendars()}
+                        calendarFormInitialValues={this._getCalendarFormInitialValues()}
                         user={this.props.appState.user}
+                        calendarSelectionForm={this.props.form.calendarSelection}
+                        authUrl={`${config.apiUrl}/authenticate?token=${cookieUtil.getItem('eventcal-admin')}`} />}
+                {user && user.status === 'subscription' &&
+                    <SubscriptionUser
+                        putCalendars={this.props.putCalendars}
+                        selectedCalendars={this._getSelectedCalendars()}
+                        calendarFormInitialValues={this._getCalendarFormInitialValues()}
+                        user={this.props.appState.user}
+                        calendarBuildUrl={config.calendarBuildUrl}
                         calendarSelectionForm={this.props.form.calendarSelection}
                         authUrl={`${config.apiUrl}/authenticate?token=${cookieUtil.getItem('eventcal-admin')}`} />}
             </div>
@@ -53,21 +88,3 @@ const component = React.createClass({
 });
 
 export default connect(mapState, mapDispatch)(component)
-
-
-// {this.props.appState.user &&
-    // <CalendarSelection
-    //     onChange={this.props.putCalendars}
-    //     initialValues={this._getFormInitialValues()}
-    //     fields={Object.keys(this.props.appState.user.calendars)}
-    //     calendars={this.props.appState.user.calendars}/>}
-//         {this.props.appState.user && !this.props.appState.user.calendarAuthorised ?
-//             <div><a href={`${config.apiUrl}/authenticate?token=${cookieUtil.getItem('eventcal-admin')}`}>authroise</a></div>
-//             : ''}
-//             {this.props.appState.user && this.props.appState.user.calendarAuthorised ?
-//                 <div>
-//                     <CalendarCodeTextArea calendarBuildUrl={config.calendarBuildUrl} userId={this.props.appState.user.userId}/>
-//                     <EventCal userId={this.props.appState.user.userId} activeCalendars={this._getSelectedCalendars().length}/>
-//                 </div>
-//                 :
-//                 ''}

@@ -1,9 +1,8 @@
 import React from 'react';
-import FirstTimeLinkMessage from '../firstTimeLinkMessage';
-import BeginTrial from '../beginTrial';
 import EventCal from '../eventCal';
 import CalendarSelection from '../calendarSelection';
 import WelcomePageHeader from '../welcomePageHeader';
+import CalendarCodeTextArea from '../CalendarCodeTextArea';
 
 export default React.createClass({
     render() {
@@ -12,13 +11,15 @@ export default React.createClass({
             <div>
                  {user.calendarAuthorised ?
                      <div>
-                         <FirstTimeLinkMessage />
+                         <h1>Build your calendar</h1>
+                         <p>1) Choose which of your calendars to display</p>
                          <CalendarSelection onChange={this.props.putCalendars}
                              initialValues={this.props.calendarFormInitialValues}
                              fields={Object.keys(this.props.user.calendars)}
                              calendars={this.props.user.calendars}/>
+                         <CalendarCodeTextArea calendarBuildUrl={this.props.calendarBuildUrl} userId={this.props.user.userId}/>
+                         <p>3) And your calendar will look like this</p>
                          <EventCal userId={this.props.user.userId} activeCalendars={this.props.selectedCalendars.length}/>
-                         <BeginTrial/>
                      </div>
                          :
                      <div>
