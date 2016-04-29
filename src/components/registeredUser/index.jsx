@@ -18,7 +18,7 @@ export default React.createClass({
                              fields={Object.keys(this.props.user.calendars)}
                              calendars={this.props.user.calendars}/>
                          <EventCal userId={this.props.user.userId} activeCalendars={this.props.selectedCalendars.length}/>
-                         <BeginTrial/>
+                         <BeginTrial submitPaymentAction={this.props.submitPaymentAction}/>
                      </div>
                          :
                      <div>

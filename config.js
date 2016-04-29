@@ -7,11 +7,13 @@ if (typeof window !== 'undefined') {
 const config = {
     development: {
         apiUrl: 'http://localhost:3434',
-        calendarBuildUrl: 'http://localhost:3434/calendar-build'
+        calendarBuildUrl: 'http://localhost:3434/calendar-build',
+        stripePublishableToken: 'pk_test_cYLFCC3SbZhSHnpTZgzqHZZ9'
     },
     production: {
         apiUrl: 'http://46.101.54.208:3434',
-        calendarBuildUrl: 'http://46.101.54.208:3434/calendar-build'
+        calendarBuildUrl: 'http://46.101.54.208:3434/calendar-build',
+        stripePublishableToken: 'pk_live_yoi7sUywpIFZoqyz9xu7d3Oq'
     }
 }
 

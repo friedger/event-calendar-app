@@ -9,7 +9,7 @@ var calendarHasBeenRendered = false;
 
 var Component = React.createClass({
     componentDidMount() {
-        if (!calendarHasBeenRendered) {
+        if (!document.getElementById('event-calendar-app')) {
             addEventcalScript(this.props.userId);
             calendarHasBeenRendered = true;
         }

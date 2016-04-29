@@ -3,6 +3,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import * as appActions from '../actions/index';
 import * as calendarActions from '../actions/calendarActions';
+import * as paymentActions from '../actions/paymentActions';
 
 const cookieUtil = require('../utils/cookieUtil').default;
 const config = require('../../config');
@@ -23,7 +24,8 @@ const mapState = ({appState, form}) => {
 const mapDispatch = (dispatch) => {
     return bindActionCreators({
         ...appActions,
-        ...calendarActions
+        ...calendarActions,
+        ...paymentActions
     }, dispatch);
 }
 
@@ -35,6 +37,7 @@ var calendarHasBeenRendered;
 
 const component = React.createClass({
     componentDidMount() {
+        console.log('component mounted');
         this.props.getUser();
         this.props.getCalendars();
     },
@@ -64,6 +67,12 @@ const component = React.createClass({
     render() {
         const {user} = this.props.appState;
         const authUrl = `${config.apiUrl}/authenticate?token=${cookieUtil.getItem('eventcal-admin')}`;
+        if (this.props.children) {
+            return (
+                <div>{this.props.children}</div>
+            )
+        }
+        console.log(user.status)
         return (
             <div className="container">
                 {user && user.status === 'registered' &&
@@ -72,6 +81,7 @@ const component = React.createClass({
                         calendarFormInitialValues={this._getCalendarFormInitialValues()}
                         user={this.props.appState.user}
                         calendarSelectionForm={this.props.form.calendarSelection}
+                        submitPaymentAction={this.props.submitPayment}
                         authUrl={`${config.apiUrl}/authenticate?token=${cookieUtil.getItem('eventcal-admin')}`} />}
                 {user && user.status === 'subscription' &&
                     <SubscriptionUser
