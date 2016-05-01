@@ -35,3 +35,28 @@ h1 {
     margin: 27px 27px 27px 0px;
     display: inline-block;
 }
+
+.built-by {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 10px;
+
+    a {
+        color: #444;
+
+        &:hover {
+            color: #444;
+            text-decoration:none;
+        }
+    }
+
+    img {
+        width:40px;
+        border-radius:200px;
+    }
+
+    span {
+        padding-left:5px;
+    }
+}
