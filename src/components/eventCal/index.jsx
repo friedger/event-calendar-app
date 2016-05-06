@@ -19,7 +19,7 @@ var Component = React.createClass({
             <Row>
                 <Col md={12}>
                     <p>{this.props.headerText}</p>
-                    <div id="app-container" className={this.props.activeCalendars > 0 ? 'show': 'hide'}></div>
+                    <div id="app-container" className='show'></div>
                 </Col>
             </Row>
         )
