@@ -37,7 +37,6 @@ var calendarHasBeenRendered;
 
 const component = React.createClass({
     componentDidMount() {
-        console.log('component mounted');
         this.props.getUser();
         this.props.getCalendars();
     },
@@ -72,7 +71,6 @@ const component = React.createClass({
                 <div>{this.props.children}</div>
             )
         }
-        console.log(user.status)
         return (
             <div className="container">
                 {user && user.status === 'registered' &&
