@@ -1,3 +1,7 @@
+body {
+    margin-bottom:40px;
+}
+
 p {
     color: #999999;
     font-size: 20px;
@@ -23,9 +27,15 @@ h1 {
 .start-trial {
     border: 3px solid #444;
     color: #444;
+    margin: 27px 27px 27px 0px;
     padding: 17px;
-    margin: 27px;
     display: inline-block;
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: underline;
+        color: #444;
+    }
 }
 
 .border-button {
