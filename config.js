@@ -13,7 +13,7 @@ const config = {
     production: {
         apiUrl: 'http://46.101.54.208:3434',
         calendarBuildUrl: 'http://46.101.54.208:3434/calendar-build',
-        stripePublishableToken: 'pk_test_cYLFCC3SbZhSHnpTZgzqHZZ9'
+        stripePublishableToken: 'pk_live_yoi7sUywpIFZoqyz9xu7d3Oq'
     }
 }
 
