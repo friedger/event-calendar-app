@@ -35,6 +35,12 @@ module.exports = {
         extensions: ['', '.js', '.jsx']
     },
     plugins: [
+        new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en)$/),
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify('production')
+            }
+        }),
         new ExtractTextPlugin("./styles.css"),
         new webpack.optimize.UglifyJsPlugin(),
         new webpack.optimize.DedupePlugin()
