@@ -4,8 +4,15 @@ import BeginTrial from '../beginTrial';
 import EventCal from '../eventCal';
 import CalendarSelection from '../calendarSelection';
 import WelcomePageHeader from '../welcomePageHeader';
+import ga from 'react-ga';
 
 export default React.createClass({
+    _fireGaEvent() {
+        ga.event({
+          category: 'User',
+          action: 'Clicked link calendar'
+        });
+    },
     render() {
         const {user, authUrl} = this.props;
         return (
@@ -23,7 +30,7 @@ export default React.createClass({
                          :
                      <div>
                          <WelcomePageHeader />
-                         <a href={authUrl} className="start-trial">Link my calendar</a>
+                         <a href={authUrl} onClick={this._fireGaEvent} className="start-trial">Link my calendar</a>
                      </div>
                  }
              </div>
