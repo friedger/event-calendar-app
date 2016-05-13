@@ -1,13 +1,21 @@
 const express = require('express');
 const app = require('express')();
-const renderApp = require('./renderApp');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const url = require('url');
+const renderConfig = require('./renderConfig');
+
+const redirectIfLoggedIn = require('./middleware/redirectIfLoggedIn');
+const combileWebpack = require('./middleware/combileWebpack');
+
+const renderApp = require('./routes/renderApp');
+const renderDashboard = require('./routes/renderDashboard');
 
 // view engine setup
 app.set('views', path.join(__dirname, ''));
 app.set('view engine', 'hbs');
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/favicon.ico', function (req, res, next) {
     res.send('');
@@ -16,28 +24,17 @@ app.use('/favicon.ico', function (req, res, next) {
 app.use(cookieParser());
 
 if (process.env.NODE_ENV === 'development') {
-    const webpack = require('webpack');
-    const webpackConfig = require('../webpack.config');
-    const webpackDevMiddleware = require('webpack-dev-middleware');
-    const webpackHotMiddleware = require('webpack-hot-middleware');
-
-    const compiler = webpack(webpackConfig);
-
-    app.use(webpackDevMiddleware(compiler));
-    app.use(webpackHotMiddleware(compiler));
+    combileWebpack(app);
 }
 
-
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/login', renderApp);
+app.use('/login', redirectIfLoggedIn, renderApp);
 app.use('/register', renderApp);
-app.use('/dashboard', renderApp);
-
-app.use('/', function (req, res, next) {
+app.use('/dashboard', renderDashboard);
+app.use('/link-calendar', renderApp);
+app.use('/firsttime-link-calendar', renderApp);
+app.use('/$', function (req, res, next) {
     res.render('./staticSite/index.hbs');
 });
-
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -51,11 +48,16 @@ app.use(function (req, res, next) {
 if (app.get('env') === 'development') {
 
     app.use(function (err, req, res, next) {
-        console.log(err)
         res.status(err.status || 500);
-        res.render('error', {
+
+        if (err.status === 404) {
+            return res.render('index', renderConfig);
+        }
+
+        res.render('index', {
             message: err.message,
-            error: err
+            error: err,
+            isError: true
         });
     });
 }
@@ -64,9 +66,14 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function (err, req, res, next) {
     res.status(err.status || 500);
-    res.render('error', {
+
+    if (err.status === 404) {
+        return res.render('index', renderConfig);
+    }
+    res.render('index', {
         message: err.message,
-        error: {}
+        error: {},
+        isError: true
     });
 });
 

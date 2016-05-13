@@ -54,7 +54,21 @@
 </head>
 
 <body>
+
+    {{#if loadApp}}
     <div id="app" class="fill"></div>
+    {{/if}}
+
+    {{#if isError}}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1>Whoops! There was an error</h1>
+                <p>{{error}}</p>
+            </div>
+        </div>
+    </div>
+    {{/if}}
 
     {{#if isDev}}
         <script src="http://localhost:1212/main.js"></script>

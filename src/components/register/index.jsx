@@ -24,7 +24,7 @@ var Component = React.createClass({
                             return postUsers(values).then(() => {
                                 return postLogin(values);
                             }).then(() => {
-                                return router.push('/dashboard');
+                                return router.push('/firsttime-link-calendar');
                             }, (err) => {
                                 return Promise.reject(err)
                             });
