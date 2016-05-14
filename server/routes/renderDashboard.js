@@ -4,10 +4,6 @@ const renderConfig = require('../renderConfig');
 
 module.exports = function (req, res) {
 
-    if (!req.cookies['eventcal-admin']) {
-        return res.redirect('/');
-    }
-
     request
         .get(`${config.apiUrl}/user?token=${req.cookies['eventcal-admin']}`)
         .end((err, apiResponse) => {

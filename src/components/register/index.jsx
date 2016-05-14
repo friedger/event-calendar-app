@@ -79,7 +79,7 @@ var Component = React.createClass({
                         <FormGroup validationState={this._getValidationState(password)}>
                             <ControlLabel>Password</ControlLabel>
                             <FormControl
-                               type="text"
+                               type="password"
                                placeholder="Enter text"
                                {...password}
                              />
@@ -88,7 +88,7 @@ var Component = React.createClass({
                         <FormGroup validationState={this._getValidationState(confirmpassword)}>
                             <ControlLabel>Confirm Password</ControlLabel>
                             <FormControl
-                               type="text"
+                               type="password"
                                placeholder="Enter text"
                                {...confirmpassword}
                              />
