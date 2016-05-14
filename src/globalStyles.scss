@@ -1,5 +1,13 @@
+@import './_variables';
+
 body {
     margin-bottom:40px;
+    line-height: 1.5;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+    max-width: 750px !important;
 }
 
 p {
@@ -8,12 +16,21 @@ p {
     font-weight: 100;
 }
 
+ol, ul {
+    margin: 0;
+}
+
+.primary-color  {
+    color: $primary;
+}
+
 .hide {
     display:none;
 }
 
 h1 {
     font-size:55px;
+    color: #444;
 }
 
 .loginForm, .register-form {
@@ -68,5 +85,22 @@ h1 {
 
     span {
         padding-left:5px;
+    }
+}
+
+.action-button {
+    width:100%;
+    background: $primary;
+    border: 0;
+    box-shadow: none;
+    color: #fff;
+    text-shadow: none;
+    padding:20px 0px;
+    border-radius:2px;
+    margin-top:20px;
+
+    &:hover {
+        background: $primary-hover;
+        color: #fff;
     }
 }

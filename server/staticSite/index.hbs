@@ -67,24 +67,43 @@
         <!-- End Favicons -->
     </head>
     <body>
-        <div class="container">
-            <div class="navigation">
-                <ul>
-                    <li>
-                        <a href="/login">Login</a>
-                    </li>
-                    <li>
-                        <a href="/register">Get Started</a>
-                    </li>
-                </ul>
+        <div class="navigation">
+            <div class="container">
+                <div class="navigation__logo">
+                    ECA
+                </div>
+                <div class="navigation__links">
+                    {{#unless loggedIn}}
+                        <ul>
+                            <li>
+                                <a href="/login">Login</a>
+                            </li>
+                            <li>
+                                <a href="/register" class="primary-color">Get Started</a>
+                            </li>
+                        </ul>
+                    {{/unless}}
+                    {{#if loggedIn}}
+                        <ul class="logged-in">
+                            <li>
+                                <a href="/">Home</a>
+                            </li>
+                            <li>
+                                <a href="/dashboard">Dashboard</a>
+                            </li>
+                        </ul>
+                    {{/if}}
+                </div>
             </div>
+        </div>
+        <div class="container">
             <div class="demo-header">
                 <h1>A Simple Event Calendar</h1>
                 <p>Add a stunning, easy to manage, event calendar to your website.</p>
             </div>
         </div>
         <div class="container">
-            <div id="app-container"></div><script>window.eventCalId=2;var mainScript=document.createElement("script");mainScript.setAttribute("src","http://46.101.54.208:3434/calendar-build/main.js"),document.head.appendChild(mainScript);var stylesheet=document.createElement("link");stylesheet.setAttribute("href","http://46.101.54.208:3434/calendar-build/styles.css"),stylesheet.setAttribute("rel","stylesheet"),document.head.appendChild(stylesheet);var fontAwesome=document.createElement("link");fontAwesome.setAttribute("href","https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"),fontAwesome.setAttribute("rel","stylesheet"),document.head.appendChild(fontAwesome);</script>
+            <div id="app-container"></div><script>window.eventCalId=1;var mainScript=document.createElement("script");mainScript.setAttribute("src","http://46.101.54.208:3434/calendar-build/main.js"),document.head.appendChild(mainScript);var stylesheet=document.createElement("link");stylesheet.setAttribute("href","http://46.101.54.208:3434/calendar-build/styles.css"),stylesheet.setAttribute("rel","stylesheet"),document.head.appendChild(stylesheet);var fontAwesome=document.createElement("link");fontAwesome.setAttribute("href","https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"),fontAwesome.setAttribute("rel","stylesheet"),document.head.appendChild(fontAwesome);</script>
         </div>
         <div class="container">
             <div class="row catch-line">

@@ -11,6 +11,7 @@ const config = require('../../config');
 import CalendarCodeTextArea from '../components/calendarCodeTextArea';
 import RegisteredUser from '../components/registeredUser';
 import SubscriptionUser from '../components/subscriptionUser';
+import Header from '../components/header';
 
 import {Row, Col} from 'react-bootstrap';
 
@@ -72,24 +73,27 @@ const component = React.createClass({
             )
         }
         return (
-            <div className="container">
-                {user && user.status === 'registered' &&
-                    <RegisteredUser putCalendars={this.props.putCalendars}
-                        selectedCalendars={this._getSelectedCalendars()}
-                        calendarFormInitialValues={this._getCalendarFormInitialValues()}
-                        user={this.props.appState.user}
-                        calendarSelectionForm={this.props.form.calendarSelection}
-                        submitPaymentAction={this.props.submitPayment}
-                        authUrl={`${config.apiUrl}/authenticate?token=${cookieUtil.getItem('eventcal-admin')}`} />}
-                {user && user.status === 'subscription' &&
-                    <SubscriptionUser
-                        putCalendars={this.props.putCalendars}
-                        selectedCalendars={this._getSelectedCalendars()}
-                        calendarFormInitialValues={this._getCalendarFormInitialValues()}
-                        user={this.props.appState.user}
-                        calendarBuildUrl={config.calendarBuildUrl}
-                        calendarSelectionForm={this.props.form.calendarSelection}
-                        authUrl={`${config.apiUrl}/authenticate?token=${cookieUtil.getItem('eventcal-admin')}`} />}
+            <div>
+                <Header loggedIn={true}/>
+                <div className="container">
+                    {user && user.status === 'registered' &&
+                        <RegisteredUser putCalendars={this.props.putCalendars}
+                            selectedCalendars={this._getSelectedCalendars()}
+                            calendarFormInitialValues={this._getCalendarFormInitialValues()}
+                            user={this.props.appState.user}
+                            calendarSelectionForm={this.props.form.calendarSelection}
+                            submitPaymentAction={this.props.submitPayment}
+                            authUrl={`${config.apiUrl}/authenticate?token=${cookieUtil.getItem('eventcal-admin')}`} />}
+                            {user && user.status === 'subscription' &&
+                                <SubscriptionUser
+                                    putCalendars={this.props.putCalendars}
+                                    selectedCalendars={this._getSelectedCalendars()}
+                                    calendarFormInitialValues={this._getCalendarFormInitialValues()}
+                                    user={this.props.appState.user}
+                                    calendarBuildUrl={config.calendarBuildUrl}
+                                    calendarSelectionForm={this.props.form.calendarSelection}
+                                    authUrl={`${config.apiUrl}/authenticate?token=${cookieUtil.getItem('eventcal-admin')}`} />}
+                                </div>
             </div>
         )
     }

@@ -5,13 +5,33 @@ body {
     color: #444;
 }
 
+ol, ul {
+    margin: 0;
+}
+
 .navigation {
     text-align:right;
+    background: #EF767A;
+    padding: 24px 0px 21px;
+}
+
+.navigation__logo {
+    float:left;
+    color:#fff;
+    font-size: 20px;
+}
+
+.navigation__links {
+    float:right;
 }
 
 .navigation li{
     display: inline;
     list-style: none;
+}
+
+.navigation ul.logged-in li a {
+    color: #fff;
 }
 
 .navigation li a{
@@ -20,6 +40,17 @@ body {
     margin: 0px 0px 0px 12px;
     font-weight: bold;
     font-size: 16px;
+}
+
+.navigation li a.primary-color {
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+.navigation li a.primary-color:hover {
+    color: #333;
+    border: 2px solid #333;
+    text-decoration: none;
 }
 
 .demo-header p {
@@ -51,15 +82,17 @@ body {
 
 .buy {
     text-decoration: none;
-    border: 2px solid #444;
-    color: #444;
+    border: 2px solid #EF767A;
+    color: #EF767A;
     padding: 17px;
     margin: 27px;
     display: inline-block;
 }
 
 .buy:hover {
-    color: #444;
+    color: #fc3838;
+    border: 2px solid #fb6666;
+    text-decoration: none;
 }
 
 .built-by {

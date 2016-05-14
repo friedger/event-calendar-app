@@ -5,7 +5,7 @@ if (typeof window !== 'undefined') {
 
 import React from 'react';
 import store from '../../store/index.js';
-import {Input, ButtonInput} from 'react-bootstrap';
+import {Input, Button} from 'react-bootstrap';
 import {reduxForm} from 'redux-form';
 import {postLogin} from '../../actions/apiActions';
 import {Row, Col} from 'react-bootstrap';
@@ -31,7 +31,7 @@ var Component = React.createClass({
                         })}>
                         <Input type="text" label="Username or Email" placeholder="Enter text" {...username}/>
                         <Input type="password" label="Password" {...password}/>
-                        <ButtonInput type="submit" value="Login" />
+                        <Button type="submit" value="Login" className='action-button'>LOG IN</Button>
                         {error && <div className="error">{error}</div>}
                     </form>
                 </Col>

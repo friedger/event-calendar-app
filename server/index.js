@@ -33,6 +33,11 @@ app.use('/dashboard', renderDashboard);
 app.use('/link-calendar', renderApp);
 app.use('/firsttime-link-calendar', renderApp);
 app.use('/$', function (req, res, next) {
+    if (req.cookies['eventcal-admin']) {
+        return res.render('./staticSite/index.hbs', {
+            loggedIn:true
+        });
+    }
     res.render('./staticSite/index.hbs');
 });
 

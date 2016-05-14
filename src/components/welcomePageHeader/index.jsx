@@ -9,7 +9,7 @@ export default React.createClass({
         const {user, authUrl} = this.props;
 
         return (
-            <div className="container">
+            <div>
                 <h1>Let&#39;s set up your calendar</h1>
                 <p>Hi there!</p>
                 <p>Thank you very much for registering.</p>

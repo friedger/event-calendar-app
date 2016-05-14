@@ -1,0 +1,48 @@
+.navigation {
+    text-align:right;
+    background: #EF767A;
+    padding: 22px 0px 18px;
+}
+
+.navigation__logo {
+    float:left;
+    color:#fff;
+    font-size: 20px;
+
+    a {
+        color: #fff;
+        text-decoration: none;
+    }
+}
+
+.navigation__links {
+    float:right;
+}
+
+.navigation li{
+    display: inline;
+    list-style: none;
+}
+
+.navigation ul.logged-in li a {
+    color: #fff;
+}
+
+.navigation li a{
+    color: #333;
+    padding: 12px;
+    margin: 0px 0px 0px 12px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.navigation li a.primary-color {
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+.navigation li a.primary-color:hover {
+    color: #333;
+    border: 2px solid #333;
+    text-decoration: none;
+}

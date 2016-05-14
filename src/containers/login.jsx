@@ -3,6 +3,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import * as appActions from '../actions/index';
 import Login from '../components/login';
+import Header from '../components/header';
 
 const mapState = ({loginState}) => {
     return {
@@ -22,8 +23,11 @@ const component = React.createClass({
     },
     render() {
         return (
-            <div className="container">
-                <Login router={this.context.router}/>
+            <div>
+                <Header />
+                <div className="container">
+                    <Login router={this.context.router}/>
+                </div>
             </div>
         )
     }

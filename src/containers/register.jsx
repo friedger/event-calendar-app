@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as appActions from '../actions/index';
 
 import RegistrationForm from '../components/register';
+import Header from '../components/header';
 
 const mapState = ({number}) => {
     return {
@@ -23,8 +24,11 @@ const component = React.createClass({
     },
     render() {
         return (
-            <div className="container">
-                <RegistrationForm router={this.context.router}/>
+            <div>
+                <Header />
+                <div className="container">
+                    <RegistrationForm router={this.context.router}/>
+                </div>
             </div>
         )
     }

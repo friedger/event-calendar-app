@@ -5,21 +5,50 @@ if (typeof window !== 'undefined') {
 
 import React from 'react';
 import store from '../../store/index.js';
-import {Input, ButtonInput} from 'react-bootstrap';
+import {Input, Button, HelpBlock, FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 import {reduxForm} from 'redux-form';
 import request from 'superagent';
 import {postUsers, postLogin} from '../../actions/apiActions';
 import {Row, Col} from 'react-bootstrap';
 
+const validate = values => {
+    const errors = {};
+    if (!values.username) {
+        errors.username = 'A username is required';
+    }
+
+    if (!values.email) {
+        errors.email = 'An email is required';
+    }
+
+    if (!values.password) {
+        errors.password = 'A password is required';
+    }
+
+    if (!values.confirmpassword) {
+        errors.confirmpassword = 'Please type your password again'
+    }
+
+    return errors;
+}
+
 var Component = React.createClass({
+    _getValidationState(field) {
+        if (field.touched && field.error) {
+            return 'error';
+        }
+    },
     render() {
         const {fields: {username, password, confirmpassword, email}, handleSubmit, error, router} = this.props;
         return (
             <Row className="register-form">
-                <Col>
-                    <h1>Register</h1>
+                <Col md={12}>
+                    <div className="register-form__title">
+                        <h1>Let's <span className="primary-color">set you up.</span></h1>
+                        <p>You're 2 seconds away from creating your calendar</p>
+                    </div>
                 </Col>
-                <Col>
+                <Col md={12}>
                     <form onSubmit={handleSubmit((values, dispatch) => {
                             return postUsers(values).then(() => {
                                 return postLogin(values);
@@ -29,13 +58,43 @@ var Component = React.createClass({
                                 return Promise.reject(err)
                             });
                         })}>
-                        {username.touched && username.error && <div>{username.error}</div>}
-                        <Input type="text" label="Username" placeholder="Enter text" {...username}/>
-                        {email.touched && email.error && <div>{email.error}</div>}
-                        <Input type="text" label="Email" placeholder="Enter text" {...email}/>
-                        <Input type="password" label="Password" {...password}/>
-                        <Input type="password" label="Confirm Password" {...confirmpassword}/>
-                        <ButtonInput type="submit" value="Submit" />
+                        <FormGroup validationState={this._getValidationState(username)}>
+                            <ControlLabel>Username</ControlLabel>
+                            <FormControl
+                               type="text"
+                               placeholder="Enter text"
+                               {...username}
+                             />
+                             {username.touched && username.error && <HelpBlock>{username.error}</HelpBlock>}
+                        </FormGroup>
+                        <FormGroup validationState={this._getValidationState(email)}>
+                            <ControlLabel>Email</ControlLabel>
+                            <FormControl
+                               type="text"
+                               placeholder="Enter text"
+                               {...email}
+                             />
+                         {email.touched && email.error && <HelpBlock>{email.error}</HelpBlock>}
+                        </FormGroup>
+                        <FormGroup validationState={this._getValidationState(password)}>
+                            <ControlLabel>Password</ControlLabel>
+                            <FormControl
+                               type="text"
+                               placeholder="Enter text"
+                               {...password}
+                             />
+                         {password.touched && password.error && <HelpBlock>{password.error}</HelpBlock>}
+                        </FormGroup>
+                        <FormGroup validationState={this._getValidationState(confirmpassword)}>
+                            <ControlLabel>Confirm Password</ControlLabel>
+                            <FormControl
+                               type="text"
+                               placeholder="Enter text"
+                               {...confirmpassword}
+                             />
+                         {confirmpassword.touched && confirmpassword.error && <HelpBlock>{confirmpassword.error}</HelpBlock>}
+                        </FormGroup>
+                        <Button type="submit" className={'action-button'} value="Submit"> CREATE YOUR ACCOUNT </Button>
                         {error && <div>{error}</div>}
                     </form>
                 </Col>
@@ -46,5 +105,6 @@ var Component = React.createClass({
 
 export default Component = reduxForm({ // <----- THIS IS THE IMPORTANT PART!
   form: 'register',                           // a unique name for this form
-  fields: ['username', 'password', 'confirmpassword', 'email'] // all the fields in your form
+  fields: ['username', 'password', 'confirmpassword', 'email'],
+  validate // all the fields in your form
 })(Component);
