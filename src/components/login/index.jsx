@@ -22,8 +22,9 @@ var Component = React.createClass({
                 </Col>
                 <Col md={12}>
                     <form onSubmit={handleSubmit((values, dispatch) => {
-                            return postLogin(values).then(() => {
-                                this.props.router.push('/dashboard');
+                            return postLogin(values).then((data) => {
+                                //Currently need to make user request /dashboard from the server
+                                window.location.href = '/dashboard';
                                 dispatch(values);
                             }, (err) => {
                                 return Promise.reject({_error: 'Login Failed. Wrong username or password'});
