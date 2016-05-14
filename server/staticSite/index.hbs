@@ -150,7 +150,12 @@
                 <div class="col-md-12">
                     <h1>Only $5 per month</h1>
                     <div>One price. All the features.</div>
-                    <a class="buy" href="http://eventcalendarapp.com/register">Get your event calendar</a>
+                    {{#unless loggedIn}}
+                        <a class="buy" href="http://eventcalendarapp.com/register">Get your event calendar</a>
+                    {{/unless}}
+                    {{#if loggedIn}}
+                        <a class="buy" href="http://eventcalendarapp.com/dashboard">Get your event calendar</a>
+                    {{/if}}
                 </div>
             </div>
             <div class="row catch-line">
