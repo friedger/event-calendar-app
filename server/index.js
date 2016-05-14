@@ -6,6 +6,7 @@ const url = require('url');
 const renderConfig = require('./renderConfig');
 
 const redirectIfLoggedIn = require('./middleware/redirectIfLoggedIn');
+const notLoggedInRedirect = require('./middleware/notLoggedInRedirect');
 const combileWebpack = require('./middleware/combileWebpack');
 
 const renderApp = require('./routes/renderApp');
@@ -29,9 +30,9 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use('/login', redirectIfLoggedIn, renderApp);
 app.use('/register', renderApp);
-app.use('/dashboard', renderDashboard);
-app.use('/link-calendar', renderApp);
-app.use('/firsttime-link-calendar', renderApp);
+app.use('/dashboard', notLoggedInRedirect, renderDashboard);
+app.use('/link-calendar', notLoggedInRedirect, renderApp);
+app.use('/firsttime-link-calendar', notLoggedInRedirect, renderApp);
 app.use('/$', function (req, res, next) {
     if (req.cookies['eventcal-admin']) {
         return res.render('./staticSite/index.hbs', {
