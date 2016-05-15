@@ -96,6 +96,7 @@ ol, ul {
 }
 
 .built-by {
+    display:none;
     position: fixed;
     bottom: 0;
     right: 0;
@@ -122,4 +123,10 @@ ol, ul {
 
 textarea {
     width: 100%;
+}
+
+@media (min-width: 768px) {
+  .built-by {
+      display:block;
+  }
 }
