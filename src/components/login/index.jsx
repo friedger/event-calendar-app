@@ -13,6 +13,14 @@ import cn from 'classnames';
 import Loader from 'react-loader';
 import request from 'superagent';
 
+function noOpPromise() {
+    return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+            resolve();
+        }, 12000)
+    });
+}
+
 var Component = React.createClass({
     render() {
         const {fields: {username, password}, error, handleSubmit, history, submitting} = this.props;
@@ -26,14 +34,15 @@ var Component = React.createClass({
                             return postLogin(values).then((data) => {
                                 //Currently need to make user request /dashboard from the server
                                 window.location.href = '/dashboard';
-                                dispatch(values);
+                                //Hack to keep spinner spinning while browser loads new page
+                                return noOpPromise();
                             }, (err) => {
                                 return Promise.reject({_error: 'Login Failed. Wrong username or password'});
                             });
                         })}>
                         <Input type="text" label="Username or Email" placeholder="Enter text" {...username}/>
                         <Input type="password" label="Password" {...password}/>
-                        <Button type="submit" value="Login" className='action-button'>
+                        <Button type="submit" value="Login" className='action-button' disabled={submitting}>
                             <div className={cn({'opacity-0': submitting})}>LOG IN</div>
                             {submitting && <div className='large-loader'><Loader type='spin' color='#000' width={3} radius={7} /></div>}
                         </Button>
