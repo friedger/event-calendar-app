@@ -11,6 +11,7 @@
   "author": "Alex Perry",
   "license": "ISC",
   "dependencies": {
+    "classnames": "^2.2.5",
     "cookie-parser": "^1.4.1",
     "debug": "^2.2.0",
     "express": "^4.13.4",
@@ -26,6 +27,7 @@
     "react-bootstrap": "^0.29.4",
     "react-dom": "^0.14.7",
     "react-ga": "^1.4.1",
+    "react-loader": "^2.4.0",
     "react-redux": "^4.3.0",
     "react-router": "^2.0.1",
     "react-stripe-checkout": "^1.8.0",

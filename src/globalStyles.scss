@@ -6,6 +6,10 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
+button {
+    position: relative;
+}
+
 .container {
     max-width: 750px !important;
 }
@@ -20,8 +24,28 @@ ol, ul {
     margin: 0;
 }
 
+.large-loader {
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 30px;
+    width: 40px;
+}
+
+.loader {
+    margin: 0 auto;
+    width: 40px;
+}
+
 .primary-color  {
     color: $primary;
+}
+
+.opacity-0 {
+    opacity: 0;
 }
 
 .hide {

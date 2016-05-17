@@ -10,6 +10,8 @@ import {reduxForm} from 'redux-form';
 import request from 'superagent';
 import {postUsers, postLogin} from '../../actions/apiActions';
 import {Row, Col} from 'react-bootstrap';
+import Loader from 'react-loader';
+import cn from 'classnames';
 
 const validate = values => {
     const errors = {};
@@ -39,7 +41,7 @@ var Component = React.createClass({
         }
     },
     render() {
-        const {fields: {username, password, confirmpassword, email}, handleSubmit, error, router} = this.props;
+        const {fields: {username, password, confirmpassword, email}, handleSubmit, error, router, submitting} = this.props;
         return (
             <Row className="register-form">
                 <Col md={12}>
@@ -94,7 +96,10 @@ var Component = React.createClass({
                              />
                          {confirmpassword.touched && confirmpassword.error && <HelpBlock>{confirmpassword.error}</HelpBlock>}
                         </FormGroup>
-                        <Button type="submit" className={'action-button'} value="Submit"> CREATE YOUR ACCOUNT </Button>
+                        <Button type="submit" disabled={submitting} className={'action-button'} value="Submit">
+                        <div className={cn({'opacity-0': submitting})}>CREATE YOUR ACCOUNT</div>
+                        {submitting && <div className='large-loader'><Loader type='spin' color='#000' width={3} radius={7} /></div>}
+                        </Button>
                         {error && <div>{error}</div>}
                     </form>
                 </Col>

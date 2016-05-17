@@ -9,12 +9,13 @@ import {Input, Button} from 'react-bootstrap';
 import {reduxForm} from 'redux-form';
 import {postLogin} from '../../actions/apiActions';
 import {Row, Col} from 'react-bootstrap';
-
+import cn from 'classnames';
+import Loader from 'react-loader';
 import request from 'superagent';
 
 var Component = React.createClass({
     render() {
-        const {fields: {username, password}, error, handleSubmit, history} = this.props;
+        const {fields: {username, password}, error, handleSubmit, history, submitting} = this.props;
         return (
             <Row className="loginForm">
                 <Col md={12}>
@@ -32,7 +33,10 @@ var Component = React.createClass({
                         })}>
                         <Input type="text" label="Username or Email" placeholder="Enter text" {...username}/>
                         <Input type="password" label="Password" {...password}/>
-                        <Button type="submit" value="Login" className='action-button'>LOG IN</Button>
+                        <Button type="submit" value="Login" className='action-button'>
+                            <div className={cn({'opacity-0': submitting})}>LOG IN</div>
+                            {submitting && <div className='large-loader'><Loader type='spin' color='#000' width={3} radius={7} /></div>}
+                        </Button>
                         {error && <div className="error">{error}</div>}
                     </form>
                 </Col>

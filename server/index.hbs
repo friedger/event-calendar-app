@@ -11,6 +11,13 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
+    {{#if isProd}}
+        <!-- BEGIN TRACKJS -->
+        <script type="text/javascript">window._trackJs = { token: 'ec0f4f068d9546c5a61cea3386d26ca1' };</script>
+        <script type="text/javascript" src="https://d2zah9y47r7bi2.cloudfront.net/releases/current/tracker.js"></script>
+        <!-- END TRACKJS -->
+    {{/if}}
+
     <!-- Hotjar Tracking Code for http://eventcalendarapp.com -->
     <script>
         (function(h,o,t,j,a,r){
