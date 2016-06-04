@@ -11,8 +11,8 @@ const config = {
         stripePublishableToken: 'pk_test_cYLFCC3SbZhSHnpTZgzqHZZ9'
     },
     production: {
-        apiUrl: 'http://46.101.54.208:3434',
-        calendarBuildUrl: 'http://46.101.54.208:3434/calendar-build',
+        apiUrl: 'https://api.eventcalendarapp.com',
+        calendarBuildUrl: 'https://api.eventcalendarapp.com/calendar-build',
         stripePublishableToken: 'pk_live_yoi7sUywpIFZoqyz9xu7d3Oq'
     }
 }
