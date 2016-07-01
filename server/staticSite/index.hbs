@@ -73,7 +73,7 @@
     </head>
     <body>
         <div class="navigation">
-            <div class="container">
+            <div class="navigation-bar">
                 <div class="navigation__logo">
                     ECA
                 </div>
@@ -100,15 +100,23 @@
                     {{/if}}
                 </div>
             </div>
-        </div>
-        <div class="container">
-            <div class="demo-header">
-                <h1>Transform the way you display events</h1>
-                <p>EventCalendarApp makes it super easy for you to display your events by linking directly to your <strong>Apple</strong>, <strong>Google</strong>, or <strong>Outlook</strong> calendar</p>
+            <div class="container">
+                <div class="demo-header">
+                    <h1>Display your events, on your site, beautifully.</h1>
+                </div>
             </div>
         </div>
         <div class="container">
-            <div id="app-container"></div><script>window.eventCalId=2;var mainScript=document.createElement("script");mainScript.setAttribute("src","https://api.eventcalendarapp.com/calendar-build/main.js"),document.head.appendChild(mainScript);var stylesheet=document.createElement("link");stylesheet.setAttribute("href","https://api.eventcalendarapp.com/calendar-build/styles.css"),stylesheet.setAttribute("rel","stylesheet"),document.head.appendChild(stylesheet);var fontAwesome=document.createElement("link");fontAwesome.setAttribute("href","https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"),fontAwesome.setAttribute("rel","stylesheet"),document.head.appendChild(fontAwesome);</script>
+            <div class="row row-spacing">
+                <div class="demo-header">
+                    <p>EventCalendarApp makes it super easy for you to display your events by linking directly to your <strong>Apple</strong>, <strong>Google</strong>, or <strong>Outlook</strong> calendar</p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div id="app-container"></div><script>window.eventCalId=1;var mainScript=document.createElement("script");mainScript.setAttribute("src","https://api.eventcalendarapp.com/calendar-build/main.js"),document.head.appendChild(mainScript);var stylesheet=document.createElement("link");stylesheet.setAttribute("href","https://api.eventcalendarapp.com/calendar-build/styles.css"),stylesheet.setAttribute("rel","stylesheet"),document.head.appendChild(stylesheet);var fontAwesome=document.createElement("link");fontAwesome.setAttribute("href","https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"),fontAwesome.setAttribute("rel","stylesheet"),document.head.appendChild(fontAwesome);</script>
+            </div>
         </div>
         <div class="container">
             <div class="row catch-line">
@@ -119,40 +127,43 @@
             </div>
             <div class="row features">
                 <div class="col-md-4">
-                    <div class="features__icon">
-                        <i class="fa fa-calendar"></i>
-                    </div>
                     <h3>Get rid of your old, ugly events page.</h3>
                     <p>Event pages needn't be something you pay a lot of money to get custom made; or something that looks ugly in plain text. Make your events page beatiful with this easy to add plugin.</p>
                 </div>
                 <div class="col-md-4">
-                    <div class="features__icon">
-                        <i class="fa fa-mobile"></i>
-                    </div>
                     <h3>Syncs with your Apple or Google calendar.</h3>
                     <p>Event calendar painlessly syncs with your Apple or Google calendar. Simply add events to your calendar and they will appear live on your site. No more manually editing text on your site.</p>
                 </div>
                 <div class="col-md-4">
-                    <div class="features__icon">
-                        <i class="fa fa-laptop"></i>
-                    </div>
                     <h3>Embeds onto any website with a small line of code.</h3>
                     <p>Embeds onto any platform including Wordpress, Shopify, Squarespace, Magento and many more.</p>
                 </div>
-                <div class="row catch-line">
-                    <div class="col-md-12">
-                        <h1>Install a demo onto your website for free</h1>
-                        <p>Simply paste this snippet onto your site wherever you would like the event calendar to appear</p>
-                        <textarea rows="4" cols="50">
-<div id="app-container"></div>
-<script>
-window.eventCalId=2;var mainScript=document.createElement("script");mainScript.setAttribute("src","https://api.eventcalendarapp.com/calendar-build/main.js"),document.head.appendChild(mainScript);var stylesheet=document.createElement("link");stylesheet.setAttribute("href","https://api.eventcalendarapp.com/calendar-build/styles.css"),stylesheet.setAttribute("rel","stylesheet"),document.head.appendChild(stylesheet);var fontAwesome=document.createElement("link");fontAwesome.setAttribute("href","https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"),fontAwesome.setAttribute("rel","stylesheet"),document.head.appendChild(fontAwesome);
-</script>
-                        </textarea>
-                    </div>
+            </div>
+        </div>
+        <div class="container-fluid platforms">
+            <div class="row row-spacing">
+                <div class="col-md-12">
+                    <div class="platforms__header"><h2>Fully compatible with all platforms</h2></div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <img src="/images/platform-images/shopify.png" />
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <img src="/images/platform-images/squarespace.png" />
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <img src="/images/platform-images/weebley.png" />
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <img src="/images/platform-images/wordpress.png" />
+                </div>
+                <div class="col-md-12">
+                    <p>...and we mean, ALL platforms.</p>
                 </div>
             </div>
-            <div class="row catch-line">
+        </div>
+        <div class="container-fluid pricing">
+            <div class="row catch-line row-spacing">
                 <div class="col-md-12">
                     <h1>Only $5 per month</h1>
                     <div>One price. All the features.</div>
@@ -164,7 +175,9 @@ window.eventCalId=2;var mainScript=document.createElement("script");mainScript.s
                     {{/if}}
                 </div>
             </div>
-            <div class="row catch-line">
+        </div>
+        <div class="container">
+            <div class="row catch-line footer">
                 <div class="col-md-12">
                     <div>© 2016 - EVENTCALENDARAPP</div>
                 </div>

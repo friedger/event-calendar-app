@@ -1,6 +1,6 @@
 body {
     font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     margin: 0;
     color: #444;
 }
@@ -11,7 +11,7 @@ ol, ul {
 
 .navigation {
     text-align:right;
-    background: #EF767A;
+    background: #2e3d4e;
     padding: 24px 0px 21px;
 }
 
@@ -35,7 +35,7 @@ ol, ul {
 }
 
 .navigation li a{
-    color: #333;
+    color: #fff;
     padding: 12px;
     margin: 0px 0px 0px 12px;
     font-weight: bold;
@@ -48,9 +48,11 @@ ol, ul {
 }
 
 .navigation li a.primary-color:hover {
-    color: #333;
-    border: 2px solid #333;
-    text-decoration: none;
+    text-decoration: underline;
+}
+
+.navigation-bar {
+    padding: 20px 40px;
 }
 
 .demo-header p {
@@ -61,13 +63,23 @@ ol, ul {
 
 .demo-header h1 {
     font-size: 55px;
-    color: #444;
-    font-weight: bold;
+    color: #fff;
+    text-align:center;
+    font-weight: normal;
+    margin: 100px 0px;
 }
 
 .catch-line {
     text-align: center;
-    padding:20px; 0px;
+}
+
+.catch-line p {
+    color: #999999;
+    font-weight: lighter;
+}
+
+.shoppify-layout .catch-line {
+    padding:0px;
 }
 
 .features h3, .features p {
@@ -75,24 +87,33 @@ ol, ul {
     line-height:23px;
 }
 
+.features p {
+    font-weight: lighter;
+    color: #999999;
+}
+
 .features__icon {
     text-align: center;
     font-size: 52px;
 }
 
+.pricing {
+    background: #2e3d4e;
+    color: #fff;
+}
+
 .buy {
     text-decoration: none;
-    border: 2px solid #EF767A;
-    color: #EF767A;
+    border: 2px solid #fff;
+    color: #fff;
     padding: 17px;
     margin: 27px;
     display: inline-block;
 }
 
 .buy:hover {
-    color: #fc3838;
-    border: 2px solid #fb6666;
-    text-decoration: none;
+    color: #fff;
+    text-decoration: underline;
 }
 
 .built-by {
@@ -101,6 +122,7 @@ ol, ul {
     bottom: 0;
     right: 0;
     padding: 10px;
+    font-size: 14px;
 }
 
 .built-by a {
@@ -121,12 +143,64 @@ ol, ul {
     padding-left:5px;
 }
 
+.platforms p {
+    color: #999999;
+    font-weight: lighter;
+}
+
+.platforms {
+    background: #f3f3f3;
+    text-align: center;
+    margin: 46px 0px 0px 0px;
+}
+
+.platforms__header h2 {
+    font-weight: 300;
+}
+
+.platforms h1 {
+    text-align: center;
+    font-weight: normal;
+}
+
+.platforms img {
+    width: auto;
+    height: 100px;
+    padding: 15px 0px;
+    max-width: 300px;
+
+}
+
+.row-spacing {
+    padding: 30px 0px;
+}
+
 textarea {
     width: 100%;
+}
+
+.footer {
+    padding: 21px 0px;
 }
 
 @media (min-width: 768px) {
   .built-by {
       display:block;
+      background: #fff;
+  }
+
+  .platforms img {
+      width: auto;
+      height: 100px;
+      max-width: 352px;
+  }
+}
+
+@media (min-width: 992px) {
+
+  .platforms img {
+      width: auto;
+      height: 80px;
+      max-width: 252px;
   }
 }

@@ -1,6 +1,8 @@
+@import '../../_variables.scss';
+
 .navigation {
     text-align:right;
-    background: #EF767A;
+    background: $primary;
     padding: 22px 0px 18px;
 }
 
@@ -29,7 +31,7 @@
 }
 
 .navigation li a{
-    color: #333;
+    color: #fff;
     padding: 12px;
     margin: 0px 0px 0px 12px;
     font-weight: bold;
