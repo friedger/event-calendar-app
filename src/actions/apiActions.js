@@ -2,15 +2,22 @@ import request from 'superagent';
 const cookieUtil = require('../utils/cookieUtil').default;
 const config = require('../../config');
 
-export const postUsers = (formState) => {
+export const postUsers = (formState, location) => {
     return new Promise((resolve, reject) => {
+
+        const postData = {
+            username: formState.username,
+            password: formState.password,
+            email: formState.email
+        };
+
+        if (location.query && location.query.shop) {
+            postData.shop = location.query.shop;
+        }
+
         request
             .post(`${config.apiUrl}/users`)
-            .send({
-                username: formState.username,
-                password: formState.password,
-                email: formState.email
-            })
+            .send(postData)
             .end((err, res) => {
                 if (err) {
                     const error = {_error: 'Login Failed.'};

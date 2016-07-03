@@ -27,7 +27,7 @@ const component = React.createClass({
             <div>
                 <Header />
                 <div className="container">
-                    <RegistrationForm router={this.context.router}/>
+                    <RegistrationForm location={this.props.location} router={this.context.router}/>
                 </div>
             </div>
         )

@@ -52,7 +52,7 @@ var Component = React.createClass({
                 </Col>
                 <Col md={12}>
                     <form onSubmit={handleSubmit((values, dispatch) => {
-                            return postUsers(values).then(() => {
+                            return postUsers(values, this.props.location).then(() => {
                                 return postLogin(values);
                             }).then(() => {
                                 return router.push('/firsttime-link-calendar');
