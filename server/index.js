@@ -41,6 +41,11 @@ app.use('/$', function (req, res, next) {
     }
     res.render('./staticSite/index.hbs');
 });
+app.use('/shoppify', function (req, res, next) {
+    res.render('./shoppifySite/index.hbs', {
+        dev: process.env.NODE_ENV === 'development'
+    });
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
