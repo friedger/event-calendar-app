@@ -4,13 +4,19 @@ if (typeof window !== 'undefined') {
 
 import React from 'react';
 
+import * as appActions from '../../actions/index';
+
 module.exports = React.createClass({
     render() {
         return (
             <div className="navigation">
                 <div className="container">
                     <div className="navigation__logo">
+                        {!this.props.loggedIn ?
                         <a href="/">ECA</a>
+                        :
+                        <a href="/dashboard">ECA</a>
+                        }
                     </div>
                     <div className="navigation__links">
                         {!this.props.loggedIn ?
@@ -25,10 +31,10 @@ module.exports = React.createClass({
                         :
                         <ul className="logged-in">
                             <li>
-                                <a href="/">Home</a>
-                            </li>
-                            <li>
                                 <a href="/dashboard">Dashboard</a>
+                            </li>
+                            <li onClick={() => appActions.logOut()}>
+                                <a href=''>Log Out</a>
                             </li>
                         </ul>
                         }

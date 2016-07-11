@@ -66,3 +66,8 @@ export function addUser(formState) {
             });
     }
 }
+
+export function logOut() {
+    cookieUtil.removeItem('eventcal-admin');
+    window.location.href='/';
+}

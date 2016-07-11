@@ -41,7 +41,7 @@ var Component = React.createClass({
                             });
                         })}>
                         <Input type="text" label="Username or Email" placeholder="Enter text" {...username}/>
-                        <Input type="password" label="Password" {...password}/>
+                        <Input type="password" placeholder="Enter password" label="Password" {...password}/>
                         <Button type="submit" value="Login" className='action-button' disabled={submitting}>
                             <div className={cn({'opacity-0': submitting})}>LOG IN</div>
                             {submitting && <div className='large-loader'><Loader type='spin' color='#000' width={3} radius={7} /></div>}
