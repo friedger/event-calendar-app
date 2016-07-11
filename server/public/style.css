@@ -15,6 +15,10 @@ ol, ul {
     padding: 24px 0px 21px;
 }
 
+.home-page .navigation {
+    background: url('https://eventcalendarapp.com/images/header.jpg')
+}
+
 .navigation__logo {
     float:left;
     color:#fff;
@@ -65,7 +69,7 @@ ol, ul {
     font-size: 55px;
     color: #fff;
     text-align:center;
-    font-weight: normal;
+    font-weight: lighter;
     margin: 100px 0px;
 }
 
