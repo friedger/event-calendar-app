@@ -9,7 +9,7 @@ export default (props) => (
     <Row>
         <Col md={12} className="calendarCode">
             <p>2) Copy and paste the below onto your site</p>
-            <textarea rows="4" cols="50" defaultValue={'<div id="app-container"></div><script>window.eventCalId='+ props.userId +';var mainScript=document.createElement("script");mainScript.setAttribute("src","' + props.calendarBuildUrl + '/main.js"),document.head.appendChild(mainScript);var stylesheet=document.createElement("link");stylesheet.setAttribute("href","' + props.calendarBuildUrl + '/styles.css"),stylesheet.setAttribute("rel","stylesheet"),document.head.appendChild(stylesheet);var fontAwesome=document.createElement("link");fontAwesome.setAttribute("href","https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"),fontAwesome.setAttribute("rel","stylesheet"),document.head.appendChild(fontAwesome);</script>'} />
+            <textarea readOnly rows="4" cols="50" defaultValue={'<div id="app-container"></div><script>(function () {\nwindow.eventCalId='+ props.userId +';\nvar integrationScript = document.createElement("script");\nintegrationScript.async = 1;\nintegrationScript.setAttribute("src", "https://api.eventcalendarapp.com/integration-script.js");\ndocument.head.appendChild(integrationScript);\n})();\n</script>'} />
         </Col>
     </Row>
 );

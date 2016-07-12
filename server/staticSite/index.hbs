@@ -101,7 +101,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div id="app-container"></div><script>window.eventCalId=2;var mainScript=document.createElement("script");mainScript.setAttribute("src","https://api.eventcalendarapp.com/calendar-build/main.js"),document.head.appendChild(mainScript);var stylesheet=document.createElement("link");stylesheet.setAttribute("href","https://api.eventcalendarapp.com/calendar-build/styles.css"),stylesheet.setAttribute("rel","stylesheet"),document.head.appendChild(stylesheet);var fontAwesome=document.createElement("link");fontAwesome.setAttribute("href","https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"),fontAwesome.setAttribute("rel","stylesheet"),document.head.appendChild(fontAwesome);</script>
+                    <div id="app-container"></div><script>(function () {
+                        window.eventCalId=2;
+                        var integrationScript = document.createElement("script");
+                        integrationScript.async = 1;
+                        integrationScript.setAttribute("src", "https://api.eventcalendarapp.com/integration-script.js");
+                        document.head.appendChild(integrationScript);
+                        })();
+                    </script>
                 </div>
             </div>
         </div>
