@@ -6,6 +6,8 @@ export const ADD_USER = 'GET_USER';
 export const ADD_USER_SUCCESS = 'GET_USER_SUCCESS';
 export const ADD_USER_FAILURE = 'GET_USER_FAILURE';
 
+export const POPULATE_REGISTER_FORM = 'POPULATE_REGISTER_FORM';
+
 import request from 'superagent';
 const config = require('../../config');
 
@@ -64,6 +66,13 @@ export function addUser(formState) {
                 });
 
             });
+    }
+}
+
+export function popuplateRegisterFormFromQuery(query) {
+    return {
+        type: POPULATE_REGISTER_FORM,
+        payload: query
     }
 }
 

@@ -6,9 +6,10 @@ import * as appActions from '../actions/index';
 import RegistrationForm from '../components/register';
 import Header from '../components/header';
 
-const mapState = ({number}) => {
+const mapState = ({form, initialRegisterState}) => {
     return {
-        number
+        form,
+        initialRegisterState
     }
 }
 
@@ -22,12 +23,15 @@ const component = React.createClass({
     contextTypes: {
         router: React.PropTypes.object.isRequired
     },
+    componentWillMount() {
+        this.props.popuplateRegisterFormFromQuery(this.props.location.query);
+    },
     render() {
         return (
             <div>
                 <Header />
                 <div className="container">
-                    <RegistrationForm location={this.props.location} router={this.context.router}/>
+                    <RegistrationForm initialValues={this.props.initialRegisterState} location={this.props.location} router={this.context.router}/>
                 </div>
             </div>
         )

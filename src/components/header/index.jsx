@@ -22,10 +22,13 @@ module.exports = React.createClass({
                         {!this.props.loggedIn ?
                         <ul>
                             <li>
-                                <a href="/login">Login</a>
+                                <a href="/help">Help</a>
                             </li>
                             <li>
-                                <a href="/register" className="primary-color">Get Started</a>
+                                <a className="bold" href="/login">Login</a>
+                            </li>
+                            <li>
+                                <a href="/register" className="bold primary-color">Get Started</a>
                             </li>
                         </ul>
                         :
@@ -33,8 +36,11 @@ module.exports = React.createClass({
                             <li>
                                 <a href="/dashboard">Dashboard</a>
                             </li>
+                            <li>
+                                <a href="/help">Help</a>
+                            </li>
                             <li onClick={() => appActions.logOut()}>
-                                <a href=''>Log Out</a>
+                                <a className="bold" href=''>Log Out</a>
                             </li>
                         </ul>
                         }

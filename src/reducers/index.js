@@ -1,8 +1,7 @@
 import { combineReducers } from 'redux'
 import {reducer as formReducer} from 'redux-form';
-import {LOGIN, LOGIN_SUCCESS, LOGIN_ERROR, GET_USER_SUCCESS, GET_USER_FAILURE} from '../actions';
+import {LOGIN, LOGIN_SUCCESS, LOGIN_ERROR, GET_USER_SUCCESS, GET_USER_FAILURE, POPULATE_REGISTER_FORM} from '../actions';
 import {GET_CALENDARS_SUCCESS} from '../actions/calendarActions';
-
 
 function appState(state = {}, action) {
     switch(action.type) {
@@ -26,8 +25,16 @@ function loginState(state = {}, action) {
     return state;
 }
 
+function initialRegisterState(state={}, action) {
+    if (action.type === POPULATE_REGISTER_FORM) {
+        return Object.assign({}, state, action.payload)
+    }
+    return state;
+}
+
 export default combineReducers({
     appState: appState,
     form: formReducer,
-    loginState: loginState
+    loginState: loginState,
+    initialRegisterState: initialRegisterState
 });

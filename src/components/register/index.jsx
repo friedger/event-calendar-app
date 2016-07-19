@@ -112,4 +112,6 @@ export default Component = reduxForm({ // <----- THIS IS THE IMPORTANT PART!
   form: 'register',                           // a unique name for this form
   fields: ['username', 'password', 'confirmpassword', 'email'],
   validate // all the fields in your form
-})(Component);
+}, (state) => ({
+    initialValues: state.initialRegisterState
+}))(Component);

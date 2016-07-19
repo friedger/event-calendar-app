@@ -4,6 +4,7 @@ import App from './containers/index.jsx';
 import Login from './containers/login';
 import Register from './containers/register';
 import Dashboard from './containers/dashboard';
+import Help from './containers/help';
 import TransactionComplete from './containers/transactionComplete';
 import NotFoundComponent from './containers/notFound';
 
@@ -16,6 +17,7 @@ const routes = (
         <Route path="link-calendar" component={Dashboard} />
         <Route path="firsttime-link-calendar" component={Dashboard} />
         <Route path="register" component={Register} />
+        <Route path="help" component={Help} />
         <Route path="*" component={NotFoundComponent} />
     </Route>
 );
