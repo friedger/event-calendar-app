@@ -2,7 +2,7 @@ import React from 'react';
 import EventCal from '../eventCal';
 import CalendarSelection from '../calendarSelection';
 import WelcomePageHeader from '../welcomePageHeader';
-import CalendarCodeTextArea from '../CalendarCodeTextArea';
+import CalendarCodeTextArea from '../calendarCodeTextArea';
 
 export default React.createClass({
     render() {
@@ -17,7 +17,7 @@ export default React.createClass({
                              initialValues={this.props.calendarFormInitialValues}
                              fields={Object.keys(this.props.user.calendars)}
                              calendars={this.props.user.calendars}/>
-                         <CalendarCodeTextArea calendarBuildUrl={this.props.calendarBuildUrl} userId={this.props.user.userId}/>
+                         <CalendarCodeTextArea shopifyUser={this.props.user.shopifyUser} calendarBuildUrl={this.props.calendarBuildUrl} userId={this.props.user.userId}/>
                          <p>3) And your calendar will look like this</p>
                          <EventCal userId={this.props.user.userId} activeCalendars={this.props.selectedCalendars.length}/>
                      </div>
