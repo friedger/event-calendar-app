@@ -45,7 +45,7 @@ const component = React.createClass({
                             <p>There are three parts involved in setting up your event calendar.</p>
 
                             <ol>
-                                <li>Linking Event Calendar App with your calendars.</li>
+                                <li>Linking Event Calendar App with your Apple, Google or Outlook calendar.</li>
                                 <li>Building your calendar and deciding how it will look.</li>
                                 <li>Integrating the calendar onto your website.</li>
                             </ol>
@@ -79,7 +79,7 @@ const component = React.createClass({
                             <p>At first, your calendar will be empty as you haven&rsquo;t told Event Calendar App to use any of your calendars.
                             </p>
 
-                            <img className="gif-image" alt="clicking calendars" src="/images/docs/clicking-calendars.gif"></img>
+                            <img className="gif-image" alt="clicking calendars" src="/images/docs/clicking-calendars-opti.gif"></img>
 
                             <hr></hr>
 
@@ -127,7 +127,7 @@ const component = React.createClass({
 
                             <strong>It is hugely important that the click the HTML button before you paste your embed code – otherwise it will not work.</strong>
 
-                            <img className="gif-image" alt="integrating calendar with shopify gif" src="/images/docs/integrating-shopify.gif"></img>
+                            <img className="gif-image" alt="integrating calendar with shopify gif" src="/images/docs/integrating-shopify-opti.gif"></img>
 
                         </div>
                         <div className="col-md-4">
