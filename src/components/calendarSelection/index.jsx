@@ -32,7 +32,7 @@ var Component = React.createClass({
 });
 
 export default Component = reduxForm({ // <----- THIS IS THE IMPORTANT PART!
-  form: 'calendarSelection',                           // a unique name for this form
+  form: 'calendarSelection'                         // a unique name for this form
 })(Component);
 
 import React from 'react';

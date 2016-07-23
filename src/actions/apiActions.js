@@ -35,7 +35,6 @@ export const postUsers = (formState, location) => {
 }
 
 export const postLogin = (formState) => {
-    console.log(config)
     return new Promise((resolve, reject) => {
         request
         .post(`${config.apiUrl}/login`)

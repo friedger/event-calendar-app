@@ -3,6 +3,7 @@ import EventCal from '../eventCal';
 import CalendarSelection from '../calendarSelection';
 import WelcomePageHeader from '../welcomePageHeader';
 import CalendarCodeTextArea from '../calendarCodeTextArea';
+import NumberOfEventsToDisplay from '../numberOfEventsSelection';
 
 export default React.createClass({
     render() {
@@ -17,8 +18,10 @@ export default React.createClass({
                              initialValues={this.props.calendarFormInitialValues}
                              fields={Object.keys(this.props.user.calendars)}
                              calendars={this.props.user.calendars}/>
+                         <p>2) How many events would you like to display at one time?</p>
+                         <NumberOfEventsToDisplay putSettingsAction={this.props.putSettings}/>
                          <CalendarCodeTextArea shopifyUser={this.props.user.shopifyUser} calendarBuildUrl={this.props.calendarBuildUrl} userId={this.props.user.userId}/>
-                         <p>3) And your calendar will look like this</p>
+                         <p>4) And your calendar will look like this</p>
                          <EventCal userId={this.props.user.userId} activeCalendars={this.props.selectedCalendars.length}/>
                      </div>
                          :

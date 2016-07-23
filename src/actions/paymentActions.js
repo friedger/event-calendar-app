@@ -22,7 +22,6 @@ export function submitPayment(stripeToken) {
         request.post(`${config.apiUrl}/payment`)
         .send({stripeToken, token})
         .end((err, res) => {
-            console.log(res);
             if (err) {
                 return dispatch({
                     type: SUBMIT_PAYMENT_ERROR,

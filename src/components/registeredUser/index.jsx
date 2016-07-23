@@ -4,6 +4,7 @@ import BeginTrial from '../beginTrial';
 import EventCal from '../eventCal';
 import CalendarSelection from '../calendarSelection';
 import WelcomePageHeader from '../welcomePageHeader';
+import NumberOfEventsSelection from '../NumberOfEventsSelection';
 import ga from 'react-ga';
 
 export default React.createClass({
@@ -19,11 +20,15 @@ export default React.createClass({
             <div>
                  {user.calendarAuthorised ?
                      <div>
-                         <FirstTimeLinkMessage />
+                         <h1>Dashboard</h1>
+                         <p>1) Choose which calendars you would like to use on your calendar</p>
                          <CalendarSelection onChange={this.props.putCalendars}
                              initialValues={this.props.calendarFormInitialValues}
                              fields={Object.keys(this.props.user.calendars)}
                              calendars={this.props.user.calendars}/>
+                         <p>2) How many events would you like to display at once?</p>
+                         <NumberOfEventsSelection putSettingsAction={this.props.putSettings}/>
+                         <hr />
                          <EventCal userId={this.props.user.userId} activeCalendars={this.props.selectedCalendars.length}/>
                          <BeginTrial submitPaymentAction={this.props.submitPaymentAction}/>
                      </div>

@@ -40,6 +40,7 @@ const component = React.createClass({
     componentDidMount() {
         this.props.getUser();
         this.props.getCalendars();
+        this.props.getSettings();
     },
 
     _getSelectedCalendars() {
@@ -78,6 +79,7 @@ const component = React.createClass({
                 <div className="container">
                     {user && user.status === 'registered' &&
                         <RegisteredUser putCalendars={this.props.putCalendars}
+                            putSettings={this.props.putSettings}
                             selectedCalendars={this._getSelectedCalendars()}
                             calendarFormInitialValues={this._getCalendarFormInitialValues()}
                             user={this.props.appState.user}
@@ -87,6 +89,7 @@ const component = React.createClass({
                             {user && user.status === 'subscription' &&
                                 <SubscriptionUser
                                     putCalendars={this.props.putCalendars}
+                                    putSettings={this.props.putSettings}
                                     selectedCalendars={this._getSelectedCalendars()}
                                     calendarFormInitialValues={this._getCalendarFormInitialValues()}
                                     user={this.props.appState.user}
