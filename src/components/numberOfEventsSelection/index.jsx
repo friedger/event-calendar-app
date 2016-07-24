@@ -25,7 +25,7 @@ var Component = React.createClass({
                         <FormGroup>
                             <FormControl
                                type="number"
-                               placeholder="Enter text"
+                               placeholder="5"
                                {...numEventsToDisplay}
                                onChange={this.inputOnChange}
                                onBlur={this.makeChange}
