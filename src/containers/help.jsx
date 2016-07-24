@@ -25,6 +25,9 @@ const component = React.createClass({
     componentWillMount() {
         this.props.popuplateRegisterFormFromQuery(this.props.location.query);
     },
+    componentDidMount() {
+        this.props.getUser();
+    },
     isUserLoggedIn() {
         if (cookieUtil.getItem('eventcal-admin')) {
             return true;
@@ -100,6 +103,10 @@ const component = React.createClass({
 
                             <h2 id="shopify-install">How to install Event Calendar App on Shopify</h2>
 
+                            <iframe width="420" height="315" src="https://www.youtube.com/embed/ZpdGyTMBJkY" frameborder="0" allowfullscreen></iframe>
+
+                            <p><strong>Above is a video with a complete walk through on how to install the event calendar on your Shopify store. If you don't want to watch the video there are full written instructions below</strong></p>
+
                             <p>We&rsquo;ve designed Event Calendar App to be as simple as possible to install on your Shopify site.
                             </p>
 
@@ -120,14 +127,46 @@ const component = React.createClass({
                                 <li><a href="#creating">Creating your calendar</a></li>
                             </ul>
 
-                            <p>These steps are not Shopify specific and are documented previously.</p>
+                            <p>These steps are not Shopify specific and are documented previously. However, they will enable you to set up your calendar and find your integration code.</p>
 
-                            <p>Getting your calendar onto your shop is as simple as copying and pasting the embed code to the page on which you want the calendar to appear.
-                            </p>
+                            <p><strong>1) Login to your shopify admin panel</strong></p>
+
+                            {this.props.appState && this.props.appState.user && this.props.appState.user.shopifyUser &&
+                                <p><a href={`http://${this.props.appState.user.shopifyUser}/admin`}>Click here</a> to log into your admin panel. It may ask you for your shopify username and password.</p>
+                            }
+
+                            <p><strong>2) Find the page you want to add the calendar too</strong></p>
+
+                            {this.props.appState && this.props.appState.user && this.props.appState.user.shopifyUser &&
+                                <p><a href={`http://${this.props.appState.user.shopifyUser}/admin`}>Click here</a> to view all the pages on your admin store. Otherwise to do it manually...</p>
+                            }
+
+                            <p>To access your pages, on the left hand side of your admin panel, under sales channels, you will see a link called <strong>Online Store</strong>. Click on that.</p>
+
+                            <p>You will now see a list of options for your store. Click on <strong>pages</strong>.</p>
+
+                            <img className="gif-image" alt="integrating calendar with shopify gif" src="/images/docs/navigating-admin.gif"></img>
+
+                            <p>You will now see a list of pages that are present on your current store. You may want to add the calendar to a current page or create a new page for it. A common scenario is to add an events page.</p>
+
+                            <p>If you would like to add a page, click on Add page in the top right hand corner. If the page already exists that you want to add the calendar to, then click on that page directly.</p>
+
+                            <p><strong>3) Paste the calendar code onto your page</strong></p>
+
+                            <p>All that is left to do now is to paste your Event Calendar App code into your page. Just to refresh, the code I'm refering to here is the integration code that you can get from your <a href="/dashboard">Event Calendar App dashboard.</a></p>
 
                             <strong>It is hugely important that the click the HTML button before you paste your embed code – otherwise it will not work.</strong>
 
                             <img className="gif-image" alt="integrating calendar with shopify gif" src="/images/docs/integrating-shopify-opti.gif"></img>
+
+                            <p>Once you have done that, simply click save page in the top right hand corner.</p>
+
+                            <p>Your event calendar should now be visable on your page</p>
+
+                            <p>If you are having any trouble what-so-ever please <a href="mailto:support@eventcalendarapp.com">contact us</a> and we will get back to you straight away.</p>
+
+
+
 
                         </div>
                         <div className="col-md-4">
