@@ -4,7 +4,7 @@ import BeginTrial from '../beginTrial';
 import EventCal from '../eventCal';
 import CalendarSelection from '../calendarSelection';
 import WelcomePageHeader from '../welcomePageHeader';
-import NumberOfEventsSelection from '../NumberOfEventsSelection';
+import NumberOfEventsSelection from '../numberOfEventsSelection';
 import ga from 'react-ga';
 
 export default React.createClass({
