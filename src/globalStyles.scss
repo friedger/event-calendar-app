@@ -12,7 +12,25 @@ button {
 }
 
 .container {
-    max-width: 750px !important;
+    max-width: 900px !important;
+}
+
+.dashboard {
+    padding-top:20px;
+}
+
+label {
+    font-weight: normal;
+    color:#676767;
+}
+
+.hideOverflow
+{
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    width:100%;
+    display:block;
 }
 
 .help .container {

@@ -76,7 +76,7 @@ const component = React.createClass({
         return (
             <div>
                 <Header loggedIn={true}/>
-                <div className="container">
+                <div className="container dashboard">
                     {user && user.status === 'registered' &&
                         <RegisteredUser putCalendars={this.props.putCalendars}
                             putSettings={this.props.putSettings}

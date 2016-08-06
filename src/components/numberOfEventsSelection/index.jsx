@@ -1,45 +1,65 @@
 import React from 'react';
-import {Row, Col, Input, Button, HelpBlock, FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
+import {
+    Row,
+    Col,
+    Input,
+    Button,
+    HelpBlock,
+    FormGroup,
+    ControlLabel,
+    FormControl,
+    Radio,
+    Form
+} from 'react-bootstrap';
 import {reduxForm} from 'redux-form';
 import debounce from 'lodash.debounce';
 
 var Component = React.createClass({
-    inputOnChange(e) {
-        e.persist();
-        this.props.fields.numEventsToDisplay.onChange(e.target.value);
-        debounce(this.makeChange(e), 500)();
+    componentWillMount() {
+        this.makeApiCall = debounce(values => this.props.putSettingsAction(values), 500);
     },
-    makeChange(e) {
-        return () => {
-            if (e.target.value) {
-                this.props.putSettingsAction(e.target.value);
-            }
-        }
+    inputOnChange(e, field, handleSubmit) {
+        field.onChange(e);
+        setTimeout(() => {
+            handleSubmit(values => this.makeApiCall(values))();
+        });
     },
     render() {
-        const { fields: {numEventsToDisplay}, handleSubmit, submitting } = this.props;
+        const {
+            fields: {
+                numEventsToDisplay,
+                pastEvents
+            },
+            handleSubmit,
+            submitting
+        } = this.props;
         return (
             <Row className="settings-form">
-                <Col md={4}>
-                    <form>
-                        <FormGroup>
-                            <FormControl
-                               type="number"
-                               placeholder="5"
-                               {...numEventsToDisplay}
-                               onChange={this.inputOnChange}
-                               onBlur={this.makeChange}
-                             />
-                        </FormGroup>
-                    </form>
-                </Col>
+                <Col md={12}>
+                <form ref='settingsForm'>
+                    <FormGroup>
+                        <Row>
+                        <Col md={6}>
+                            <ControlLabel>How many events to display at once</ControlLabel>
+                            <FormControl type="number" placeholder="5" {...numEventsToDisplay} onChange={(e) => this.inputOnChange(e, numEventsToDisplay, handleSubmit)} onBlur={(e) => this.inputOnChange(e, numEventsToDisplay, handleSubmit)}/>
+                        </Col>
+                        <Col md={6}>
+                            <ControlLabel>Display events in the past</ControlLabel>
+                            <div>
+                            <Radio inline name="pastEvents" {...pastEvents} onChange={(e) => this.inputOnChange(e, pastEvents, handleSubmit)} checked={pastEvents.value === true || pastEvents.value === 'true'} value={true}>Yes</Radio>
+                            <Radio inline name="pastEvents" {...pastEvents} onChange={(e) => this.inputOnChange(e, pastEvents, handleSubmit)} checked={pastEvents.value === false || pastEvents.value === 'false'} value={false}>No</Radio>
+                            </div>
+                        </Col>
+                    </Row>
+                    </FormGroup>
+                </form>
+            </Col>
             </Row>
         )
     }
 });
 
 export default Component = reduxForm({ // <----- THIS IS THE IMPORTANT PART!
-  form: 'settingsForm',                           // a unique name for this form
-  fields: ['numEventsToDisplay']
-},
-state => ({initialValues: state.appState}))(Component);
+    form: 'settingsForm', // a unique name for this form
+    fields: ['numEventsToDisplay', 'pastEvents']
+}, state => ({initialValues: state.appState}))(Component);

@@ -2,7 +2,7 @@ if (typeof window !== 'undefined') {
     require('./style.scss');
 }
 
-import {Input, Row, Col} from 'react-bootstrap';
+import {Input, Row, Col, Checkbox, FormGroup, ControlLabel} from 'react-bootstrap';
 import {reduxForm} from 'redux-form';
 
 var Component = React.createClass({
@@ -16,14 +16,20 @@ var Component = React.createClass({
             <Row>
                 <Col md={12}>
                 <form>
+                    <FormGroup>
+                        <Row>
                     {Object.keys(fields).map((calendar, index) => {
                         const field = fields[calendar];
                         return (
-                            <Col md={3} key={index}>
-                                <Input onClick={this.formChange.bind(null, this.props.calendars[calendar].id)} type="checkbox" label={this.props.calendars[calendar].name} {...field}/>
+                            <Col md={4} key={index}>
+                                <Checkbox className='abc-checkbox abc-checkbox-primary' onClick={this.formChange.bind(null, this.props.calendars[calendar].id)} {...field}>
+                                    <div className="hideOverflow">{this.props.calendars[calendar].name}</div>
+                                </Checkbox>
                             </Col>
                         )
                     })}
+                </Row>
+                </FormGroup>
                 </form>
             </Col>
             </Row>

@@ -17,16 +17,15 @@ export default React.createClass({
     render() {
         const {user, authUrl} = this.props;
         return (
-            <div>
+            <div className="col-md-10 col-sm-offset-1">
                  {user.calendarAuthorised ?
                      <div>
-                         <h1>Dashboard</h1>
                          <p>1) Choose which calendars you would like to use on your calendar</p>
                          <CalendarSelection onChange={this.props.putCalendars}
                              initialValues={this.props.calendarFormInitialValues}
                              fields={Object.keys(this.props.user.calendars)}
                              calendars={this.props.user.calendars}/>
-                         <p>2) How many events would you like to display at once?</p>
+                         <p>2) Choose your preferences</p>
                          <NumberOfEventsSelection putSettingsAction={this.props.putSettings}/>
                          <hr />
                          <EventCal userId={this.props.user.userId} activeCalendars={this.props.selectedCalendars.length}/>

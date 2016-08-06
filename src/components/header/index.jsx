@@ -5,6 +5,7 @@ if (typeof window !== 'undefined') {
 import React from 'react';
 
 import * as appActions from '../../actions/index';
+const Link = require('react-router').Link;
 
 module.exports = React.createClass({
     render() {
@@ -22,10 +23,10 @@ module.exports = React.createClass({
                         {!this.props.loggedIn ?
                         <ul>
                             <li>
-                                <a href="/help">Help</a>
+                                <Link activeClassName="active" to="/help">Help</Link>
                             </li>
                             <li>
-                                <a className="bold" href="/login">Login</a>
+                                <Link className="bold" activeClassName="active" to="/login">Login</Link>
                             </li>
                             <li>
                                 <a href="/register" className="bold primary-color">Get Started</a>
@@ -34,13 +35,13 @@ module.exports = React.createClass({
                         :
                         <ul className="logged-in">
                             <li>
-                                <a href="/dashboard">Dashboard</a>
+                                <Link activeClassName="active" to="/dashboard">Dashboard</Link>
                             </li>
                             <li>
-                                <a href="/help">Help</a>
+                                <Link activeClassName="active" to="/help">Help</Link>
                             </li>
                             <li onClick={() => appActions.logOut()}>
-                                <a className="bold" href=''>Log Out</a>
+                                <a href=''>Log Out</a>
                             </li>
                         </ul>
                         }

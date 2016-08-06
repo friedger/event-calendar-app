@@ -23,6 +23,15 @@
 
 .navigation__links {
     float:right;
+
+    .active {
+        font-weight: bold;
+        border-bottom: 2px solid #fff;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
 }
 
 .navigation li{
@@ -55,7 +64,5 @@
 }
 
 .navigation li a.primary-color:hover {
-    color: #333;
-    border: 2px solid #333;
-    text-decoration: none;
+    text-decoration: underline;
 }

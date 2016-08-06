@@ -44,7 +44,7 @@ export function getSettings() {
     }
 }
 
-export function putSettings(numEventsToDisplay) {
+export function putSettings(values) {
     return (dispatch) => {
         dispatch({
             type: PUT_SETTINGS
@@ -52,7 +52,7 @@ export function putSettings(numEventsToDisplay) {
         const token = cookieUtil.getItem('eventcal-admin');
         request
             .put(`${config.apiUrl}/settings?token=${token}`)
-            .send({numEventsToDisplay})
+            .send(values)
             .end((err, res) => {
                 if (err) {
                     return dispatch({
