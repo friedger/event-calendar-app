@@ -14,6 +14,19 @@ import ga from 'react-ga';
 ga.initialize('UA-74477503-1');
 
 browserHistory.listen(function (location) {
+
+    if (location.pathname === '/dashboard/transaction-complete') {
+        window.google_trackConversion({
+            google_conversion_id: 1023858504,
+            google_conversion_label: "4MSoCIXN3GkQyK6b6AM",  // if provided, remove this line if not provided
+            google_remarketing_only: false,
+            google_conversion_language: "en",
+            google_conversion_format: "3",
+            google_conversion_color: "ffffff"
+        });
+        console.log('tracking conversion')
+    }
+
     ga.pageview(window.location.pathname);
 });
 
