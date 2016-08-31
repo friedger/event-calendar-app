@@ -7,6 +7,7 @@ body {
 
 ol, ul {
     margin: 0;
+    padding: 0;
 }
 
 .navigation {
@@ -20,17 +21,26 @@ ol, ul {
 }
 
 .home-page .navigation {
-    background: url('https://eventcalendarapp.com/images/header.jpg')
+    background: url('https://eventcalendarapp.com/images/header.jpg');
 }
 
 .navigation__logo {
     float:left;
     color:#fff;
     font-size: 20px;
+    display:none;
 }
 
 .navigation__links {
-    float:right;
+    text-align: center;
+}
+
+.navigation__links li:nth-child(1) {
+    display:none;
+}
+
+.navigation__links li:nth-child(2) {
+    display:none;
 }
 
 .navigation li{
@@ -69,7 +79,7 @@ ol, ul {
 }
 
 .demo-header h1 {
-    font-size: 55px;
+    font-size: 50px;
     color: #fff;
     text-align:center;
     font-weight: lighter;
@@ -83,6 +93,7 @@ ol, ul {
 .catch-line p {
     color: #999999;
     font-weight: lighter;
+    font-size: 20px;
 }
 
 .shoppify-layout .catch-line {
@@ -136,6 +147,47 @@ ol, ul {
     color: #444;
 }
 
+.red {
+    color:#ff6666;
+}
+
+.features {
+    text-align: center;
+    margin-top:50px;
+    margin-bottom: 20px;
+}
+
+.features h3 {
+    font-weight: lighter;
+}
+
+.features-container i {
+font-size:50px;
+color: #000;
+color: #367cb8;
+}
+
+.google {
+    color: #1E88E5;
+}
+
+.apple {
+    color: #FFA726;
+}
+
+.outlook {
+    color: #9C27B0;
+}
+
+
+.features p {
+
+    font-weight: lighter;
+    color: #999999;
+    font-size: 14px;
+
+}
+
 .built-by a:hover {
     color: #444;
     text-decoration:none;
@@ -150,15 +202,19 @@ ol, ul {
     padding-left:5px;
 }
 
-.platforms p {
+.platforms p, .trusted-by p {
     color: #999999;
     font-weight: lighter;
 }
 
-.platforms {
+.platforms, .trusted-by {
     background: #f3f3f3;
     text-align: center;
-    margin: 46px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+}
+
+.trusted-by {
+    background: #fff;
 }
 
 .platforms__header h2 {
@@ -170,12 +226,18 @@ ol, ul {
     font-weight: normal;
 }
 
-.platforms img {
+.platforms img, .trusted-by img {
     width: auto;
     height: 100px;
     padding: 15px 0px;
     max-width: 300px;
+}
 
+.trusted-by img {
+    width: auto;
+    height: 100px;
+    padding: 15px 0px;
+    max-width: 300px;
 }
 
 .row-spacing {
@@ -191,12 +253,29 @@ textarea {
 }
 
 @media (min-width: 768px) {
+    .navigation__logo {
+        display: inline-block;
+    }
+
+    .navigation__links {
+        float:right;
+        text-align: left;
+    }
+
+    .navigation__links li:nth-child(1) {
+        display:inline-block;
+    }
+
+    .navigation__links li:nth-child(2) {
+        display:inline-block;
+    }
+
   .built-by {
       display:block;
       background: #fff;
   }
 
-  .platforms img {
+  .platforms img, .trusted-by img {
       width: auto;
       height: 100px;
       max-width: 352px;
@@ -205,9 +284,14 @@ textarea {
 
 @media (min-width: 992px) {
 
-  .platforms img {
+  .platforms img, .trusted-by img {
       width: auto;
       height: 80px;
+      max-width: 252px;
+  }
+  .trusted-by img {
+      width: auto;
+      height: 90px;
       max-width: 252px;
   }
 }
