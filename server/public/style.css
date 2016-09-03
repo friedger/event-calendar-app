@@ -20,7 +20,7 @@ ol, ul {
     font-weight: bold;
 }
 
-.home-page .navigation {
+.home-page .navigation, .shoppify-layout .navigation {
     background: url('https://eventcalendarapp.com/images/header.jpg');
 }
 
@@ -86,6 +86,14 @@ ol, ul {
     margin: 100px 0px;
 }
 
+.shoppify-layout .demo-header h1 {
+    margin: 50px 0px 16px;
+}
+
+.demo-header a {
+    text-align: center;
+}
+
 .catch-line {
     text-align: center;
 }
@@ -94,10 +102,6 @@ ol, ul {
     color: #999999;
     font-weight: lighter;
     font-size: 20px;
-}
-
-.shoppify-layout .catch-line {
-    padding:0px;
 }
 
 .features h3, .features p {
