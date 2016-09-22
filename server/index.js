@@ -24,7 +24,7 @@ app.use('/favicon.ico', function (req, res, next) {
 
 app.use(cookieParser());
 
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'secureDev') {
     combileWebpack(app);
 }
 
@@ -43,7 +43,8 @@ app.use('/$', function (req, res, next) {
 });
 app.use('/shoppify', function (req, res, next) {
     res.render('./shoppifySite/index.hbs', {
-        dev: process.env.NODE_ENV === 'development'
+        dev: process.env.NODE_ENV === 'development',
+        secureDev: process.env.NODE_ENV === 'secureDev'
     });
 });
 
@@ -56,7 +57,7 @@ app.use(function (req, res, next) {
 
 // development error handler
 // will print stacktrace
-if (app.get('env') === 'development') {
+if (app.get('env') === 'development' || app.get('env') === 'secureDev') {
 
     app.use(function (err, req, res, next) {
         res.status(err.status || 500);

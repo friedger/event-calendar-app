@@ -4,7 +4,9 @@
 
 var app = require('../server/index');
 var debug = require('debug')('app:server');
+var https = require('https');
 var http = require('http');
+var fs = require('fs');
 
 /**
  * Get port from environment and store in Express.
@@ -17,7 +19,18 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+var server;
+
+if (process.env.NODE_ENV === 'secureDev') {
+    process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+    var options = {
+        key: fs.readFileSync(__dirname + '/client-key.pem').toString(),
+        cert: fs.readFileSync(__dirname + '/client-cert.pem').toString()
+    };
+    server = https.createServer(options, app);
+} else {
+    server = http.createServer(app);
+}
 
 /**
  * Listen on provided port, on all network interfaces.

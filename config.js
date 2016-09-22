@@ -5,6 +5,11 @@ if (typeof window !== 'undefined') {
 }
 
 const config = {
+    secureDev: {
+        apiUrl: 'https://eventcalendarapp.hopto.org:3434',
+        calendarBuildUrl: 'https://eventcalendarapp.hopto.org:3434/calendar-build',
+        stripePublishableToken: 'pk_test_cYLFCC3SbZhSHnpTZgzqHZZ9'
+    },
     development: {
         apiUrl: 'http://localhost:3434',
         calendarBuildUrl: 'http://localhost:3434/calendar-build',

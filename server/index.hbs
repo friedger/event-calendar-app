@@ -85,6 +85,10 @@
         <script src="http://localhost:1212/main.js"></script>
     {{/if}}
 
+    {{#if secureDev}}
+        <script src="https://localhost:1212/main.js"></script>
+    {{/if}}
+
     {{#if isProd}}
         <script src="/build/main.js"></script>
     {{/if}}
