@@ -7,6 +7,7 @@ import Dashboard from './containers/dashboard';
 import Help from './containers/help';
 import TransactionComplete from './containers/transactionComplete';
 import NotFoundComponent from './containers/notFound';
+import WeeblyIframe from './containers/weeblyIframe';
 
 const routes = (
     <Route component={App} name='app' path='/'>
@@ -18,6 +19,7 @@ const routes = (
         <Route path="firsttime-link-calendar" component={Dashboard} />
         <Route path="register" component={Register} />
         <Route path="help" component={Help} />
+        <Route path="/weebly-iframe" component={WeeblyIframe} />
         <Route path="*" component={NotFoundComponent} />
     </Route>
 );
