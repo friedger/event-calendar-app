@@ -22,7 +22,10 @@ export default React.createClass({
                          <hr />
                          <EventCal userId={this.props.user.userId} activeCalendars={this.props.selectedCalendars.length}/>
                          <hr />
+                         {this.props.user.weeblyUser && <p><strong>That's it.</strong> Head back to your weebly site to see your updated calendar!</p>}
+                         {!this.props.user.weeblyUser &&
                          <CalendarCodeTextArea shopifyUser={this.props.user.shopifyUser} calendarBuildUrl={this.props.calendarBuildUrl} userId={this.props.user.userId}/>
+                         }
                      </div>
                          :
                      <div>
