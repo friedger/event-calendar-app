@@ -85,7 +85,7 @@ const component = React.createClass({
         }
         return (
             <div>
-                <Header useFluidContainer={userHasSubscribed || (user && user.calendarAuthorised)} loggedIn={true}/>
+                <Header useFluidContainer={(user && user.calendarAuthorised)} loggedIn={true}/>
                 <div className={containerClassNames}>
                     {userHasRegisteredOrCancelled &&
                         <RegisteredUser putCalendars={this.props.putCalendars}
