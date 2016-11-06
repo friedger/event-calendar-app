@@ -1,5 +1,6 @@
 if (typeof window !== 'undefined') {
     require('./globalStyles.scss');
+    require('./dashboard.scss');
 }
 
 import ReactDOM from 'react-dom';

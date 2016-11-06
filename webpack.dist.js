@@ -29,7 +29,7 @@ module.exports = {
                 // activate source maps via loader query
                 'css?sourceMap!' +
                 'sass?sourceMap&')
-        }]
+        },{include: /\.json$/, loaders: ["json-loader"]}]
     },
     resolve: {
         extensions: ['', '.js', '.jsx']

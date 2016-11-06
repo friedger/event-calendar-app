@@ -17,14 +17,17 @@ var Component = React.createClass({
                 <Col md={12}>
                 <form>
                     <FormGroup>
-                        <Row>
+                        <Row className="calendar-selection">
                     {Object.keys(fields).map((calendar, index) => {
                         const field = fields[calendar];
                         return (
                             <Col md={4} key={index}>
-                                <Checkbox className='abc-checkbox abc-checkbox-primary' onClick={this.formChange.bind(null, this.props.calendars[calendar].id)} {...field}>
-                                    <div className="hideOverflow">{this.props.calendars[calendar].name}</div>
-                                </Checkbox>
+                                <div className="checkbox">
+                                    <input id={index + '-checkbox'} type="checkbox" onClick={this.formChange.bind(null, this.props.calendars[calendar].id)} {...field}/>
+                                    <label htmlFor={index + '-checkbox'}>
+                                        <div className="hideOverflow">{this.props.calendars[calendar].name}</div>
+                                    </label>
+                                </div>
                             </Col>
                         )
                     })}

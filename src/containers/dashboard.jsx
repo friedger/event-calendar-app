@@ -12,6 +12,7 @@ import CalendarCodeTextArea from '../components/calendarCodeTextArea';
 import RegisteredUser from '../components/registeredUser';
 import SubscriptionUser from '../components/subscriptionUser';
 import Header from '../components/header';
+import cn from 'classnames';
 
 import {Row, Col} from 'react-bootstrap';
 
@@ -68,6 +69,15 @@ const component = React.createClass({
     render() {
         const {user} = this.props.appState;
         const authUrl = `${config.apiUrl}/authenticate?token=${cookieUtil.getItem('eventcal-admin')}`;
+
+        const userHasRegisteredOrCancelled = user && (user.status === 'registered' || user.status === 'cancelled');
+        const userHasSubscribed = user && user.status === 'subscription';
+
+        const containerClassNames = cn({
+            'container-fluid': user && user.calendarAuthorised && (userHasSubscribed || userHasRegisteredOrCancelled)
+        },
+        {'container': user && !user.calendarAuthorised}, 'dashboard');
+
         if (this.props.children) {
             return (
                 <div>{this.props.children}</div>
@@ -75,9 +85,9 @@ const component = React.createClass({
         }
         return (
             <div>
-                <Header loggedIn={true}/>
-                <div className="container dashboard">
-                    {user && (user.status === 'registered' || user.status === 'cancelled') &&
+                <Header useFluidContainer={userHasSubscribed || (user && user.calendarAuthorised)} loggedIn={true}/>
+                <div className={containerClassNames}>
+                    {userHasRegisteredOrCancelled &&
                         <RegisteredUser putCalendars={this.props.putCalendars}
                             putSettings={this.props.putSettings}
                             selectedCalendars={this._getSelectedCalendars()}
@@ -86,7 +96,7 @@ const component = React.createClass({
                             calendarSelectionForm={this.props.form.calendarSelection}
                             submitPaymentAction={this.props.submitPayment}
                             authUrl={`${config.apiUrl}/authenticate?token=${cookieUtil.getItem('eventcal-admin')}`} />}
-                            {user && user.status === 'subscription' &&
+                            {userHasSubscribed &&
                                 <SubscriptionUser
                                     putCalendars={this.props.putCalendars}
                                     putSettings={this.props.putSettings}

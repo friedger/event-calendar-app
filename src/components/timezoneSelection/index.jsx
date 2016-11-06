@@ -13,6 +13,7 @@ import {
 } from 'react-bootstrap';
 import {reduxForm} from 'redux-form';
 import debounce from 'lodash.debounce';
+import moment from 'moment-timezone';
 
 var Component = React.createClass({
     componentWillMount() {
@@ -27,8 +28,7 @@ var Component = React.createClass({
     render() {
         const {
             fields: {
-                numEventsToDisplay,
-                pastEvents
+                timezone
             },
             handleSubmit,
             submitting
@@ -40,19 +40,16 @@ var Component = React.createClass({
                     <FormGroup>
                         <Row className="settings-space">
                             <Col md={8}>
-                                <ControlLabel className="setting-title">How many events to display at once:</ControlLabel>
+                                <ControlLabel className="setting-title">Calendar timezone:</ControlLabel>
                             </Col>
                             <Col md={4}>
-                                <FormControl type="number" placeholder="5" {...numEventsToDisplay} onChange={(e) => this.inputOnChange(e, numEventsToDisplay, handleSubmit)} onBlur={(e) => this.inputOnChange(e, numEventsToDisplay, handleSubmit)}/>
-                            </Col>
-                        </Row>
-                        <Row className="settings-space">
-                            <Col md={8}>
-                                <ControlLabel className="setting-title">Display events in the past:</ControlLabel>
-                            </Col>
-                            <Col md={4}>
-                                <Radio inline name="pastEvents" {...pastEvents} onChange={(e) => this.inputOnChange(e, pastEvents, handleSubmit)} checked={pastEvents.value === true || pastEvents.value === 'true'} value={true}>Yes</Radio>
-                                <Radio inline name="pastEvents" {...pastEvents} onChange={(e) => this.inputOnChange(e, pastEvents, handleSubmit)} checked={pastEvents.value === false || pastEvents.value === 'false'} value={false}>No</Radio>
+                                <select {...timezone}
+                                    onChange={(e) => this.inputOnChange(e, timezone, handleSubmit)}
+                                    onBlur={(e) => this.inputOnChange(e, timezone, handleSubmit)}>
+                                    {moment.tz.names().map(function (timezone, index) {
+                                        return <option key={index}>{timezone}</option>
+                                    })}
+                                </select>
                             </Col>
                         </Row>
                     </FormGroup>
@@ -64,6 +61,6 @@ var Component = React.createClass({
 });
 
 export default Component = reduxForm({ // <----- THIS IS THE IMPORTANT PART!
-    form: 'settingsForm', // a unique name for this form
-    fields: ['numEventsToDisplay', 'pastEvents']
+    form: 'timezoneSelection', // a unique name for this form
+    fields: ['timezone']
 }, state => ({initialValues: state.appState}))(Component);

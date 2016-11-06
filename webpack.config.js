@@ -38,13 +38,16 @@ module.exports = {
                     }
                 }
             }
-        },{
+        }, {
             test: /\.(ttf|eot|svg|woff2|woff)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
             loader: "file-loader"
         }, {
             test: /\.scss$/,
             loaders: ['style', 'css', 'sass']
-        }, ]
+        }, {
+            include: /\.json$/,
+            loaders: ["json-loader"]
+        }]
     },
     resolve: {
         extensions: ['', '.js', '.jsx']
