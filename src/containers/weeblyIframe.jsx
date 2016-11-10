@@ -5,7 +5,7 @@ import * as appActions from '../actions/index';
 const Link = require('react-router').Link;
 import WeeblyIframe from '../components/weeblyIframe';
 import WeeblyNoSubscriptionMessage from '../components/weeblyNoSubscriptionMessage';
-
+import WeeblyWelcomeMessage from '../components/weeblyWelcomeMessage';
 
 const mapState = ({appState}) => {
     return {appState}
@@ -24,10 +24,26 @@ const component = React.createClass({
     componentDidMount() {
         this.props.getUser();
     },
+    displayMessage(messageType) {
+
+        const user = this.props.appState.user;
+
+        if (!user) {
+            return false;
+        }
+
+        const shouldMessageTypeBeDisplayed = {
+            noSubscription: user.status === 'registered' && user.calendarAuthorised,
+            welcome: !user.calendarAuthorised
+        };
+
+        return shouldMessageTypeBeDisplayed[messageType];
+    },
     render() {
         return (
             <div>
-                {this.props.appState && this.props.appState.user && this.props.appState.user.status === 'registered' && <WeeblyNoSubscriptionMessage/>}
+                {this.displayMessage('noSubscription') && <WeeblyNoSubscriptionMessage/>}
+                {this.displayMessage('welcome') && <WeeblyWelcomeMessage/>}
                 <WeeblyIframe/>
             </div>
         )
