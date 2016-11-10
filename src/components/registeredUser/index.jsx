@@ -38,7 +38,7 @@ export default React.createClass({
                                 </div>
                                 <EventCal userId={this.props.user.userId} activeCalendars={this.props.selectedCalendars.length}/>
                                 <hr />
-                                <BeginTrial user={user} submitPaymentAction={this.props.submitPaymentAction}/>
+                                <BeginTrial testMode={this.props.testMode} user={user} submitPaymentAction={this.props.submitPaymentAction}/>
                             </div>
                         </div>
                     </div>

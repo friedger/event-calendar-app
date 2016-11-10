@@ -69,6 +69,7 @@ const component = React.createClass({
     render() {
         const {user} = this.props.appState;
         const authUrl = `${config.apiUrl}/authenticate?token=${cookieUtil.getItem('eventcal-admin')}`;
+        const testMode = this.props.location.query.testMode;
 
         const userHasRegisteredOrCancelled = user && (user.status === 'registered' || user.status === 'cancelled');
         const userHasSubscribed = user && user.status === 'subscription';
@@ -90,6 +91,7 @@ const component = React.createClass({
                     {userHasRegisteredOrCancelled &&
                         <RegisteredUser putCalendars={this.props.putCalendars}
                             putSettings={this.props.putSettings}
+                            testMode={testMode}
                             selectedCalendars={this._getSelectedCalendars()}
                             calendarFormInitialValues={this._getCalendarFormInitialValues()}
                             user={this.props.appState.user}
