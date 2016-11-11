@@ -11,7 +11,7 @@ if (typeof window !== 'undefined') {
 
 import { browserHistory } from 'react-router';
 
-export function submitPayment(stripeToken) {
+export function submitPayment(testmode, stripeToken) {
     return (dispatch) => {
         dispatch({
             type: SUBMIT_PAYMENT
@@ -20,7 +20,7 @@ export function submitPayment(stripeToken) {
         const token = cookieUtil.getItem('eventcal-admin');
 
         request.post(`${config.apiUrl}/payment`)
-        .send({stripeToken, token})
+        .send({stripeToken, token, testmode})
         .end((err, res) => {
             if (err) {
                 return dispatch({
