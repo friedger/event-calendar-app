@@ -12,7 +12,9 @@ import CalendarCodeTextArea from '../components/calendarCodeTextArea';
 import RegisteredUser from '../components/registeredUser';
 import SubscriptionUser from '../components/subscriptionUser';
 import Header from '../components/header';
+
 import cn from 'classnames';
+import getCronofyAuthUrl from '../utils/getCronofyAuthUrl';
 
 import {Row, Col} from 'react-bootstrap';
 
@@ -68,7 +70,7 @@ const component = React.createClass({
 
     render() {
         const {user} = this.props.appState;
-        const authUrl = `${config.apiUrl}/authenticate?token=${cookieUtil.getItem('eventcal-admin')}`;
+        const authUrl = getCronofyAuthUrl();
         const testMode = this.props.location.query.testMode;
 
         const userHasRegisteredOrCancelled = user && (user.status === 'registered' || user.status === 'cancelled');
@@ -97,7 +99,7 @@ const component = React.createClass({
                             user={this.props.appState.user}
                             calendarSelectionForm={this.props.form.calendarSelection}
                             submitPaymentAction={this.props.submitPayment}
-                            authUrl={`${config.apiUrl}/authenticate?token=${cookieUtil.getItem('eventcal-admin')}`} />}
+                            authUrl={getCronofyAuthUrl()} />}
                             {userHasSubscribed &&
                                 <SubscriptionUser
                                     putCalendars={this.props.putCalendars}
@@ -107,7 +109,7 @@ const component = React.createClass({
                                     user={this.props.appState.user}
                                     calendarBuildUrl={config.calendarBuildUrl}
                                     calendarSelectionForm={this.props.form.calendarSelection}
-                                    authUrl={`${config.apiUrl}/authenticate?token=${cookieUtil.getItem('eventcal-admin')}`} />}
+                                    authUrl={getCronofyAuthUrl()} />}
                                 </div>
             </div>
         )
