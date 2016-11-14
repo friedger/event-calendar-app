@@ -31,9 +31,9 @@ const component = React.createClass({
                         <p>If you don't link a calendar to Event Calendar App, then there will be nothing to display on your calendar. :(</p>
                         <p>Calendar accounts with all the major providers (Google, Outlook and Apple) are completly free. However, there's a good chance you already have one.</p>
                         <ul>
-                            <li><a href="https://www.icloud.com/#calendar">Register for a <strong>Apple</strong> Calendar</a></li>
-                            <li><a href="https://www.google.com/calendar">Register for a <strong>Google</strong> Calendar</a></li>
-                            <li><a href="https://office.live.com/start/Calendar.aspx?omkt=en-US">Register for a <strong>Outlook</strong> Calendar</a></li>
+                            <li><a target="_blank" href="https://www.icloud.com/#calendar">Register for a <strong>Apple</strong> Calendar</a></li>
+                            <li><a target="_blank" href="https://www.google.com/calendar">Register for a <strong>Google</strong> Calendar</a></li>
+                            <li><a target="_blank" href="https://office.live.com/start/Calendar.aspx?omkt=en-US">Register for a <strong>Outlook</strong> Calendar</a></li>
                         </ul>
                         <p>Once you've got your calendar account ready, <strong>try linking your calendar again</strong>:</p>
                         <a href={getCronofyAuthUrl()} onClick={this._fireGaEvent} className="start-trial">Link my calendar</a>
