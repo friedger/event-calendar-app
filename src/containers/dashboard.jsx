@@ -12,6 +12,7 @@ import CalendarCodeTextArea from '../components/calendarCodeTextArea';
 import RegisteredUser from '../components/registeredUser';
 import SubscriptionUser from '../components/subscriptionUser';
 import Header from '../components/header';
+import SuccessfulLinkModal from '../components/successfulLinkModal';
 
 import cn from 'classnames';
 import getCronofyAuthUrl from '../utils/getCronofyAuthUrl';
@@ -40,6 +41,9 @@ function addScriptToPage(userId) {
 var calendarHasBeenRendered;
 
 const component = React.createClass({
+    getInitialState() {
+        return {userHasSeenSuccessfulLinkModal: cookieUtil.getItem('seen-successful-link-modal')};
+    },
     componentDidMount() {
         this.props.getUser();
         this.props.getCalendars();
@@ -86,9 +90,11 @@ const component = React.createClass({
                 <div>{this.props.children}</div>
             )
         }
+        
         return (
             <div>
                 <Header useFluidContainer={(user && user.calendarAuthorised)} loggedIn={true}/>
+                {this.props.location.query.showSuccessModal && !this.state.userHasSeenSuccessfulLinkModal && <SuccessfulLinkModal/>}
                 <div className={containerClassNames}>
                     {userHasRegisteredOrCancelled &&
                         <RegisteredUser putCalendars={this.props.putCalendars}

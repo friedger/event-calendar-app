@@ -179,6 +179,12 @@ h1 {
     }
 }
 
+.inline-button {
+    display:inline-block;
+    width: auto;
+    padding: 20px 10px;
+}
+
 .gif-image {
     max-width: 100%;
     border: 1px solid #ececec;
@@ -204,4 +210,13 @@ h1 {
             margin-left: 15px;
         }
     }
+}
+
+.modal-footer {
+    border-top: 0;
+}
+
+.modal-header {
+    text-align:center;
+    border-bottom: 0;
 }
