@@ -36,9 +36,7 @@ app.use('/link-calendar', notLoggedInRedirect, renderApp);
 app.use('/firsttime-link-calendar', notLoggedInRedirect, renderApp);
 app.use('/$', function (req, res, next) {
     if (req.cookies['eventcal-admin']) {
-        return res.render('./staticSite/index.hbs', {
-            loggedIn:true
-        });
+        return res.redirect('/dashboard');
     }
     res.render('./staticSite/index.hbs');
 });
