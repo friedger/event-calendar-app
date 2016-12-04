@@ -28,7 +28,8 @@ var Component = React.createClass({
     render() {
         const {
             fields: {
-                timezone
+                timezone,
+                timeformat
             },
             handleSubmit,
             submitting
@@ -52,6 +53,15 @@ var Component = React.createClass({
                                 </select>
                             </Col>
                         </Row>
+                        <Row className="settings-space">
+                            <Col md={8}>
+                                <ControlLabel className="setting-title">Time format:</ControlLabel>
+                            </Col>
+                            <Col md={4}>
+                                <Radio inline name="timeformat" {...timeformat} onChange={(e) => this.inputOnChange(e, timeformat, handleSubmit)} checked={timeformat.value === 12 || timeformat.value === '12'} value={12}>12hr</Radio>
+                                <Radio inline name="timeformat" {...timeformat} onChange={(e) => this.inputOnChange(e, timeformat, handleSubmit)} checked={timeformat.value === 24 || timeformat.value === '24'} value={24}>24hr</Radio>
+                            </Col>
+                        </Row>
                     </FormGroup>
                 </form>
             </Col>
@@ -62,5 +72,5 @@ var Component = React.createClass({
 
 export default Component = reduxForm({ // <----- THIS IS THE IMPORTANT PART!
     form: 'timezoneSelection', // a unique name for this form
-    fields: ['timezone']
+    fields: ['timezone', 'timeformat']
 }, state => ({initialValues: state.appState}))(Component);
