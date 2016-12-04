@@ -8,7 +8,11 @@ module.exports = function (req, res) {
         .get(`${config.apiUrl}/user?token=${req.cookies['eventcal-admin']}`)
         .end((err, apiResponse) => {
             if (err) {
+                return res.json({error: 'No api response'});
+            }
 
+            if (!apiResponse) {
+                return res.json({error: 'No api response'});
             }
 
             if (!apiResponse.body.calendarAuthorised) {
