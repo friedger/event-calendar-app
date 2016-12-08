@@ -106,8 +106,6 @@ export function putCalendars(calendarId, selected) {
             .put(`${config.apiUrl}/calendars?token=${token}`)
             .send({calendarId: calendarId, selected: selected})
             .end((err, res) => {
-                console.log(err)
-                console.log(res)
                 if (err) {
                     return dispatch({
                         type: PUT_CALENDARS_ERROR,

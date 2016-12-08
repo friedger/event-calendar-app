@@ -1,7 +1,7 @@
 import React from 'react';
 
 import EventCal from '../eventCal';
-import CalendarSelection from '../CalendarSelection';
+import CalendarSelection from '../calendarSelection';
 
 export default React.createClass({
     render() {

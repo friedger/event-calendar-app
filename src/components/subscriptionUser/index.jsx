@@ -6,6 +6,7 @@ if (typeof window !== 'undefined') {
 import React from 'react';
 import EventCal from '../eventCal';
 import CalendarSelection from '../calendarSelection';
+import ViewModeSelection from '../viewModeSelection';
 import WelcomePageHeader from '../welcomePageHeader';
 import CalendarCodeTextArea from '../calendarCodeTextArea';
 import NumberOfEventsToDisplay from '../numberOfEventsSelection';
@@ -27,6 +28,8 @@ export default React.createClass({
                                 initialValues={this.props.calendarFormInitialValues}
                                 fields={Object.keys(this.props.user.calendars)}
                                 calendars={this.props.user.calendars}/>
+                            <span className="setting-title">Calendars layouts to display:</span>
+                            <ViewModeSelection putSettingsAction={this.props.putSettings}/>
                             <NumberOfEventsToDisplay putSettingsAction={this.props.putSettings}/>
                             <TimezoneSelection putSettingsAction={this.props.putSettings}/>
                         </div>
