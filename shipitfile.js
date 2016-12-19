@@ -14,7 +14,7 @@ module.exports = function (shipit) {
             shallowClone: true
         },
         production: {
-            servers: 'root@horu.io'
+            servers: 'root@eventcalendarapp.com'
         }
     });
     shipit.on('updated', function () {
