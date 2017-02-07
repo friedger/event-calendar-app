@@ -26,8 +26,8 @@ export default React.createClass({
                             <span className="setting-title">Calendars to display:</span>
                             <CalendarSelection onChange={this.props.putCalendars}
                                 initialValues={this.props.calendarFormInitialValues}
-                                fields={Object.keys(this.props.user.calendars)}
-                                calendars={this.props.user.calendars}/>
+                                fields={Object.keys(this.props.calendars)}
+                                calendars={this.props.calendars}/>
                             <NumberOfEventsSelection putSettingsAction={this.props.putSettings}/>
                             <TimezoneSelection putSettingsAction={this.props.putSettings}/>
                         </div>

@@ -66,8 +66,8 @@ const component = React.createClass({
     },
 
     _getCalendarFormInitialValues() {
-        return Object.keys(this.props.appState.user.calendars).reduce((collection, current) => {
-            collection[current] = this.props.appState.user.calendars[current].selected;
+        return Object.keys(this.props.appState.calendars).reduce((collection, current) => {
+            collection[current] = this.props.appState.calendars[current].selected;
             return collection;
         }, {});
     },
@@ -90,7 +90,7 @@ const component = React.createClass({
                 <div>{this.props.children}</div>
             )
         }
-        
+
         return (
             <div>
                 <Header useFluidContainer={(user && user.calendarAuthorised)} loggedIn={true}/>
@@ -105,6 +105,7 @@ const component = React.createClass({
                             user={this.props.appState.user}
                             calendarSelectionForm={this.props.form.calendarSelection}
                             submitPaymentAction={this.props.submitPayment}
+                            calendars={this.props.appState.calendars}
                             authUrl={getCronofyAuthUrl()} />}
                             {userHasSubscribed &&
                                 <SubscriptionUser
@@ -115,6 +116,7 @@ const component = React.createClass({
                                     user={this.props.appState.user}
                                     calendarBuildUrl={config.calendarBuildUrl}
                                     calendarSelectionForm={this.props.form.calendarSelection}
+                                    calendars={this.props.appState.calendars}
                                     authUrl={getCronofyAuthUrl()} />}
                                 </div>
             </div>

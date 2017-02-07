@@ -3,7 +3,7 @@ import {reducer as formReducer} from 'redux-form';
 import {LOGIN, LOGIN_SUCCESS, LOGIN_ERROR, GET_USER_SUCCESS, GET_USER_FAILURE, POPULATE_REGISTER_FORM} from '../actions';
 import {GET_CALENDARS_SUCCESS, GET_SETTINGS_SUCCESS} from '../actions/calendarActions';
 
-function appState(state = {}, action) {
+function appState(state = {calendars: {}}, action) {
     switch(action.type) {
         case GET_USER_SUCCESS:
         return Object.assign({}, state, {user: action.payload.body});
