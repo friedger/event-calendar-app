@@ -31,4 +31,4 @@ browserHistory.listen(function (location) {
     ga.pageview(window.location.pathname);
 });
 
-ReactDOM.render(<Provider store={store}><Router history={browserHistory}>{routes}</Router></Provider>, document.getElementById('app'));
+ReactDOM.render(<Provider store={store}><Router history={browserHistory}>{routes(store)}</Router></Provider>, document.getElementById('app'));

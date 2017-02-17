@@ -48,32 +48,10 @@ const component = React.createClass({
         this.props.getUser();
         this.props.getCalendars();
         this.props.getSettings();
+        this.props.getConnections();
     },
-
-    _getSelectedCalendars() {
-        if (!this.props.form.calendarSelection) {
-            return [];
-        }
-
-        return Object.keys(this.props.form.calendarSelection)
-        .filter(key => key.charAt(0) !== '_')
-        .reduce((collection, current) => {
-            if (this.props.form.calendarSelection[current].value) {
-                collection.push(current);
-            }
-            return collection;
-        }, []);
-    },
-
-    _getCalendarFormInitialValues() {
-        return Object.keys(this.props.appState.calendars).reduce((collection, current) => {
-            collection[current] = this.props.appState.calendars[current].selected;
-            return collection;
-        }, {});
-    },
-
     render() {
-        const {user} = this.props.appState;
+        const {user, connections} = this.props.appState;
         const authUrl = getCronofyAuthUrl();
         const testMode = this.props.location.query.testMode;
 
@@ -81,9 +59,9 @@ const component = React.createClass({
         const userHasSubscribed = user && user.status === 'subscription';
 
         const containerClassNames = cn({
-            'container-fluid': user && user.calendarAuthorised && (userHasSubscribed || userHasRegisteredOrCancelled)
+            'container-fluid': connections && connections.length > 0 && (userHasSubscribed || userHasRegisteredOrCancelled)
         },
-        {'container': user && !user.calendarAuthorised}, 'dashboard');
+        {'container': connections && (connections.length === 0)}, 'dashboard');
 
         if (this.props.children) {
             return (
@@ -93,29 +71,22 @@ const component = React.createClass({
 
         return (
             <div>
-                <Header useFluidContainer={(user && user.calendarAuthorised)} loggedIn={true}/>
+                <Header useFluidContainer={(connections && connections.length > 0)} loggedIn={true}/>
                 {this.props.location.query.showSuccessModal && !this.state.userHasSeenSuccessfulLinkModal && <SuccessfulLinkModal/>}
                 <div className={containerClassNames}>
                     {userHasRegisteredOrCancelled &&
-                        <RegisteredUser putCalendars={this.props.putCalendars}
-                            putSettings={this.props.putSettings}
+                        <RegisteredUser
                             testMode={testMode}
-                            selectedCalendars={this._getSelectedCalendars()}
-                            calendarFormInitialValues={this._getCalendarFormInitialValues()}
                             user={this.props.appState.user}
-                            calendarSelectionForm={this.props.form.calendarSelection}
                             submitPaymentAction={this.props.submitPayment}
                             calendars={this.props.appState.calendars}
+                            connections={connections}
                             authUrl={getCronofyAuthUrl()} />}
                             {userHasSubscribed &&
                                 <SubscriptionUser
-                                    putCalendars={this.props.putCalendars}
-                                    putSettings={this.props.putSettings}
-                                    selectedCalendars={this._getSelectedCalendars()}
-                                    calendarFormInitialValues={this._getCalendarFormInitialValues()}
+                                    connections={connections}
                                     user={this.props.appState.user}
                                     calendarBuildUrl={config.calendarBuildUrl}
-                                    calendarSelectionForm={this.props.form.calendarSelection}
                                     calendars={this.props.appState.calendars}
                                     authUrl={getCronofyAuthUrl()} />}
                                 </div>

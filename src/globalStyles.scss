@@ -9,6 +9,37 @@ body {
 
 button {
     position: relative;
+
+    &.default {
+        background: #dfdfdf;
+        color: #999999;
+        border:0;
+        font-weight: lighter;
+        border-bottom: 2px solid #bfbebe;
+        padding: 10px;
+        border-radius: 2px;
+        text-shadow: none;
+    }
+
+    &.action {
+        background: #2e3d4e;
+        border: 0;
+        font-weight:lighter;
+        box-shadow: none;
+        color: #fff;
+        text-shadow: none;
+        padding: 10px;
+        border-bottom: 2px solid #182029;
+        border-radius: 2px;
+    }
+
+    &.submit-inline {
+        padding: 4px;
+    }
+
+    &.full-width {
+        width: 100%;
+    }
 }
 
 .container {

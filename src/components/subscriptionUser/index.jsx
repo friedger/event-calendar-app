@@ -4,41 +4,28 @@ if (typeof window !== 'undefined') {
 }
 
 import React from 'react';
+
 import EventCal from '../eventCal';
-import CalendarSelection from '../calendarSelection';
-import ViewModeSelection from '../viewModeSelection';
 import WelcomePageHeader from '../welcomePageHeader';
 import CalendarCodeTextArea from '../calendarCodeTextArea';
-import NumberOfEventsToDisplay from '../numberOfEventsSelection';
-import TimezoneSelection from '../timezoneSelection';
-
+import AdminSettingsPanel from '../../containers/AdminSettingsPanel';
 
 export default React.createClass({
     render() {
-        const {user, authUrl} = this.props;
+        const {user, authUrl, connections} = this.props;
         return (
-
             <div>
-                {user.calendarAuthorised ?
+                {connections && connections.length > 0 ?
                     <div>
                         <div className="col-sm-5 calendar-settings col-sm-push-7">
-                            <p className="dashboard-header dashboard-header--right">Calendar settings</p>
-                            <span className="setting-title">Calendars to display:</span>
-                            <CalendarSelection onChange={this.props.putCalendars}
-                                initialValues={this.props.calendarFormInitialValues}
-                                fields={Object.keys(this.props.calendars)}
-                                calendars={this.props.calendars}/>
-                            <span className="setting-title">Calendars layouts to display:</span>
-                            <ViewModeSelection putSettingsAction={this.props.putSettings}/>
-                            <NumberOfEventsToDisplay putSettingsAction={this.props.putSettings}/>
-                            <TimezoneSelection putSettingsAction={this.props.putSettings}/>
+                            <AdminSettingsPanel />
                         </div>
                         <div className="col-sm-7 col-sm-pull-5">
                                 <div>
                                     <div className="dashboard-header dashboard-header--left">
                                         <span>Live calendar</span>
                                     </div>
-                                    <EventCal userId={this.props.user.userId} activeCalendars={this.props.selectedCalendars.length}/>
+                                    <EventCal userId={this.props.user.userId} />
                                     <hr />
                                     {this.props.user.weeblyUser &&
                                         <div>
@@ -52,11 +39,11 @@ export default React.createClass({
                                 </div>
                         </div>
                     </div>
-            : <div>
-                <WelcomePageHeader />
-                <a href={authUrl} className="start-trial">Link my calendar</a>
-            </div>}
-
+                     :
+                    <div>
+                        <WelcomePageHeader />
+                        <a href={authUrl} className="start-trial">Link my calendar</a>
+                </div>}
             </div>
         )
     }

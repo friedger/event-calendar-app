@@ -48,5 +48,36 @@ export const postLogin = (formState) => {
             resolve()
         });
     });
+}
 
+export const postCalendars = (formState) => {
+    const token = cookieUtil.getItem('eventcal-admin');
+
+    return new Promise((resolve, reject) => {
+        request
+        .post(`${config.apiUrl}/calendars?token=${token}`)
+        .send({calendarUrl: formState.calendarurl, calendarName: formState.calendarname})
+        .end((err, res) => {
+            if (err) {
+                return reject();
+            }
+            resolve()
+        });
+    });
+}
+
+export const deleteCalendarApiCall = (data) => {
+    const token = cookieUtil.getItem('eventcal-admin');
+
+    return new Promise((resolve, reject) => {
+        request
+        .delete(`${config.apiUrl}/calendars?token=${token}`)
+        .send(data)
+        .end((err, res) => {
+            if (err) {
+                return reject();
+            }
+            resolve()
+        });
+    });
 }

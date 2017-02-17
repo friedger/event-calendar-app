@@ -1,12 +1,11 @@
 import React from 'react';
+import ga from 'react-ga';
+
 import FirstTimeLinkMessage from '../firstTimeLinkMessage';
 import BeginTrial from '../beginTrial';
 import EventCal from '../eventCal';
-import CalendarSelection from '../calendarSelection';
 import WelcomePageHeader from '../welcomePageHeader';
-import NumberOfEventsSelection from '../numberOfEventsSelection';
-import TimezoneSelection from '../timezoneSelection';
-import ga from 'react-ga';
+import AdminSettingsPanel from '../../containers/adminSettingsPanel';
 
 export default React.createClass({
     _fireGaEvent() {
@@ -22,21 +21,14 @@ export default React.createClass({
                 {user.calendarAuthorised ?
                     <div>
                         <div className="col-sm-5 calendar-settings col-sm-push-7">
-                            <p className="dashboard-header dashboard-header--right">Calendar settings</p>
-                            <span className="setting-title">Calendars to display:</span>
-                            <CalendarSelection onChange={this.props.putCalendars}
-                                initialValues={this.props.calendarFormInitialValues}
-                                fields={Object.keys(this.props.calendars)}
-                                calendars={this.props.calendars}/>
-                            <NumberOfEventsSelection putSettingsAction={this.props.putSettings}/>
-                            <TimezoneSelection putSettingsAction={this.props.putSettings}/>
+                            <AdminSettingsPanel />
                         </div>
                         <div className="col-sm-7 col-sm-pull-5">
                             <div>
                                 <div className="dashboard-header dashboard-header--left">
                                     <span>Live calendar</span>
                                 </div>
-                                <EventCal userId={this.props.user.userId} activeCalendars={this.props.selectedCalendars.length}/>
+                                <EventCal userId={this.props.user.userId} />
                                 <hr />
                                 <BeginTrial testMode={this.props.testMode} user={user} submitPaymentAction={this.props.submitPaymentAction}/>
                             </div>
@@ -52,7 +44,3 @@ export default React.createClass({
         )
     }
 });
-
-//user
-//putCalendars
-//calendarSelectionForm

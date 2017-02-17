@@ -9,21 +9,22 @@ import TransactionComplete from './containers/transactionComplete';
 import NotFoundComponent from './containers/notFound';
 import WeeblyIframe from './containers/weeblyIframe';
 import FailToLink from './containers/FailToLink';
+import LinkCalendar from './containers/LinkCalendar';
 
-const routes = (
-    <Route component={App} name='app' path='/'>
-        <Route path="login" component={Login} />
-        <Route path="dashboard" component={Dashboard}>
-            <Route path="transaction-complete" component={TransactionComplete} />
+export default (store) => {
+    return (
+        <Route component={App} name='app' path='/'>
+            <Route path="login" component={Login} />
+            <Route path="dashboard" component={Dashboard}>
+                <Route path="transaction-complete" component={TransactionComplete} />
+            </Route>
+            <Route path="link-calendar" component={Dashboard}/>
+            <Route path="firsttime-link-calendar" component={LinkCalendar} />
+            <Route path="register" component={Register} />
+            <Route path="help" component={Help} />
+            <Route path="/weebly-iframe" component={WeeblyIframe} />
+            <Route path="/fail-to-link" component={FailToLink} />
+            <Route path="*" component={NotFoundComponent} />
         </Route>
-        <Route path="link-calendar" component={Dashboard} />
-        <Route path="firsttime-link-calendar" component={Dashboard} />
-        <Route path="register" component={Register} />
-        <Route path="help" component={Help} />
-        <Route path="/weebly-iframe" component={WeeblyIframe} />
-        <Route path="/fail-to-link" component={FailToLink} />
-        <Route path="*" component={NotFoundComponent} />
-    </Route>
-);
-
-module.exports = routes;
+    )
+};

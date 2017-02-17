@@ -5,7 +5,7 @@ const renderConfig = require('../renderConfig');
 module.exports = function (req, res) {
 
     request
-        .get(`${config.apiUrl}/user?token=${req.cookies['eventcal-admin']}`)
+        .get(`${config.apiUrl}/connections?token=${req.cookies['eventcal-admin']}`)
         .end((err, apiResponse) => {
             if (err) {
                 return res.json({error: 'No api response'});
@@ -15,7 +15,9 @@ module.exports = function (req, res) {
                 return res.json({error: 'No api response'});
             }
 
-            if (!apiResponse.body.calendarAuthorised) {
+            console.log(apiResponse.body.length, 'the length');
+
+            if (apiResponse.body.length === 0) {
                 return res.redirect('/link-calendar');
             }
 

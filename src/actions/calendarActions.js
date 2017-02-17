@@ -14,11 +14,21 @@ export const PUT_SETTINGS = 'PUT_SETTINGS';
 export const PUT_SETTINGS_SUCCESS = 'PUT_SETTINGS_SUCCESS';
 export const PUT_SETTINGS_ERROR = 'PUT_SETTINGS_ERROR';
 
+export const GET_CONNECTIONS = 'GET_CONNECTIONS';
+export const GET_CONNECTIONS_SUCCESS = 'GET_CONNECTIONS_SUCCESS';
+export const GET_CONNECTIONS_ERROR = 'GET_CONNECTIONS_ERROR';
+
+export const DELETE_CALENDAR = 'DELETE_CALENDAR';
+export const DELETE_CALENDAR_SUCCESS = 'DELETE_CALENDAR_SUCCESS';
+export const DELETE_CALENDAR_ERROR = 'DELETE_CALENDAR_ERROR';
+
 if (typeof window !== 'undefined') {
     var cookieUtil = require('../utils/cookieUtil').default;
 }
 
 import request from 'superagent';
+import { deleteCalendarApiCall } from './apiActions';
+
 const config = require('../../config');
 
 export function getSettings() {
@@ -122,5 +132,56 @@ export function putCalendars(calendarId, selected) {
                 document.dispatchEvent(a);
 
             });
+    }
+}
+
+export function getConnections() {
+    console.log('calling get connections');
+    return (dispatch) => {
+        dispatch({
+            type: GET_CONNECTIONS
+        });
+        const token = cookieUtil.getItem('eventcal-admin');
+        request.get(`${config.apiUrl}/connections?token=${token}`)
+        .end((err, res) => {
+            if (err) {
+                console.log('get connections err', err);
+                return dispatch({
+                    type: GET_CONNECTIONS_ERROR,
+                    error: err
+                })
+            }
+
+            console.log('dispatching');
+
+            dispatch({
+                type: GET_CONNECTIONS_SUCCESS,
+                payload: res.body
+            });
+        });
+    }
+}
+
+export function deleteCalendar(data) {
+    return (dispatch) => {
+
+        dispatch({
+            type: DELETE_CALENDAR,
+            payload: data
+        });
+
+        deleteCalendarApiCall(data).then(() => {
+            dispatch({
+                type: DELETE_CALENDAR_SUCCESS
+            });
+        })
+        .then(() => getConnections()(dispatch))
+        .catch(err => {
+            return dispatch({
+                type: DELETE_CALENDAR_ERROR,
+                error: err
+            })
+        });
+
     }
 }
