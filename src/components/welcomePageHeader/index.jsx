@@ -53,7 +53,7 @@ export default React.createClass({
                         </div>
                     </div>
                     <div className="col-md-12">
-                        <a href="#">Want more information about this step?</a>
+                        <a target="_blank" href="https://eventcalendarapp.com/support/2017/02/18/ways-of-connecting-your-calendar/">Want more information about this step?</a>
                     </div>
                 </div>
             </div>

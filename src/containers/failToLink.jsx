@@ -27,16 +27,10 @@ const component = React.createClass({
                 <Header loggedIn={true}/>
                 <div className="container">
                     <div className="col-md-12">
-                        <h1>We need to link your calendar</h1>
-                        <p>If you don't link a calendar to Event Calendar App, then there will be nothing to display on your calendar. :(</p>
-                        <p>Calendar accounts with all the major providers (Google, Outlook and Apple) are completly free. However, there's a good chance you already have one.</p>
-                        <ul>
-                            <li><a target="_blank" href="https://www.icloud.com/#calendar">Register for a <strong>Apple</strong> Calendar</a></li>
-                            <li><a target="_blank" href="https://www.google.com/calendar">Register for a <strong>Google</strong> Calendar</a></li>
-                            <li><a target="_blank" href="https://office.live.com/start/Calendar.aspx?omkt=en-US">Register for a <strong>Outlook</strong> Calendar</a></li>
-                        </ul>
-                        <p>Once you've got your calendar account ready, <strong>try linking your calendar again</strong>:</p>
-                        <a href={getCronofyAuthUrl()} onClick={this._fireGaEvent} className="start-trial">Link my calendar</a>
+                        <h2 style={{'fontWeight': 'bold'}}>We need to connect to your calendar :(</h2>
+                        <p>You can read more about why we need to connect to a calendar <a target="_blank" href="https://eventcalendarapp.com/support/2017/02/18/why-do-i-have-to-connect-my-calendar-to-event-calendar-app/">here</a>.</p>
+                        <p>Once you've got your calendar account ready, <strong>try linking your calendar again.</strong></p>
+                        <a href='#' onClick={() => {this.context.router.push('link-calendar')}} className="start-trial">Back to link options</a>
                     </div>
                 </div>
             </div>

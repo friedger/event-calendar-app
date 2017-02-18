@@ -55,6 +55,9 @@
         display: inline-block;
         cursor: pointer;
         padding: 14px 35px;
+        &:hover {
+            color:#fff;
+        }
     }
     &__description {
         color: #fff;

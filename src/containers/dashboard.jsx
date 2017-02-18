@@ -71,7 +71,7 @@ const component = React.createClass({
 
         return (
             <div>
-                <Header useFluidContainer={(connections && connections.length > 0)} loggedIn={true}/>
+                <Header doNotDisplayDashboardLink={(connections && connections.length === 0)} useFluidContainer={(connections && connections.length > 0)} loggedIn={true}/>
                 {this.props.location.query.showSuccessModal && !this.state.userHasSeenSuccessfulLinkModal && <SuccessfulLinkModal/>}
                 <div className={containerClassNames}>
                     {userHasRegisteredOrCancelled && connections &&

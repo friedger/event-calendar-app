@@ -55,7 +55,7 @@ export default React.createClass({
                         </table>
                     </div>
                 </div>
-                {this.state.displayError && <p className="validation-message">You cannot delete the only calendar that you are conncected to</p>}
+                {this.state.displayError && <p className="validation-message">You cannot delete the only calendar that you are conncected to.</p>}
                 <div className="row">
                     <div className="col-md-6">
                         {!this.state.addCalendarSelected && <button className='action full-width' onClick={() => this.setState({addCalendarSelected: true})}>Add calendar</button>}

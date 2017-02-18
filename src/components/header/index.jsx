@@ -35,9 +35,11 @@ module.exports = React.createClass({
                                 </ul>
                                 :
                                 <ul className="logged-in">
-                                    <li>
-                                        <Link activeClassName="active" to="/dashboard">Dashboard</Link>
-                                    </li>
+                                    {!this.props.doNotDisplayDashboardLink &&
+                                        <li>
+                                            <Link activeClassName="active" to="/dashboard">Dashboard</Link>
+                                        </li>
+                                    }
                                     <li>
                                         <a href="https://eventcalendarapp.com/support" target="_blank">Help</a>
                                     </li>

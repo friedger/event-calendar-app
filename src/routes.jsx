@@ -19,7 +19,7 @@ export default (store) => {
                 <Route path="transaction-complete" component={TransactionComplete} />
             </Route>
             <Route path="link-calendar" component={Dashboard}/>
-            <Route path="firsttime-link-calendar" component={LinkCalendar} />
+            <Route path="firsttime-link-calendar" component={Dashboard} />
             <Route path="register" component={Register} />
             <Route path="help" component={Help} />
             <Route path="/weebly-iframe" component={WeeblyIframe} />

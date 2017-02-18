@@ -25,6 +25,9 @@ import {postCalendars} from '../../actions/apiActions';
 
 var Component = React.createClass({
     handleSubmit(values) {
+        if (this.props.selectIcsFeedAutomatically) {
+            values.selected = true;
+        }
         return postCalendars(values).then(() => {
             this.props.resetForm();
             this.props.calendarAdded();

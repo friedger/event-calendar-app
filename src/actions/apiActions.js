@@ -56,7 +56,7 @@ export const postCalendars = (formState) => {
     return new Promise((resolve, reject) => {
         request
         .post(`${config.apiUrl}/calendars?token=${token}`)
-        .send({calendarUrl: formState.calendarurl, calendarName: formState.calendarname})
+        .send({calendarUrl: formState.calendarurl, calendarName: formState.calendarname, selected: formState.selected})
         .end((err, res) => {
             if (err) {
                 return reject();

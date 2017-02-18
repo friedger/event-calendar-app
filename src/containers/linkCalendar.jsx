@@ -41,8 +41,8 @@ const component = React.createClass({
                     {this.state.displayIcsForm ?
                         <div className="row">
                             <div className="col-md-12">
-                                <h2 style={{'padding-bottom': '12px', 'font-weight': 'bold'}}>Connect your ICS feed</h2>
-                                <AddIcsCalendarForm calendarAdded={() => {window.location.href='/dashboard'}}/>
+                                <h2 style={{'paddingBottom': '12px', 'fontWeight': 'bold'}}>Connect your ICS feed</h2>
+                                <AddIcsCalendarForm selectIcsFeedAutomatically={true} calendarAdded={() => {window.location.href='/dashboard'}}/>
                                 <a href="#" onClick={() => {this.setState({displayIcsForm: false})}}>
                                     Back to link options
                                 </a>
@@ -52,6 +52,7 @@ const component = React.createClass({
                     <WelcomePageHeader
                         clickIcsConnect={() => {this.setState({displayIcsForm: true})}}
                         clickBack={() => {this.setState({displayIcsForm: false})}}
+                        authUrl={getCronofyAuthUrl()}
                         />}
                 </div>
             </div>
