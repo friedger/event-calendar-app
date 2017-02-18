@@ -42,7 +42,6 @@ var Component = React.createClass({
             submitting,
             error
         } = this.props;
-        console.log(error, 'form error');
         return (
             <Row className="ics-form">
                 <Col md={12}>
@@ -50,10 +49,10 @@ var Component = React.createClass({
                         <FormGroup>
                             <Row className="add-ics-form">
                                 <Col md={4}>
-                                    <input className="form-control" {...calendarname} placeholder="Calendar Name"/>
+                                    <input className="form-control" {...calendarname} placeholder="Calendar Name (This can be anything)"/>
                                 </Col>
                                 <Col md={6}>
-                                    <input className="form-control" {...calendarurl} placeholder="Calendar Url"/>
+                                    <input className="form-control" {...calendarurl} placeholder="Calendar ICS Url"/>
                                 </Col>
                                 <Col md={2}>
                                     <button disabled={submitting} className="action full-width submit-inline" type="submit">

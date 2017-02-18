@@ -74,22 +74,24 @@ const component = React.createClass({
                 <Header useFluidContainer={(connections && connections.length > 0)} loggedIn={true}/>
                 {this.props.location.query.showSuccessModal && !this.state.userHasSeenSuccessfulLinkModal && <SuccessfulLinkModal/>}
                 <div className={containerClassNames}>
-                    {userHasRegisteredOrCancelled &&
+                    {userHasRegisteredOrCancelled && connections &&
                         <RegisteredUser
                             testMode={testMode}
                             user={this.props.appState.user}
                             submitPaymentAction={this.props.submitPayment}
                             calendars={this.props.appState.calendars}
                             connections={connections}
-                            authUrl={getCronofyAuthUrl()} />}
-                            {userHasSubscribed &&
-                                <SubscriptionUser
-                                    connections={connections}
-                                    user={this.props.appState.user}
-                                    calendarBuildUrl={config.calendarBuildUrl}
-                                    calendars={this.props.appState.calendars}
-                                    authUrl={getCronofyAuthUrl()} />}
-                                </div>
+                            authUrl={getCronofyAuthUrl()}
+                        />}
+                    {userHasSubscribed && connections &&
+                        <SubscriptionUser
+                            connections={connections}
+                            user={this.props.appState.user}
+                            calendarBuildUrl={config.calendarBuildUrl}
+                            calendars={this.props.appState.calendars}
+                            authUrl={getCronofyAuthUrl()}
+                        />}
+                </div>
             </div>
         )
     }

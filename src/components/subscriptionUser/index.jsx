@@ -9,6 +9,8 @@ import EventCal from '../eventCal';
 import WelcomePageHeader from '../welcomePageHeader';
 import CalendarCodeTextArea from '../calendarCodeTextArea';
 import AdminSettingsPanel from '../../containers/AdminSettingsPanel';
+import LinkCalendar from '../../containers/linkCalendar';
+
 
 export default React.createClass({
     render() {
@@ -41,8 +43,7 @@ export default React.createClass({
                     </div>
                      :
                     <div>
-                        <WelcomePageHeader />
-                        <a href={authUrl} className="start-trial">Link my calendar</a>
+                        <LinkCalendar authUrl={authUrl}/>
                 </div>}
             </div>
         )

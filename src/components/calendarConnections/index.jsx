@@ -11,9 +11,13 @@ import Loader from 'react-loader';
 
 export default React.createClass({
     getInitialState() {
-        return {addCalendarSelected: false};
+        return {addCalendarSelected: false, displayError: false};
     },
     deleteCalendar(connection) {
+        if (this.props.connections.length === 1) {
+            return this.setState({displayError: true});
+        }
+        
         if (connection.calendarId) {
             return this.props.deleteCalendar({calendarId: connection.calendarId});
         }
@@ -51,6 +55,7 @@ export default React.createClass({
                         </table>
                     </div>
                 </div>
+                {this.state.displayError && <p className="validation-message">You cannot delete the only calendar that you are conncected to</p>}
                 <div className="row">
                     <div className="col-md-6">
                         {!this.state.addCalendarSelected && <button className='action full-width' onClick={() => this.setState({addCalendarSelected: true})}>Add calendar</button>}

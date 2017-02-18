@@ -136,7 +136,6 @@ export function putCalendars(calendarId, selected) {
 }
 
 export function getConnections() {
-    console.log('calling get connections');
     return (dispatch) => {
         dispatch({
             type: GET_CONNECTIONS
@@ -145,14 +144,11 @@ export function getConnections() {
         request.get(`${config.apiUrl}/connections?token=${token}`)
         .end((err, res) => {
             if (err) {
-                console.log('get connections err', err);
                 return dispatch({
                     type: GET_CONNECTIONS_ERROR,
                     error: err
                 })
             }
-
-            console.log('dispatching');
 
             dispatch({
                 type: GET_CONNECTIONS_SUCCESS,

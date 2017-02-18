@@ -25,7 +25,6 @@ browserHistory.listen(function (location) {
             google_conversion_format: "3",
             google_conversion_color: "ffffff"
         });
-        console.log('tracking conversion')
     }
 
     ga.pageview(window.location.pathname);

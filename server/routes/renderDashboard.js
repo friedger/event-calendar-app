@@ -15,8 +15,6 @@ module.exports = function (req, res) {
                 return res.json({error: 'No api response'});
             }
 
-            console.log(apiResponse.body.length, 'the length');
-
             if (apiResponse.body.length === 0) {
                 return res.redirect('/link-calendar');
             }

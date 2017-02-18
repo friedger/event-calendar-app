@@ -6,6 +6,7 @@ import BeginTrial from '../beginTrial';
 import EventCal from '../eventCal';
 import WelcomePageHeader from '../welcomePageHeader';
 import AdminSettingsPanel from '../../containers/adminSettingsPanel';
+import LinkCalendar from '../../containers/LinkCalendar';
 
 export default React.createClass({
     _fireGaEvent() {
@@ -35,9 +36,8 @@ export default React.createClass({
                         </div>
                     </div>
                     :
-                    <div className="col-md-10 col-sm-offset-1">
-                        <WelcomePageHeader />
-                        <a href={authUrl} onClick={this._fireGaEvent} className="start-trial">Link my calendar</a>
+                    <div>
+                        <LinkCalendar authUrl={authUrl}/>
                     </div>
                 }
             </div>
