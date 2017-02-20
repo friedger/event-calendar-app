@@ -5,10 +5,6 @@ export default React.createClass({
         return (
             <div>
                 {this.props.children}
-                <div className="built-by hidden-xs"><img src="https://alexperry.io/images/profileimage.jpg"/>
-                    <span>Built by <a href="http://alexperry.io">alexperry.io</a>
-                    </span>
-                </div>
             </div>
         )
     }

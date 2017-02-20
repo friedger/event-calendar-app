@@ -26,6 +26,11 @@ const component = React.createClass({
     componentWillMount() {
         this.props.popuplateRegisterFormFromQuery(this.props.location.query);
     },
+    componentDidMount() {
+        window.Intercom('boot', {
+           app_id: 'scigxdd1'
+        });
+    },
     render() {
         return (
             <div>

@@ -21,6 +21,11 @@ const component = React.createClass({
     contextTypes: {
         router: React.PropTypes.object.isRequired
     },
+    componentDidMount() {
+        window.Intercom('boot', {
+           app_id: 'scigxdd1'
+        });
+    },
     render() {
         return (
             <div>
