@@ -39,7 +39,8 @@ export function getUser() {
                     window.Intercom('boot', {
                         app_id: 'scigxdd1',
                         email: res.body.email,
-                        created_at: res.body.userCreatedTime
+                        created_at: res.body.userCreatedTime,
+                        status: res.body.status
                     });
                 }
 
