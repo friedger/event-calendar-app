@@ -16,10 +16,10 @@ export default React.createClass({
         });
     },
     render() {
-        const {user, authUrl} = this.props;
+        const {user, authUrl, connections} = this.props;
         return (
             <div>
-                {user.calendarAuthorised ?
+                {connections && connections.length > 0 ?
                     <div>
                         <div className="col-sm-5 calendar-settings col-sm-push-7">
                             <AdminSettingsPanel />

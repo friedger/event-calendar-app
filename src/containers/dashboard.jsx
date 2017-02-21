@@ -82,6 +82,7 @@ const component = React.createClass({
                             calendars={this.props.appState.calendars}
                             connections={connections}
                             authUrl={getCronofyAuthUrl()}
+                            connections={connections}
                         />}
                     {userHasSubscribed && connections &&
                         <SubscriptionUser
