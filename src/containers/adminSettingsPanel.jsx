@@ -10,6 +10,7 @@ import NumberOfEventsToDisplay from '../components/numberOfEventsSelection';
 import TimezoneSelection from '../components/timezoneSelection';
 import CalendarSelection from '../components/calendarSelection';
 import ViewModeSelection from '../components/viewModeSelection';
+import SubscriptionButtonSelection from '../components/subscriptionButtonSelection';
 
 import CalendarConnections from '../components/calendarConnections';
 
@@ -73,6 +74,7 @@ const component = React.createClass({
                 <ViewModeSelection putSettingsAction={this.props.putSettings}/>
                 <NumberOfEventsToDisplay putSettingsAction={this.props.putSettings}/>
                 <TimezoneSelection putSettingsAction={this.props.putSettings}/>
+                <SubscriptionButtonSelection putSettingsAction={this.props.putSettings}/>
             </div>
         )
     }
