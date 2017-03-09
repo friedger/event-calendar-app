@@ -32,6 +32,7 @@ app.use('/login', redirectIfLoggedIn, renderApp);
 app.use('/register', renderApp);
 app.use('/weebly-iframe', renderApp);
 app.use('/dashboard', notLoggedInRedirect, renderDashboard);
+app.use('/add-subscription', notLoggedInRedirect, renderDashboard);
 app.use('/link-calendar', notLoggedInRedirect, renderApp);
 app.use('/firsttime-link-calendar', notLoggedInRedirect, renderApp);
 app.use('/$', function (req, res, next) {

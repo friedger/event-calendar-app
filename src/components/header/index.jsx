@@ -44,7 +44,7 @@ module.exports = React.createClass({
                                         <a href="https://eventcalendarapp.com/support" target="_blank">Help</a>
                                     </li>
                                     <li onClick={() => appActions.logOut()}>
-                                        <a href=''>Log Out</a>
+                                        <a href="#">Log Out</a>
                                     </li>
                                 </ul>
                             }

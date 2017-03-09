@@ -10,6 +10,7 @@ import NotFoundComponent from './containers/notFound';
 import WeeblyIframe from './containers/weeblyIframe';
 import FailToLink from './containers/FailToLink';
 import LinkCalendar from './containers/LinkCalendar';
+import AddSubscription from './containers/AddSubscription';
 
 export default (store) => {
     return (
@@ -24,6 +25,7 @@ export default (store) => {
             <Route path="help" component={Help} />
             <Route path="/weebly-iframe" component={WeeblyIframe} />
             <Route path="/fail-to-link" component={FailToLink} />
+            <Route path="/add-subscription" component={AddSubscription} />
             <Route path="*" component={NotFoundComponent} />
         </Route>
     )
