@@ -1,0 +1,246 @@
+@import './global.scss';
+@import './navigation.scss';
+@import './features.scss';
+@import './buttons.scss';
+
+img {
+    width: 100%;
+}
+
+.navigation-bar {
+    padding: 20px 40px;
+}
+
+.connection-icons {
+    i {
+        font-size: 30px;
+        padding: 22px 24px;
+        border: 1px solid;
+        margin: 10px;
+        border-radius: 100%;
+    }
+}
+
+.header {
+    text-align: center;
+
+    p {
+        color: #fff;
+        font-size: 20px;
+        font-weight: 100;
+    }
+
+    a {
+        color: #fff;
+        border: 2px solid #fff;
+        font-weight: bold;
+        text-align: center;
+
+        &:hover {
+            color: #fff;
+        }
+    }
+
+    .buy {
+        border: 3px solid #fff;
+    }
+
+    h1 {
+        font-size: 50px;
+        color: #fff;
+        text-align: center;
+        font-weight: lighter;
+        margin-bottom: 0;
+    }
+}
+
+.shoppify-layout .demo-header h1 {
+    margin: 50px 0 16px;
+}
+
+.widget {
+    padding-bottom: 50px;
+}
+
+.catch-line {
+    text-align: center;
+
+    p {
+        color: #999999;
+        font-weight: lighter;
+        font-size: 20px;
+    }
+}
+
+.pricing {
+    background: #2e3d4e;
+    color: #fff;
+}
+
+.red {
+    color: #ff6666;
+}
+
+.trusted-by {
+    padding-bottom: 20px;
+    padding-top: 7px;
+}
+
+.platforms p,
+.trusted-by p {
+    color: #999999;
+    font-weight: lighter;
+}
+
+.platforms,
+.trusted-by {
+    background: #f3f3f3;
+    text-align: center;
+    margin: 0;
+}
+
+.feature-one {
+    background: #f3f3f3;
+    text-align: center;
+    font-size: 18px;
+    color: #999;
+    padding: 50px;
+    // margin-bottom:60px;
+    // margin-bottom: 40px;
+    h2 {
+        color: #444;
+    }
+}
+
+.feature-two {
+    // img {
+    //     width: 50%;
+    // }
+    p {
+        font-size: 18px;
+    }
+
+    .row {
+        padding-bottom: 80px;
+        // height: 850px;
+        height: auto;
+    }
+
+    &__content {
+        // padding-top:200px;
+    }
+    // .row:nth-child(1) {
+    //     background-repeat: no-repeat;
+    // background: url(/images/homepage/one.jpg) no-repeat 100% 0px;
+    // /* background-color: white; */
+    // background-size: 40%;
+    // }
+    .row:nth-child(2) {
+        // height: 900px;
+        height: auto;
+
+        img {
+            display: none;
+        }
+    }
+
+    .row:nth-child(3) {
+        //     background-repeat: no-repeat;
+        // background: url(/images/homepage/two.jpg) no-repeat 100% 0px;
+        // /* background-color: white; */
+        // background-size: 40%;
+        // height: 550px;
+        height: auto;
+    }
+}
+
+.platforms__header h2 {
+    font-weight: 300;
+}
+
+.platforms h1 {
+    text-align: center;
+    font-weight: normal;
+}
+
+.platforms img,
+.trusted-by img {
+    width: auto;
+    height: 100px;
+    padding: 15px 0;
+    max-width: 300px;
+}
+
+.trusted-by img {
+    width: auto;
+    height: 100px;
+    padding: 15px 0;
+    max-width: 300px;
+}
+
+.row-spacing {
+    padding: 30px 0;
+}
+
+textarea {
+    width: 100%;
+}
+
+.footer {
+    padding: 21px 0;
+    color: #fff;
+}
+
+.footer-container {
+    background: #2e3d4e;
+}
+@media (min-width: 768px) {
+    .platforms img,
+    .trusted-by img {
+        width: auto;
+        height: 100px;
+        max-width: 352px;
+    }
+
+    .feature-two {
+        .row {
+            padding-bottom: 20px;
+            height: auto;
+        }
+
+        .row:nth-child(2) {
+            height: auto;
+        }
+
+        .row:nth-child(3) {
+            height: auto;
+        }
+    }
+    .vertical-align {
+        display: flex;
+        align-items: center;
+    }
+}
+@media (min-width: 992px) {
+    .feature-two {
+        padding: 40px 0px;
+        .row:nth-child(2) {
+            img {
+                display: block;
+            }
+        }
+    }
+
+    .platforms img,
+    .trusted-by img {
+        width: auto;
+        height: 80px;
+        max-width: 252px;
+    }
+
+    .trusted-by img {
+        width: auto;
+        height: 115px;
+        max-width: 252px;
+    }
+}

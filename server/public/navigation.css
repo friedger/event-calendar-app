@@ -1,0 +1,51 @@
+.home-page .navigation,
+.shoppify-layout .navigation {
+  background: url("https://eventcalendarapp.com/images/header.jpg");
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center top; }
+
+.navigation {
+  text-align: right;
+  background: #2e3d4e;
+  padding: 24px 0 21px; }
+  .navigation ul.logged-in li a {
+    color: #fff; }
+  .navigation li {
+    display: inline;
+    list-style: none; }
+    .navigation li a {
+      color: #fff;
+      padding: 12px;
+      margin: 0 0 0 12px;
+      font-size: 16px; }
+  .navigation .bold {
+    font-weight: bold; }
+  .navigation__logo {
+    float: left;
+    color: #fff;
+    font-size: 20px;
+    display: none; }
+  .navigation__links {
+    text-align: center; }
+    .navigation__links li:nth-child(1) {
+      display: none; }
+    .navigation__links li:nth-child(2) {
+      display: none; }
+  .navigation li a.primary-color {
+    color: #fff;
+    border: 2px solid #fff; }
+  .navigation li a.primary-color:hover {
+    text-decoration: underline; }
+
+@media (min-width: 768px) {
+  .navigation__logo {
+    display: inline-block; }
+  .navigation__links {
+    float: right;
+    text-align: left; }
+  .navigation__links li:nth-child(1) {
+    display: inline-block; }
+  .navigation__links li:nth-child(2) {
+    display: inline-block; } }

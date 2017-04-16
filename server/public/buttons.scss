@@ -1,0 +1,18 @@
+.buy {
+    text-decoration: none;
+    border: 2px solid #fff;
+    color: #fff;
+    padding: 17px 23px;
+    margin: 27px;
+    display: inline-block;
+
+    &--dark {
+        color:#444;
+        border: 2px solid #444;
+    }
+
+    &:hover {
+        color: #fff;
+        text-decoration: underline;
+    }
+}
