@@ -35,6 +35,9 @@ app.use('/dashboard', notLoggedInRedirect, renderDashboard);
 app.use('/add-subscription', notLoggedInRedirect, renderDashboard);
 app.use('/link-calendar', notLoggedInRedirect, renderApp);
 app.use('/firsttime-link-calendar', notLoggedInRedirect, renderApp);
+app.use('/pricing', function (req, res, next) {
+    res.render('./staticSite/pricing.hbs');
+});
 app.use('/$', function (req, res, next) {
     if (req.cookies['eventcal-admin']) {
         return res.redirect('/dashboard');

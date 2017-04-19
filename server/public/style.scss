@@ -11,6 +11,23 @@ img {
     padding: 20px 40px;
 }
 
+.navigation {
+    &__logo {
+        a {
+            color:#fff;
+
+            &:hover {
+                color:#fff;
+            }
+        }
+    }
+}
+
+.pricing {
+    background:#fff;
+    color:#444;
+}
+
 .connection-icons {
     i {
         font-size: 30px;
@@ -19,6 +36,28 @@ img {
         margin: 10px;
         border-radius: 100%;
     }
+}
+
+.pricing {
+    .header {
+        text-align: left;
+        h1 {
+            text-align: left;
+        }
+        .buy {
+            margin-left: 0;
+        }
+    }
+}
+
+.pricing-info {
+    background:#f3f3f3;
+    color:#444;
+}
+
+.faq {
+    background: #fff;
+    color:#444;
 }
 
 .header {
@@ -73,7 +112,7 @@ img {
 }
 
 .pricing {
-    background: #2e3d4e;
+    // background: #2e3d4e;
     color: #fff;
 }
 

@@ -5,9 +5,11 @@
   padding: 17px 23px;
   margin: 27px;
   display: inline-block; }
-  .buy--dark {
-    color: #444;
-    border: 2px solid #444; }
   .buy:hover {
     color: #fff;
     text-decoration: underline; }
+  .buy--dark {
+    color: #444;
+    border: 2px solid #444; }
+    .buy--dark:hover {
+      color: #444; }

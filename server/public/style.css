@@ -113,13 +113,16 @@ ul {
   margin: 27px;
   display: inline-block; }
 
+.buy:hover {
+  color: #fff;
+  text-decoration: underline; }
+
 .buy--dark {
   color: #444;
   border: 2px solid #444; }
 
-.buy:hover {
-  color: #fff;
-  text-decoration: underline; }
+.buy--dark:hover {
+  color: #444; }
 
 img {
   width: 100%; }
@@ -127,12 +130,39 @@ img {
 .navigation-bar {
   padding: 20px 40px; }
 
+.navigation__logo a {
+  color: #fff; }
+
+.navigation__logo a:hover {
+  color: #fff; }
+
+.pricing {
+  background: #fff;
+  color: #444; }
+
 .connection-icons i {
   font-size: 30px;
   padding: 22px 24px;
   border: 1px solid;
   margin: 10px;
   border-radius: 100%; }
+
+.pricing .header {
+  text-align: left; }
+
+.pricing .header h1 {
+  text-align: left; }
+
+.pricing .header .buy {
+  margin-left: 0; }
+
+.pricing-info {
+  background: #f3f3f3;
+  color: #444; }
+
+.faq {
+  background: #fff;
+  color: #444; }
 
 .header {
   text-align: center; }
@@ -176,7 +206,6 @@ img {
   font-size: 20px; }
 
 .pricing {
-  background: #2e3d4e;
   color: #fff; }
 
 .red {
