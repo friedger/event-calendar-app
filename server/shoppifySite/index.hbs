@@ -79,7 +79,7 @@
     <body class="shoppify-layout">
         <div class="navigation">
             <div class="container">
-                <div class="demo-header catch-line">
+                <div class="header">
                     <h1>Thanks for choosing Event Calendar App</h1>
                     {{#unless dev}}
                     <a class="buy" href="https://api.eventcalendarapp.com/shoppify/begin-payment">Get your event calendar</a>
@@ -91,11 +91,9 @@
             </div>
         </div>
         <div class="container">
-            <div class="row row-spacing">
+            <div class="row row-spacing catch-line">
                 <div class="col-md-12">
-                    <div class="demo-header">
-                        <p>Engage your <strong>users</strong> and <strong>customers</strong> in an Event Calendar that they will <strong class="red">love.</strong></p>
-                    </div>
+                    <p>Engage your <strong>users</strong> and <strong>customers</strong> in an Event Calendar that they will <strong class="red">love.</strong></p>
                 </div>
             </div>
         </div>
@@ -121,16 +119,16 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid pricing">
+        <div class="container-fluid">
             <div class="row catch-line">
                 <div class="col-md-12">
                     <h1>Only $19.99 per month</h1>
                     <div>One price. All the features.</div>
                     {{#unless dev}}
-                    <a class="buy" href="https://api.eventcalendarapp.com/shoppify/begin-payment">Get your event calendar</a>
+                    <a class="buy buy--dark" href="https://api.eventcalendarapp.com/shoppify/begin-payment">Get your event calendar</a>
                     {{/unless}}
                     {{#if dev}}
-                    <a class="buy" href="http://localhost:3434/shoppify/begin-payment">Get your event calendar</a>
+                    <a class="buy buy--dark" href="http://localhost:3434/shoppify/begin-payment">Get your event calendar</a>
                     {{/if}}
                 </div>
             </div>
