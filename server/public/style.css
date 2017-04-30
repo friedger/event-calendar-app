@@ -691,13 +691,13 @@ img {
   margin: 10px;
   border-radius: 100%; }
 
-.pricing .header {
+.pricing .header, .shoppify-layout .header {
   text-align: left; }
 
-.pricing .header h1 {
+.pricing .header h1, .shoppify-layout .header h1 {
   text-align: left; }
 
-.pricing .header .buy {
+.pricing .header .buy, .shoppify-layout .header .buy {
   margin-left: 0; }
 
 .pricing-info {
