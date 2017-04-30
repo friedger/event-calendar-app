@@ -5,11 +5,30 @@
   padding: 17px 23px;
   margin: 27px;
   display: inline-block; }
-  .buy:hover {
-    color: #fff;
-    text-decoration: underline; }
-  .buy--dark {
-    color: #444;
-    border: 2px solid #444; }
-    .buy--dark:hover {
-      color: #444; }
+
+.buy:hover {
+  color: #fff;
+  text-decoration: underline; }
+
+.buy:active {
+  color: #fff;
+  text-decoration: none; }
+
+.buy:visited, .buy:focus {
+  color: #fff;
+  text-decoration: none; }
+
+.buy--dark {
+  color: #444;
+  border: 2px solid #444; }
+
+.buy--dark:hover {
+  color: #444; }
+
+.buy--dark:active {
+  color: #444;
+  text-decoration: none; }
+
+.buy--dark:visited, .buy--dark:focus {
+  color: #444;
+  text-decoration: none; }

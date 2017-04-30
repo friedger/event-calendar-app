@@ -10,12 +10,28 @@
         color: #fff;
         text-decoration: underline;
     }
-    
+    &:active {
+        color: #fff;
+        text-decoration: none;
+    }
+    &:visited, &:focus {
+        color: #fff;
+        text-decoration: none;
+    }
+
     &--dark {
         color:#444;
         border: 2px solid #444;
         &:hover {
             color:#444;
+        }
+        &:active {
+            color: #444;
+            text-decoration: none;
+        }
+        &:visited, &:focus {
+            color: #444;
+            text-decoration: none;
         }
     }
 }
