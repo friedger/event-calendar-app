@@ -3,15 +3,22 @@ if (typeof window !== 'undefined') {
 }
 
 import React from 'react';
+import Collapse from 'react-collapse';
+import {Modal, Button} from 'react-bootstrap';
 
 import EventCal from '../eventCal';
 import CalendarSelection from '../calendarSelection';
+
+import venobox from 'venobox/venobox/venobox.min.js';
 
 export default React.createClass({
     getInitialState() {
         return {
             displayIcsForm: false
         }
+    },
+    componentDidMount() {
+        $('.venobox').venobox();
     },
     render() {
 
@@ -20,7 +27,10 @@ export default React.createClass({
         return (
             <div className="welcome-page-header">
                 <h2>Get started with Event Calendar App</h2>
-                <p>How would you like to link your calendar to Event Calendar App?</p>
+                <div className="welcome-page-header__sub-text">
+                <p>We connect to your existing calendar tools to create your <strong>new event calendar.</strong></p>
+                <p>How would you like to connect your existing calendar to Event Calendar App?</p>
+                </div>
                 <div className="row">
                     <div className="col-md-4">
                         <div className="welcome-card welcome-card--primary">
@@ -53,7 +63,16 @@ export default React.createClass({
                         </div>
                     </div>
                     <div className="col-md-12">
+                        <i className="fa fa-video-camera" aria-hidden="true"></i> <a className="venobox" data-autoplay="true" data-vbtype="video" href="https://www.youtube.com/embed/FCjGqazRmD0">If you like videos, we have made a short video fully explaining this step.</a>
+                        <h3>FAQ</h3>
+                            Dont have an existing calendar?
+                            <div className="welcome-page-header__collapse-content">
+                                <p>If you have a Google, Outlook or Apple account then you have a calendar. You may have just never used it. Otherwise, signing up for these services is completely free.</p>
+                                <p>You can read about why we require you to have a calendar, and how to get one yourself <a href="https://eventcalendarapp.com/support/2017/02/18/why-do-i-have-to-connect-my-calendar-to-event-calendar-app/">here.</a></p>
+                            </div>
+                        <div>
                         <a target="_blank" href="https://eventcalendarapp.com/support/2017/02/18/ways-of-connecting-your-calendar/">Want more information about this step?</a>
+                        </div>
                     </div>
                 </div>
             </div>

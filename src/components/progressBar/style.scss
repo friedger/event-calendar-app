@@ -1,0 +1,103 @@
+.success-bar {
+    padding:20px 0 5px 0;
+    position: relative;
+    height: 140px;
+    &__linking-bar {
+        height: 5px;
+        margin: 0 auto;
+        position: absolute;
+        top: 49px;
+        z-index: 0;
+        background: #2e3d4e;
+        &--completed {
+            background: #2e3d4e;
+            width: 55%;
+            left: 40px;
+        }
+        &--uncompleted {
+            background: #e6e6e6;
+            width:45%;
+            right: 40px;
+        }
+    }
+    &__icon-container {
+        display: inline-block;
+        border: 2px solid #2e3d4e;
+        height: 60px;
+        width: 60px;
+        text-align: center;
+        border-radius: 9999999999px;
+        margin-bottom: 10px;
+
+        i {
+            line-height: 60px;
+            font-size:18px;
+        }
+
+        &--completed {
+            background: #2e3d4e;
+            color: #fff;
+        }
+
+        &--in-progress {
+            background: #fff;
+        }
+
+        &--uncompleted {
+            background: #fff;
+            border: 2px solid #cfcfcf;
+            i {
+                color:#cfcfcf;
+            }
+        }
+    }
+
+    &__text {
+        color: #2e3d4e;
+        font-size:14px;
+
+        &--completed {
+            font-weight: bold;
+        }
+
+        &--uncompleted {
+            color: #cfcfcf;
+        }
+    }
+
+    &__success-point-container {
+        width: 120px;
+        text-align: center;
+        display: inline-block;
+    }
+
+    .connect, .calendar, .register {
+        position: absolute;
+    }
+
+    .connect {
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 80px;
+    }
+
+    .calendar {
+        right: 0;
+        width: 120px;
+    }
+
+    .register {
+        width: 80px;
+        left:0;
+    }
+}
+
+@keyframes border {
+  0% {
+      border-size: 2px;
+  }
+  100% {
+      border-size: 4px;
+  }
+}

@@ -8,6 +8,7 @@ import Header from '../components/header';
 import WelcomePageHeader from '../components/welcomePageHeader';
 import getCronofyAuthUrl from '../utils/getCronofyAuthUrl';
 import AddIcsCalendarForm from '../components/addIcsCalendarForm';
+import ProgressBar from '../components/progressBar';
 
 import { browserHistory } from 'react-router';
 
@@ -37,6 +38,9 @@ const component = React.createClass({
     render() {
         return (
             <div>
+                <div className="container">
+                    <ProgressBar></ProgressBar>
+                </div>
                 <div className='container'>
                     {this.state.displayIcsForm ?
                         <div className="row">
