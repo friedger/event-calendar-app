@@ -16,10 +16,10 @@ export default (store) => {
     return (
         <Route component={App} name='app' path='/'>
             <Route path="login" component={Login} />
-            <Route path="dashboard" component={Dashboard}>
+            <Route onEnter={() => Intercom('trackEvent', 'visited-dashboard-router-enter')} path="dashboard" component={Dashboard}>
                 <Route path="transaction-complete" component={TransactionComplete} />
             </Route>
-            <Route path="link-calendar" component={Dashboard}/>
+            <Route onEnter={() => Intercom('trackEvent', 'visited-link-page-router-enter')} path="link-calendar" component={Dashboard}/>
             <Route path="firsttime-link-calendar" component={Dashboard} />
             <Route path="register" component={Register} />
             <Route path="help" component={Help} />
