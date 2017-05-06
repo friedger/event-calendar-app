@@ -6,6 +6,8 @@ import * as appActions from '../actions/index';
 import RegistrationForm from '../components/register';
 import Header from '../components/header';
 
+import config from '../../config';
+
 const mapState = ({form, initialRegisterState}) => {
     return {
         form,
@@ -27,9 +29,11 @@ const component = React.createClass({
         this.props.popuplateRegisterFormFromQuery(this.props.location.query);
     },
     componentDidMount() {
-        window.Intercom('boot', {
-           app_id: 'scigxdd1'
-        });
+        if (config.intercom) {
+            window.Intercom('boot', {
+                app_id: 'scigxdd1'
+            });
+        }
     },
     render() {
         return (

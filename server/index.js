@@ -42,13 +42,11 @@ app.use('/$', function (req, res, next) {
     if (req.cookies['eventcal-admin']) {
         return res.redirect('/dashboard');
     }
-    res.render('./staticSite/index.hbs');
+    res.render('./staticSite/index.hbs', renderConfig);
 });
 app.use('/shoppify', function (req, res, next) {
-    res.render('./shoppifySite/index.hbs', {
-        dev: process.env.NODE_ENV === 'development',
-        secureDev: process.env.NODE_ENV === 'secureDev'
-    });
+    console.log(renderConfig);
+    res.render('./shoppifySite/index.hbs', renderConfig);
 });
 
 // catch 404 and forward to error handler

@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as appActions from '../actions/index';
 import Login from '../components/login';
 import Header from '../components/header';
+import config from '../../config';
 
 const mapState = ({loginState}) => {
     return {
@@ -22,9 +23,11 @@ const component = React.createClass({
         router: React.PropTypes.object.isRequired
     },
     componentDidMount() {
-        window.Intercom('boot', {
-           app_id: 'scigxdd1'
-        });
+        if (config.intercom) {
+            window.Intercom('boot', {
+                app_id: 'scigxdd1'
+            });
+        }
     },
     render() {
         return (

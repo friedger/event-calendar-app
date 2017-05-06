@@ -35,12 +35,13 @@ export function getUser() {
                     })
                 }
 
-                if (window.location.href && window.location.href.indexOf('weebly-iframe') === -1) {
+                if (window.location.href && window.location.href.indexOf('weebly-iframe') === -1 && config.intercom) {
                     window.Intercom('boot', {
                         app_id: 'scigxdd1',
                         email: res.body.email,
                         created_at: res.body.userCreatedTime,
-                        status: res.body.status
+                        status: res.body.status,
+                        user_id: res.body.userId
                     });
                 }
 

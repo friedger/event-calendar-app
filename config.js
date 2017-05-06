@@ -13,12 +13,14 @@ const config = {
     development: {
         apiUrl: 'http://localhost:3434',
         calendarBuildUrl: 'http://localhost:3434/calendar-build',
-        stripePublishableToken: 'pk_test_cYLFCC3SbZhSHnpTZgzqHZZ9'
+        stripePublishableToken: 'pk_test_cYLFCC3SbZhSHnpTZgzqHZZ9',
+        intercom: false
     },
     production: {
         apiUrl: 'https://api.eventcalendarapp.com',
         calendarBuildUrl: 'https://api.eventcalendarapp.com/calendar-build',
-        stripePublishableToken: 'pk_live_yoi7sUywpIFZoqyz9xu7d3Oq'
+        stripePublishableToken: 'pk_live_yoi7sUywpIFZoqyz9xu7d3Oq',
+        intercom:true
     }
 }
 
