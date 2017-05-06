@@ -88,6 +88,8 @@ export function popuplateRegisterFormFromQuery(query) {
 
 export function logOut() {
     cookieUtil.removeItem('eventcal-admin');
-    Intercom('shutdown');
+    if (window.Intercom) {
+        Intercom('shutdown');
+    }
     window.location.href='/';
 }

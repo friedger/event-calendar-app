@@ -12,14 +12,20 @@ import FailToLink from './containers/FailToLink';
 import LinkCalendar from './containers/LinkCalendar';
 import AddSubscription from './containers/AddSubscription';
 
+function recordIntercomEvent(eventName) {
+    if (window.Intercom) {
+        Intercom('trackEvent', eventName);
+    }
+}
+
 export default (store) => {
     return (
         <Route component={App} name='app' path='/'>
             <Route path="login" component={Login} />
-            <Route onEnter={() => Intercom('trackEvent', 'visited-dashboard-router-enter')} path="dashboard" component={Dashboard}>
+            <Route onEnter={() => recordIntercomEvent('visited-dashboard-router-enter')} path="dashboard" component={Dashboard}>
                 <Route path="transaction-complete" component={TransactionComplete} />
             </Route>
-            <Route onEnter={() => Intercom('trackEvent', 'visited-link-page-router-enter')} path="link-calendar" component={Dashboard}/>
+            <Route onEnter={() => recordIntercomEvent('visited-link-page-router-enter')} path="link-calendar" component={Dashboard}/>
             <Route path="firsttime-link-calendar" component={Dashboard} />
             <Route path="register" component={Register} />
             <Route path="help" component={Help} />
