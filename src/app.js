@@ -28,6 +28,7 @@ browserHistory.listen(function (location) {
     }
 
     ga.pageview(window.location.pathname);
+    Intercom('update');
 });
 
 ReactDOM.render(<Provider store={store}><Router history={browserHistory}>{routes(store)}</Router></Provider>, document.getElementById('app'));
