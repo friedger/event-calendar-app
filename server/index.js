@@ -45,7 +45,6 @@ app.use('/$', function (req, res, next) {
     res.render('./staticSite/index.hbs', renderConfig);
 });
 app.use('/shoppify', function (req, res, next) {
-    console.log(renderConfig);
     res.render('./shoppifySite/index.hbs', renderConfig);
 });
 
