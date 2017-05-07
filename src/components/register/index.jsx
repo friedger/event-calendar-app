@@ -16,7 +16,7 @@ import cn from 'classnames';
 const validate = values => {
     const errors = {};
     if (!values.username) {
-        errors.username = 'A name is required';
+        errors.username = 'A username is required';
     }
 
     if (!values.email) {
@@ -61,7 +61,7 @@ var Component = React.createClass({
                             });
                         })}>
                         <FormGroup validationState={this._getValidationState(username)}>
-                            <ControlLabel>Full Name</ControlLabel>
+                            <ControlLabel>Username</ControlLabel>
                             <FormControl
                                type="text"
                                placeholder="Enter text"
