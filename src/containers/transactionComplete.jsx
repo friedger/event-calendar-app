@@ -20,12 +20,15 @@ const component = React.createClass({
     contextTypes: {
         router: React.PropTypes.object.isRequired
     },
+    backToDashboard() {
+        window.location.href='/dashboard';
+    },
     render() {
         return (
             <div className="container">
                 <h1>Thank you!</h1>
                 <p>The transaction is complete!</p>
-                <Link onClick={this.props.getUser} className="border-button" to={`/dashboard`}>Head back to the dashboard</Link>
+                <div onClick={this.backToDashboard} className="border-button">Head back to the dashboard</div>
             </div>
         )
     }
