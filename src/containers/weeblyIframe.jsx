@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import * as appActions from '../actions/index';
+import * as calendarActions from '../actions/calendarActions';
 const Link = require('react-router').Link;
 import WeeblyIframe from '../components/weeblyIframe';
 import WeeblyNoSubscriptionMessage from '../components/weeblyNoSubscriptionMessage';
@@ -13,7 +14,8 @@ const mapState = ({appState}) => {
 
 const mapDispatch = (dispatch) => {
     return bindActionCreators({
-        ...appActions
+        ...appActions,
+        ...calendarActions
     }, dispatch);
 }
 
@@ -23,18 +25,19 @@ const component = React.createClass({
     },
     componentDidMount() {
         this.props.getUser();
+        this.props.getConnections();
     },
     displayMessage(messageType) {
 
-        const user = this.props.appState.user;
+        const {user, connections} = this.props.appState;
 
         if (!user) {
             return false;
         }
 
         const shouldMessageTypeBeDisplayed = {
-            noSubscription: user.status === 'registered' && user.calendarAuthorised,
-            welcome: !user.calendarAuthorised
+            noSubscription: user.status === 'registered' && connections && connections.length > 0,
+            welcome: connections && connections.length === 0
         };
 
         return shouldMessageTypeBeDisplayed[messageType];
