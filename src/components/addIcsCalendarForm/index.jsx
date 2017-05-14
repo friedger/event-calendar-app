@@ -23,6 +23,19 @@ import cn from 'classnames';
 
 import {postCalendars} from '../../actions/apiActions';
 
+const validate = values => {
+    const errors = {};
+    if (!values.calendarname) {
+        errors.calendarname = 'A calendar name is required';
+    }
+
+    if (!values.calendarurl) {
+        errors.calendarurl = 'A calendar url is required';
+    }
+
+    return errors;
+}
+
 var Component = React.createClass({
     handleSubmit(values) {
         if (this.props.selectIcsFeedAutomatically) {
@@ -34,6 +47,11 @@ var Component = React.createClass({
         }).catch((data) => {
             return Promise.reject({_error: 'Failllleeeeeddddd'});
         });
+    },
+    _getValidationState(field) {
+        if (field.touched && field.error) {
+            return 'error';
+        }
     },
     render() {
         const {
@@ -48,18 +66,34 @@ var Component = React.createClass({
         return (
             <Row className="ics-form">
                 <Col md={12}>
-                    <form onSubmit={handleSubmit(this.handleSubmit)} ref='icsForm' className="form-horizontal">
-                        <FormGroup>
+                    <form onSubmit={handleSubmit(this.handleSubmit)} ref='icsForm'>
+                        <FormGroup validationState={this._getValidationState(calendarname)}>
                             <Row className="add-ics-form">
-                                <Col md={4}>
-                                    <input className="form-control" {...calendarname} placeholder="Calendar Name (This can be anything)"/>
+                                <Col md={12}>
+                                    <FormGroup>
+                                        <ControlLabel>Calendar Name</ControlLabel>
+                                        <FormControl
+                                           type="text"
+                                           placeholder="Give your calendar a name (Your users wont see this)"
+                                           {...calendarname}
+                                         />
+                                         {calendarname.touched && calendarname.error && <HelpBlock>{calendarname.error}</HelpBlock>}
+                                    </FormGroup>
                                 </Col>
-                                <Col md={6}>
-                                    <input className="form-control" {...calendarurl} placeholder="Calendar ICS Url"/>
+                                <Col md={12}>
+                                    <FormGroup validationState={this._getValidationState(calendarurl)}>
+                                        <ControlLabel>Calendar ICS URL</ControlLabel>
+                                        <FormControl
+                                           type="text"
+                                           placeholder="The ICS url to your calendar"
+                                           {...calendarurl}
+                                         />
+                                         {calendarurl.touched && calendarurl.error && <HelpBlock>{calendarurl.error}</HelpBlock>}
+                                    </FormGroup>
                                 </Col>
-                                <Col md={2}>
-                                    <button disabled={submitting} className="action full-width submit-inline" type="submit">
-                                        <div className={cn({'opacity-0': submitting})}>Add</div>
+                                <Col md={12}>
+                                    <button disabled={submitting} className="action-button btn btn-default" type="submit">
+                                        <div className={cn({'opacity-0': submitting})}>Connect calendar</div>
                                         {submitting && <Loader type='spin' color='#fff' width={2} radius={3} />}
                                     </button>
                                 </Col>
@@ -79,5 +113,6 @@ var Component = React.createClass({
 
 export default Component = reduxForm({ // <----- THIS IS THE IMPORTANT PART!
     form: 'addIcsCalendar', // a unique name for this form
-    fields: ['calendarname', 'calendarurl']
+    fields: ['calendarname', 'calendarurl'],
+    validate
 })(Component);
