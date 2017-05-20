@@ -1,7 +1,6 @@
 @import './_variables';
 
 body {
-    margin-bottom:40px;
     line-height: 1.5;
     font-family: 'Open Sans', sans-serif;
     font-size:16px;
@@ -146,23 +145,51 @@ h1 {
     }
 }
 
+.dashboard-header .start-trial {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    margin:0;
+    padding: 8px 17px;
+    font-size: 12px;
+}
+
 .start-trial {
-    border: 3px solid #444;
-    color: #444;
+    padding: 13px 17px;
+    font-size: 14px;
+    color: #fff;
+    // float: right;
     margin: 27px 27px 27px 0px;
-    padding: 17px;
+    border-radius: 2px;
     display: inline-block;
     cursor: pointer;
+    font-weight: bold;
+    background: #DA4167;
+    border-bottom: 2px solid #a3304d;
+    text-align: center;
 
     &:hover {
         text-decoration: underline;
-        color: #444;
+        color: #fff;
+    }
+
+    &--smaller-margin {
+        margin: 13px 27px 27px 0px;
+        background:#fff;
+        border: 2px solid #DA4167;
+        border-radius:0;
+        color: #DA4167;
+        &:hover {
+            text-decoration: underline;
+            color: #DA4167;
+        }
     }
 }
 
 .border-button {
     border: 3px solid #444;
     color: #444;
+    cursor: pointer;
     padding: 17px;
     margin: 27px 27px 27px 0px;
     display: inline-block;
