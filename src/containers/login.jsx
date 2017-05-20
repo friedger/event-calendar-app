@@ -5,6 +5,7 @@ import * as appActions from '../actions/index';
 import Login from '../components/login';
 import Header from '../components/header';
 import config from '../../config';
+import {Row, Col} from 'react-bootstrap';
 
 const mapState = ({loginState}) => {
     return {
@@ -31,10 +32,20 @@ const component = React.createClass({
     },
     render() {
         return (
-            <div>
+            <div style={{'height': '100%'}}>
                 <Header />
-                <div className="container">
-                    <Login router={this.context.router}/>
+                <div style={{'background': '#f5f5f5', 'height': '100%'}}>
+                    <Row>
+                        <Col md={12}>
+                            <div className="loginForm__title">
+                            <h2 style={{'fontWeight': 'bold'}}>Login</h2>
+                            <p>Sign into your account</p>
+                            </div>
+                        </Col>
+                    </Row>
+                    <div className="container" style={{'maxWidth': '600px !important'}}>
+                        <Login router={this.context.router}/>
+                    </div>
                 </div>
             </div>
         )

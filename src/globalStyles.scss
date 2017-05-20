@@ -177,7 +177,7 @@ h1 {
 .loginForm, .register-form, .ics-form {
     label {
         color: #999999;
-        font-size: 20px;
+        font-size: 18px;
         font-weight: 100;
     }
 }
@@ -314,4 +314,28 @@ h1 {
 .modal-header {
     text-align:center;
     border-bottom: 0;
+}
+
+//forms
+
+.has-error .form-control:focus {
+    box-shadow: none;
+}
+
+.form-control {
+    box-shadow: none;
+    border-radius: 2px;
+    height: 38px;
+
+    &.has-error {
+        box-shadow: none;
+
+        &:focus {
+            box-shadow: none;
+        }
+    }
+
+    &:focus {
+        box-shadow: none;
+    }
 }

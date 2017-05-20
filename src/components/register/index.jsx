@@ -1,7 +1,4 @@
-if (typeof window !== 'undefined') {
-    require('./style.scss');
-    var cookieUtil = require('../../utils/cookieUtil').default;
-}
+require('./style.scss');
 
 import React from 'react';
 import store from '../../store/index.js';
@@ -44,12 +41,6 @@ var Component = React.createClass({
         const {fields: {username, password, confirmpassword, email}, handleSubmit, error, router, submitting} = this.props;
         return (
             <Row className="register-form">
-                <Col md={12}>
-                    <div className="register-form__title">
-                        <h1>Let's <span className="primary-color">set you up.</span></h1>
-                        <p>You're 2 seconds away from creating your calendar</p>
-                    </div>
-                </Col>
                 <Col md={12}>
                     <form onSubmit={handleSubmit((values, dispatch) => {
                             return postUsers(values, this.props.location).then(() => {

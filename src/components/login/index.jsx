@@ -27,9 +27,6 @@ var Component = React.createClass({
         return (
             <Row className="loginForm">
                 <Col md={12}>
-                    <h1>Login</h1>
-                </Col>
-                <Col md={12}>
                     <form onSubmit={handleSubmit((values, dispatch) => {
                             return postLogin(values).then((data) => {
                                 //Currently need to make user request /dashboard from the server

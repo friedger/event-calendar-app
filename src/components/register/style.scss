@@ -1,5 +1,14 @@
 @import '../../_variables.scss';
 
+.register-form {
+    box-shadow:0 1px 1px #e2e8ea;
+    background: #fff;
+    margin-top:36px;
+    padding: 20px;
+    padding-bottom: 20px;
+    border-radius:2px;
+}
+
 .register-form__highlight {
     color: $primary;
 }
