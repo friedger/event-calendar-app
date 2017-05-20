@@ -7,12 +7,13 @@ module.exports = function (req, res) {
     request
         .get(`${config.apiUrl}/connections?token=${req.cookies['eventcal-admin']}`)
         .end((err, apiResponse) => {
-            if (err) {
-                return res.json({error: 'No api response'});
-            }
 
             if (!apiResponse) {
-                return res.json({error: 'No api response'});
+                return res.redirect('/dashboard/network-error');
+            }
+
+            if (err) {
+                return res.redirect('/dashboard/account-error');
             }
 
             if (apiResponse.body.length === 0) {

@@ -12,6 +12,8 @@ import FailToLink from './containers/FailToLink';
 import LinkCalendar from './containers/LinkCalendar';
 import AddSubscription from './containers/AddSubscription';
 import Plans from './containers/plans';
+import AccountError from './containers/accountError';
+import NetworkError from './containers/networkError';
 
 function recordIntercomEvent(eventName) {
     if (window.Intercom) {
@@ -26,6 +28,8 @@ export default (store) => {
             <Route onEnter={() => recordIntercomEvent('visited-dashboard-router-enter')} path="dashboard" component={Dashboard}>
                 <Route path="transaction-complete" component={TransactionComplete} />
                 <Route path="plans" component={Plans}/>
+                <Route path="account-error" component={AccountError} />
+                <Route path="network-error" component={NetworkError} />
             </Route>
             <Route onEnter={() => recordIntercomEvent('visited-link-page-router-enter')} path="link-calendar" component={Dashboard}/>
             <Route path="firsttime-link-calendar" component={Dashboard} />

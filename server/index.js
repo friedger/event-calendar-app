@@ -31,6 +31,12 @@ if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'secureDe
 app.use('/login', redirectIfLoggedIn, renderApp);
 app.use('/register', renderApp);
 app.use('/weebly-iframe', renderApp);
+app.use('/dashboard/network-error', function (req, res, next) {
+    res.render('index.hbs', renderConfig);
+});
+app.use('/dashboard/account-error', function (req, res, next) {
+    res.render('index.hbs', renderConfig);
+});
 app.use('/dashboard', notLoggedInRedirect, renderDashboard);
 app.use('/add-subscription', notLoggedInRedirect, renderDashboard);
 app.use('/link-calendar', notLoggedInRedirect, renderApp);

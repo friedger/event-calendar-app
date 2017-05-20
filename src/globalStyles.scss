@@ -1,13 +1,22 @@
 @import './_variables';
 
+html {
+    height: 100%;
+}
+
 body {
     line-height: 1.5;
     font-family: 'Open Sans', sans-serif;
     font-size:16px;
+    height: 100%;
+    #app {
+        height: 100%;
+    }
 }
 
-button {
+button, .button {
     position: relative;
+    cursor: pointer;
 
     &.default {
         background: #dfdfdf;
@@ -23,13 +32,41 @@ button {
     &.action {
         background: #2e3d4e;
         border: 0;
-        font-weight:lighter;
         box-shadow: none;
         color: #fff;
         text-shadow: none;
         padding: 10px;
         border-bottom: 2px solid #182029;
         border-radius: 2px;
+        font-size: 14px;
+        font-weight: bold;
+        border: 2px solid #2e3d4e;
+    }
+
+    &.secondary {
+        padding: 10px;
+        font-size: 14px;
+        color: #fff;
+        // margin: 27px 27px 27px 0px;
+        border-radius: 2px;
+        display: inline-block;
+        cursor: pointer;
+        font-weight: bold;
+        background: #DA4167;
+        border-bottom: 2px solid #a3304d;
+        text-align: center;
+        border: 0;
+        &--inverse {
+            font-size: 14px;
+            background:#fff;
+            border: 2px solid #DA4167;
+            border-radius:0;
+            color: #DA4167;
+            &:hover {
+                text-decoration: underline;
+                color: #DA4167;
+            }
+        }
     }
 
     &.submit-inline {
