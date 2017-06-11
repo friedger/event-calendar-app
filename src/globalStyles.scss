@@ -14,6 +14,10 @@ body {
     }
 }
 
+.strong {
+    font-weight: bold;
+}
+
 button, .button {
     position: relative;
     cursor: pointer;
@@ -123,6 +127,14 @@ p {
     color: #999999;
     font-size: 20px;
     font-weight: 100;
+}
+
+.privacy-policy {
+    p {
+        color: #333;
+        font-size: 16px;
+        font-weight: normal;
+    }
 }
 
 ol, ul {

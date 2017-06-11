@@ -14,6 +14,8 @@ import AddSubscription from './containers/AddSubscription';
 import Plans from './containers/plans';
 import AccountError from './containers/accountError';
 import NetworkError from './containers/networkError';
+import PrivacyPolicy from './containers/privacyPolicy';
+import TermsOfUse from './containers/termsOfUse';
 
 function recordIntercomEvent(eventName) {
     if (window.Intercom) {
@@ -35,6 +37,8 @@ export default (store) => {
             <Route path="firsttime-link-calendar" component={Dashboard} />
             <Route path="register" component={Register} />
             <Route path="help" component={Help} />
+            <Route path="privacy-policy" component={PrivacyPolicy} />
+            <Route path="terms-of-use" component={TermsOfUse} />
             <Route path="/weebly-iframe" component={WeeblyIframe} />
             <Route path="/fail-to-link" component={FailToLink} />
             <Route path="/add-subscription" component={AddSubscription} />

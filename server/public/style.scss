@@ -233,6 +233,17 @@ textarea {
 
 .footer-container {
     background: #2e3d4e;
+    a {
+        color: #fff;
+    }
+    a:hover {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+    .legal {
+        font-size:12px;
+    }
 }
 @media (min-width: 768px) {
     .platforms img,

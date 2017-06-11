@@ -829,6 +829,16 @@ textarea {
 .footer-container {
   background: #2e3d4e; }
 
+.footer-container a {
+  color: #fff; }
+
+.footer-container a:hover {
+  color: #fff;
+  text-decoration: underline; }
+
+.footer-container .legal {
+  font-size: 12px; }
+
 @media (min-width: 768px) {
   .platforms img,
   .trusted-by img {
