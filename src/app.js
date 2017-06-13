@@ -11,6 +11,9 @@ import store from './store';
 import { Provider } from 'react-redux';
 import { browserHistory } from 'react-router';
 import ga from 'react-ga';
+require('es6-promise').polyfill();
+require('es6-object-assign').polyfill();
+
 
 ga.initialize('UA-74477503-1');
 
