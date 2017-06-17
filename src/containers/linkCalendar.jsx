@@ -35,6 +35,12 @@ const component = React.createClass({
             displayIcsForm: false
         }
     },
+    backToLinkOptions() {
+        if (window.Intercom) {
+            Intercom('trackEvent', 'Clicked back to link options');
+        }
+        this.setState({displayIcsForm: false});
+    },
     render() {
         return (
             <div>
@@ -47,7 +53,7 @@ const component = React.createClass({
                             <div className="col-md-12">
                                 <h2 style={{'paddingBottom': '12px', 'fontWeight': 'bold'}}>Connect your ICS feed</h2>
                                 <AddIcsCalendarForm selectIcsFeedAutomatically={true} calendarAdded={() => {window.location.href='/dashboard'}}/>
-                                <a href="#" onClick={() => {this.setState({displayIcsForm: false})}}>
+                                <a href="#" onClick={() => this.backToLinkOptions()}>
                                     Back to link options
                                 </a>
                             </div>

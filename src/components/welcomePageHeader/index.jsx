@@ -22,6 +22,11 @@ export default React.createClass({
         $('.venobox').venobox();
     },
     toggleModal() {
+
+        if (this.state.showCronofyModal && window.Intercom) {
+            Intercom('trackEvent', 'Closed Cronofy Modal');
+        }
+
         this.setState({showCronofyModal: !this.state.showCronofyModal});
     },
     render() {
