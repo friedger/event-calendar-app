@@ -1,0 +1,72 @@
+button, a, .button {
+    position: relative;
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: underline;
+    }
+
+    &.default {
+        background: #dfdfdf;
+        color: #999999;
+        border:0;
+        font-weight: lighter;
+        border-bottom: 2px solid #bfbebe;
+        padding: 10px;
+        border-radius: 2px;
+        text-shadow: none;
+    }
+
+    &.action {
+        background: #2e3d4e;
+        border: 0;
+        box-shadow: none;
+        color: #fff;
+        text-shadow: none;
+        padding: 10px;
+        border: 0;
+        border-bottom: 2px solid #171c22;
+        border-radius: 2px;
+        font-size: 14px;
+        font-weight: bold;
+
+        &:hover {
+            background: #5f82ab;
+            border-bottom: 2px solid #435b77;
+        }
+    }
+
+    &.secondary {
+        padding: 10px;
+        font-size: 14px;
+        color: #fff;
+        // margin: 27px 27px 27px 0px;
+        border-radius: 2px;
+        display: inline-block;
+        cursor: pointer;
+        font-weight: bold;
+        background: #DA4167;
+        border-bottom: 2px solid #a3304d;
+        text-align: center;
+        border: 0;
+        &--inverse {
+            font-size: 14px;
+            background:#fff;
+            border: 2px solid #DA4167;
+            border-radius:0;
+            color: #DA4167;
+            &:hover {
+                text-decoration: underline;
+                color: #DA4167;
+            }
+        }
+    }
+
+    &.submit-inline {
+        padding: 4px;
+    }
+
+    &.full-width {
+        width: 100%;
+    }
+}

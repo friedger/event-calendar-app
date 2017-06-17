@@ -4,6 +4,11 @@
         padding-bottom: 12px;
     }
 
+    h3 {
+        font-weight: bold;
+    }
+
+
     &__sub-text {
         padding-bottom: 30px;
     }
@@ -21,13 +26,36 @@
 
 }
 
+.connection-modal {
+    padding:19px;
+    text-align: left;
+    img {
+        width:37%;
+        padding: 0px 0px 17px;
+    }
+
+    a {
+        display: block;
+        text-align: center;
+    }
+
+    &__cronofy {
+        text-align: center;
+    }
+
+    &__content {
+        padding-bottom: 13px;
+    }
+
+
+}
+
 iframe {
     border: 0;
 }
 
 .welcome-card {
-    text-align: center;
-    margin-bottom:44px;
+    text-align: left;
     padding: 40px 21px 50px;
     &__header {
         font-weight: bold;
@@ -40,6 +68,15 @@ iframe {
         display: inline-block;
         cursor: pointer;
         padding: 14px 35px;
+        &--no-margin {
+            margin: 0;
+        }
+        &:hover {
+            color:#444;
+        }
+        &:focus {
+            color:#444;
+        }
     }
     &__description {
         color: #999;
@@ -55,12 +92,25 @@ iframe {
         font-size: 10px;
         padding-top: 25px;
     }
+
+    &__recommended {
+        background: #DA4167;
+        text-align: center;
+        padding: 8px;
+        border-radius: 0 0 5px 5px;
+        p {
+            color: #fff;
+            margin: 0;
+            font-weight: bold;
+        }
+    }
 }
 
 .welcome-card--primary {
     border: 1px solid;
     background: #2e3d4e;
     padding: 40px 21px 45px;
+    margin-bottom:0px;
 
     &__header {
         color:#fff
@@ -73,6 +123,9 @@ iframe {
         cursor: pointer;
         padding: 14px 35px;
         &:hover {
+            color:#fff;
+        }
+        &:focus {
             color:#fff;
         }
     }
