@@ -25,6 +25,7 @@ export default React.createClass({
 
         if (this.state.showCronofyModal && window.Intercom) {
             Intercom('trackEvent', 'Closed Cronofy Modal');
+            Intercom('update');
         }
 
         this.setState({showCronofyModal: !this.state.showCronofyModal});

@@ -38,6 +38,7 @@ const component = React.createClass({
     backToLinkOptions() {
         if (window.Intercom) {
             Intercom('trackEvent', 'Clicked back to link options');
+            Intercom('update');
         }
         this.setState({displayIcsForm: false});
     },
