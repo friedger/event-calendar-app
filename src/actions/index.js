@@ -37,7 +37,7 @@ export function getUser() {
 
                 if (window.location.href && window.location.href.indexOf('weebly-iframe') === -1 && config.intercom) {
                     window.Intercom('boot', {
-                        app_id: 'scigxdd1',
+                        app_id: config.intercom,
                         email: res.body.email,
                         created_at: res.body.userCreatedTime,
                         status: res.body.status,

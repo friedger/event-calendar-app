@@ -8,6 +8,7 @@ import {Button, Modal} from 'react-bootstrap';
 
 import EventCal from '../eventCal';
 import CalendarSelection from '../calendarSelection';
+import intercom from '../../utils/intercom';
 
 import venobox from 'venobox/venobox/venobox.min.js';
 
@@ -22,10 +23,10 @@ export default React.createClass({
         $('.venobox').venobox();
     },
     toggleModal() {
-
-        if (this.state.showCronofyModal && window.Intercom) {
-            Intercom('trackEvent', 'Closed Cronofy Modal');
-            Intercom('update');
+        const {user} = this.props;
+        if (this.state.showCronofyModal && user) {
+            intercom.trackEvent('Closed Cronofy Modal');
+            intercom.update({user_id: user.userId, email: user.email})
         }
 
         this.setState({showCronofyModal: !this.state.showCronofyModal});

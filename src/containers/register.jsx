@@ -32,7 +32,7 @@ const component = React.createClass({
     componentDidMount() {
         if (config.intercom) {
             window.Intercom('boot', {
-                app_id: 'scigxdd1'
+                app_id: config.intercom
             });
         }
     },

@@ -9,6 +9,7 @@ import WelcomePageHeader from '../components/welcomePageHeader';
 import getCronofyAuthUrl from '../utils/getCronofyAuthUrl';
 import AddIcsCalendarForm from '../components/addIcsCalendarForm';
 import ProgressBar from '../components/progressBar';
+import intercom from '../utils/intercom';
 
 import { browserHistory } from 'react-router';
 
@@ -36,13 +37,15 @@ const component = React.createClass({
         }
     },
     backToLinkOptions() {
-        if (window.Intercom) {
-            Intercom('trackEvent', 'Clicked back to link options');
-            Intercom('update');
+        const {user} = this.props.appState;
+        if (user) {
+            intercom.trackEvent('Clicked back to link options');
+            intercom.update({user_id: user.userId});
         }
         this.setState({displayIcsForm: false});
     },
     render() {
+        const {user} = this.props.appState;
         return (
             <div>
                 <div className="container">
@@ -61,6 +64,7 @@ const component = React.createClass({
                         </div>
                     :
                     <WelcomePageHeader
+                        user={user}
                         clickIcsConnect={() => {this.setState({displayIcsForm: true})}}
                         clickBack={() => {this.setState({displayIcsForm: false})}}
                         authUrl={getCronofyAuthUrl()}
