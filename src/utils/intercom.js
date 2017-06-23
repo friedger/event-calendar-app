@@ -4,7 +4,7 @@ function intercomDoesNotExist() {
 
 export default {
     update(userInfo) {
-        if (intercomDoesNotExist) {
+        if (intercomDoesNotExist()) {
             console.info('Failed to fire intercom update. Intercom does not exist');
         }
 
@@ -14,7 +14,7 @@ export default {
         }, 3000);
     },
     trackEvent(eventName) {
-        if (intercomDoesNotExist) {
+        if (intercomDoesNotExist()) {
             console.info('Failed to fire intercom event. Intercom does not exist');
         }
         Intercom('trackEvent', eventName);
