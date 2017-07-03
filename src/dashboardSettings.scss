@@ -1,0 +1,22 @@
+.dashboard-settings {
+    height: 100%;
+    label {
+        margin-bottom: 0;
+    }
+    &__embed {
+        float: right;
+    }
+    &__calendars-to-display-header {
+        .text-header {
+            display: inline-block;
+            float:right;
+        }
+        .setting-title {
+            margin-top: 5px;
+            display: inline-block;
+        }
+        .text-header {
+            margin-top: 9px;
+        }
+    }
+}

@@ -13,6 +13,7 @@ import RegisteredUser from '../components/registeredUser';
 import SubscriptionUser from '../components/subscriptionUser';
 import Header from '../components/header';
 import SuccessfulLinkModal from '../components/successfulLinkModal';
+import SuggestionModals from '../components/suggestionModals';
 
 import cn from 'classnames';
 import getCronofyAuthUrl from '../utils/getCronofyAuthUrl';
@@ -70,7 +71,8 @@ const component = React.createClass({
         }
 
         return (
-            <div>
+            <div style={{height: '100%'}}>
+                <SuggestionModals></SuggestionModals>
                 <Header doNotDisplayDashboardLink={(connections && connections.length === 0)} useFluidContainer={(connections && connections.length > 0)} loggedIn={true}/>
                 {this.props.location.query.showSuccessModal && !this.state.userHasSeenSuccessfulLinkModal && <SuccessfulLinkModal/>}
                 <div className={containerClassNames}>
@@ -83,6 +85,9 @@ const component = React.createClass({
                             connections={connections}
                             authUrl={getCronofyAuthUrl()}
                             connections={connections}
+                            suggestions={this.props.appState.suggestions}
+                            suggestionToggleAction={this.props.toggleSugesstions}
+                            eventcalRemovedAction={this.props.eventcalRemoved}
                         />}
                     {userHasSubscribed && connections &&
                         <SubscriptionUser
@@ -91,6 +96,9 @@ const component = React.createClass({
                             calendarBuildUrl={config.calendarBuildUrl}
                             calendars={this.props.appState.calendars}
                             authUrl={getCronofyAuthUrl()}
+                            suggestions={this.props.appState.suggestions}
+                            suggestionToggleAction={this.props.toggleSugesstions}
+                            eventcalRemovedAction={this.props.eventcalRemoved}
                         />}
                 </div>
             </div>

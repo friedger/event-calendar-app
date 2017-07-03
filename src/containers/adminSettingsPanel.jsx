@@ -11,6 +11,7 @@ import TimezoneSelection from '../components/timezoneSelection';
 import CalendarSelection from '../components/calendarSelection';
 import ViewModeSelection from '../components/viewModeSelection';
 import SubscriptionButtonSelection from '../components/subscriptionButtonSelection';
+import EmbedCode from '../components/embedCode';
 
 import CalendarConnections from '../components/calendarConnections';
 
@@ -59,18 +60,19 @@ const component = React.createClass({
                 deleteCalendar={this.props.deleteCalendar}
                 />
             :
-            <div>
-                <p className="dashboard-header dashboard-header--right">Calendar settings</p>
-                <span className="setting-title">Calendars to display:</span>
+            <div className="dashboard-settings">
+                <div className="dashboard-header dashboard-header--right row">
+                    <div className="col-md-12">
+                        <span>Calendar settings</span>
+                        {!this.props.appState.user.weeblyUser &&<EmbedCode userIsAGuest={this.props.appState.user.status === 'registered'} userId={this.props.appState.user.userId} shopifyUser={this.props.appState.user.shopifyUser} calendarBuildUrl={this.props.calendarBuildUrl}></EmbedCode>}
+                    </div>
+                </div>
                 <CalendarSelection onChange={this.props.putCalendars}
+                    toggleConnectionsScreen={this.toggleConnectionsScreen}
                     initialValues={this._getCalendarFormInitialValues()}
                     loading={this.props.appState.calendarsLoading}
                     fields={Object.keys(this.props.appState.calendars)}
                     calendars={this.props.appState.calendars}/>
-                <div style={{'paddingBottom': '9px'}}>
-                    <button className="default" onClick={this.toggleConnectionsScreen}>Add more calendars</button>
-                </div>
-                <span className="setting-title">Calendars layouts to display:</span>
                 <ViewModeSelection putSettingsAction={this.props.putSettings}/>
                 <NumberOfEventsToDisplay putSettingsAction={this.props.putSettings}/>
                 <TimezoneSelection putSettingsAction={this.props.putSettings}/>

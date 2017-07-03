@@ -7,7 +7,9 @@ import EventCal from '../eventCal';
 import WelcomePageHeader from '../welcomePageHeader';
 import AdminSettingsPanel from '../../containers/adminSettingsPanel';
 import LinkCalendar from '../../containers/LinkCalendar';
+import SuggestionInstructions from '../suggestionInstructions';
 const Link = require('react-router').Link;
+import Suggestions from '../suggestions';
 
 export default React.createClass({
     _fireGaEvent() {
@@ -19,20 +21,27 @@ export default React.createClass({
     render() {
         const {user, authUrl, connections} = this.props;
         return (
-            <div>
+            <div style={{height: '100%'}}>
                 {connections && connections.length > 0 ?
-                    <div>
+                    <div style={{height: '100%'}}>
                         <div className="col-sm-5 calendar-settings col-sm-push-7">
                             <AdminSettingsPanel />
                         </div>
                         <div className="col-sm-7 col-sm-pull-5">
-                            <div>
-                                <div className="dashboard-header dashboard-header--left">
-                                    <span>Live calendar</span>
-                                    <span><Link className="start-trial" to="/dashboard/plans">Add this calendar to your website</Link></span>
+                            <div className="dashboard-header dashboard-header--left row">
+                                <div className="col-md-12">
+                                    <span>Event calendar preview</span>
+                                    <Suggestions suggestionToggleAction={this.props.suggestionToggleAction}></Suggestions>
                                 </div>
-                                <EventCal userId={this.props.user.userId} />
-                                <hr />
+                            </div>
+                            <div className="row">
+                                <div className="col-md-12">
+                                    <SuggestionInstructions show={this.props.suggestions}></SuggestionInstructions>
+                                </div>
+                            </div>
+                            <EventCal eventcalRemovedAction={this.props.eventcalRemovedAction} suggestionsActive={this.props.suggestions} userId={this.props.user.userId} />
+                            <hr />
+                            <div>
                                 <p>Once you&#39;re ready to add the calendar to your site, follow the link below to begin your trial.   </p>
                                 <Link className="start-trial start-trial--smaller-margin" to="/dashboard/plans">Start your free trial</Link>
                             </div>

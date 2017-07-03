@@ -1,5 +1,10 @@
 .settings-space {
     padding-bottom:10px;
+    border-bottom: 1px solid #eee;
+    padding: 16px 0px;
+    &--top-border {
+        border-top: 1px solid #eee;
+    }
     .control-label {
         text-align: left;
     }
@@ -7,6 +12,6 @@
 
 @media (min-width: 992px) {
     .settings-space {
-        height: 45px;
+        height: auto;
     }
 }

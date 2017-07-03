@@ -34,12 +34,20 @@ button, a, .button {
             background: #5f82ab;
             border-bottom: 2px solid #435b77;
         }
+
+        &--skinny {
+            font-size:12px;
+            padding: 8px 17px;
+            position: absolute;
+            right: 15px;
+        }
     }
 
     &.secondary {
         padding: 10px;
         font-size: 14px;
         color: #fff;
+        border: 0;
         // margin: 27px 27px 27px 0px;
         border-radius: 2px;
         display: inline-block;
@@ -48,7 +56,6 @@ button, a, .button {
         background: #DA4167;
         border-bottom: 2px solid #a3304d;
         text-align: center;
-        border: 0;
         &--inverse {
             font-size: 14px;
             background:#fff;
@@ -59,6 +66,13 @@ button, a, .button {
                 text-decoration: underline;
                 color: #DA4167;
             }
+        }
+        &--skinny {
+            font-size:12px;
+            padding: 8px 17px;
+            position: absolute;
+            top: 0;
+            right: 0;
         }
     }
 

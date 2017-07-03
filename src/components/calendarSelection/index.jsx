@@ -18,7 +18,16 @@ var Component = React.createClass({
                 {this.props.loading ?
                     <div className="calendar-selection__loading"><Loader type='spin' color='#000' width={2} radius={3} /></div>
                 :
-                <Row>
+                <Row className="settings-space">
+                    <div className="col-md-7">
+                        <span className="setting-title">Calendars</span>
+                        <p class="calendar-selection__description">The calendars containing your events</p>
+                    </div>
+                    <div className="col-md-5 calendar-selection__add-more-calendars">
+                        <div className="text-header">
+                            <button className="action" onClick={this.props.toggleConnectionsScreen}><i className="fa fa-calendar-plus-o" aria-hidden="true"></i> Add more calendars</button>
+                        </div>
+                    </div>
                     <Col md={12}>
                     <form>
                         <FormGroup>

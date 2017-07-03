@@ -39,7 +39,10 @@ var Component = React.createClass({
                 <Col md={12}>
                 <form>
                     <FormGroup>
-                        <Row className="viewmode-selection">
+                        <Row className="viewmode-selection settings-space settings-space">
+                            <Col md={12}>
+                                <ControlLabel className="setting-title">Default calendar layout:</ControlLabel>
+                            </Col>
                             <Col md={12}>
                                 <p className="calendar-selection__description">The default view cannot be de-selected</p>
                             </Col>
@@ -62,7 +65,7 @@ var Component = React.createClass({
                         </Row>
                         <Row className="settings-space">
                             <Col md={8}>
-                                <ControlLabel className="setting-title">Default calendar layout:</ControlLabel>
+                                <ControlLabel className="setting-title">Calendar layouts to display:</ControlLabel>
                             </Col>
                             <Col md={4}>
                                 <Radio inline name="defaultLayout" {...defaultView} onChange={(e) => this.defaultCalendarOnChange(e, defaultView, handleSubmit)} checked={defaultView.value === 'list'} value={'list'}>List</Radio>

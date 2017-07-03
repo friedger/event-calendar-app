@@ -8,6 +8,9 @@ export const ADD_USER_FAILURE = 'GET_USER_FAILURE';
 
 export const POPULATE_REGISTER_FORM = 'POPULATE_REGISTER_FORM';
 
+export const TOGGLE_SUGESSTIONS = 'TOGGLE_SUGESSTIONS';
+export const EVENTCAL_REMOVED = 'EVENTCAL_REMOVED';
+
 import request from 'superagent';
 const config = require('../../config');
 
@@ -83,6 +86,18 @@ export function popuplateRegisterFormFromQuery(query) {
     return {
         type: POPULATE_REGISTER_FORM,
         payload: query
+    }
+}
+
+export function toggleSugesstions(){
+    return {
+        type: TOGGLE_SUGESSTIONS
+    }
+}
+
+export function eventcalRemoved() {
+    return {
+        type: EVENTCAL_REMOVED
     }
 }
 

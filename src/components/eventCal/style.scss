@@ -1,0 +1,8 @@
+#app-container {
+    transition: padding-top 0.5s;
+    padding-top: 0;
+
+    &.adjusted {
+        padding-top: 62px;
+    }
+}
