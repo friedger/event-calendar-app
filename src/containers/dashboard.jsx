@@ -20,10 +20,11 @@ import getCronofyAuthUrl from '../utils/getCronofyAuthUrl';
 
 import {Row, Col} from 'react-bootstrap';
 
-const mapState = ({appState, form}) => {
+const mapState = ({appState, form, eventcalState}) => {
     return {
         appState,
-        form
+        form,
+        eventcalState
     }
 }
 
@@ -88,6 +89,7 @@ const component = React.createClass({
                             suggestions={this.props.appState.suggestions}
                             suggestionToggleAction={this.props.toggleSugesstions}
                             eventcalRemovedAction={this.props.eventcalRemoved}
+                            eventcalHasNoEvents={this.props.eventcalState.eventcalHasNoEvents}
                         />}
                     {userHasSubscribed && connections &&
                         <SubscriptionUser
@@ -96,7 +98,7 @@ const component = React.createClass({
                             calendarBuildUrl={config.calendarBuildUrl}
                             calendars={this.props.appState.calendars}
                             authUrl={getCronofyAuthUrl()}
-                            suggestions={this.props.appState.suggestions}
+                            suggestions={this.props.appState.suggestions && !this.props.eventcalState.eventcalHasNoEvents}
                             suggestionToggleAction={this.props.toggleSugesstions}
                             eventcalRemovedAction={this.props.eventcalRemoved}
                         />}

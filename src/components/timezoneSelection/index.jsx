@@ -72,5 +72,6 @@ var Component = React.createClass({
 
 export default Component = reduxForm({ // <----- THIS IS THE IMPORTANT PART!
     form: 'timezoneSelection', // a unique name for this form
-    fields: ['timezone', 'timeformat']
+    fields: ['timezone', 'timeformat'],
+    overwriteOnInitialValuesChange: false
 }, state => ({initialValues: state.appState}))(Component);

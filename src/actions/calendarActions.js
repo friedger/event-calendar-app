@@ -75,12 +75,15 @@ export function putSettings(values) {
                     type: PUT_SETTINGS_SUCCESS,
                     payload: res
                 });
-
                 var a = new MouseEvent('refreshCalendar', {});
                 document.dispatchEvent(a);
 
             });
     }
+}
+
+function eventsResponseContainsEvents(res) {
+    return res.body.events && res.body.events.length > 0;
 }
 
 export function getCalendars() {
@@ -90,7 +93,7 @@ export function getCalendars() {
         });
         const token = cookieUtil.getItem('eventcal-admin');
         request.get(`${config.apiUrl}/calendars?token=${token}`)
-        .end((err, res) => {
+        .end((err, getCalendarsRes) => {
             if (err) {
                 return dispatch({
                     type: GET_CALENDARS_ERROR,
@@ -98,10 +101,25 @@ export function getCalendars() {
                 })
             }
 
-            dispatch({
-                type: GET_CALENDARS_SUCCESS,
-                payload: res
-            });
+            request
+                .get(`${config.apiUrl}/events?id=4&invalidateCache=true&pastEvents=true`)
+                .end((err, res) => {
+                    if (err) {
+                        console.log('error getting events')
+                    }
+                    if (eventsResponseContainsEvents(res)) {
+                        dispatch({
+                            type: GET_CALENDARS_SUCCESS,
+                            payload: {res: getCalendarsRes, hasEvents: true}
+                        });
+                    } else {
+                        dispatch({
+                            type: GET_CALENDARS_SUCCESS,
+                            payload: {res: getCalendarsRes, hasEvents: false}
+                        });
+                    }
+                });
+
         });
     }
 }
@@ -115,7 +133,7 @@ export function putCalendars(calendarId, selected) {
         request
             .put(`${config.apiUrl}/calendars?token=${token}`)
             .send({calendarId: calendarId, selected: selected})
-            .end((err, res) => {
+            .end((err, putCalendarsResponse) => {
                 if (err) {
                     return dispatch({
                         type: PUT_CALENDARS_ERROR,
@@ -123,14 +141,30 @@ export function putCalendars(calendarId, selected) {
                     })
                 }
 
-                dispatch({
-                    type: PUT_CALENDARS_SUCCESS,
-                    payload: res
-                });
-
-                var a = new MouseEvent('refreshCalendar', {});
-                document.dispatchEvent(a);
-
+                request
+                    .get(`${config.apiUrl}/events?id=4&invalidateCache=true&pastEvents=true`)
+                    .end((err, res) => {
+                        if (err) {
+                            console.log('error getting events')
+                        }
+                        if (eventsResponseContainsEvents(res)) {
+                            dispatch({
+                                type: PUT_CALENDARS_SUCCESS,
+                                payload: {res:putCalendarsResponse, hasEvents: true}
+                            });
+                            var a = new MouseEvent('refreshCalendar', {});
+                            document.dispatchEvent(a);
+                        } else {
+                            dispatch({
+                                type: PUT_CALENDARS_SUCCESS,
+                                payload: {res:putCalendarsResponse, hasEvents: false}
+                            });
+                            setTimeout(() => {
+                                var a = new MouseEvent('refreshCalendar', {});
+                                document.dispatchEvent(a);
+                            }, 400); // Time it takes for css animation
+                        }
+                    });
             });
     }
 }

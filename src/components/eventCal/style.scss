@@ -1,6 +1,11 @@
 #app-container {
     transition: padding-top 0.5s;
     padding-top: 0;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+    &.show {
+        opacity: 1;
+    }
 
     &.adjusted {
         padding-top: 62px;

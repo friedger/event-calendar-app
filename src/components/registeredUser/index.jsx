@@ -10,6 +10,7 @@ import LinkCalendar from '../../containers/LinkCalendar';
 import SuggestionInstructions from '../suggestionInstructions';
 const Link = require('react-router').Link;
 import Suggestions from '../suggestions';
+import NoEventsMessage from '../noEventsMessage';
 
 export default React.createClass({
     _fireGaEvent() {
@@ -31,7 +32,7 @@ export default React.createClass({
                             <div className="dashboard-header dashboard-header--left row">
                                 <div className="col-md-12">
                                     <span>Event calendar preview</span>
-                                    <Suggestions suggestionToggleAction={this.props.suggestionToggleAction}></Suggestions>
+                                    {!this.props.eventcalHasNoEvents &&<Suggestions suggestionToggleAction={this.props.suggestionToggleAction}></Suggestions>}
                                 </div>
                             </div>
                             <div className="row">
@@ -39,7 +40,8 @@ export default React.createClass({
                                     <SuggestionInstructions show={this.props.suggestions}></SuggestionInstructions>
                                 </div>
                             </div>
-                            <EventCal eventcalRemovedAction={this.props.eventcalRemovedAction} suggestionsActive={this.props.suggestions} userId={this.props.user.userId} />
+                            {this.props.eventcalHasNoEvents && <NoEventsMessage></NoEventsMessage>}
+                            <EventCal show={!this.props.eventcalHasNoEvents} eventcalRemovedAction={this.props.eventcalRemovedAction} suggestionsActive={this.props.suggestions} userId={this.props.user.userId} />
                             <hr />
                             <div>
                                 <p>Once you&#39;re ready to add the calendar to your site, follow the link below to begin your trial.   </p>

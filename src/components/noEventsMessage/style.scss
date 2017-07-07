@@ -1,0 +1,43 @@
+.eca-dashboard {
+
+    &__no-events-message {
+    background:#DA4167;
+    text-align:center;
+    padding:10px;
+    position: absolute;
+    border-radius:2px;
+    top: 20px;
+    width: 100%;
+    cursor: pointer;
+    &:hover {
+        background:#ee4a72;
+    }
+    p {
+        color:#fff;
+        margin-bottom: 0;
+        font-size: 16px;
+        font-weight: normal;
+
+        a {
+            color: #fff;
+        }
+
+        &:first-child {
+            font-size:20px;
+            font-weight: bold;
+        }
+    }
+    }
+
+    &__no-events-message-container {
+        display: block;
+        position: relative;
+        z-index: 1;
+
+        a {
+            &:hover, &:focus {
+                text-decoration: none;
+            }
+        }
+    }
+}

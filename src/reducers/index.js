@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import {reducer as formReducer} from 'redux-form';
 import {LOGIN, LOGIN_SUCCESS, LOGIN_ERROR, GET_USER_SUCCESS, GET_USER_FAILURE, POPULATE_REGISTER_FORM, TOGGLE_SUGESSTIONS, EVENTCAL_REMOVED} from '../actions';
-import {GET_CALENDARS_SUCCESS, GET_SETTINGS_SUCCESS, GET_CONNECTIONS_SUCCESS, DELETE_CALENDAR, GET_CALENDARS} from '../actions/calendarActions';
+import {PUT_CALENDARS, GET_CALENDARS_SUCCESS, GET_SETTINGS_SUCCESS, GET_CONNECTIONS_SUCCESS, DELETE_CALENDAR, GET_CALENDARS, PUT_SETTINGS_SUCCESS, PUT_CALENDARS_SUCCESS} from '../actions/calendarActions';
 
 function appState(state = {calendars: {}, suggestions: false}, action) {
     switch(action.type) {
@@ -14,7 +14,11 @@ function appState(state = {calendars: {}, suggestions: false}, action) {
         case GET_CALENDARS:
         return Object.assign({}, state, {calendarsLoading: true})
         case GET_CALENDARS_SUCCESS:
-        return Object.assign({}, state, action.payload.body, {calendarsLoading: false});
+        return Object.assign({}, state, action.payload.res.body, {calendarsLoading: false});
+        case PUT_CALENDARS:
+        return Object.assign({}, state, {calendarsLoading: true});
+        case PUT_CALENDARS_SUCCESS:
+        return Object.assign({}, state, {calendarsLoading: false});
         case GET_SETTINGS_SUCCESS:
         return Object.assign({}, state, action.payload.body);
         case GET_CONNECTIONS_SUCCESS:
@@ -57,9 +61,22 @@ function initialRegisterState(state={}, action) {
     return state;
 }
 
+function eventCal(state={eventcalHasNoEvents: false}, action) {
+    if (action.type === GET_CALENDARS_SUCCESS || action.type == PUT_CALENDARS_SUCCESS) {
+        if (action.payload.hasEvents) {
+            return Object.assign({}, state, {eventcalHasNoEvents: false});
+        }
+        return Object.assign({}, state, {eventcalHasNoEvents: true});
+    }
+
+
+    return state;
+}
+
 export default combineReducers({
     appState: appState,
     form: formReducer,
     loginState: loginState,
+    eventcalState: eventCal,
     initialRegisterState: initialRegisterState
 });

@@ -53,5 +53,6 @@ var Component = React.createClass({
 
 export default Component = reduxForm({ // <----- THIS IS THE IMPORTANT PART!
     form: 'subscriptionButtonSelection', // a unique name for this form
-    fields: ['subscriptionButton']
+    fields: ['subscriptionButton'],
+    overwriteOnInitialValuesChange: false
 }, state => ({initialValues: state.appState}))(Component);

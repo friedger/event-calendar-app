@@ -20,7 +20,7 @@ var Component = React.createClass({
             <Row>
                 <Col md={12}>
                     <p>{this.props.headerText}</p>
-                    <div id="app-container" className={cn('show', {'adjusted': this.props.suggestionsActive})}></div>
+                    <div id="app-container" className={cn({'show': this.props.show}, {'adjusted': this.props.suggestionsActive})}></div>
                 </Col>
             </Row>
         )
