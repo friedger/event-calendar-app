@@ -102,7 +102,7 @@ export function getCalendars() {
             }
 
             request
-                .get(`${config.apiUrl}/events?id=4&invalidateCache=true&pastEvents=true`)
+                .get(`${config.apiUrl}/events?token=${token}&invalidateCache=true&pastEvents=true`)
                 .end((err, res) => {
                     if (err) {
                         console.log('error getting events')
@@ -142,7 +142,7 @@ export function putCalendars(calendarId, selected) {
                 }
 
                 request
-                    .get(`${config.apiUrl}/events?id=4&invalidateCache=true&pastEvents=true`)
+                    .get(`${config.apiUrl}/events?token=${token}&invalidateCache=true&pastEvents=true`)
                     .end((err, res) => {
                         if (err) {
                             console.log('error getting events')
