@@ -41,7 +41,7 @@ export default React.createClass({
                                         </div>
                                     </div>
                                     {this.props.eventcalHasNoEvents && <NoEventsMessage></NoEventsMessage>}
-                                    <EventCal show={!this.props.eventcalHasNoEvents} eventcalRemovedAction={this.props.eventcalRemovedAction} suggestionsActive={this.props.suggestions} userId={this.props.user.userId} />
+                                    <EventCal eventCalWidgetUuid={this.props.eventCalWidgetUuid} show={!this.props.eventcalHasNoEvents} eventcalRemovedAction={this.props.eventcalRemovedAction} suggestionsActive={this.props.suggestions} userId={this.props.user.userId} />
                                     <hr />
                                     {this.props.user.weeblyUser &&
                                         <div>
