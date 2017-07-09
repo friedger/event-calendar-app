@@ -16,6 +16,7 @@ import AccountError from './containers/accountError';
 import NetworkError from './containers/networkError';
 import PrivacyPolicy from './containers/privacyPolicy';
 import TermsOfUse from './containers/termsOfUse';
+import Home from './containers/home';
 
 function recordIntercomEvent(eventName) {
     if (window.Intercom) {
@@ -27,12 +28,13 @@ export default (store) => {
     return (
         <Route component={App} name='app' path='/'>
             <Route path="login" component={Login} />
-            <Route onEnter={() => recordIntercomEvent('visited-dashboard-router-enter')} path="dashboard" component={Dashboard}>
+            <Route path="home" component={Home}>
                 <Route path="transaction-complete" component={TransactionComplete} />
                 <Route path="plans" component={Plans}/>
                 <Route path="account-error" component={AccountError} />
                 <Route path="network-error" component={NetworkError} />
             </Route>
+            <Route onEnter={() => recordIntercomEvent('visited-dashboard-router-enter')} path="dashboard/:eventCalWidgetUuid" component={Dashboard}></Route>
             <Route onEnter={() => recordIntercomEvent('visited-link-page-router-enter')} path="link-calendar" component={Dashboard}/>
             <Route path="firsttime-link-calendar" component={Dashboard} />
             <Route path="register" component={Register} />
