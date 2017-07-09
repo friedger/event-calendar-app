@@ -12,6 +12,7 @@ import AdminSettingsPanel from '../../containers/adminSettingsPanel';
 import LinkCalendar from '../../containers/linkCalendar';
 import Suggestions from '../suggestions';
 import SuggestionInstructions from '../suggestionInstructions';
+import NoEventsMessage from '../noEventsMessage';
 
 export default React.createClass({
     componentDidMount() {
@@ -24,7 +25,7 @@ export default React.createClass({
                 {connections && connections.length > 0 ?
                     <div style={{height: '100%'}}>
                         <div className="col-sm-5 calendar-settings col-sm-push-7">
-                            <AdminSettingsPanel />
+                            <AdminSettingsPanel eventCalWidgetUuid={this.props.eventCalWidgetUuid}/>
                         </div>
                         <div className="col-sm-7 col-sm-pull-5">
                                 <div>
@@ -39,7 +40,8 @@ export default React.createClass({
                                             <SuggestionInstructions show={this.props.suggestions}></SuggestionInstructions>
                                         </div>
                                     </div>
-                                    <EventCal eventcalRemovedAction={this.props.eventcalRemovedAction} suggestionsActive={this.props.suggestions} userId={this.props.user.userId} />
+                                    {this.props.eventcalHasNoEvents && <NoEventsMessage></NoEventsMessage>}
+                                    <EventCal show={!this.props.eventcalHasNoEvents} eventcalRemovedAction={this.props.eventcalRemovedAction} suggestionsActive={this.props.suggestions} userId={this.props.user.userId} />
                                     <hr />
                                     {this.props.user.weeblyUser &&
                                         <div>
