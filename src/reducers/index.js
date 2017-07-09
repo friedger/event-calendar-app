@@ -2,8 +2,9 @@ import { combineReducers } from 'redux'
 import {reducer as formReducer} from 'redux-form';
 import {LOGIN, LOGIN_SUCCESS, LOGIN_ERROR, GET_USER_SUCCESS, GET_USER_FAILURE, POPULATE_REGISTER_FORM, TOGGLE_SUGESSTIONS, EVENTCAL_REMOVED} from '../actions';
 import {PUT_CALENDARS, GET_CALENDARS_SUCCESS, GET_SETTINGS_SUCCESS, GET_CONNECTIONS_SUCCESS, DELETE_CALENDAR, GET_CALENDARS, PUT_SETTINGS_SUCCESS, PUT_CALENDARS_SUCCESS} from '../actions/calendarActions';
+import {GET_WIDGETS_SUCCESS} from '../actions/widgetActions';
 
-function appState(state = {calendars: {}, suggestions: false}, action) {
+function appState(state = {calendars: {}, suggestions: false, widgets: []}, action) {
     switch(action.type) {
         case EVENTCAL_REMOVED:
         return Object.assign({}, state, {suggestions: false})
@@ -15,6 +16,8 @@ function appState(state = {calendars: {}, suggestions: false}, action) {
         return Object.assign({}, state, {calendarsLoading: true})
         case GET_CALENDARS_SUCCESS:
         return Object.assign({}, state, action.payload.res.body, {calendarsLoading: false});
+        case GET_WIDGETS_SUCCESS:
+        return Object.assign({}, state, {widgets: action.payload});
         case PUT_CALENDARS:
         return Object.assign({}, state, {calendarsLoading: true});
         case PUT_CALENDARS_SUCCESS:

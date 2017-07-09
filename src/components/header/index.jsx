@@ -37,7 +37,7 @@ module.exports = React.createClass({
                                 <ul className="logged-in">
                                     {!this.props.doNotDisplayDashboardLink &&
                                         <li>
-                                            <Link activeClassName="active" to="/dashboard">Dashboard</Link>
+                                            <Link activeClassName="active" to="/home">Dashboard</Link>
                                         </li>
                                     }
                                     <li>

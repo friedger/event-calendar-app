@@ -1,14 +1,53 @@
+import { connect } from 'react-redux';
 import React from 'react';
+import { bindActionCreators } from 'redux';
+import * as widgetActions from '../actions/widgetActions';
 
-export default React.createClass({
+const config = require('../../config');
+const Link = require('react-router').Link;
+
+import Header from '../components/header';
+import NewWidgetButton from '../components/newWidgetButton';
+import WidgetButton from '../components/widgetButton';
+
+const mapState = ({appState}) => {
+    return {
+        appState
+    }
+}
+
+const mapDispatch = (dispatch) => {
+    return bindActionCreators({
+        ...widgetActions
+    }, dispatch);
+}
+
+const component = React.createClass({
+    componentDidMount() {
+        this.props.getWidgets();
+    },
     render() {
+        console.log(this.props.appState && this.props.appState.widgets);
         if (this.props.children) {
             return (
                 <div style={{height: '100%'}}>{this.props.children}</div>
             )
         }
-        return(
-            <div>This is the home page</div>
+
+        return (
+            <div style={{height: '100%'}}>
+                <Header loggedIn={true}/>
+                <div className="container" style={{marginTop: '50px'}}>
+                    <div className="row">
+                        <NewWidgetButton onClick={this.props.postWidgets}></NewWidgetButton>
+                        {this.props.appState.widgets.map((widget, index) => {
+                            return <WidgetButton widget={widget} number={index + 1}></WidgetButton>
+                        })}
+                    </div>
+                </div>
+            </div>
         )
     }
 });
+
+export default connect(mapState, mapDispatch)(component)

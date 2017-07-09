@@ -1,0 +1,26 @@
+.new-widget {
+    background:#da4167;
+    height:300px;
+    margin: 10px;
+    text-align: center;
+    color:#fff;
+    position: relative;
+    cursor: pointer;
+
+    &:hover {
+        background:#ee4a72;
+    }
+
+    &__text {
+        left: 0;
+        right: 0;
+        padding: 15px;
+        bottom: 13px;
+        position: absolute;
+    }
+
+    i {
+        font-size: 60px;
+        padding-top: 90px;
+    }
+}
