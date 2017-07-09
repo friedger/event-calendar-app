@@ -12,6 +12,7 @@ import AdminSettingsPanel from '../../containers/adminSettingsPanel';
 import LinkCalendar from '../../containers/linkCalendar';
 import Suggestions from '../suggestions';
 import SuggestionInstructions from '../suggestionInstructions';
+import NoEventsMessage from '../noEventsMessage';
 
 export default React.createClass({
     componentDidMount() {
