@@ -101,6 +101,7 @@ const component = React.createClass({
                             suggestions={this.props.appState.suggestions && !this.props.eventcalState.eventcalHasNoEvents}
                             suggestionToggleAction={this.props.toggleSugesstions}
                             eventcalRemovedAction={this.props.eventcalRemoved}
+                            eventcalHasNoEvents={this.props.eventcalState.eventcalHasNoEvents}
                         />}
                 </div>
             </div>
