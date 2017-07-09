@@ -66,7 +66,7 @@ const component = React.createClass({
                 <div className="dashboard-header dashboard-header--right row">
                     <div className="col-md-12">
                         <span>Calendar settings</span>
-                        {!this.props.appState.user.weeblyUser &&<EmbedCode userIsAGuest={this.props.appState.user.status === 'registered'} userId={this.props.appState.user.userId} shopifyUser={this.props.appState.user.shopifyUser} calendarBuildUrl={this.props.calendarBuildUrl}></EmbedCode>}
+                        {!this.props.appState.user.weeblyUser &&<EmbedCode eventCalWidgetUuid={this.props.eventCalWidgetUuid} userIsAGuest={this.props.appState.user.status === 'registered'} userId={this.props.appState.user.userId} shopifyUser={this.props.appState.user.shopifyUser} calendarBuildUrl={this.props.calendarBuildUrl}></EmbedCode>}
                     </div>
                 </div>
                 <CalendarSelection onChange={this.props.putCalendars.bind(null, this.props.eventCalWidgetUuid)}

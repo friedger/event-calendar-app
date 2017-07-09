@@ -48,7 +48,7 @@ export default React.createClass({
                                         </div>
                                     }
                                     {!this.props.user.weeblyUser &&
-                                        <CalendarCodeTextArea shopifyUser={this.props.user.shopifyUser} calendarBuildUrl={this.props.calendarBuildUrl} userId={this.props.user.userId}/>
+                                        <CalendarCodeTextArea eventCalWidgetUuid={this.props.eventCalWidgetUuid} shopifyUser={this.props.user.shopifyUser} calendarBuildUrl={this.props.calendarBuildUrl} userId={this.props.user.userId}/>
                                     }
                                     {this.props.user.bigcommerceUser &&
                                         <div className="calendarCode__shopify"><a className="venobox" data-autoplay="true" data-vbtype="video" href="https://www.youtube.com/watch?v=R6uKvhyHYVg">Bigcommerce integration guide</a></div>

@@ -8,7 +8,6 @@ import * as paymentActions from '../actions/paymentActions';
 const cookieUtil = require('../utils/cookieUtil').default;
 const config = require('../../config');
 
-import CalendarCodeTextArea from '../components/calendarCodeTextArea';
 import RegisteredUser from '../components/registeredUser';
 import SubscriptionUser from '../components/subscriptionUser';
 import Header from '../components/header';
@@ -102,6 +101,8 @@ const component = React.createClass({
                             suggestions={this.props.appState.suggestions && !this.props.eventcalState.eventcalHasNoEvents}
                             suggestionToggleAction={this.props.toggleSugesstions}
                             eventcalRemovedAction={this.props.eventcalRemoved}
+                            eventcalHasNoEvents={this.props.eventcalState.eventcalHasNoEvents}
+                            eventCalWidgetUuid={this.props.params.eventCalWidgetUuid}
                         />}
                 </div>
             </div>

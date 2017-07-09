@@ -24,7 +24,7 @@ export default React.createClass({
                     </Modal.Header>
                     <div className="col-md-12 connection-modal">
                         <div className="connection-modal__content">
-                            <CalendarCodetextArea userId={this.props.userId} shopifyUser={this.props.shopifyUser}></CalendarCodetextArea>
+                            <CalendarCodetextArea eventCalWidgetUuid={this.props.eventCalWidgetUuid} userId={this.props.userId} shopifyUser={this.props.shopifyUser}></CalendarCodetextArea>
                         </div>
                     </div>
                 </Modal>
