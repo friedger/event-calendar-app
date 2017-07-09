@@ -1,7 +1,8 @@
 const config = require('../../config');
 
-export default function addScriptToPage(userId) {
+export default function addScriptToPage(userId, eventCalWidgetUuid) {
     window.eventCalId = userId;
+    window.eventCalWidgetUuid = eventCalWidgetUuid;
 
     var mainScript = document.createElement('script');
     mainScript.setAttribute('src',`${config.calendarBuildUrl}/main.js`);

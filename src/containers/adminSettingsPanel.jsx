@@ -40,7 +40,7 @@ const component = React.createClass({
         }
     },
     toggleConnectionsScreen() {
-        this.props.getCalendars();
+        this.props.getCalendars(this.props.eventCalWidgetUuid);
         this.setState({displayConnectionsScreen: !this.state.displayConnectionsScreen});
     },
     _getCalendarFormInitialValues() {
@@ -51,6 +51,7 @@ const component = React.createClass({
         }, {});
     },
     render() {
+        console.log('in the admin container', this.props.eventCalWidgetUuid)
         return (
             this.state.displayConnectionsScreen ?
             <CalendarConnections
@@ -58,6 +59,7 @@ const component = React.createClass({
                 connections={this.props.appState.connections}
                 calendarAdded={() => {this.props.getConnections()}}
                 deleteCalendar={this.props.deleteCalendar}
+                eventCalWidgetUuid={this.props.eventCalWidgetUuid}
                 />
             :
             <div className="dashboard-settings">
@@ -67,16 +69,16 @@ const component = React.createClass({
                         {!this.props.appState.user.weeblyUser &&<EmbedCode userIsAGuest={this.props.appState.user.status === 'registered'} userId={this.props.appState.user.userId} shopifyUser={this.props.appState.user.shopifyUser} calendarBuildUrl={this.props.calendarBuildUrl}></EmbedCode>}
                     </div>
                 </div>
-                <CalendarSelection onChange={this.props.putCalendars}
+                <CalendarSelection onChange={this.props.putCalendars.bind(null, this.props.eventCalWidgetUuid)}
                     toggleConnectionsScreen={this.toggleConnectionsScreen}
                     initialValues={this._getCalendarFormInitialValues()}
                     loading={this.props.appState.calendarsLoading}
                     fields={Object.keys(this.props.appState.calendars)}
                     calendars={this.props.appState.calendars}/>
-                <ViewModeSelection putSettingsAction={this.props.putSettings}/>
-                <NumberOfEventsToDisplay putSettingsAction={this.props.putSettings}/>
-                <TimezoneSelection putSettingsAction={this.props.putSettings}/>
-                <SubscriptionButtonSelection putSettingsAction={this.props.putSettings}/>
+                <ViewModeSelection putSettingsAction={this.props.putSettings.bind(null, this.props.eventCalWidgetUuid)}/>
+                <NumberOfEventsToDisplay putSettingsAction={this.props.putSettings.bind(null, this.props.eventCalWidgetUuid)}/>
+                <TimezoneSelection putSettingsAction={this.props.putSettings.bind(null, this.props.eventCalWidgetUuid)}/>
+                <SubscriptionButtonSelection putSettingsAction={this.props.putSettings.bind(null, this.props.eventCalWidgetUuid)}/>
             </div>
         )
     }

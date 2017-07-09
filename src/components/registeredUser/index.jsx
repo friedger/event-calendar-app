@@ -26,7 +26,7 @@ export default React.createClass({
                 {connections && connections.length > 0 ?
                     <div style={{height: '100%'}}>
                         <div className="col-sm-5 calendar-settings col-sm-push-7">
-                            <AdminSettingsPanel />
+                            <AdminSettingsPanel eventCalWidgetUuid={this.props.eventCalWidgetUuid}/>
                         </div>
                         <div className="col-sm-7 col-sm-pull-5">
                             <div className="dashboard-header dashboard-header--left row">
@@ -41,7 +41,7 @@ export default React.createClass({
                                 </div>
                             </div>
                             {this.props.eventcalHasNoEvents && <NoEventsMessage></NoEventsMessage>}
-                            <EventCal show={!this.props.eventcalHasNoEvents} eventcalRemovedAction={this.props.eventcalRemovedAction} suggestionsActive={this.props.suggestions} userId={this.props.user.userId} />
+                            <EventCal eventCalWidgetUuid={this.props.eventCalWidgetUuid} show={!this.props.eventcalHasNoEvents} eventcalRemovedAction={this.props.eventcalRemovedAction} suggestionsActive={this.props.suggestions} userId={this.props.user.userId} />
                             <hr />
                             <div>
                                 <p>Once you&#39;re ready to add the calendar to your site, follow the link below to begin your trial.   </p>

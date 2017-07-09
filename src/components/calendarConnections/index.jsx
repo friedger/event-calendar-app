@@ -17,7 +17,7 @@ export default React.createClass({
         if (this.props.connections.length === 1) {
             return this.setState({displayError: true});
         }
-        
+
         if (connection.calendarId) {
             return this.props.deleteCalendar({calendarId: connection.calendarId});
         }
@@ -61,7 +61,7 @@ export default React.createClass({
                         {!this.state.addCalendarSelected && <button className='action full-width' onClick={() => this.setState({addCalendarSelected: true})}>Add calendar</button>}
                     </div>
                 </div>
-                {this.state.addCalendarSelected && <AddIcsCalendarForm calendarAdded={this.props.calendarAdded}/>}
+                {this.state.addCalendarSelected && <AddIcsCalendarForm eventCalWidgetUuid={this.props.eventCalWidgetUuid} calendarAdded={this.props.calendarAdded}/>}
             </div>
         )
     }

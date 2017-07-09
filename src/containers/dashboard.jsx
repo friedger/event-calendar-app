@@ -48,8 +48,8 @@ const component = React.createClass({
     },
     componentDidMount() {
         this.props.getUser();
-        this.props.getCalendars();
-        this.props.getSettings();
+        this.props.getCalendars(this.props.params.eventCalWidgetUuid);
+        this.props.getSettings(this.props.params.eventCalWidgetUuid);
         this.props.getConnections();
     },
     render() {
@@ -90,6 +90,7 @@ const component = React.createClass({
                             suggestionToggleAction={this.props.toggleSugesstions}
                             eventcalRemovedAction={this.props.eventcalRemoved}
                             eventcalHasNoEvents={this.props.eventcalState.eventcalHasNoEvents}
+                            eventCalWidgetUuid={this.props.params.eventCalWidgetUuid}
                         />}
                     {userHasSubscribed && connections &&
                         <SubscriptionUser
