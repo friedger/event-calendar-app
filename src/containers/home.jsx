@@ -27,7 +27,6 @@ const component = React.createClass({
         this.props.getWidgets();
     },
     render() {
-        console.log(this.props.appState && this.props.appState.widgets);
         if (this.props.children) {
             return (
                 <div style={{height: '100%'}}>{this.props.children}</div>
@@ -36,8 +35,8 @@ const component = React.createClass({
 
         return (
             <div style={{height: '100%'}}>
-                <Header loggedIn={true}/>
-                <div className="container" style={{marginTop: '50px'}}>
+                <Header loggedIn={true} useFluidContainer={true}/>
+                <div className="container-fluid" style={{marginTop: '50px'}}>
                     <div className="row">
                         <NewWidgetButton onClick={this.props.postWidgets}></NewWidgetButton>
                         {this.props.appState.widgets.map((widget, index) => {

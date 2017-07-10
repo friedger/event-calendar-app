@@ -15,7 +15,7 @@ export default React.createClass({
     },
     render() {
         return (
-            <Link to={`/dashboard/${this.props.widget.uuid}`}>
+            <Link to={`/editor/${this.props.widget.uuid}`}>
             <div className="col-md-3">
                 <div className="widget-button">
                     <div className="widget-button__text">
@@ -37,7 +37,7 @@ export default React.createClass({
                     <div className="col-md-12 connection-modal widget-button-modal">
                         <div className="connection-modal__content">
                             <p>Are you sure you want to delete this Events Calendar?</p>
-                            <button onClick={() => this.props.deleteAction(this.props.widget.uuid)} className="danger">
+                            <button onClick={() => this.props.deleteAction(this.props.widget.uuid) && this.setState({modalOpen: false})} className="danger">
                                 <i className="fa fa-trash" aria-hidden="true"></i> Delete</button>
                         </div>
                     </div>

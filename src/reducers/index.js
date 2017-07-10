@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import {reducer as formReducer} from 'redux-form';
-import {LOGIN, LOGIN_SUCCESS, LOGIN_ERROR, GET_USER_SUCCESS, GET_USER_FAILURE, POPULATE_REGISTER_FORM, TOGGLE_SUGESSTIONS, EVENTCAL_REMOVED} from '../actions';
+import {LOGIN, LOGIN_SUCCESS, LOGIN_ERROR, GET_USER_SUCCESS, GET_USER_FAILURE, POPULATE_REGISTER_FORM, TOGGLE_SUGESSTIONS, EVENTCAL_REMOVED, BLOW_STATE} from '../actions';
 import {PUT_CALENDARS, GET_CALENDARS_SUCCESS, GET_SETTINGS_SUCCESS, GET_CONNECTIONS_SUCCESS, DELETE_CALENDAR, GET_CALENDARS, PUT_SETTINGS_SUCCESS, PUT_CALENDARS_SUCCESS} from '../actions/calendarActions';
 import {GET_WIDGETS_SUCCESS} from '../actions/widgetActions';
 
@@ -76,10 +76,18 @@ function eventCal(state={eventcalHasNoEvents: false}, action) {
     return state;
 }
 
-export default combineReducers({
+const appReducer = combineReducers({
     appState: appState,
     form: formReducer,
     loginState: loginState,
     eventcalState: eventCal,
     initialRegisterState: initialRegisterState
-});
+})
+
+export default (state, action) => {
+  if (action.type === BLOW_STATE) {
+    state = undefined
+  }
+
+  return appReducer(state, action)
+}

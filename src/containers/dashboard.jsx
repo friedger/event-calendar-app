@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as appActions from '../actions/index';
 import * as calendarActions from '../actions/calendarActions';
 import * as paymentActions from '../actions/paymentActions';
+import * as widgetActions from '../actions/widgetActions';
 
 const cookieUtil = require('../utils/cookieUtil').default;
 const config = require('../../config');
@@ -31,7 +32,8 @@ const mapDispatch = (dispatch) => {
     return bindActionCreators({
         ...appActions,
         ...calendarActions,
-        ...paymentActions
+        ...paymentActions,
+        ...widgetActions
     }, dispatch);
 }
 
@@ -44,6 +46,9 @@ var calendarHasBeenRendered;
 const component = React.createClass({
     getInitialState() {
         return {userHasSeenSuccessfulLinkModal: cookieUtil.getItem('seen-successful-link-modal')};
+    },
+    componentWillUnmount() {
+        this.props.blowState();
     },
     componentDidMount() {
         this.props.getUser();

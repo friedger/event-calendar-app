@@ -11,6 +11,8 @@ export const POPULATE_REGISTER_FORM = 'POPULATE_REGISTER_FORM';
 export const TOGGLE_SUGESSTIONS = 'TOGGLE_SUGESSTIONS';
 export const EVENTCAL_REMOVED = 'EVENTCAL_REMOVED';
 
+export const BLOW_STATE = 'BLOW_STATE';
+
 import request from 'superagent';
 const config = require('../../config');
 
@@ -18,6 +20,12 @@ import { browserHistory } from 'react-router'
 
 if (typeof window !== 'undefined') {
     var cookieUtil = require('../utils/cookieUtil').default;
+}
+
+export function blowState() {
+    return {
+        type: 'BLOW_STATE'
+    }
 }
 
 export function getUser() {
