@@ -2,6 +2,10 @@ button, a, .button {
     position: relative;
     cursor: pointer;
 
+    &.full-width {
+        width: 100%;
+    }
+
     &:hover {
         text-decoration: underline;
     }
@@ -67,6 +71,9 @@ button, a, .button {
         background: #DA4167;
         border-bottom: 2px solid #a3304d;
         text-align: center;
+        &:hover {
+            background: #ee4a72;
+        }
         &--inverse {
             font-size: 14px;
             background:#fff;

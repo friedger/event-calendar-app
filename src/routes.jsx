@@ -17,6 +17,7 @@ import NetworkError from './containers/networkError';
 import PrivacyPolicy from './containers/privacyPolicy';
 import TermsOfUse from './containers/termsOfUse';
 import Home from './containers/home';
+import Account from './containers/account';
 var cookieUtil = require('./utils/cookieUtil').default;
 import request from 'superagent';
 const config = require('../config');
@@ -58,6 +59,7 @@ export default (store) => {
                 <Route path="network-error" component={NetworkError} />
             </Route>
             <Route onEnter={editorOnEnter} path="editor(/:eventCalWidgetUuid)" component={Dashboard}></Route>
+            <Route path="account" component={Account}></Route>
             <Route onEnter={() => recordIntercomEvent('visited-link-page-router-enter')} path="link-calendar" component={Dashboard}/>
             <Route path="firsttime-link-calendar" component={Dashboard} />
             <Route path="register" component={Register} />

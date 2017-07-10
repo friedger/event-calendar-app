@@ -1,0 +1,151 @@
+.account-container {
+    background: #fff;
+}
+
+.account {
+    &__container {
+        background: #fff;
+        box-shadow: 0 1px 1px #e2e8ea;
+        border-radius: 2px;
+    }
+    &__header {
+        background: #6787ab;
+        color: #fff;
+        border-radius: 2px 2px 0px 0px;
+        padding: 40px 20px 40px 20px;
+        h2 {
+            font-weight: bold;
+            margin: 0;
+        }
+        &__subtitle {
+            opacity: 0.8;
+        }
+    }
+    &__content {
+        padding: 0 20px;
+        h3 {
+            font-weight: bold;
+        }
+    }
+}
+
+.plans2 {
+    text-align: center;
+
+    h2 {
+        font-weight: bold;
+    }
+
+    .normal {
+        font-size: 16px;
+        color: #444;
+        font-weight: normal;
+    }
+
+    .italic {
+        font-style: italic;
+    }
+
+    .pricing-plan {
+        display: flex;
+        align-content: center;
+        flex-direction: column;    /* Lay out item’s contents vertically  */
+        position: relative;
+        box-shadow: 0 1px 4px #cfd2d4;
+        margin: 0 auto;
+        margin-top: 30px;
+        margin-bottom: 50px;
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+            li {
+                margin: 0;
+                padding: 0;
+            }
+        }
+
+        &__highlight {
+            background: #da4167;
+            padding:5px;
+            color: #fff;
+            font-size:11px;
+            position: absolute;
+            width: 100%;
+            font-weight: bold;
+        }
+
+        &__header {
+            padding-top: 40px;
+            color: #929292;
+        }
+
+        &__price-container {
+            display: flex;
+            align-content: center;
+            flex-direction: column;    /* Lay out item’s contents vertically  */
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        &__seperating-border {
+            height: 1px;
+            width: 74px;
+            background: #9A9999;
+            color: #9A9999;
+        }
+
+        &__under-price-text {
+            color: #999999;
+            padding-top: 3px;
+        }
+
+        &__price {
+            width: 100%;
+            font-size: 38px;
+            &__time-period {
+                font-size:12px;
+            }
+        }
+
+        &__features {
+            padding: 10px 0px;
+            font-size: 12px;
+            padding: 25px 0px;
+        }
+
+        &__notes {
+            color: #999999;
+            margin-top: auto;
+            padding: 0px 40px 25px 40px;
+            font-size: 10px;
+            padding-bottom: 25px;
+        }
+
+        &__start-plan {
+            padding-bottom: 40px;
+        }
+    }
+
+    .faq {
+        text-align: left;
+        background:#f3f3f3;
+
+        h2 {
+            font-weight: bold;
+            margin-bottom: 22px;
+        }
+
+        p {
+            font-size:16px;
+            padding:10px 0px;
+            color: #444;
+            font-weight: normal;
+            &.lighter {
+                color: #737272;
+            }
+        }
+    }
+}
