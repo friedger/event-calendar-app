@@ -17,11 +17,34 @@ import NetworkError from './containers/networkError';
 import PrivacyPolicy from './containers/privacyPolicy';
 import TermsOfUse from './containers/termsOfUse';
 import Home from './containers/home';
+var cookieUtil = require('./utils/cookieUtil').default;
+import request from 'superagent';
+const config = require('../config');
 
 function recordIntercomEvent(eventName) {
     if (window.Intercom) {
         Intercom('trackEvent', eventName);
     }
+}
+
+function dashboardOnEnter(nextState, replace, callback) {
+    if (!nextState.params.eventCalWidgetUuid) {
+        //get the users default widget
+        const token = cookieUtil.getItem('eventcal-admin');
+        return request.get(`${config.apiUrl}/widgets?token=${token}`)
+        .end((err, res) => {
+            const defaultUuid = res.body && res.body[0] && res.body[0].uuid;
+            if (defaultUuid) {
+                replace(`/dashboard/${res.body[0].uuid}`)
+            } else {
+                replace('/home/account-error')
+            }
+            recordIntercomEvent('visited-dashboard-router-enter');
+            callback();
+        });
+    }
+    recordIntercomEvent('visited-dashboard-router-enter');
+    callback();
 }
 
 export default (store) => {
@@ -34,7 +57,7 @@ export default (store) => {
                 <Route path="account-error" component={AccountError} />
                 <Route path="network-error" component={NetworkError} />
             </Route>
-            <Route onEnter={() => recordIntercomEvent('visited-dashboard-router-enter')} path="dashboard/:eventCalWidgetUuid" component={Dashboard}></Route>
+            <Route onEnter={dashboardOnEnter} path="dashboard(/:eventCalWidgetUuid)" component={Dashboard}></Route>
             <Route onEnter={() => recordIntercomEvent('visited-link-page-router-enter')} path="link-calendar" component={Dashboard}/>
             <Route path="firsttime-link-calendar" component={Dashboard} />
             <Route path="register" component={Register} />
