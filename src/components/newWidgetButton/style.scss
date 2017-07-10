@@ -1,11 +1,11 @@
 .new-widget {
     background:#da4167;
     height:300px;
-    margin: 10px;
     text-align: center;
     color:#fff;
     position: relative;
     cursor: pointer;
+    transition: background 0.2s ease-in-out;
 
     &:hover {
         background:#ee4a72;

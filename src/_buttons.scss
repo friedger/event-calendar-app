@@ -17,6 +17,17 @@ button, a, .button {
         text-shadow: none;
     }
 
+    &.danger {
+        background: #ee1717;
+        color: #fff;
+        border: 0;
+        font-weight: bold;
+        border-bottom: 2px solid #a20f0f;
+        padding: 10px;
+        border-radius: 2px;
+        text-shadow: none;
+    }
+
     &.action {
         background: #2e3d4e;
         border: 0;

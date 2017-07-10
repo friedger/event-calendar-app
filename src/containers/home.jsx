@@ -41,7 +41,7 @@ const component = React.createClass({
                     <div className="row">
                         <NewWidgetButton onClick={this.props.postWidgets}></NewWidgetButton>
                         {this.props.appState.widgets.map((widget, index) => {
-                            return <WidgetButton widget={widget} number={index + 1}></WidgetButton>
+                            return <WidgetButton deleteAction={this.props.deleteWidget} widget={widget} number={index + 1}></WidgetButton>
                         })}
                     </div>
                 </div>

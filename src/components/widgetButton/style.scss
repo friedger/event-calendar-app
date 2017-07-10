@@ -3,14 +3,35 @@
     height:300px;
     text-align: center;
     cursor: pointer;
-    margin: 10px;
+    transition: background 0.2s ease-in-out;
+    margin-bottom: 20px;
     &:hover {
         background: #5f82ab;
     }
     &__text {
         padding-top: 100px;
-        font-size: 34px;
+        font-size: 27px;
         font-weight: bold;
         color:#fff;
     }
+    &__trash {
+        position: absolute;
+        bottom: 0;
+        font-size: 20px;
+        left: 0;
+        right: 0;
+        bottom: 39px;
+        color: #aaa7a7;
+        transition: color 0.2s ease-in-out;
+        &:hover {
+            color: #fff;
+        }
+        i {
+            padding: 14px;
+        }
+    }
+}
+
+.widget-button-modal {
+    text-align: center;
 }
