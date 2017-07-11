@@ -41,7 +41,9 @@ export default React.createClass({
                     if (leftDomain && child.document.readyState === "complete") {
                         child.close();
                         clearInterval(interval);
-                        window.location.reload();
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 2000);
                     }
                 } else {
                     // this code should never be reached,
