@@ -52,7 +52,6 @@ export default React.createClass({
             } catch (e) {
                 if (child.closed) {
                     clearInterval(interval);
-                    alert("closed");
                     return;
                 }
                 leftDomain = true;
