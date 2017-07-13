@@ -1,5 +1,6 @@
 require('./style.scss');
 import React from 'react';
+import ActivePlan from '../activePlan';
 export default React.createClass({
     render() {
         return (
@@ -11,6 +12,7 @@ export default React.createClass({
                     </div>
                 </div>
                 <div className="row account__content">
+                        <ActivePlan></ActivePlan>
                         <div className="col-md-12">
                             <h3>Plans:</h3>
                         </div>
