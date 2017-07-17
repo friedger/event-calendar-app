@@ -2,7 +2,7 @@ import {
     LOGIN_ERROR
 } from '../actions';
 
-export function loginState(state = {}, action) {
+export default function loginState(state = {}, action) {
     switch (action.type) {
     case LOGIN_ERROR:
         if (action.error.status === 401) {

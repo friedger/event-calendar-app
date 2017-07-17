@@ -3,7 +3,7 @@ import {
     PUT_CALENDARS_SUCCESS
 } from '../actions/calendarActions';
 
-export function eventCal(state = {
+export default function eventCal(state = {
     eventcalHasNoEvents: false
 }, action) {
     if (action.type === GET_CALENDARS_SUCCESS || action.type === PUT_CALENDARS_SUCCESS) {

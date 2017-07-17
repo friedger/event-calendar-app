@@ -16,7 +16,7 @@ import {
     GET_WIDGETS_SUCCESS
 } from '../actions/widgetActions';
 
-export function appState(state = {
+export default function appState(state = {
     calendars: {},
     suggestions: false,
     widgets: []
