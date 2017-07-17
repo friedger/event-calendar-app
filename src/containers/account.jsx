@@ -2,7 +2,9 @@ import { connect } from 'react-redux';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import * as widgetActions from '../actions/widgetActions';
+import * as accountActions from '../actions/accountActions';
 
+import cookieUtil from '../utils/cookieUtil';
 const config = require('../../config');
 const Link = require('react-router').Link;
 import Account from '../components/account';
@@ -17,7 +19,8 @@ const mapState = ({appState}) => {
 
 const mapDispatch = (dispatch) => {
     return bindActionCreators({
-        ...widgetActions
+        ...widgetActions,
+        ...accountActions
     }, dispatch);
 }
 
@@ -25,12 +28,15 @@ const component = React.createClass({
     componentDidMount() {
     },
     render() {
+        const token = cookieUtil.getItem('eventcal-admin');
+        const beginPaymentUrl = `${config.apiUrl}/shoppify/begin-payment?token=${encodeURIComponent(token)}`;
+
         return (
             <div style={{height: '100%', background: '#f5f5f5', overflow: 'auto'}}>
                 <Header loggedIn={true} useFluidContainer={true}/>
                 <div className="container" style={{marginTop: '50px', marginBottom: '50px'}}>
                     <div className="row">
-                        <Account></Account>
+                        <Account beginPaymentUrl={beginPaymentUrl}></Account>
                     </div>
                 </div>
             </div>
