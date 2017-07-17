@@ -15,44 +15,39 @@ import request from 'superagent';
 const config = require('../../config');
 
 export function getWidgets() {
-    return (dispatch) => {
+    return dispatch => {
         dispatch({
             type: GET_WIDGETS
         });
         const token = cookieUtil.getItem('eventcal-admin');
-        request.get(`${config.apiUrl}/widgets?token=${token}`)
-        .end((err, res) => {
+        request.get(`${config.apiUrl}/widgets?token=${token}`).end((err, res) => {
             if (err) {
                 return dispatch({
                     type: GET_WIDGETS_ERROR,
                     error: err
-                })
+                });
             }
 
-            console.log(res);
-
-            dispatch({
+            return dispatch({
                 type: GET_WIDGETS_SUCCESS,
                 payload: res.body
             });
-
         });
-    }
+    };
 }
 
 export function postWidgets() {
-    return (dispatch) => {
+    return dispatch => {
         dispatch({
             type: POST_WIDGETS
         });
         const token = cookieUtil.getItem('eventcal-admin');
-        request.post(`${config.apiUrl}/widgets?token=${token}`)
-        .end((err, res) => {
+        request.post(`${config.apiUrl}/widgets?token=${token}`).end((err, res) => {
             if (err) {
                 return dispatch({
                     type: POST_WIDGETS_ERROR,
                     error: err
-                })
+                });
             }
 
             dispatch({
@@ -60,26 +55,23 @@ export function postWidgets() {
                 payload: res.body
             });
 
-            getWidgets()(dispatch);
-
+            return getWidgets()(dispatch);
         });
-    }
+    };
 }
 
 export function deleteWidget(uuid) {
-    return (dispatch) => {
+    return dispatch => {
         dispatch({
             type: DELETE_WIDGET
         });
         const token = cookieUtil.getItem('eventcal-admin');
-        request.delete(`${config.apiUrl}/widgets?token=${token}`)
-        .send({uuid})
-        .end((err, res) => {
+        request.delete(`${config.apiUrl}/widgets?token=${token}`).send({ uuid }).end((err, res) => {
             if (err) {
                 return dispatch({
                     type: DELETE_WIDGET_ERROR,
                     error: err
-                })
+                });
             }
 
             dispatch({
@@ -87,8 +79,7 @@ export function deleteWidget(uuid) {
                 payload: res.body
             });
 
-            getWidgets()(dispatch);
-
+            return getWidgets()(dispatch);
         });
-    }
+    };
 }
