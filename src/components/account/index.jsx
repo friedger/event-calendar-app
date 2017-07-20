@@ -2,28 +2,15 @@ require('./style.scss');
 import React from 'react';
 import ActivePlan from '../activePlan';
 import StartPlan from '../startPlan';
-import StripePaymentStatus from '../stripePaymentStatus';
 
 export default React.createClass({
     getUrlForPlan(planId) {
         return `${this.props.beginPaymentUrl}&planId=${planId}`;
     },
     render() {
-        const { activePlan, paymentLoading, paymentSuccess, paymentError } = this.props;
+        const { activePlan } = this.props;
         return (
             <div className="col-md-12 account__container">
-                <div className="row account__header">
-                    <div className="col-md-12">
-                        <h2>Billing</h2>
-                        <span className="account__header__subtitle">Manage your plan</span>
-                    </div>
-                </div>
-                {(paymentLoading || paymentSuccess || paymentError) &&
-                    <StripePaymentStatus
-                        paymentLoading={paymentLoading}
-                        paymentError={paymentError}
-                        paymentSuccess={paymentSuccess}
-                    />}
                 <div className="row account__content">
                     {activePlan && <ActivePlan activePlan={activePlan} />}
                     <div className="col-md-12">
@@ -63,6 +50,7 @@ export default React.createClass({
                                 <StartPlan
                                     activePlan={this.props.activePlan}
                                     beginPaymentUrl={this.props.beginPaymentUrl}
+                                    beginPaymentAction={this.props.beginPaymentAction}
                                     planName="hobby"
                                     planId={2}
                                 />
@@ -71,7 +59,7 @@ export default React.createClass({
 
                         <div className="col-md-4">
                             <div className="pricing-plan">
-                                <div className="pricing-plan__highlight">Most Popular!</div>
+                                {!this.props.activePlan && <div className="pricing-plan__highlight">Most Popular!</div>}
                                 <div className="pricing-plan__header">PROFESSIONAL</div>
                                 <div className="pricing-plan__price-container">
                                     <div className="pricing-plan__price">
@@ -145,6 +133,7 @@ export default React.createClass({
                                     activePlan={this.props.activePlan}
                                     beginPaymentUrl={this.props.beginPaymentUrl}
                                     planName="business"
+                                    beginPaymentAction={this.props.beginPaymentAction}
                                     planId={9}
                                 />
                             </div>

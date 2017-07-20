@@ -1,15 +1,34 @@
 import {
+    GET_PLAN,
+    GET_PLAN_ERROR,
     GET_PLAN_SUCCESS,
     SUBMIT_STRIPE_PAYMENT_SUCCESS,
     SUBMIT_STRIPE_PAYMENT,
-    SUBMIT_STRIPE_PAYMENT_ERROR
+    SUBMIT_STRIPE_PAYMENT_ERROR,
+    LEFT_ACCOUNT_PAGE
 } from '../actions/accountActions';
 
 export default function appState(state = {}, action) {
     switch (action.type) {
+    case LEFT_ACCOUNT_PAGE:
+        return Object.assign({
+            accountLoading: false,
+            paymentLoading: false,
+            paymentError: false,
+            paymentSuccess: false
+        });
+    case GET_PLAN:
+        return Object.assign({}, state, {
+            accountLoading: true
+        });
     case GET_PLAN_SUCCESS:
         return Object.assign({}, state, {
-            plan: action.payload.body
+            plan: action.payload.body,
+            accountLoading: false
+        });
+    case GET_PLAN_ERROR:
+        return Object.assign({}, state, {
+            accountLoading: false
         });
     case SUBMIT_STRIPE_PAYMENT:
         return Object.assign({}, state, {

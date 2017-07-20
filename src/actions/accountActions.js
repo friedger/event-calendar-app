@@ -10,10 +10,18 @@ export const TRIGGER_SHOPIFY_PLAN = 'TRIGGER_SHOPIFY_PLAN';
 export const TRIGGER_SHOPIFY_PLAN_SUCCESS = 'TRIGGER_SHOPIFY_PLAN_SUCCESS';
 export const TRIGGER_SHOPIFY_PLAN_ERROR = 'TRIGGER_SHOPIFY_PLAN_ERROR';
 
+export const LEFT_ACCOUNT_PAGE = 'LEFT_ACCOUNT_PAGE';
+
 import cookieUtil from '../utils/cookieUtil';
 import request from 'superagent';
 
 const config = require('../../config');
+
+export function leftAccountPage() {
+    return {
+        type: LEFT_ACCOUNT_PAGE
+    };
+}
 
 export function getPlan() {
     return dispatch => {
@@ -37,17 +45,16 @@ export function getPlan() {
     };
 }
 
-export function submitStripePayment(stripeToken) {
+export function submitStripePayment(planId, stripeToken) {
     return dispatch => {
         dispatch({
             type: SUBMIT_STRIPE_PAYMENT
         });
 
         const token = cookieUtil.getItem('eventcal-admin');
-
         request
             .post(`${config.apiUrl}/payment`)
-            .send({ stripeToken, token })
+            .send({ stripeToken, token, planId })
             .end((err, res) => {
                 if (err) {
                     return dispatch({

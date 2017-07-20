@@ -51,7 +51,6 @@ const component = React.createClass({
         }, {});
     },
     render() {
-        console.log('in the admin container', this.props.eventCalWidgetUuid)
         return (
             this.state.displayConnectionsScreen ?
             <CalendarConnections

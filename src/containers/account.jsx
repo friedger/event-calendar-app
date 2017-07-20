@@ -8,6 +8,7 @@ import * as appActions from '../actions/index';
 import cookieUtil from '../utils/cookieUtil';
 const config = require('../../config');
 import Account from '../components/account';
+import StripePaymentStatus from '../components/stripePaymentStatus';
 
 import Header from '../components/header';
 
@@ -27,12 +28,12 @@ const mapDispatch = dispatch => {
 };
 
 const component = React.createClass({
+    contextTypes: {
+        router: React.PropTypes.object.isRequired
+    },
     componentDidMount() {
         this.props.getPlan();
         this.props.getUser();
-    },
-    beginPaymentAction(token) {
-        this.props.submitStripePayment(token);
     },
     render() {
         const activePlan = this.props.account.plan;
@@ -40,8 +41,13 @@ const component = React.createClass({
         const beginPaymentUrl = `${config.apiUrl}/shoppify/begin-payment?token=${encodeURIComponent(
             token
         )}`;
-
+        const { paymentLoading, paymentSuccess, paymentError, accountLoading } = this.props.account;
         const user = this.props.appState.user;
+
+        const accountProps =
+            user && user.shopifyUser
+                ? { activePlan, beginPaymentUrl }
+                : { activePlan, beginPaymentAction: this.props.submitStripePayment };
 
         return (
             <div
@@ -60,19 +66,38 @@ const component = React.createClass({
                     }}
                 >
                     <div className="row">
-                        {user && user.shopifyUser
-                            ? <Account activePlan={activePlan} beginPaymentUrl={beginPaymentUrl} />
-                            : <Account
-                                  activePlan={activePlan}
-                                  beginPaymentAction={this.beginPaymentAction}
-                                  paymentLoading = {this.props.account.paymentLoading}
-                                  paymentSuccess = {this.props.account.paymentSuccess}
-                                  paymentError = {this.props.account.paymentError}
-                              />}
+                        <div className="col-md-12 account__container">
+                            <div className="row account__header">
+                                <div className="col-md-12">
+                                    <h2>Billing</h2>
+                                    <span className="account__header__subtitle">
+                                        Manage your plan
+                                    </span>
+                                </div>
+                            </div>
+                            {(paymentLoading ||
+                                paymentSuccess ||
+                                paymentError ||
+                                this.props.location.query.planUpdated ||
+                                accountLoading) &&
+                                <StripePaymentStatus
+                                    paymentLoading={paymentLoading}
+                                    paymentError={paymentError}
+                                    paymentSuccess={paymentSuccess}
+                                    updateSuccessful={this.props.location.query.planUpdated}
+                                    accountLoading={accountLoading}
+                                />}
+                        </div>
+                        {accountProps && !accountLoading &&
+                            <Account { ...accountProps }></Account>
+                        }
                     </div>
                 </div>
             </div>
         );
+    },
+    componentWillUnmount() {
+        this.props.leftAccountPage();
     }
 });
 

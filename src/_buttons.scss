@@ -20,6 +20,12 @@ button, a, .button {
         border-radius: 2px;
         display: inline-block;
         text-shadow: none;
+        &.disabled {
+            pointer: default;
+            &:hover {
+                text-decoration: none;
+            }
+        }
     }
 
     &.danger {

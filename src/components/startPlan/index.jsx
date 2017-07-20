@@ -9,16 +9,23 @@ export default React.createClass({
         return `${this.props.beginPaymentUrl}&planId=${planId}`;
     },
     render() {
-        const { activePlan } = this.props;
-        const stripePublishableToken = this.props.testMode
+        const {
+            activePlan,
+            beginPaymentUrl,
+            planId,
+            highlight,
+            testMode,
+            beginPaymentAction,
+            planName
+        } = this.props;
+        const stripePublishableToken = testMode
             ? 'pk_test_cYLFCC3SbZhSHnpTZgzqHZZ9'
             : config.stripePublishableToken;
         return (
             <div className="pricing-plan__start-plan col-md-12">
-                {((!activePlan && !this.props.beginPaymentUrl) ||
-                    activePlan.status === 'cancelled') &&
+                {((!activePlan && !beginPaymentUrl) || (activePlan && activePlan.status) === 'cancelled') &&
                     <StripeCheckout
-                        token={this.props.beginPaymentAction}
+                        token={beginPaymentAction && beginPaymentAction.bind(null, planId)}
                         name="Event Calendar App"
                         description="Cancelable Subscription"
                         currency="USD"
@@ -26,7 +33,7 @@ export default React.createClass({
                     >
                         <a
                             className={cn(
-                                { action: !this.props.highlight, secondary: this.props.highlight },
+                                { action: !highlight, secondary: highlight },
                                 'full-width'
                             )}
                         >
@@ -34,11 +41,11 @@ export default React.createClass({
                         </a>
                     </StripeCheckout>}
                 {activePlan &&
-                    activePlan.status === this.props.planName &&
-                    <button className="default full-width">This plan is active</button>}
+                    activePlan.status === planName &&
+                    <button disabled className="default full-width disabled">This plan is active</button>}
                 {activePlan &&
-                    activePlan.status !== 'cancelled' &&
-                    <a href={this.getUrlForPlan(this.props.planId)} className="action full-width">
+                    activePlan.status !== 'cancelled' && activePlan.status !== planName &&
+                    <a href={this.getUrlForPlan(planId)} className="action full-width">
                         Start Plan
                     </a>}
             </div>
