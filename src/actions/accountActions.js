@@ -6,6 +6,10 @@ export const SUBMIT_STRIPE_PAYMENT = 'SUBMIT_STRIPE_PAYMENT';
 export const SUBMIT_STRIPE_PAYMENT_SUCCESS = 'SUBMIT_STRIPE_PAYMENT_SUCCESS';
 export const SUBMIT_STRIPE_PAYMENT_ERROR = 'SUBMIT_STRIPE_PAYMENT_ERROR';
 
+export const CHANGE_STRIPE_PAYMENT = 'CHANGE_STRIPE_PAYMENT';
+export const CHANGE_STRIPE_PAYMENT_SUCCESS = 'CHANGE_STRIPE_PAYMENT_SUCCESS';
+export const CHANGE_STRIPE_PAYMENT_ERROR = 'CHANGE_STRIPE_PAYMENT_ERROR';
+
 export const TRIGGER_SHOPIFY_PLAN = 'TRIGGER_SHOPIFY_PLAN';
 export const TRIGGER_SHOPIFY_PLAN_SUCCESS = 'TRIGGER_SHOPIFY_PLAN_SUCCESS';
 export const TRIGGER_SHOPIFY_PLAN_ERROR = 'TRIGGER_SHOPIFY_PLAN_ERROR';
@@ -65,6 +69,35 @@ export function submitStripePayment(planId, stripeToken) {
 
                 dispatch({
                     type: SUBMIT_STRIPE_PAYMENT_SUCCESS,
+                    payload: res
+                });
+
+                return getPlan()(dispatch);
+            });
+    };
+}
+
+export function changeStripeSubscription(planIdToChangeTo) {
+    return dispatch => {
+        console.log('hit!');
+
+        dispatch({
+            type: CHANGE_STRIPE_PAYMENT
+        });
+
+        const token = cookieUtil.getItem('eventcal-admin');
+        request
+            .put(`${config.apiUrl}/plan?token=${token}&planId=${planIdToChangeTo}`)
+            .end((err, res) => {
+                if (err) {
+                    return dispatch({
+                        type: CHANGE_STRIPE_PAYMENT_ERROR,
+                        error: err
+                    });
+                }
+
+                dispatch({
+                    type: CHANGE_STRIPE_PAYMENT_SUCCESS,
                     payload: res
                 });
 

@@ -41,13 +41,13 @@ const component = React.createClass({
         const beginPaymentUrl = `${config.apiUrl}/shoppify/begin-payment?token=${encodeURIComponent(
             token
         )}`;
-        const { paymentLoading, paymentSuccess, paymentError, accountLoading } = this.props.account;
+        const { paymentLoading, paymentSuccess, paymentError, accountLoading, userHasNoPlan } = this.props.account;
         const user = this.props.appState.user;
 
         const accountProps =
             user && user.shopifyUser
-                ? { activePlan, beginPaymentUrl }
-                : { activePlan, beginPaymentAction: this.props.submitStripePayment };
+                ? { activePlan, beginPaymentUrl, shopifyUser: true, userHasNoPlan }
+                : { activePlan, beginPaymentAction: this.props.submitStripePayment, upgradePaymentAction: this.props.changeStripeSubscription, shopifyUser: false, userHasNoPlan };
 
         return (
             <div

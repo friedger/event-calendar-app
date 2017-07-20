@@ -8,11 +8,11 @@ export default React.createClass({
         return `${this.props.beginPaymentUrl}&planId=${planId}`;
     },
     render() {
-        const { activePlan } = this.props;
+        const { activePlan, userHasNoPlan, upgradePaymentAction } = this.props;
         return (
             <div className="col-md-12 account__container">
                 <div className="row account__content">
-                    {activePlan && <ActivePlan activePlan={activePlan} />}
+                    {activePlan && !userHasNoPlan && <ActivePlan activePlan={activePlan} />}
                     <div className="col-md-12">
                         <h3>Plans:</h3>
                     </div>
@@ -47,13 +47,18 @@ export default React.createClass({
                                 <div className="pricing-plan__notes">
                                     Cancel during your trial period and you will not be charged.
                                 </div>
-                                <StartPlan
-                                    activePlan={this.props.activePlan}
-                                    beginPaymentUrl={this.props.beginPaymentUrl}
-                                    beginPaymentAction={this.props.beginPaymentAction}
-                                    planName="hobby"
-                                    planId={2}
-                                />
+                                {(this.props.activePlan || userHasNoPlan) &&
+                                    <StartPlan
+                                        activePlan={this.props.activePlan}
+                                        beginPaymentUrl={this.props.beginPaymentUrl}
+                                        beginPaymentAction={this.props.beginPaymentAction}
+                                        planName="hobby"
+                                        shopifyUser={this.props.shopifyUser}
+                                        planId={2}
+                                        userHasNoPlan={userHasNoPlan}
+                                        upgradePaymentAction={upgradePaymentAction}
+                                        />
+                                }
                             </div>
                         </div>
 
@@ -88,14 +93,19 @@ export default React.createClass({
                                 <div className="pricing-plan__notes">
                                     Cancel during your trial period and you will not be charged.
                                 </div>
-                                <StartPlan
-                                    activePlan={this.props.activePlan}
-                                    beginPaymentUrl={this.props.beginPaymentUrl}
-                                    beginPaymentAction={this.props.beginPaymentAction}
-                                    planName="professional"
-                                    highlight={true}
-                                    planId={5}
-                                />
+                                {(this.props.activePlan || userHasNoPlan) &&
+                                    <StartPlan
+                                        activePlan={this.props.activePlan}
+                                        beginPaymentUrl={this.props.beginPaymentUrl}
+                                        beginPaymentAction={this.props.beginPaymentAction}
+                                        planName="professional"
+                                        highlight={true}
+                                        planId={5}
+                                        userHasNoPlan={userHasNoPlan}
+                                        shopifyUser={this.props.shopifyUser}
+                                        upgradePaymentAction={upgradePaymentAction}
+                                        />
+                                }
                             </div>
                         </div>
 
@@ -129,13 +139,18 @@ export default React.createClass({
                                 <div className="pricing-plan__notes">
                                     Cancel during your trial period and you will not be charged.
                                 </div>
-                                <StartPlan
-                                    activePlan={this.props.activePlan}
-                                    beginPaymentUrl={this.props.beginPaymentUrl}
-                                    planName="business"
-                                    beginPaymentAction={this.props.beginPaymentAction}
-                                    planId={9}
-                                />
+                                {(this.props.activePlan || userHasNoPlan) &&
+                                    <StartPlan
+                                        activePlan={this.props.activePlan}
+                                        beginPaymentUrl={this.props.beginPaymentUrl}
+                                        planName="business"
+                                        beginPaymentAction={this.props.beginPaymentAction}
+                                        planId={9}
+                                        userHasNoPlan={userHasNoPlan}
+                                        shopifyUser={this.props.shopifyUser}
+                                        upgradePaymentAction={upgradePaymentAction}
+                                        />
+                                }
                             </div>
                         </div>
                     </div>

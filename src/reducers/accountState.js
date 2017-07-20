@@ -5,7 +5,9 @@ import {
     SUBMIT_STRIPE_PAYMENT_SUCCESS,
     SUBMIT_STRIPE_PAYMENT,
     SUBMIT_STRIPE_PAYMENT_ERROR,
-    LEFT_ACCOUNT_PAGE
+    LEFT_ACCOUNT_PAGE,
+    CHANGE_STRIPE_PAYMENT,
+    CHANGE_STRIPE_PAYMENT_SUCCESS
 } from '../actions/accountActions';
 
 export default function appState(state = {}, action) {
@@ -24,15 +26,25 @@ export default function appState(state = {}, action) {
     case GET_PLAN_SUCCESS:
         return Object.assign({}, state, {
             plan: action.payload.body,
-            accountLoading: false
+            accountLoading: false,
+            userHasNoPlan: false
         });
     case GET_PLAN_ERROR:
         return Object.assign({}, state, {
-            accountLoading: false
+            accountLoading: false,
+            userHasNoPlan: true
         });
     case SUBMIT_STRIPE_PAYMENT:
         return Object.assign({}, state, {
             paymentLoading: true
+        });
+    case CHANGE_STRIPE_PAYMENT:
+        return Object.assign({}, state, {
+            paymentLoading: true
+        });
+    case CHANGE_STRIPE_PAYMENT_SUCCESS:
+        return Object.assign({}, state, {
+            paymentLoading: false
         });
     case SUBMIT_STRIPE_PAYMENT_SUCCESS:
         return Object.assign({}, state, {
