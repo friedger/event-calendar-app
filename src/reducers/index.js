@@ -11,6 +11,7 @@ import {
 import appState from './appState';
 import loginState from './loginState';
 import eventCal from './eventcalState';
+import accountState from './accountState';
 
 function initialRegisterState(state = {}, action) {
     if (action.type === POPULATE_REGISTER_FORM) {
@@ -22,6 +23,7 @@ function initialRegisterState(state = {}, action) {
 const appReducer = combineReducers({
     appState: appState,
     form: formReducer,
+    account: accountState,
     loginState: loginState,
     eventcalState: eventCal,
     initialRegisterState: initialRegisterState

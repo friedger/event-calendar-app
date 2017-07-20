@@ -2,6 +2,10 @@ export const GET_PLAN = 'GET_PLAN';
 export const GET_PLAN_SUCCESS = 'GET_PLAN_SUCCESS';
 export const GET_PLAN_ERROR = 'GET_PLAN_ERROR';
 
+export const SUBMIT_STRIPE_PAYMENT = 'SUBMIT_STRIPE_PAYMENT';
+export const SUBMIT_STRIPE_PAYMENT_SUCCESS = 'SUBMIT_STRIPE_PAYMENT_SUCCESS';
+export const SUBMIT_STRIPE_PAYMENT_ERROR = 'SUBMIT_STRIPE_PAYMENT_ERROR';
+
 export const TRIGGER_SHOPIFY_PLAN = 'TRIGGER_SHOPIFY_PLAN';
 export const TRIGGER_SHOPIFY_PLAN_SUCCESS = 'TRIGGER_SHOPIFY_PLAN_SUCCESS';
 export const TRIGGER_SHOPIFY_PLAN_ERROR = 'TRIGGER_SHOPIFY_PLAN_ERROR';
@@ -30,5 +34,34 @@ export function getPlan() {
                 payload: res
             });
         });
+    };
+}
+
+export function submitStripePayment(stripeToken) {
+    return dispatch => {
+        dispatch({
+            type: SUBMIT_STRIPE_PAYMENT
+        });
+
+        const token = cookieUtil.getItem('eventcal-admin');
+
+        request
+            .post(`${config.apiUrl}/payment`)
+            .send({ stripeToken, token })
+            .end((err, res) => {
+                if (err) {
+                    return dispatch({
+                        type: SUBMIT_STRIPE_PAYMENT_ERROR,
+                        error: err
+                    });
+                }
+
+                dispatch({
+                    type: SUBMIT_STRIPE_PAYMENT_SUCCESS,
+                    payload: res
+                });
+
+                return getPlan()(dispatch);
+            });
     };
 }

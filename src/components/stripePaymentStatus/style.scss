@@ -1,0 +1,20 @@
+.payment-processing {
+    background: #da4167;
+    color:#fff;
+    transition: background 0.3s ease-in-out;
+    &__content {
+        padding: 10px 0 10px 35px;
+    }
+    &--success {
+        background: #67ab6e;
+        .payment-processing__content {
+            padding: 10px 0 10px 0;
+        }
+    }
+    &--error {
+        background: #c72731;
+        .payment-processing__content {
+            padding: 10px 0 10px 0;
+        }
+    }
+}
