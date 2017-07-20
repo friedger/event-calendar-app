@@ -4,10 +4,11 @@ const config = require('../../../config');
 const StripeCheckout = require('react-stripe-checkout');
 import cn from 'classnames';
 import { Modal } from 'react-bootstrap';
+import Loader from 'react-loader';
 
 export default React.createClass({
     getInitialState() {
-        return { modalOpen: false };
+        return { modalOpen: false, shopifyLinkClicked: false };
     },
     getUrlForPlan(planId) {
         return `${this.props.beginPaymentUrl}&planId=${planId}`;
@@ -84,8 +85,18 @@ export default React.createClass({
                     </StripeCheckout>}
                 {activePlan &&
                     shopifyUser &&
-                    <a href={this.getUrlForPlan(planId)} className="action full-width">
-                        Start Plan
+                    <a
+                        onClick={() => this.setState({ shopifyLinkClicked: true })}
+                        href={this.getUrlForPlan(planId)}
+                        className="action full-width"
+                    >
+                        {!this.state.shopifyLinkClicked && <span>Start Plan</span>}
+                        {this.state.shopifyLinkClicked &&
+                            <span>
+                                <Loader left="25px" type="spin" color="#fff" width={2} radius={3} />
+                                Redirecting to Shopify
+                            </span>
+                        }
                     </a>}
                 {activePlan &&
                     !shopifyUser &&
