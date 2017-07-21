@@ -37,10 +37,8 @@ export default React.createClass({
                                         <li>Unlimited Traffic</li>
                                         <li>1 Event Calendar</li>
                                         <li>Grid & Map View</li>
-                                        <li>Event Images</li>
                                         <li>Google, Apple, Outlook Integration</li>
                                         <li>ICS Support</li>
-                                        <li>Event Thumbnails</li>
                                         <li>Event Calendar Search</li>
                                     </ul>
                                 </div>
@@ -80,14 +78,12 @@ export default React.createClass({
                                 </div>
                                 <div className="pricing-plan__features">
                                     <ul>
-                                        <li>All hobby features</li>
+                                        <li><strong>All hobby features +</strong></li>
                                         <li>Multi Event Calendar support (up to 5)</li>
                                         <li>Subscribable Event Calendar</li>
                                         <li>Ticket Links</li>
-                                        <li>-</li>
-                                        <li>-</li>
-                                        <li>-</li>
-                                        <li>-</li>
+                                        <li>Event Images</li>
+                                        <li>Event Thumbnails</li>
                                     </ul>
                                 </div>
                                 <div className="pricing-plan__notes">
@@ -125,11 +121,9 @@ export default React.createClass({
                                     </div>
                                     <div className="pricing-plan__features">
                                         <ul>
-                                            <li>All hobby and professional features</li>
+                                            <li><strong>All hobby and professional features +</strong></li>
                                             <li>Multi Event Calendar support (up to 10)</li>
                                             <li>No Event Calendar App Branding</li>
-                                            <li>-</li>
-                                            <li>-</li>
                                             <li>-</li>
                                             <li>-</li>
                                             <li>-</li>
