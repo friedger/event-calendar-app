@@ -10,6 +10,8 @@ export const DELETE_WIDGET = 'DELETE_WIDGET';
 export const DELETE_WIDGET_SUCCESS = 'DELETE_WIDGET_SUCCESS';
 export const DELETE_WIDGET_ERROR = 'DELETE_WIDGET_ERROR';
 
+export const WIDGET_ERROR_ACKNOWLEDGED = 'WIDGET_ERROR_ACKNOWLEDGED';
+
 var cookieUtil = require('../utils/cookieUtil').default;
 import request from 'superagent';
 const config = require('../../config');
@@ -81,5 +83,11 @@ export function deleteWidget(uuid) {
 
             return getWidgets()(dispatch);
         });
+    };
+}
+
+export function widgetErrorAcknowledged() {
+    return {
+        type: WIDGET_ERROR_ACKNOWLEDGED
     };
 }

@@ -9,6 +9,7 @@ const Link = require('react-router').Link;
 import Header from '../components/header';
 import NewWidgetButton from '../components/newWidgetButton';
 import WidgetButton from '../components/widgetButton';
+import { Modal } from 'react-bootstrap';
 
 const mapState = ({appState}) => {
     return {
@@ -35,6 +36,20 @@ const component = React.createClass({
 
         return (
             <div style={{height: '100%'}}>
+                <Modal show={this.props.appState.widgetCreationError} onHide={this.props.widgetErrorAcknowledged}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>
+                            <span>
+                                Unable to add any more calendars
+                            </span>
+                        </Modal.Title>
+                    </Modal.Header>
+                    <div className="col-md-12 connection-modal">
+                        <div className="connection-modal__content">
+                            Your current plan does not allow any more calendars. Upgrade to add more.
+                        </div>
+                    </div>
+                </Modal>
                 <Header loggedIn={true} useFluidContainer={true}/>
                 <div className="container-fluid" style={{marginTop: '50px'}}>
                     <div className="row">

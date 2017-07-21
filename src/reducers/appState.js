@@ -13,7 +13,9 @@ import {
     PUT_CALENDARS_SUCCESS
 } from '../actions/calendarActions';
 import {
-    GET_WIDGETS_SUCCESS
+    GET_WIDGETS_SUCCESS,
+    POST_WIDGETS_ERROR,
+    WIDGET_ERROR_ACKNOWLEDGED
 } from '../actions/widgetActions';
 
 export default function appState(state = {
@@ -45,6 +47,14 @@ export default function appState(state = {
     case GET_WIDGETS_SUCCESS:
         return Object.assign({}, state, {
             widgets: action.payload
+        });
+    case POST_WIDGETS_ERROR:
+        return Object.assign({}, state, {
+            widgetCreationError: true
+        });
+    case WIDGET_ERROR_ACKNOWLEDGED:
+        return Object.assign({}, state, {
+            widgetCreationError: false
         });
     case PUT_CALENDARS:
         return Object.assign({}, state, {

@@ -1,4 +1,5 @@
 const permissions = {
+    registered: [],
     hobby: [],
     professional: [{ 'multi-calendar': { quantity: 3 } }, 'event-settings', 'subscriptions'],
     business: [
