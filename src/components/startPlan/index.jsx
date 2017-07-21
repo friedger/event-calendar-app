@@ -99,7 +99,7 @@ export default React.createClass({
                         }
                     </a>}
                 {activePlan &&
-                    !shopifyUser &&
+                    !shopifyUser && !accountIsCancelled &&
                     <button
                         onClick={() => this.setState({ modalOpen: true })}
                         className="action full-width"
