@@ -10,6 +10,7 @@ import Header from '../components/header';
 import NewWidgetButton from '../components/newWidgetButton';
 import WidgetButton from '../components/widgetButton';
 import { Modal } from 'react-bootstrap';
+import get from 'lodash.get';
 
 const mapState = ({appState}) => {
     return {
@@ -53,7 +54,7 @@ const component = React.createClass({
                 <Header loggedIn={true} useFluidContainer={true}/>
                 <div className="container-fluid" style={{marginTop: '50px'}}>
                     <div className="row">
-                        <NewWidgetButton onClick={this.props.postWidgets}></NewWidgetButton>
+                        <NewWidgetButton weeblyUser={get(this, 'props.appState.user.weeblyUser')} onClick={this.props.postWidgets}></NewWidgetButton>
                         {this.props.appState.widgets.map((widget, index) => {
                             return <WidgetButton deleteAction={this.props.deleteWidget} widget={widget} number={index + 1}></WidgetButton>
                         })}
