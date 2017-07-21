@@ -8,6 +8,7 @@ import * as accountActions from '../actions/accountActions';
 
 const cookieUtil = require('../utils/cookieUtil').default;
 const config = require('../../config');
+import get from 'lodash.get';
 
 import RegisteredUser from '../components/registeredUser';
 import SubscriptionUser from '../components/subscriptionUser';
@@ -59,7 +60,8 @@ const component = React.createClass({
 
         const userHasRegisteredOrCancelled =
             user && (user.status === 'registered' || user.status === 'cancelled');
-        const userHasSubscribed = user && (user.status !== 'subscription' && user.status !== 'registered');
+        const userHasSubscribed =
+            user && (user.status !== 'subscription' && user.status !== 'registered');
 
         const containerClassNames = cn(
             {
@@ -79,10 +81,11 @@ const component = React.createClass({
                 </div>
             );
         }
-
         return (
             <div style={{ height: '100%' }}>
-                <SuggestionModals />
+                <SuggestionModals
+                    status={get(this, 'props.appState.user.status')}
+                />
                 <Header
                     doNotDisplayDashboardLink={connections && connections.length === 0}
                     useFluidContainer={connections && connections.length > 0}
