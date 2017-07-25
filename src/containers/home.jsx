@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import * as widgetActions from '../actions/widgetActions';
+import * as appActions from '../actions/index';
 
 const config = require('../../config');
 const Link = require('react-router').Link;
@@ -20,13 +21,15 @@ const mapState = ({appState}) => {
 
 const mapDispatch = (dispatch) => {
     return bindActionCreators({
-        ...widgetActions
+        ...widgetActions,
+        ...appActions
     }, dispatch);
 }
 
 const component = React.createClass({
     componentDidMount() {
         this.props.getWidgets();
+        this.props.getUser();
     },
     render() {
         if (this.props.children) {
@@ -54,7 +57,7 @@ const component = React.createClass({
                 <Header loggedIn={true} useFluidContainer={true}/>
                 <div className="container-fluid" style={{marginTop: '50px'}}>
                     <div className="row">
-                        <NewWidgetButton weeblyUser={get(this, 'props.appState.user.weeblyUser')} onClick={this.props.postWidgets}></NewWidgetButton>
+                        {this.props.appState.user && <NewWidgetButton weeblyUser={get(this, 'props.appState.user.weeblyUser')} onClick={this.props.postWidgets}></NewWidgetButton>}
                         {this.props.appState.widgets.map((widget, index) => {
                             return <WidgetButton deleteAction={this.props.deleteWidget} widget={widget} number={index + 1}></WidgetButton>
                         })}
