@@ -1,3 +1,4 @@
+@charset "UTF-8";
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
@@ -667,6 +668,136 @@ img.figlio {
   100% {
     -webkit-transform: rotate(-360deg);
     transform: rotate(-360deg); } }
+
+.account-container {
+  background: #fff; }
+
+.account__container {
+  background: #fff;
+  box-shadow: 0 1px 1px #e2e8ea;
+  border-radius: 2px; }
+
+.account__header {
+  background: #6787ab;
+  color: #fff;
+  border-radius: 2px 2px 0px 0px;
+  padding: 40px 20px 40px 20px; }
+
+.account__header h2 {
+  font-weight: bold;
+  margin: 0; }
+
+.account__header__subtitle {
+  opacity: 0.8; }
+
+.account__content h3 {
+  font-weight: bold; }
+
+.plans2 {
+  text-align: center; }
+
+.plans2 h2 {
+  font-weight: bold; }
+
+.plans2 .normal {
+  font-size: 16px;
+  color: #444;
+  font-weight: normal; }
+
+.plans2 .italic {
+  font-style: italic; }
+
+.plans2 .pricing-plan {
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  /* Lay out item’s contents vertically  */
+  position: relative;
+  box-shadow: 0 1px 4px #cfd2d4;
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  background: #fff; }
+
+.plans2 .pricing-plan ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none; }
+
+.plans2 .pricing-plan ul li {
+  margin: 0;
+  padding: 0; }
+
+.plans2 .pricing-plan__highlight {
+  background: #da4167;
+  padding: 5px;
+  color: #fff;
+  font-size: 11px;
+  position: absolute;
+  width: 100%;
+  font-weight: bold; }
+
+.plans2 .pricing-plan__header {
+  padding-top: 40px;
+  color: #929292; }
+
+.plans2 .pricing-plan__price-container {
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  /* Lay out item’s contents vertically  */
+  align-items: center;
+  justify-content: center;
+  height: 100%; }
+
+.plans2 .pricing-plan__seperating-border {
+  height: 1px;
+  width: 74px;
+  background: #9A9999;
+  color: #9A9999; }
+
+.plans2 .pricing-plan__under-price-text {
+  color: #999999;
+  padding-top: 3px; }
+
+.plans2 .pricing-plan__price {
+  width: 100%;
+  font-size: 38px; }
+
+.plans2 .pricing-plan__price__time-period {
+  font-size: 12px; }
+
+.plans2 .pricing-plan__features {
+  padding: 10px 0px;
+  font-size: 12px;
+  padding: 25px 0px; }
+
+.plans2 .pricing-plan__notes {
+  color: #999999;
+  margin-top: auto;
+  padding: 0px 40px 25px 40px;
+  font-size: 10px;
+  padding-bottom: 25px; }
+
+.plans2 .pricing-plan__start-plan {
+  padding-bottom: 40px; }
+
+.plans2 .faq {
+  text-align: left;
+  background: #f3f3f3; }
+
+.plans2 .faq h2 {
+  font-weight: bold;
+  margin-bottom: 22px; }
+
+.plans2 .faq p {
+  font-size: 16px;
+  padding: 10px 0px;
+  color: #444;
+  font-weight: normal; }
+
+.plans2 .faq p.lighter {
+  color: #737272; }
 
 img {
   width: 100%; }
