@@ -83,8 +83,7 @@ export default React.createClass({
                             Start plan
                         </a>
                     </StripeCheckout>}
-                {activePlan &&
-                    shopifyUser &&
+                {shopifyUser &&
                     <a
                         onClick={() => this.setState({ shopifyLinkClicked: true })}
                         href={this.getUrlForPlan(planId)}
