@@ -32,7 +32,7 @@ export default React.createClass({
                                     <div className="dashboard-header dashboard-header--left row">
                                         <div className="col-md-12">
                                             <span>Event calendar preview</span>
-                                            <Suggestions suggestionToggleAction={this.props.suggestionToggleAction}></Suggestions>
+                                            {!this.props.eventcalHasNoEvents &&<Suggestions suggestionToggleAction={this.props.suggestionToggleAction}></Suggestions>}
                                         </div>
                                     </div>
                                     <div className="row">
@@ -53,7 +53,7 @@ export default React.createClass({
                                         <CalendarCodeTextArea eventCalWidgetUuid={this.props.eventCalWidgetUuid} shopifyUser={this.props.user.shopifyUser} calendarBuildUrl={this.props.calendarBuildUrl} userId={this.props.user.userId}/>
                                     }
                                     {this.props.user.bigcommerceUser &&
-                                        <div className="calendarCode__shopify"><a className="venobox" data-autoplay="true" data-vbtype="video" href="https://www.youtube.com/watch?v=R6uKvhyHYVg">Bigcommerce integration guide</a></div>
+                                        <div className="calendarCode__shopify"><a className="venobox" data-autoplay="true" data-vbtype="video" href="https://www.youtube.com/watch?v=R6uKvhyHYVg">BigCommerce integration guide</a></div>
                                     }
                                 </div>
                         </div>

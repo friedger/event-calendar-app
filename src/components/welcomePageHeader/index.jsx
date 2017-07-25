@@ -31,6 +31,37 @@ export default React.createClass({
 
         this.setState({showCronofyModal: !this.state.showCronofyModal});
     },
+    hitCronofy() {
+        var child = window.open(this.props.authUrl, "_blank");
+        var leftDomain = false;
+
+        const interval = setInterval(function() {
+            try {
+                if (child.document.domain === document.domain) {
+                    if (leftDomain && child.document.readyState === "complete") {
+                        child.close();
+                        clearInterval(interval);
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 2000);
+                    }
+                } else {
+                    // this code should never be reached,
+                    // as the x-site security check throws
+                    // but just in case
+                    leftDomain = true;
+                }
+            } catch (e) {
+                if (child.closed) {
+                    clearInterval(interval);
+                    return;
+                }
+                leftDomain = true;
+            }
+
+        }, 500);
+
+    },
     render() {
 
         const {user, authUrl} = this.props;
@@ -79,7 +110,7 @@ export default React.createClass({
                                 <p>We use a third party service called <strong>Cronofy</strong> to connect Event Calendar App to your Google, Apple, or Outlook calendar. You will briefly be taken away from our site while you connect.</p>
                                 <p>Don't worry, you only have to do this once!</p>
                             </div>
-                            <a href={this.props.authUrl} className="action full-width">Connect</a>
+                            {this.props.user && this.props.user.bigcommerceUser ? <a target="_blank" onClick={this.hitCronofy} className="action full-width">Connect</a> : <a href={this.props.authUrl} className="action full-width">Connect</a>}
                         </div>
                     </Modal>
 
