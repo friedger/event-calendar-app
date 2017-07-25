@@ -79,7 +79,7 @@ export default React.createClass({
                                 <div className="pricing-plan__features">
                                     <ul>
                                         <li><strong>All hobby features +</strong></li>
-                                        <li>Multi Event Calendar support (up to 5)</li>
+                                        <li>Multi Event Calendar support (up to 3)</li>
                                         <li>Subscribable Event Calendar</li>
                                         <li>Ticket Links</li>
                                         <li>Event Images</li>
