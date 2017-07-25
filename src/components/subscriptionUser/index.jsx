@@ -25,7 +25,7 @@ export default React.createClass({
                 {connections && connections.length > 0 ?
                     <div style={{height: '100%'}}>
                         <div className="col-sm-5 calendar-settings col-sm-push-7">
-                            <AdminSettingsPanel />
+                            <AdminSettingsPanel eventCalWidgetUuid={this.props.eventCalWidgetUuid}/>
                         </div>
                         <div className="col-sm-7 col-sm-pull-5">
                                 <div>
@@ -41,7 +41,7 @@ export default React.createClass({
                                         </div>
                                     </div>
                                     {this.props.eventcalHasNoEvents && <NoEventsMessage></NoEventsMessage>}
-                                    <EventCal show={!this.props.eventcalHasNoEvents} eventcalRemovedAction={this.props.eventcalRemovedAction} suggestionsActive={this.props.suggestions} userId={this.props.user.userId} />
+                                    <EventCal eventCalWidgetUuid={this.props.eventCalWidgetUuid} show={!this.props.eventcalHasNoEvents} eventcalRemovedAction={this.props.eventcalRemovedAction} suggestionsActive={this.props.suggestions} userId={this.props.user.userId} />
                                     <hr />
                                     {this.props.user.weeblyUser &&
                                         <div>
@@ -50,7 +50,7 @@ export default React.createClass({
                                         </div>
                                     }
                                     {!this.props.user.weeblyUser &&
-                                        <CalendarCodeTextArea shopifyUser={this.props.user.shopifyUser} calendarBuildUrl={this.props.calendarBuildUrl} userId={this.props.user.userId}/>
+                                        <CalendarCodeTextArea eventCalWidgetUuid={this.props.eventCalWidgetUuid} shopifyUser={this.props.user.shopifyUser} calendarBuildUrl={this.props.calendarBuildUrl} userId={this.props.user.userId}/>
                                     }
                                     {this.props.user.bigcommerceUser &&
                                         <div className="calendarCode__shopify"><a className="venobox" data-autoplay="true" data-vbtype="video" href="https://www.youtube.com/watch?v=R6uKvhyHYVg">BigCommerce integration guide</a></div>

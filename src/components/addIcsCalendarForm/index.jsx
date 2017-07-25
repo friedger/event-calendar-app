@@ -41,7 +41,8 @@ var Component = React.createClass({
         if (this.props.selectIcsFeedAutomatically) {
             values.selected = true;
         }
-        return postCalendars(values).then(() => {
+
+        return postCalendars(values, window.eventCalWidgetUuid).then(() => {
             this.props.resetForm();
             this.props.calendarAdded();
         }).catch((data) => {

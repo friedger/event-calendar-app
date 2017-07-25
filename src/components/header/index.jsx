@@ -41,6 +41,9 @@ module.exports = React.createClass({
                                         </li>
                                     }
                                     <li>
+                                        <Link activeClassName="active" to="/account">Account</Link>
+                                    </li>
+                                    <li>
                                         <a href="https://eventcalendarapp.com/support" target="_blank">Help</a>
                                     </li>
                                     <li onClick={() => appActions.logOut()}>

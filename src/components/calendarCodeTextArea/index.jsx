@@ -8,7 +8,7 @@ import CopyToClipboard from 'react-copy-to-clipboard';
 
 export default React.createClass({
     getEmbedString() {
-        return '<div id="app-container"></div><script>(function () {\nwindow.eventCalId='+ this.props.userId +';\nvar integrationScript = document.createElement("script");\nintegrationScript.async = 1;\nintegrationScript.setAttribute("src", "https://api.eventcalendarapp.com/integration-script.js");\ndocument.head.appendChild(integrationScript);\n})();\n</script>';
+        return '<div id="app-container"></div><script>(function () {\nwindow.eventCalId='+ this.props.userId +';\nwindow.eventCalWidgetUuid="' + this.props.eventCalWidgetUuid + '";\nvar integrationScript = document.createElement("script");\nintegrationScript.async = 1;\nintegrationScript.setAttribute("src", "https://api.eventcalendarapp.com/integration-script.js");\ndocument.head.appendChild(integrationScript);\n})();\n</script>';
     },
     render() {
         return (

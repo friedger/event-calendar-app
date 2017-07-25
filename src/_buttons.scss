@@ -2,6 +2,10 @@ button, a, .button {
     position: relative;
     cursor: pointer;
 
+    &.full-width {
+        width: 100%;
+    }
+
     &:hover {
         text-decoration: underline;
     }
@@ -14,6 +18,24 @@ button, a, .button {
         border-bottom: 2px solid #bfbebe;
         padding: 10px;
         border-radius: 2px;
+        display: inline-block;
+        text-shadow: none;
+        &.disabled {
+            pointer: default;
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+
+    &.danger {
+        background: #ee1717;
+        color: #fff;
+        border: 0;
+        font-weight: bold;
+        border-bottom: 2px solid #a20f0f;
+        padding: 10px;
+        border-radius: 2px;
         text-shadow: none;
     }
 
@@ -23,6 +45,7 @@ button, a, .button {
         box-shadow: none;
         color: #fff;
         text-shadow: none;
+        display: inline-block;
         padding: 10px;
         border: 0;
         border-bottom: 2px solid #171c22;
@@ -56,6 +79,9 @@ button, a, .button {
         background: #DA4167;
         border-bottom: 2px solid #a3304d;
         text-align: center;
+        &:hover {
+            background: #ee4a72;
+        }
         &--inverse {
             font-size: 14px;
             background:#fff;

@@ -56,7 +56,7 @@ const component = React.createClass({
                         <div className="row">
                             <div className="col-md-12">
                                 <h2 style={{'paddingBottom': '12px', 'fontWeight': 'bold'}}>Connect your ICS feed</h2>
-                                <AddIcsCalendarForm selectIcsFeedAutomatically={true} calendarAdded={() => {window.location.href='/dashboard'}}/>
+                                <AddIcsCalendarForm selectIcsFeedAutomatically={true} calendarAdded={() => {window.location.href='/editor'}}/>
                                 <a href="#" onClick={() => this.backToLinkOptions()}>
                                     Back to link options
                                 </a>

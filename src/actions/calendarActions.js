@@ -31,13 +31,13 @@ import { deleteCalendarApiCall } from './apiActions';
 
 const config = require('../../config');
 
-export function getSettings() {
+export function getSettings(eventCalWidgetUuid) {
     return (dispatch) => {
         dispatch({
             type: GET_SETTINGS
         });
         const token = cookieUtil.getItem('eventcal-admin');
-        request.get(`${config.apiUrl}/settings?token=${token}`)
+        request.get(`${config.apiUrl}/settings?token=${token}&widgetUuid=${eventCalWidgetUuid}`)
         .end((err, res) => {
             if (err) {
                 return dispatch({
@@ -54,14 +54,14 @@ export function getSettings() {
     }
 }
 
-export function putSettings(values) {
+export function putSettings(eventCalWidgetUuid, values) {
     return (dispatch) => {
         dispatch({
             type: PUT_SETTINGS
         });
         const token = cookieUtil.getItem('eventcal-admin');
         request
-            .put(`${config.apiUrl}/settings?token=${token}`)
+            .put(`${config.apiUrl}/settings?token=${token}&widgetUuid=${eventCalWidgetUuid}`)
             .send(values)
             .end((err, res) => {
                 if (err) {
@@ -86,13 +86,13 @@ function eventsResponseContainsEvents(res) {
     return res.body.events && res.body.events.length > 0;
 }
 
-export function getCalendars() {
+export function getCalendars(eventCalWidgetUuid) {
     return (dispatch) => {
         dispatch({
             type: GET_CALENDARS
         });
         const token = cookieUtil.getItem('eventcal-admin');
-        request.get(`${config.apiUrl}/calendars?token=${token}`)
+        request.get(`${config.apiUrl}/calendars?token=${token}&widgetUuid=${eventCalWidgetUuid}`)
         .end((err, getCalendarsRes) => {
             if (err) {
                 return dispatch({
@@ -102,7 +102,7 @@ export function getCalendars() {
             }
 
             request
-                .get(`${config.apiUrl}/events?token=${token}&invalidateCache=true&pastEvents=true`)
+                .get(`${config.apiUrl}/events?token=${token}&invalidateCache=true&pastEvents=true&widgetUuid=${eventCalWidgetUuid}`)
                 .end((err, res) => {
                     if (err) {
                         console.log('error getting events')
@@ -124,7 +124,7 @@ export function getCalendars() {
     }
 }
 
-export function putCalendars(calendarId, selected) {
+export function putCalendars(eventCalWidgetUuid, calendarId, selected) {
     return (dispatch) => {
         dispatch({
             type: PUT_CALENDARS
@@ -132,7 +132,7 @@ export function putCalendars(calendarId, selected) {
         const token = cookieUtil.getItem('eventcal-admin');
         request
             .put(`${config.apiUrl}/calendars?token=${token}`)
-            .send({calendarId: calendarId, selected: selected})
+            .send({calendarId: calendarId, selected: selected, widgetUuid: eventCalWidgetUuid})
             .end((err, putCalendarsResponse) => {
                 if (err) {
                     return dispatch({
@@ -142,7 +142,7 @@ export function putCalendars(calendarId, selected) {
                 }
 
                 request
-                    .get(`${config.apiUrl}/events?token=${token}&invalidateCache=true&pastEvents=true`)
+                    .get(`${config.apiUrl}/events?token=${token}&invalidateCache=true&pastEvents=true&widgetUuid=${eventCalWidgetUuid}`)
                     .end((err, res) => {
                         if (err) {
                             console.log('error getting events')

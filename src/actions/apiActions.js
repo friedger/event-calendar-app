@@ -50,12 +50,15 @@ export const postLogin = (formState) => {
     });
 }
 
-export const postCalendars = (formState) => {
+export const postCalendars = (formState, eventCalWidgetUuid) => {
     const token = cookieUtil.getItem('eventcal-admin');
-
+    var endpoint = `${config.apiUrl}/calendars?token=${token}`;
+    if (eventCalWidgetUuid) {
+        endpoint += `&widgetUuid=${eventCalWidgetUuid}`;
+    }
     return new Promise((resolve, reject) => {
         request
-        .post(`${config.apiUrl}/calendars?token=${token}`)
+        .post(endpoint)
         .send({calendarUrl: formState.calendarurl, calendarName: formState.calendarname, selected: formState.selected})
         .end((err, res) => {
             if (err) {

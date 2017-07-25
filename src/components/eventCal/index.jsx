@@ -11,7 +11,7 @@ var calendarHasBeenRendered = false;
 var Component = React.createClass({
     componentDidMount() {
         if (!document.getElementById('event-calendar-app')) {
-            addEventcalScript(this.props.userId);
+            addEventcalScript(this.props.userId, this.props.eventCalWidgetUuid);
             calendarHasBeenRendered = true;
         }
     },
