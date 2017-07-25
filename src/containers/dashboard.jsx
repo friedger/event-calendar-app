@@ -61,7 +61,7 @@ const component = React.createClass({
         const userHasRegisteredOrCancelled =
             user && (user.status === 'registered' || user.status === 'cancelled');
         const userHasSubscribed =
-            user && (user.status !== 'subscription' && user.status !== 'registered');
+            user && (user.status !== 'cancelled' && user.status !== 'registered');
 
         const containerClassNames = cn(
             {

@@ -104,7 +104,7 @@ export default React.createClass({
                         onClick={() => this.setState({ modalOpen: true })}
                         className="action full-width"
                     >
-                        Start stripe sub
+                        Start Plan
                     </button>}
             </div>
         );
