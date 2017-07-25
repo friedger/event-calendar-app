@@ -45,7 +45,7 @@ export default React.createClass({
                             <hr />
                             <div>
                                 <p>Once you&#39;re ready to add the calendar to your site, follow the link below to begin your trial.   </p>
-                                <Link className="start-trial start-trial--smaller-margin" to="/dashboard/plans">Start your free trial</Link>
+                                <Link className="start-trial start-trial--smaller-margin" to="/account">Start your free trial</Link>
                             </div>
                         </div>
                     </div>

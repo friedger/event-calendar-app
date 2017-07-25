@@ -14,7 +14,7 @@ export default React.createClass({
     render() {
         return (
             <span>
-                {this.props.userIsAGuest && <Link className="dashboard-settings__embed button action action--skinny" to="/dashboard/plans"><i className="fa fa-code" aria-hidden="true"></i> Embed code</Link>}
+                {this.props.userIsAGuest && <Link className="dashboard-settings__embed button action action--skinny" to="/account"><i className="fa fa-code" aria-hidden="true"></i> Embed code</Link>}
                 {!this.props.userIsAGuest && <a onClick={() => this.setState({modalOpen: true})} className="dashboard-settings__embed button action action--skinny"><i className="fa fa-code" aria-hidden="true"></i> Embed code</a>}
                 <Modal show={this.state.modalOpen} onHide={() => this.setState({modalOpen: false})}>
                     <Modal.Header closeButton>
