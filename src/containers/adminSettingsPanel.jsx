@@ -108,6 +108,7 @@ const component = React.createClass({
                       calendarsLoading={this.props.appState.calendarsLoading}
                       calendars={this.props.appState.calendars}
                       putSettings={this.props.putSettings}
+                      toggleConnectionsScreen={this.toggleConnectionsScreen}
                       eventCalWidgetUuid={this.props.eventCalWidgetUuid}
                       userStatus={get('this', 'props.appState.user.status')}
                   />

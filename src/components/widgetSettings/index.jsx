@@ -41,7 +41,7 @@ export default React.createClass({
             <div className={cn('widget-settings', { show: this.state.showComponent })}>
                 <CalendarSelection
                     onChange={putCalendars.bind(null, eventCalWidgetUuid)}
-                    toggleConnectionsScreen={this.toggleConnectionsScreen}
+                    toggleConnectionsScreen={this.props.toggleConnectionsScreen}
                     initialValues={this.getCalendarFormInitialValues(calendars)}
                     loading={calendarsLoading}
                     fields={Object.keys(calendars)}
