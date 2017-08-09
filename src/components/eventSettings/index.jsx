@@ -5,6 +5,7 @@ import { Row, Col, FormGroup, ControlLabel, FormControl } from 'react-bootstrap'
 import { reduxForm } from 'redux-form';
 import debounce from 'lodash.debounce';
 import uploadcare from 'uploadcare-widget';
+import LockedFeature from '../lockedFeature';
 
 var timer;
 
@@ -29,6 +30,9 @@ var Component = React.createClass({
         }, 100);
     },
     componentDidMount() {
+        if (!this.props.validWithPlan) {
+            return;
+        }
         const widget = uploadcare.Widget('#somediv');
         widget.onChange(file => {
             if (ignoreImageOnChange) {
@@ -107,6 +111,7 @@ var Component = React.createClass({
     },
     render() {
         const {
+            validWithPlan,
             fields: { ticketsLink, purchaseText, image, thumbnail },
             handleSubmit
         } = this.props;
@@ -118,69 +123,104 @@ var Component = React.createClass({
                             <FormGroup>
                                 <Row className="settings-space">
                                     <Col md={6}>
-                                        <ControlLabel className="setting-title">
+                                        <ControlLabel
+                                            className={cn('setting-title', {
+                                                'setting-title--strike': !validWithPlan
+                                            })}
+                                        >
                                             🎟 Tickets Link:
                                         </ControlLabel>
                                         <p>Where can people buy tickets to your event?</p>
                                     </Col>
-                                    <Col md={6}>
-                                        <FormControl
-                                            {...ticketsLink}
-                                            type="text"
-                                            placeholder="Link to buy tickets"
-                                            onChange={e =>
-                                                this.inputOnChange(e, ticketsLink, handleSubmit)}
-                                        />
-                                    </Col>
+                                    {validWithPlan &&
+                                        <Col md={6}>
+                                            <FormControl
+                                                {...ticketsLink}
+                                                type="text"
+                                                placeholder="Link to buy tickets"
+                                                onChange={e =>
+                                                    this.inputOnChange(
+                                                        e,
+                                                        ticketsLink,
+                                                        handleSubmit
+                                                    )}
+                                            />
+                                        </Col>}
+                                    {!validWithPlan &&
+                                        <LockedFeature columns={6} title={'Upgrade your account'}/>}
                                 </Row>
                                 <Row className="settings-space">
                                     <Col md={6}>
-                                        <ControlLabel className="setting-title">
-                                            🎫 Tickets Text:
+                                        <ControlLabel
+                                            className={cn('setting-title', {
+                                                'setting-title--strike': !validWithPlan
+                                            })}
+                                        >
+                                            {' '}🎫 Tickets Text:
                                         </ControlLabel>
                                         <p>What text would you like to display in the button?</p>
                                     </Col>
-                                    <Col md={6}>
-                                        <FormControl
-                                            {...purchaseText}
-                                            type="text"
-                                            placeholder="Tickets button text"
-                                            onBlur={e =>
-                                                this.inputOnBlur(e, purchaseText, handleSubmit)}
-                                            onChange={e =>
-                                                this.inputOnChange(e, purchaseText, handleSubmit)}
-                                        />
-                                    </Col>
+                                    {validWithPlan &&
+                                        <Col md={6}>
+                                            <FormControl
+                                                {...purchaseText}
+                                                type="text"
+                                                placeholder="Tickets button text"
+                                                onBlur={e =>
+                                                    this.inputOnBlur(e, purchaseText, handleSubmit)}
+                                                onChange={e =>
+                                                    this.inputOnChange(
+                                                        e,
+                                                        purchaseText,
+                                                        handleSubmit
+                                                    )}
+                                            />
+                                        </Col>}
+                                        {!validWithPlan && <LockedFeature columns={6} title={'Upgrade your account'}/>}
+
                                 </Row>
                                 <Row className="settings-space">
                                     <Col md={6}>
-                                        <ControlLabel className="setting-title">
-                                            🌄 Image Url:
+                                        <ControlLabel
+                                            className={cn('setting-title', {
+                                                'setting-title--strike': !validWithPlan
+                                            })}
+                                        >
+                                            {' '}🌄 Image Url:
                                         </ControlLabel>
-                                        <p>
-                                            The image to be displayed for your event.
-                                        </p>
+                                        <p>The image to be displayed for your event.</p>
                                     </Col>
+                                    {validWithPlan &&
                                     <Col md={6}>
                                         <div>
-                                        <input
-                                            {...image}
-                                            type="hidden"
-                                            id={'somediv'}
-                                            data-crop="4:1"
-                                            data-image-shrink="1080x270 75%"
-                                        />
+                                            <input
+                                                {...image}
+                                                type="hidden"
+                                                id={'somediv'}
+                                                data-crop="4:1"
+                                                data-image-shrink="1080x270 75%"
+                                            />
                                         </div>
-                                    {image.value && <button onClick={this.deleteImage} className="danger">Delete</button>}
+                                        {image.value &&
+                                            <button onClick={this.deleteImage} className="danger">
+                                                Delete
+                                            </button>}
                                     </Col>
+                                    }
+                                    {!validWithPlan && <LockedFeature columns={6} title={'Upgrade your account'}/>}
                                 </Row>
                                 <Row className="settings-space">
                                     <Col md={6}>
-                                        <ControlLabel className="setting-title">
-                                            🌄 Thumbnail Url:
+                                        <ControlLabel
+                                            className={cn('setting-title', {
+                                                'setting-title--strike': !validWithPlan
+                                            })}
+                                        >
+                                            {' '}🌄 Thumbnail Url:
                                         </ControlLabel>
                                         <p>The image to display as the thumbnail.</p>
                                     </Col>
+                                    {validWithPlan &&
                                     <Col md={6}>
                                         <div>
                                             <input
@@ -192,8 +232,16 @@ var Component = React.createClass({
                                                 data-image-shrink="125x125 75%"
                                             />
                                         </div>
-                                    {thumbnail.value && <button onClick={this.deleteThumbnail} className="danger">Delete</button>}
+                                        {thumbnail.value &&
+                                            <button
+                                                onClick={this.deleteThumbnail}
+                                                className="danger"
+                                            >
+                                                Delete
+                                            </button>}
                                     </Col>
+                                    }
+                                    {!validWithPlan && <LockedFeature columns={6} title={'Upgrade your account'}/>}
                                 </Row>
                                 <Row className="settings-space">
                                     <Col md={12}>

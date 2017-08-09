@@ -9,6 +9,7 @@ import WidgetSettings from '../components/widgetSettings';
 import EventSettings from '../components/eventSettings';
 import EmbedCode from '../components/embedCode';
 import get from 'lodash.get';
+import featurePermissions from '../utils/featurePermissions';
 
 import CalendarConnections from '../components/calendarConnections';
 
@@ -63,7 +64,6 @@ const component = React.createClass({
         return this.props.eventState.calendar_id && this.props.eventState.uuid;
     },
     render() {
-        console.log(this.props.eventState, this.eventActivated());
         return this.state.displayConnectionsScreen
             ? <CalendarConnections
                   toggleConnectionsScreen={this.toggleConnectionsScreen}
@@ -93,6 +93,7 @@ const component = React.createClass({
 
                   <EventSettings
                       show={this.eventActivated() && !this.props.eventState.eventSettingsLoading}
+                      validWithPlan={get(this, 'props.appState.user.status') && featurePermissions.checkFeatureAvailability(this.props.appState.user.status, 'event-settings')}
                       putEventAction={this.props.putEvent.bind(
                           null,
                           this.props.eventState.calendar_id,
@@ -110,7 +111,7 @@ const component = React.createClass({
                       putSettings={this.props.putSettings}
                       toggleConnectionsScreen={this.toggleConnectionsScreen}
                       eventCalWidgetUuid={this.props.eventCalWidgetUuid}
-                      userStatus={get('this', 'props.appState.user.status')}
+                      userStatus={get(this, 'props.appState.user.status')}
                   />
               </div>;
     }
