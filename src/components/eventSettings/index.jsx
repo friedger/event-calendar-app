@@ -14,7 +14,7 @@ var ignoreThumbnailOnChange = false;
 
 var Component = React.createClass({
     getInitialState() {
-        return {};
+        return { widgetsInit: false };
     },
     refreshCalendar(e, handleSubmit) {
         e.preventDefault();
@@ -30,9 +30,11 @@ var Component = React.createClass({
         }, 100);
     },
     componentDidMount() {
-        if (!this.props.validWithPlan) {
-            return;
+        if (this.props.validWithPlan && !this.props.demoEvent) {
+            this.initialiseWidgets();
         }
+    },
+    initialiseWidgets() {
         const widget = uploadcare.Widget('#somediv');
         widget.onChange(file => {
             if (ignoreImageOnChange) {
@@ -60,16 +62,16 @@ var Component = React.createClass({
             }
         });
 
-        this.setState({ widget, widget2 });
+        this.setState({ widget, widget2, widgetsInit: true });
     },
     deleteImage() {
         this.props.putEventAction({ image: null });
-        this.props.fields.image.onChange(false);
+        this.props.fields.image.onChange(null);
         this.state.widget.value(false);
     },
     deleteThumbnail() {
         this.props.putEventAction({ thumbnail: null });
-        this.props.fields.thumbnail.onChange(false);
+        this.props.fields.thumbnail.onChange(null);
         this.state.widget2.value(false);
     },
     inputOnBlur(e, field) {
@@ -81,6 +83,11 @@ var Component = React.createClass({
         setTimeout(() => {
             handleSubmit(values => this.makeApiCall(values))();
         }, 0);
+    },
+    componentDidUpdate() {
+        if (this.props.validWithPlan && !this.props.demoEvent && !this.state.widgetsInit) {
+            this.initialiseWidgets();
+        }
     },
     componentWillReceiveProps(nextProps) {
         if (nextProps.fields.image.value && this.state.widget) {
@@ -115,6 +122,16 @@ var Component = React.createClass({
             fields: { ticketsLink, purchaseText, image, thumbnail },
             handleSubmit
         } = this.props;
+        if (this.props.demoEvent) {
+            return (
+                <div className={cn('event-settings', { show: this.state.showComponent })}>
+                    <div className="demo-event-message">
+                        <p>This is an event from our demo calendar and cannot be edited.</p>{' '}
+                        <p>Choose one of your own events.</p>
+                    </div>
+                </div>
+            );
+        }
         return (
             <div className={cn('event-settings', { show: this.state.showComponent })}>
                 <div className="row settings-form">
@@ -147,7 +164,10 @@ var Component = React.createClass({
                                             />
                                         </Col>}
                                     {!validWithPlan &&
-                                        <LockedFeature columns={6} title={'Upgrade your account'}/>}
+                                        <LockedFeature
+                                            columns={6}
+                                            title={'Upgrade your account'}
+                                        />}
                                 </Row>
                                 <Row className="settings-space">
                                     <Col md={6}>
@@ -165,6 +185,7 @@ var Component = React.createClass({
                                             <FormControl
                                                 {...purchaseText}
                                                 type="text"
+                                                maxLength="11"
                                                 placeholder="Tickets button text"
                                                 onBlur={e =>
                                                     this.inputOnBlur(e, purchaseText, handleSubmit)}
@@ -176,8 +197,11 @@ var Component = React.createClass({
                                                     )}
                                             />
                                         </Col>}
-                                        {!validWithPlan && <LockedFeature columns={6} title={'Upgrade your account'}/>}
-
+                                    {!validWithPlan &&
+                                        <LockedFeature
+                                            columns={6}
+                                            title={'Upgrade your account'}
+                                        />}
                                 </Row>
                                 <Row className="settings-space">
                                     <Col md={6}>
@@ -191,23 +215,30 @@ var Component = React.createClass({
                                         <p>The image to be displayed for your event.</p>
                                     </Col>
                                     {validWithPlan &&
-                                    <Col md={6}>
-                                        <div>
-                                            <input
-                                                {...image}
-                                                type="hidden"
-                                                id={'somediv'}
-                                                data-crop="4:1"
-                                                data-image-shrink="1080x270 75%"
-                                            />
-                                        </div>
-                                        {image.value &&
-                                            <button onClick={this.deleteImage} className="danger">
-                                                Delete
-                                            </button>}
-                                    </Col>
-                                    }
-                                    {!validWithPlan && <LockedFeature columns={6} title={'Upgrade your account'}/>}
+                                        <Col md={6}>
+                                            <div>
+                                                <input
+                                                    {...image}
+                                                    type="hidden"
+                                                    role="uploadcare-uploader"
+                                                    id={'somediv'}
+                                                    data-crop="4:1"
+                                                    data-image-shrink="1080x270 75%"
+                                                />
+                                            </div>
+                                            {image.value &&
+                                                <button
+                                                    onClick={this.deleteImage}
+                                                    className="danger"
+                                                >
+                                                    Delete
+                                                </button>}
+                                        </Col>}
+                                    {!validWithPlan &&
+                                        <LockedFeature
+                                            columns={6}
+                                            title={'Upgrade your account'}
+                                        />}
                                 </Row>
                                 <Row className="settings-space">
                                     <Col md={6}>
@@ -221,27 +252,30 @@ var Component = React.createClass({
                                         <p>The image to display as the thumbnail.</p>
                                     </Col>
                                     {validWithPlan &&
-                                    <Col md={6}>
-                                        <div>
-                                            <input
-                                                {...thumbnail}
-                                                role="uploadcare-uploader"
-                                                type="hidden"
-                                                id={'thumbnailImageUpload'}
-                                                data-crop="1:1"
-                                                data-image-shrink="125x125 75%"
-                                            />
-                                        </div>
-                                        {thumbnail.value &&
-                                            <button
-                                                onClick={this.deleteThumbnail}
-                                                className="danger"
-                                            >
-                                                Delete
-                                            </button>}
-                                    </Col>
-                                    }
-                                    {!validWithPlan && <LockedFeature columns={6} title={'Upgrade your account'}/>}
+                                        <Col md={6}>
+                                            <div>
+                                                <input
+                                                    {...thumbnail}
+                                                    role="uploadcare-uploader"
+                                                    type="hidden"
+                                                    id={'thumbnailImageUpload'}
+                                                    data-crop="1:1"
+                                                    data-image-shrink="125x125 75%"
+                                                />
+                                            </div>
+                                            {thumbnail.value &&
+                                                <button
+                                                    onClick={this.deleteThumbnail}
+                                                    className="danger"
+                                                >
+                                                    Delete
+                                                </button>}
+                                        </Col>}
+                                    {!validWithPlan &&
+                                        <LockedFeature
+                                            columns={6}
+                                            title={'Upgrade your account'}
+                                        />}
                                 </Row>
                                 <Row className="settings-space">
                                     <Col md={12}>

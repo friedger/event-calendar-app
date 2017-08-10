@@ -54,7 +54,6 @@ export default React.createClass({
                 <TimezoneSelection putSettingsAction={putSettings.bind(null, eventCalWidgetUuid)} />
                 <SubscriptionButtonSelection
                     validWithPlan={
-                        get(this, 'props.appState.user.status') &&
                         featurePermissions.checkFeatureAvailability(userStatus, 'subscriptions')
                     }
                     putSettingsAction={this.props.putSettings.bind(null, eventCalWidgetUuid)}

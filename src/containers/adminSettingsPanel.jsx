@@ -75,10 +75,23 @@ const component = React.createClass({
                   eventCalWidgetUuid={this.props.eventCalWidgetUuid}
               />
             : <div className="dashboard-settings">
-                    {this.eventActivated() && <div onClick={() => this.props.exitEventSettings()} className="dashboard-header__close"><i onClick={() => this.props.exitEventSettings()} className="fa fa-times" aria-hidden="true"></i> </div>}
+                  {this.eventActivated() &&
+                      <div
+                          onClick={() => this.props.exitEventSettings()}
+                          className="dashboard-header__close"
+                      >
+                          <i
+                              onClick={() => this.props.exitEventSettings()}
+                              className="fa fa-times"
+                              aria-hidden="true"
+                          />{' '}
+                      </div>}
                   <div className="dashboard-header dashboard-header--right row">
                       <div className="col-md-12">
-                          {this.eventActivated() && <span className="dashboard-header__event-settings">Event settings</span>}
+                          {this.eventActivated() &&
+                              <span className="dashboard-header__event-settings">
+                                  Event settings
+                              </span>}
                           {!this.eventActivated() && <span>Calendar settings</span>}
                           {!this.props.appState.user.weeblyUser &&
                               <EmbedCode
@@ -90,29 +103,39 @@ const component = React.createClass({
                               />}
                       </div>
                   </div>
+                  <div className="row">
+                      <div className="col-md-12" style={{ overflow: 'scroll', height: 'calc(100vh - 126px)' }}>
+                          <EventSettings
+                              demoEvent={this.props.eventState.demoEventSelected}
+                              show={this.eventActivated() && !this.props.eventState.eventSettingsLoading}
+                              validWithPlan={
+                                  get(this, 'props.appState.user.status') &&
+                                  featurePermissions.checkFeatureAvailability(
+                                      this.props.appState.user.status,
+                                      'event-settings'
+                                  )
+                              }
+                              putEventAction={this.props.putEvent.bind(
+                                  null,
+                                  this.props.eventState.calendar_id,
+                                  this.props.eventState.uuid
+                              )}
+                              exitAction={this.props.exitEventSettings}
+                              />
 
-                  <EventSettings
-                      show={this.eventActivated() && !this.props.eventState.eventSettingsLoading}
-                      validWithPlan={get(this, 'props.appState.user.status') && featurePermissions.checkFeatureAvailability(this.props.appState.user.status, 'event-settings')}
-                      putEventAction={this.props.putEvent.bind(
-                          null,
-                          this.props.eventState.calendar_id,
-                          this.props.eventState.uuid
-                      )}
-                      exitAction={this.props.exitEventSettings}
-                  />
-
-                  <WidgetSettings
-                      key={1}
-                      show={!this.eventActivated() && !this.props.eventState.eventSettingsLoading}
-                      putCalendars={this.props.putCalendars}
-                      calendarsLoading={this.props.appState.calendarsLoading}
-                      calendars={this.props.appState.calendars}
-                      putSettings={this.props.putSettings}
-                      toggleConnectionsScreen={this.toggleConnectionsScreen}
-                      eventCalWidgetUuid={this.props.eventCalWidgetUuid}
-                      userStatus={get(this, 'props.appState.user.status')}
-                  />
+                          <WidgetSettings
+                              key={1}
+                              show={!this.eventActivated() && !this.props.eventState.eventSettingsLoading}
+                              putCalendars={this.props.putCalendars}
+                              calendarsLoading={this.props.appState.calendarsLoading}
+                              calendars={this.props.appState.calendars}
+                              putSettings={this.props.putSettings}
+                              toggleConnectionsScreen={this.toggleConnectionsScreen}
+                              eventCalWidgetUuid={this.props.eventCalWidgetUuid}
+                              userStatus={get(this, 'props.appState.user.status')}
+                              />
+                      </div>
+                  </div>
               </div>;
     }
 });

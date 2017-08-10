@@ -85,7 +85,7 @@ const component = React.createClass({
             );
         }
         return (
-            <div style={{ height: '100%' }}>
+            <div style={{ height: '100vh', overflow: 'scroll'}}>
                 <SuggestionModals
                     status={get(this, 'props.appState.user.status')}
                 />

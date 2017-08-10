@@ -1,6 +1,8 @@
 export const EVENT_SELECTED = 'EVENT_SELECTED';
 export const EXIT_EVENT_SETTINGS = 'EXIT_EVENT_SETTINGS';
 
+export const DEMO_EVENT_SELECTED = 'DEMO_EVENT_SELCTED';
+
 export const PUT_EVENT = 'PUT_EVENT';
 export const PUT_EVENT_SUCCESS = 'PUT_EVENT_SUCCESS';
 export const PUT_EVENT_ERROR = 'PUT_EVENT_ERROR';
@@ -41,6 +43,12 @@ export function eventSelected(details) {
 export function exitEventSettings() {
     return {
         type: EXIT_EVENT_SETTINGS
+    };
+}
+
+export function demoEventSelected() {
+    return {
+        type: DEMO_EVENT_SELECTED
     };
 }
 

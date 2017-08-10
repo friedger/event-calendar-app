@@ -2,8 +2,24 @@
     opacity:0;
     transition: opacity 300ms ease-in;
     position: absolute;
+    left: 15px;
+    right: 15px;
     &.show {
+        left:auto;
+        right: auto;
         opacity:1;
         position: relative;
+    }
+}
+
+.demo-event-message {
+    background: #da4167;
+    text-align: center;
+    margin:10px 0;
+    padding-top: 10px;
+    p {
+        padding-bottom:10px;
+        margin: 0;
+        color: #fff;
     }
 }

@@ -2,6 +2,7 @@
 @import './buttons';
 @import './dashboardSettings';
 @import './uploadcare';
+@import './eventcalOverrides';
 
 html {
     height: 100%;
@@ -242,7 +243,7 @@ h1 {
 }
 
 .dashboard {
-    height: 100%;
+    overflow:hidden;
 }
 
 .dashboard-header {
@@ -254,8 +255,9 @@ h1 {
     }
     &__close {
         position: absolute;
-        left: 0;
+        left: -1px;
         background: #da4167;
+        border-left: #a3304d;
         height: 56px;
         width: 57px;
         color: #fff;
