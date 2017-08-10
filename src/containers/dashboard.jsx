@@ -5,6 +5,7 @@ import * as appActions from '../actions/index';
 import * as calendarActions from '../actions/calendarActions';
 import * as paymentActions from '../actions/paymentActions';
 import * as accountActions from '../actions/accountActions';
+import * as eventActions from '../actions/eventActions';
 
 const cookieUtil = require('../utils/cookieUtil').default;
 const config = require('../../config');
@@ -19,11 +20,12 @@ import SuggestionModals from '../components/suggestionModals';
 import cn from 'classnames';
 import getCronofyAuthUrl from '../utils/getCronofyAuthUrl';
 
-const mapState = ({ appState, form, eventcalState }) => {
+const mapState = ({ appState, form, eventcalState, eventState }) => {
     return {
         appState,
         form,
-        eventcalState
+        eventcalState,
+        eventState
     };
 };
 
@@ -33,7 +35,8 @@ const mapDispatch = dispatch => {
             ...appActions,
             ...calendarActions,
             ...paymentActions,
-            ...accountActions
+            ...accountActions,
+            ...eventActions
         },
         dispatch
     );
@@ -82,7 +85,7 @@ const component = React.createClass({
             );
         }
         return (
-            <div style={{ height: '100%' }}>
+            <div style={{ height: '100vh', overflow: 'scroll'}}>
                 <SuggestionModals
                     status={get(this, 'props.appState.user.status')}
                 />

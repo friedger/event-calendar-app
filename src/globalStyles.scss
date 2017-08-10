@@ -1,6 +1,8 @@
 @import './_variables';
 @import './buttons';
 @import './dashboardSettings';
+@import './uploadcare';
+@import './eventcalOverrides';
 
 html {
     height: 100%;
@@ -241,13 +243,36 @@ h1 {
 }
 
 .dashboard {
-    height: 100%;
+    overflow:hidden;
 }
 
 .dashboard-header {
     padding: 13px;
     font-size: 20px;
     font-weight: 100;
+    &__event-settings {
+        padding-left: 40px;
+    }
+    &__close {
+        position: absolute;
+        left: -1px;
+        background: #da4167;
+        border-left: #a3304d;
+        height: 56px;
+        width: 57px;
+        color: #fff;
+        cursor: pointer;
+        z-index: 1;
+        &:hover {
+            background: #ee4a72;
+        }
+        i {
+            position: absolute;
+            font-size: 26px;
+            right: 19px;
+            top: 14px;
+        }
+    }
     &--right {
         background:#f5f0f0;
         margin-left: -15px;

@@ -11,6 +11,7 @@ import {
 import appState from './appState';
 import loginState from './loginState';
 import eventCal from './eventcalState';
+import eventState from './eventState';
 import accountState from './accountState';
 
 function initialRegisterState(state = {}, action) {
@@ -26,6 +27,7 @@ const appReducer = combineReducers({
     account: accountState,
     loginState: loginState,
     eventcalState: eventCal,
+    eventState: eventState,
     initialRegisterState: initialRegisterState
 });
 

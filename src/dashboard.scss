@@ -10,6 +10,30 @@
     }
 }
 
+.widgetSettings-leave {
+    opacity:1;
+    transition: opacity 500ms ease-in;
+    animation-delay: 500ms;
+}
+
+.widgetSettings-leave.widgetSettings-leave-active {
+    opacity: 0.01;
+    transition: opacity 500ms ease-in;
+    animation-delay:500ms;
+}
+
+.widgetSettings-enter{
+    opacity:0.01;
+    transition: opacity 500ms ease-in;
+    animation-delay: 5000ms;
+}
+.widgetSettings-enter.widgetSettings-enter-active{
+    opacity:1;
+    transition: opacity 500ms ease-in;
+    animation-delay: 5000ms;
+}
+
+
 @media (min-width: 992px) {
     .settings-space {
         height: auto;

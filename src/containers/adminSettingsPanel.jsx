@@ -3,21 +3,20 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import * as appActions from '../actions/index';
 import * as calendarActions from '../actions/calendarActions';
+import * as eventActions from '../actions/eventActions';
 
-import NumberOfEventsToDisplay from '../components/numberOfEventsSelection';
-import TimezoneSelection from '../components/timezoneSelection';
-import CalendarSelection from '../components/calendarSelection';
-import ViewModeSelection from '../components/viewModeSelection';
-import SubscriptionButtonSelection from '../components/subscriptionButtonSelection';
+import WidgetSettings from '../components/widgetSettings';
+import EventSettings from '../components/eventSettings';
 import EmbedCode from '../components/embedCode';
 import get from 'lodash.get';
 import featurePermissions from '../utils/featurePermissions';
 
 import CalendarConnections from '../components/calendarConnections';
 
-const mapState = ({ appState }) => {
+const mapState = ({ appState, eventState }) => {
     return {
-        appState
+        appState,
+        eventState
     };
 };
 
@@ -25,7 +24,8 @@ const mapDispatch = dispatch => {
     return bindActionCreators(
         {
             ...appActions,
-            ...calendarActions
+            ...calendarActions,
+            ...eventActions
         },
         dispatch
     );
@@ -41,6 +41,14 @@ const component = React.createClass({
             addCalendarSelected: false
         };
     },
+    componentDidMount() {
+        document.addEventListener('ECA_event-clicked', e => {
+            if (e.detail.opening) {
+                this.props.eventSelected(e.detail);
+            }
+        });
+    },
+
     toggleConnectionsScreen() {
         this.props.getCalendars(this.props.eventCalWidgetUuid);
         this.setState({ displayConnectionsScreen: !this.state.displayConnectionsScreen });
@@ -51,6 +59,9 @@ const component = React.createClass({
             collection[current] = this.props.appState.calendars[current].selected;
             return collection;
         }, {});
+    },
+    eventActivated() {
+        return this.props.eventState.calendar_id && this.props.eventState.uuid;
     },
     render() {
         return this.state.displayConnectionsScreen
@@ -64,9 +75,24 @@ const component = React.createClass({
                   eventCalWidgetUuid={this.props.eventCalWidgetUuid}
               />
             : <div className="dashboard-settings">
+                  {this.eventActivated() &&
+                      <div
+                          onClick={() => this.props.exitEventSettings()}
+                          className="dashboard-header__close"
+                      >
+                          <i
+                              onClick={() => this.props.exitEventSettings()}
+                              className="fa fa-times"
+                              aria-hidden="true"
+                          />{' '}
+                      </div>}
                   <div className="dashboard-header dashboard-header--right row">
                       <div className="col-md-12">
-                          <span>Calendar settings</span>
+                          {this.eventActivated() &&
+                              <span className="dashboard-header__event-settings">
+                                  Event settings
+                              </span>}
+                          {!this.eventActivated() && <span>Calendar settings</span>}
                           {!this.props.appState.user.weeblyUser &&
                               <EmbedCode
                                   eventCalWidgetUuid={this.props.eventCalWidgetUuid}
@@ -77,39 +103,39 @@ const component = React.createClass({
                               />}
                       </div>
                   </div>
-                  <CalendarSelection
-                      onChange={this.props.putCalendars.bind(null, this.props.eventCalWidgetUuid)}
-                      toggleConnectionsScreen={this.toggleConnectionsScreen}
-                      initialValues={this.getCalendarFormInitialValues()}
-                      loading={this.props.appState.calendarsLoading}
-                      fields={Object.keys(this.props.appState.calendars)}
-                      calendars={this.props.appState.calendars}
-                  />
-                  <ViewModeSelection
-                      putSettingsAction={this.props.putSettings.bind(
-                          null,
-                          this.props.eventCalWidgetUuid
-                      )}
-                  />
-                  <NumberOfEventsToDisplay
-                      putSettingsAction={this.props.putSettings.bind(
-                          null,
-                          this.props.eventCalWidgetUuid
-                      )}
-                  />
-                  <TimezoneSelection
-                      putSettingsAction={this.props.putSettings.bind(
-                          null,
-                          this.props.eventCalWidgetUuid
-                      )}
-                  />
-                  <SubscriptionButtonSelection
-                      validWithPlan={get(this, 'props.appState.user.status') && featurePermissions.checkFeatureAvailability(this.props.appState.user.status, 'subscriptions')}
-                      putSettingsAction={this.props.putSettings.bind(
-                          null,
-                          this.props.eventCalWidgetUuid
-                      )}
-                  />
+                  <div className="row">
+                      <div className="col-md-12" style={{ overflow: 'scroll', height: 'calc(100vh - 126px)' }}>
+                          <EventSettings
+                              demoEvent={this.props.eventState.demoEventSelected}
+                              show={this.eventActivated() && !this.props.eventState.eventSettingsLoading}
+                              validWithPlan={
+                                  get(this, 'props.appState.user.status') &&
+                                  featurePermissions.checkFeatureAvailability(
+                                      this.props.appState.user.status,
+                                      'event-settings'
+                                  )
+                              }
+                              putEventAction={this.props.putEvent.bind(
+                                  null,
+                                  this.props.eventState.calendar_id,
+                                  this.props.eventState.uuid
+                              )}
+                              exitAction={this.props.exitEventSettings}
+                              />
+
+                          <WidgetSettings
+                              key={1}
+                              show={!this.eventActivated() && !this.props.eventState.eventSettingsLoading}
+                              putCalendars={this.props.putCalendars}
+                              calendarsLoading={this.props.appState.calendarsLoading}
+                              calendars={this.props.appState.calendars}
+                              putSettings={this.props.putSettings}
+                              toggleConnectionsScreen={this.toggleConnectionsScreen}
+                              eventCalWidgetUuid={this.props.eventCalWidgetUuid}
+                              userStatus={get(this, 'props.appState.user.status')}
+                              />
+                      </div>
+                  </div>
               </div>;
     }
 });
