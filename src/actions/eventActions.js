@@ -32,7 +32,7 @@ export function eventSelected(details) {
             }
 
             if (res.body.message === 'No event found with the matching uuid') {
-                dispatch(reset('settingsForm'));
+                dispatch(reset('eventSettingsForm'));
                 return dispatch({
                     type: RESET_EVENT,
                     payload: { eventDetail: details }

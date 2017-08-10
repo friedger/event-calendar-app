@@ -299,7 +299,7 @@ var Component = React.createClass({
 export default (Component = reduxForm(
     {
         // <----- THIS IS THE IMPORTANT PART!
-        form: 'settingsForm', // a unique name for this form
+        form: 'eventSettingsForm', // a unique name for this form
         fields: ['ticketsLink', 'purchaseText', 'image', 'thumbnail'],
         overwriteOnInitialValuesChange: true
     },
