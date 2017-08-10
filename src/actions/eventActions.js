@@ -11,21 +11,31 @@ export const GET_EVENT = 'GET_EVENT';
 export const GET_EVENT_SUCCESS = 'GET_EVENT_SUCCESS';
 export const GET_EVENT_ERROR = 'GET_EVENT_ERROR';
 
+export const RESET_EVENT = 'RESET_EVENT';
+
 import request from 'superagent';
 var cookieUtil = require('../utils/cookieUtil').default;
 const config = require('../../config');
+import { reset } from 'redux-form';
 
 export function eventSelected(details) {
-    return (dispatch) => {
+    return dispatch => {
         dispatch({
             type: GET_EVENT
         });
-        request.get(`${config.apiUrl}/event/${details.uuid}`)
-        .end((err, res) => {
+        request.get(`${config.apiUrl}/event/${details.uuid}`).end((err, res) => {
             if (err) {
                 return dispatch({
                     type: GET_EVENT_ERROR,
                     error: err
+                });
+            }
+
+            if (res.body.message === 'No event found with the matching uuid') {
+                dispatch(reset('settingsForm'));
+                return dispatch({
+                    type: RESET_EVENT,
+                    payload: { eventDetail: details }
                 });
             }
 
