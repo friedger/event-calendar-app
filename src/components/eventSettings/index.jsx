@@ -6,11 +6,27 @@ import { reduxForm } from 'redux-form';
 import debounce from 'lodash.debounce';
 import uploadcare from 'uploadcare-widget';
 import LockedFeature from '../lockedFeature';
+import { TwitterPicker } from 'react-color';
 
 var timer;
 
 var ignoreImageOnChange = false;
 var ignoreThumbnailOnChange = false;
+
+const pickerColours = [
+    '#f44336',
+    '#e91e63',
+    '#9c27b0',
+    '#673ab7',
+    '#3f51b5',
+    '#2196f3',
+    '#03a9f4',
+    '#00bcd4',
+    '#009688',
+    '#4caf50',
+    '#8bc34a',
+    '#cddc39'
+];
 
 var Component = React.createClass({
     getInitialState() {
@@ -69,6 +85,11 @@ var Component = React.createClass({
         this.props.fields.image.onChange(null);
         this.state.widget.value(false);
     },
+    deleteColor(e) {
+        e.preventDefault();
+        this.props.putEventAction({ color: null });
+        this.props.fields.color.onChange(null);
+    },
     deleteThumbnail() {
         this.props.putEventAction({ thumbnail: null });
         this.props.fields.thumbnail.onChange(null);
@@ -119,7 +140,7 @@ var Component = React.createClass({
     render() {
         const {
             validWithPlan,
-            fields: { ticketsLink, purchaseText, image, thumbnail },
+            fields: { ticketsLink, purchaseText, image, thumbnail, color },
             handleSubmit
         } = this.props;
         if (this.props.demoEvent) {
@@ -138,6 +159,36 @@ var Component = React.createClass({
                     <div className="col-md-12">
                         <form ref="settingsForm" className="form-horizontal">
                             <FormGroup>
+                                <Row className="settings-space">
+                                    <Col md={6}>
+                                        <ControlLabel
+                                            className={cn('setting-title', {
+                                                'setting-title--strike': !validWithPlan
+                                            })}
+                                        >
+                                            🖍 Event Color:
+                                        </ControlLabel>
+                                        <p>Color code your event.</p>
+                                    </Col>
+                                    {validWithPlan &&
+                                        <Col md={6}>
+                                            <div className="the-colour-picker">
+                                            <TwitterPicker color={ color.value === null ? false : color.value } onChange={(picker) => this.inputOnChange(picker && picker.hex, color, handleSubmit)} triangle={'hide'} colors={pickerColours} width={260} />
+                                            {color.value &&
+                                                <button
+                                                    onClick={this.deleteColor}
+                                                    className="danger danger--small delete-color"
+                                                    >
+                                                    Delete
+                                                </button>}
+                                            </div>
+                                        </Col>}
+                                    {!validWithPlan &&
+                                        <LockedFeature
+                                            columns={6}
+                                            title={'Upgrade your account'}
+                                        />}
+                                </Row>
                                 <Row className="settings-space">
                                     <Col md={6}>
                                         <ControlLabel
@@ -229,7 +280,7 @@ var Component = React.createClass({
                                             {image.value &&
                                                 <button
                                                     onClick={this.deleteImage}
-                                                    className="danger"
+                                                    className="danger danger--small"
                                                 >
                                                     Delete
                                                 </button>}
@@ -266,7 +317,7 @@ var Component = React.createClass({
                                             {thumbnail.value &&
                                                 <button
                                                     onClick={this.deleteThumbnail}
-                                                    className="danger"
+                                                    className="danger danger--small"
                                                 >
                                                     Delete
                                                 </button>}
@@ -300,7 +351,7 @@ export default (Component = reduxForm(
     {
         // <----- THIS IS THE IMPORTANT PART!
         form: 'eventSettingsForm', // a unique name for this form
-        fields: ['ticketsLink', 'purchaseText', 'image', 'thumbnail'],
+        fields: ['ticketsLink', 'purchaseText', 'image', 'thumbnail', 'color'],
         overwriteOnInitialValuesChange: true
     },
     state => ({ initialValues: state.eventState })

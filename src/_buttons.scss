@@ -38,6 +38,10 @@ button, a, .button {
         padding: 10px;
         border-radius: 2px;
         text-shadow: none;
+        &--small {
+            font-size: 12px;
+            padding: 3px 11px;
+        }
     }
 
     &.action {
