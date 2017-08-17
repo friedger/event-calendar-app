@@ -19,11 +19,12 @@ const config = require('../../config');
 import { reset } from 'redux-form';
 
 export function eventSelected(details) {
+    console.log(details)
     return dispatch => {
         dispatch({
             type: GET_EVENT
         });
-        request.get(`${config.apiUrl}/event/${details.uuid}`).end((err, res) => {
+        request.get(`${config.apiUrl}/event?uuid=${details.uuid}&calendarId=${details.calendar_id}`).end((err, res) => {
             if (err) {
                 return dispatch({
                     type: GET_EVENT_ERROR,

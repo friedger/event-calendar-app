@@ -16,6 +16,8 @@ import AccountError from './containers/accountError';
 import NetworkError from './containers/networkError';
 import PrivacyPolicy from './containers/privacyPolicy';
 import TermsOfUse from './containers/termsOfUse';
+import FacebookSelectPage from './containers/facebookSelectPage';
+import FacebookAuthSuccess from './components/facebookAuthSuccess';
 import Home from './containers/home';
 import Account from './containers/account';
 var cookieUtil = require('./utils/cookieUtil').default;
@@ -69,6 +71,8 @@ export default (store) => {
             <Route path="/weebly-iframe" component={WeeblyIframe} />
             <Route path="/fail-to-link" component={FailToLink} />
             <Route path="/add-subscription" component={AddSubscription} />
+            <Route path="/facebook/select-page" component={FacebookSelectPage} />
+            <Route path="/facebook/auth-success" component={FacebookAuthSuccess} />
             <Route path="*" component={NotFoundComponent} />
         </Route>
     )
