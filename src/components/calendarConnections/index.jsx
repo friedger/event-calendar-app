@@ -57,11 +57,70 @@ export default React.createClass({
                 </div>
                 {this.state.displayError && <p className="validation-message">You cannot delete the only calendar that you are conncected to.</p>}
                 <div className="row">
-                    <div className="col-md-6">
-                        {!this.state.addCalendarSelected && <button className='action full-width' onClick={() => this.setState({addCalendarSelected: true})}>Add calendar</button>}
+                    <div className="col-md-12">
+                        <strong>Connect additional calendars 🤘</strong>
                     </div>
                 </div>
-                {this.state.addCalendarSelected && <AddIcsCalendarForm eventCalWidgetUuid={this.props.eventCalWidgetUuid} calendarAdded={this.props.calendarAdded}/>}
+                <div className="row">
+                    <div className="col-md-12">
+                        <div className="welcome-card">
+                            <div className="row">
+                                <div className="col-sm-8">
+                                    <div className="welcome-card__header welcome-card__header">
+                                        <span>Google</span>, <span>Apple</span>, <span>Outlook</span> or <span>Exchange</span>
+                                    </div>
+                                    <div className="welcome-card__description welcome-card__description">
+                                        <p>The simplest way to connect your calendar to Event Calendar App</p>
+                                    </div>
+                                </div>
+                                <div className="col-sm-4">
+                                    <div>
+                                        <a href='#' onClick={() => this.toggleModal()} className="welcome-card__connect">Connect</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-12">
+                        <div className="welcome-card">
+                            <div className="row">
+                                <div className="col-sm-8">
+                                    <div className="welcome-card__header">
+                                        Facebook
+                                    </div>
+                                    <div className="welcome-card__description">
+                                        <p>Use for connecting to <strong>Facebook</strong>.</p>
+                                    </div>
+                                </div>
+                                <div className="col-sm-4">
+                                    <div>
+                                        <a href="#" onClick={this.linkFacebookClicked} className="welcome-card__connect">Connect</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="col-md-12">
+                        <div className="welcome-card">
+                            <div className="row">
+                                <div className="col-sm-8">
+                                    <div className="welcome-card__header">
+                                        ICS Feed
+                                    </div>
+                                    <div className="welcome-card__description">
+                                        <p>Requires you to know the .ICS feed url of your calendar.</p>
+                                    </div>
+                                </div>
+                                <div className="col-sm-4">
+                                    <div>
+                                        <a href="#" className="welcome-card__connect" onClick={this.props.clickIcsConnect}>Connect</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }

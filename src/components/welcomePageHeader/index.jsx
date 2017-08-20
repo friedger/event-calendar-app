@@ -2,6 +2,7 @@ if (typeof window !== 'undefined') {
     require('./style.scss');
 }
 
+const config = require('../../../config');
 import React from 'react';
 import Collapse from 'react-collapse';
 import {Button, Modal} from 'react-bootstrap';
@@ -21,6 +22,12 @@ export default React.createClass({
     },
     componentDidMount() {
         $('.venobox').venobox();
+    },
+    linkFacebookClicked() {
+        const url = `${config.apiUrl}/facebook`;
+        const name = 'facebook_login';
+        const specs = 'width=500,height=500';
+        window.open(url, name, specs);
     },
     toggleModal() {
         const {user} = this.props;
@@ -113,6 +120,25 @@ export default React.createClass({
                             {this.props.user && this.props.user.bigcommerceUser ? <a target="_blank" onClick={this.hitCronofy} className="action full-width">Connect</a> : <a href={this.props.authUrl} className="action full-width">Connect</a>}
                         </div>
                     </Modal>
+                    <div className="col-md-12">
+                        <div className="welcome-card">
+                            <div className="row">
+                                <div className="col-sm-8">
+                                    <div className="welcome-card__header">
+                                        Facebook
+                                    </div>
+                                    <div className="welcome-card__description">
+                                        <p>Use for connecting to <strong>Facebook</strong>.</p>
+                                    </div>
+                                </div>
+                                <div className="col-sm-4">
+                                    <div>
+                                        <a href="#" onClick={this.linkFacebookClicked} className="welcome-card__connect">Connect</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <div className="col-md-12">
                         <div className="welcome-card">
@@ -122,7 +148,6 @@ export default React.createClass({
                                         ICS Feed
                                     </div>
                                     <div className="welcome-card__description">
-                                        <p>Use for connecting to <strong>Facebook</strong> or other third party providers.</p>
                                         <p>Requires you to know the .ICS feed url of your calendar.</p>
                                     </div>
                                 </div>

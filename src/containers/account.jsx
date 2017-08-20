@@ -9,6 +9,7 @@ import cookieUtil from '../utils/cookieUtil';
 const config = require('../../config');
 import Account from '../components/account';
 import StripePaymentStatus from '../components/stripePaymentStatus';
+import AccountNavigation from '../components/accountNavigation';
 
 import Header from '../components/header';
 
@@ -59,14 +60,11 @@ const component = React.createClass({
             >
                 <Header loggedIn={true} useFluidContainer={true} />
                 <div
-                    className="container"
-                    style={{
-                        marginTop: '50px',
-                        marginBottom: '50px'
-                    }}
+                    className="container-fluid"
                 >
                     <div className="row">
-                        <div className="col-md-12 account__container">
+                        <AccountNavigation selected={'account'}></AccountNavigation>
+                        <div className="col-md-9 account__container" style={{ 'min-height': 'calc(100vh - 70px)', height: '100%' }}>
                             <div className="row account__header">
                                 <div className="col-md-12">
                                     <h2>Billing</h2>
@@ -87,10 +85,10 @@ const component = React.createClass({
                                     updateSuccessful={this.props.location.query.planUpdated}
                                     accountLoading={accountLoading}
                                 />}
+                                {accountProps && !accountLoading &&
+                                    <Account { ...accountProps }></Account>
+                                }
                         </div>
-                        {accountProps && !accountLoading &&
-                            <Account { ...accountProps }></Account>
-                        }
                     </div>
                 </div>
             </div>

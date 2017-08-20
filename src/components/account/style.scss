@@ -5,17 +5,22 @@
 .account {
     &__container {
         background: #fff;
-        box-shadow: 0 1px 1px #e2e8ea;
-        border-radius: 2px;
     }
     &__header {
+        min-height: 137px;
         background: #6787ab;
         color: #fff;
-        border-radius: 2px 2px 0px 0px;
         padding: 40px 20px 40px 20px;
         h2 {
             font-weight: bold;
             margin: 0;
+        }
+        &--purple {
+            background: #9556bf;
+        }
+        &--gray {
+            background: #e4e4e4;
+            color: #5a5a5a;
         }
         &__subtitle {
             opacity: 0.8;

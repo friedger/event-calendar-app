@@ -1,0 +1,39 @@
+.facebook-select {
+    &__header {
+        text-align: center;
+        padding-bottom:40px;
+    }
+    &__seperator {
+        width:1px;
+        height:100%;
+        left: 50%;
+        position: absolute;
+        border-right: 1px dotted #a6a6a6;
+    }
+    &__container {
+        position: relative;
+    }
+    &__right {
+        padding-left: 49px;
+    }
+    &__page {
+        box-shadow: 0 1px 1px #e2e8ea;
+        background: #fff;
+        padding: 19px;
+        color: #333;
+        cursor: pointer;
+        margin-bottom: 12px;
+        &:hover {
+            background: #fafafa;
+        }
+    }
+    &__section-header {
+        padding-bottom: 20px;
+    }
+    p {
+        color: #676767;
+    }
+    i {
+        color: #4741a2;
+    }
+}

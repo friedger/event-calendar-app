@@ -14,7 +14,8 @@ export default React.createClass({
                 <div className="row account__content">
                     {activePlan && !userHasNoPlan && <ActivePlan activePlan={activePlan} />}
                     <div className="col-md-12">
-                        <h3>Plans:</h3>
+                        <h2>👨‍💻 Plans</h2>
+                        <p>Choose the plan that best suits your business.</p>
                     </div>
                     <div className="plans2">
                         <div className="col-md-4">

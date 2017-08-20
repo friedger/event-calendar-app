@@ -62,6 +62,9 @@ iframe {
 .welcome-card {
     text-align: left;
     padding: 40px 21px 50px;
+    box-shadow: 0 1px 4px #cfd2d4;
+    background: #fff;
+    margin-bottom:20px;
     &__header {
         font-weight: bold;
         padding-bottom: 15px;
@@ -103,6 +106,7 @@ iframe {
         text-align: center;
         padding: 8px;
         border-radius: 0 0 5px 5px;
+        margin-bottom: 20px;
         p {
             color: #fff;
             margin: 0;
