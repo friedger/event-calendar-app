@@ -13,6 +13,8 @@ import intercom from '../../utils/intercom';
 
 import venobox from 'venobox/venobox/venobox.min.js';
 
+import getFacebookAuthUrl from '../../utils/getFacebookAuthUrl';
+
 export default React.createClass({
     getInitialState() {
         return {
@@ -24,7 +26,7 @@ export default React.createClass({
         $('.venobox').venobox();
     },
     linkFacebookClicked() {
-        const url = `${config.apiUrl}/facebook`;
+        const url = getFacebookAuthUrl();
         const name = 'facebook_login';
         const specs = 'width=500,height=500';
         window.open(url, name, specs);
