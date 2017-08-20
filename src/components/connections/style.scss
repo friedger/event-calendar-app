@@ -1,0 +1,18 @@
+.section-header {
+    margin-bottom:30px;
+    p {
+        color: #929090;
+        padding-left: 41px;
+    }
+}
+
+.welcome-card {
+
+    &__connect-button {
+        .button.secondary, .button.danger {
+            padding: 10px 30px;
+        }
+        text-align: center;
+        padding: 14px;
+    }
+}

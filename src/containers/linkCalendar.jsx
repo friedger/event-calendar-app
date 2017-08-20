@@ -48,10 +48,10 @@ const component = React.createClass({
         const {user} = this.props.appState;
         return (
             <div>
-                <div className="container">
+                <div>
                     <ProgressBar></ProgressBar>
                 </div>
-                <div className='container'>
+                <div>
                     {this.state.displayIcsForm ?
                         <div className="row">
                             <div className="col-md-12">

@@ -25,7 +25,7 @@ var Component = React.createClass({
                     </div>
                     <div className="col-md-5 calendar-selection__add-more-calendars">
                         <div className="text-header">
-                            <button className="action" onClick={this.props.toggleConnectionsScreen}><i className="fa fa-calendar-plus-o" aria-hidden="true"></i> Add more calendars</button>
+                            <button className="action" onClick={this.props.toggleConnectionsScreen}>📆 Add more calendars</button>
                         </div>
                     </div>
                     <Col md={12}>

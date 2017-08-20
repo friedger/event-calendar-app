@@ -148,7 +148,6 @@ export default React.createClass({
                                         ICS Feed
                                     </div>
                                     <div className="welcome-card__description">
-                                        <p>Use for connecting to <strong>Facebook</strong> or other third party providers.</p>
                                         <p>Requires you to know the .ICS feed url of your calendar.</p>
                                     </div>
                                 </div>

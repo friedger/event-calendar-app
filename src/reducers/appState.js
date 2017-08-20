@@ -8,6 +8,7 @@ import {
     GET_CALENDARS_SUCCESS,
     GET_SETTINGS_SUCCESS,
     GET_CONNECTIONS_SUCCESS,
+    GET_CONNECTIONS,
     DELETE_CALENDAR,
     GET_CALENDARS,
     PUT_CALENDARS_SUCCESS
@@ -68,7 +69,12 @@ export default function appState(state = {
         return Object.assign({}, state, action.payload.body);
     case GET_CONNECTIONS_SUCCESS:
         return Object.assign({}, state, {
-            connections: action.payload
+            connections: action.payload,
+            connectionsLoading: false
+        });
+    case GET_CONNECTIONS:
+        return Object.assign({}, state, {
+            connectionsLoading: true
         });
     case DELETE_CALENDAR:
         return Object.assign({}, state, {

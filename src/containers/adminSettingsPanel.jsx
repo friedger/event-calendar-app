@@ -11,8 +11,6 @@ import EmbedCode from '../components/embedCode';
 import get from 'lodash.get';
 import featurePermissions from '../utils/featurePermissions';
 
-import CalendarConnections from '../components/calendarConnections';
-
 const mapState = ({ appState, eventState }) => {
     return {
         appState,
@@ -50,8 +48,7 @@ const component = React.createClass({
     },
 
     toggleConnectionsScreen() {
-        this.props.getCalendars(this.props.eventCalWidgetUuid);
-        this.setState({ displayConnectionsScreen: !this.state.displayConnectionsScreen });
+        this.context.router.push('/connections');
     },
     getCalendarFormInitialValues() {
         return Object.keys(this.props.appState.calendars).reduce((collection, current) => {
@@ -64,17 +61,7 @@ const component = React.createClass({
         return this.props.eventState.calendar_id && this.props.eventState.uuid;
     },
     render() {
-        return this.state.displayConnectionsScreen
-            ? <CalendarConnections
-                  toggleConnectionsScreen={this.toggleConnectionsScreen}
-                  connections={this.props.appState.connections}
-                  calendarAdded={() => {
-                      this.props.getConnections();
-                  }}
-                  deleteCalendar={this.props.deleteCalendar}
-                  eventCalWidgetUuid={this.props.eventCalWidgetUuid}
-              />
-            : <div className="dashboard-settings">
+        return <div className="dashboard-settings">
                   {this.eventActivated() &&
                       <div
                           onClick={() => this.props.exitEventSettings()}

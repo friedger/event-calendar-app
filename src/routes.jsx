@@ -10,6 +10,7 @@ import NotFoundComponent from './containers/notFound';
 import WeeblyIframe from './containers/weeblyIframe';
 import FailToLink from './containers/FailToLink';
 import LinkCalendar from './containers/LinkCalendar';
+import Connections from './containers/connections';
 import AddSubscription from './containers/AddSubscription';
 import Plans from './containers/plans';
 import AccountError from './containers/accountError';
@@ -73,6 +74,7 @@ export default (store) => {
             <Route path="/add-subscription" component={AddSubscription} />
             <Route path="/facebook/select-page" component={FacebookSelectPage} />
             <Route path="/facebook/auth-success" component={FacebookAuthSuccess} />
+            <Route path="/connections" component={Connections} />
             <Route path="*" component={NotFoundComponent} />
         </Route>
     )
