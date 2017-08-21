@@ -19,6 +19,7 @@ import PrivacyPolicy from './containers/privacyPolicy';
 import TermsOfUse from './containers/termsOfUse';
 import FacebookSelectPage from './containers/facebookSelectPage';
 import FacebookAuthSuccess from './components/facebookAuthSuccess';
+import FacebookAuthFail from './components/facebookAuthFail';
 import Home from './containers/home';
 import Account from './containers/account';
 var cookieUtil = require('./utils/cookieUtil').default;
@@ -74,6 +75,7 @@ export default (store) => {
             <Route path="/add-subscription" component={AddSubscription} />
             <Route path="/facebook/select-page" component={FacebookSelectPage} />
             <Route path="/facebook/auth-success" component={FacebookAuthSuccess} />
+            <Route path="/facebook/auth-fail" component={FacebookAuthFail} />
             <Route path="/connections" component={Connections} />
             <Route path="*" component={NotFoundComponent} />
         </Route>
