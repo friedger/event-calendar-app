@@ -58,37 +58,21 @@ export default React.createClass({
                     <div className="col-md-12 connection-modal">
                         <div className="connection-modal__content">
                             {this.userHasInvaidPlan() && <div className="invalid-plan">Your plan does not support this feature.</div>}
-                            <p>
-                                Add the following to the top of your event description to add a
-                                thumbnail.
-                            </p>
-                            <pre>
-                                {`---
-thumbnail: https://eventcalendarapp.com/linktoyourthumbnail.jpg
----`}
-                            </pre>
-                            <p>
-                                <strong>
-                                    You must copy the whole snippet. Including the dashes before and
-                                    after
-                                </strong>
+                            <p className="highlight">
+                                Adding thumbnails to your events is easy using our WYSIWYG editor.
                             </p>
                             <p>
-                                If you have multiple settings for this event, you simply add them on
-                                top of each other. For example:
+                                Simply click on the event that you want to edit and use the settings panel on the right to configure your event.
                             </p>
-                            <pre>
-                                {`---
-thumbnail: https://eventcalendarapp.com/linktoyourthumbnail.jpg
-image: https://eventcalendarapp.com/linktoyourimage.jpg
----`}
-                            </pre>
-                            <p>We suggest you use an image size of 120px x 120px for thumbnails.</p>
+                            <p>
+                                For a more detailed explanation of configuring your events in Event
+                                Calendar App, take a look at the video below.
+                            </p>
                         </div>
                         <iframe
                             width="560"
                             height="315"
-                            src="https://www.youtube.com/embed/lVKZfQhorxc"
+                            src="https://www.youtube.com/embed/0zVeZlmRRTc"
                             frameborder="0"
                             allowFullScreen
                         />
@@ -104,8 +88,7 @@ image: https://eventcalendarapp.com/linktoyourimage.jpg
                     </Modal.Header>
                     <div className="col-md-12 connection-modal">
                         <div className="connection-modal__content">
-                            {this.userHasInvaidPlan() && <div className="invalid-plan">Your plan does not support this feature.</div>}
-                            <p>To add a location, simply add it via your calendar provider.</p>
+                            <p className="highlight">To add a location, simply add it via your calendar provider.</p>
                             <p>
                                 For example, when adding an event to your google calendar, there is
                                 also an option to add a location. Simply fill in this field and it
@@ -126,39 +109,12 @@ image: https://eventcalendarapp.com/linktoyourimage.jpg
                     <div className="col-md-12 connection-modal">
                         <div className="connection-modal__content">
                             {this.userHasInvaidPlan() && <div className="invalid-plan">Your plan does not support this feature.</div>}
-                            <p>
-                                Add the following to the top of your event description to add a
-                                event tickets link:
+                            <p className="highlight">
+                                Adding ticket links to your events is easy using our WYSIWYG editor.
                             </p>
-                            <pre>
-                                {`---
-ticketsLink: https://eventcalendarapp.com/linktoyourthumbnail.jpg
----`}
-                            </pre>
                             <p>
-                                <strong>
-                                    You must copy the whole snippet. Including the dashes before and
-                                    after
-                                </strong>
+                                Simply click on the event that you want to edit and use the settings panel on the right to configure your event.
                             </p>
-                            <p>You can also change the text inside the button by using:</p>
-                            <pre>
-                                {`---
-ticketsLink: https://eventcalendarapp.com/linktoyourthumbnail.jpg
-purchaseText: Buy Now
----`}
-                            </pre>
-                            <p>
-                                If you have multiple settings for this event, you simply add them on
-                                top of each other. For example:
-                            </p>
-                            <pre>
-                                {`---
-ticketsLink: https://eventcalendarapp.com/linktoyourthumbnail.jpg
-purchaseText: Buy Now
-image: https://eventcalendarapp.com/linktoyourimage.jpg
----`}
-                            </pre>
                             <p>
                                 For a more detailed explanation of configuring your events in Event
                                 Calendar App, take a look at the video below.
@@ -166,7 +122,7 @@ image: https://eventcalendarapp.com/linktoyourimage.jpg
                             <iframe
                                 width="560"
                                 height="315"
-                                src="https://www.youtube.com/embed/lVKZfQhorxc"
+                                src="https://www.youtube.com/embed/0zVeZlmRRTc"
                                 frameborder="0"
                                 allowFullScreen
                             />{' '}
@@ -184,40 +140,24 @@ image: https://eventcalendarapp.com/linktoyourimage.jpg
                     <div className="col-md-12 connection-modal">
                         <div className="connection-modal__content">
                             {this.userHasInvaidPlan() && <div className="invalid-plan">Your plan does not support this feature.</div>}
-                            <p>
-                                Add the following to the top of your event description to add a
-                                image.
-                            </p>
-                            <pre>
-                                {`---
-image: https://eventcalendarapp.com/linktoyourthumbnail.jpg
----`}
-                            </pre>
-                            <p>
-                                <strong>
-                                    You must copy the whole snippet. Including the dashes before and
-                                    after
-                                </strong>
+                            <p className="highlight">
+                                Adding images to your events is easy using our WYSIWYG editor.
                             </p>
                             <p>
-                                If you have multiple settings for this event, you simply add them on
-                                top of each other. For example:
+                                Simply click on the event that you want to edit and use the settings panel on the right to configure your event.
                             </p>
-                            <pre>
-                                {`---
-thumbnail: https://eventcalendarapp.com/linktoyourthumbnail.jpg
-image: https://eventcalendarapp.com/linktoyourimage.jpg
----`}
-                            </pre>
-                            <p>We suggest you use an image size of 1000px x 454px for images.</p>
+                            <p>
+                                For a more detailed explanation of configuring your events in Event
+                                Calendar App, take a look at the video below.
+                            </p>
                         </div>
                         <iframe
                             width="560"
                             height="315"
-                            src="https://www.youtube.com/embed/lVKZfQhorxc"
+                            src="https://www.youtube.com/embed/0zVeZlmRRTc"
                             frameborder="0"
                             allowFullScreen
-                        />
+                        />{' '}
                     </div>
                 </Modal>
                 <Modal show={this.state.showDescriptionModal} onHide={this.hideModal}>
