@@ -19,7 +19,7 @@ export default React.createClass({
                     <CopyToClipboard text={this.getEmbedString()}>
                         <button className="action">Copy Code</button>
                     </CopyToClipboard>
-                    <div className="calendarCode__shopify">{this.props.shopifyUser && <a target="_blank" href="/help#shopify-integrate">Shopify specific integration instructions</a>}</div>
+                    <div className="calendarCode__shopify">{this.props.shopifyUser && <a target="_blank" href="https://support.eventcalendarapp.com/shopify">Shopify specific integration instructions</a>}</div>
                 </Col>
             </Row>
         )

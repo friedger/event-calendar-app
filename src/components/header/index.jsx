@@ -24,7 +24,7 @@ module.exports = React.createClass({
                             {!this.props.loggedIn ?
                                 <ul>
                                     <li>
-                                        <a href="https://eventcalendarapp.com/support" target="_blank">Help</a>
+                                        <a href="https://support.eventcalendarapp.com" target="_blank">Help</a>
                                     </li>
                                     <li>
                                         <Link className="bold" activeClassName="active" to="/login">Login</Link>
@@ -44,7 +44,7 @@ module.exports = React.createClass({
                                         <Link activeClassName="active" to="/account">Account</Link>
                                     </li>
                                     <li>
-                                        <a href="https://eventcalendarapp.com/support" target="_blank">Help</a>
+                                        <a href="https://support.eventcalendarapp.com" target="_blank">Help</a>
                                     </li>
                                     <li onClick={() => appActions.logOut()}>
                                         <a href="#">Log Out</a>

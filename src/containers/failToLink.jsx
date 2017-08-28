@@ -28,7 +28,7 @@ const component = React.createClass({
                 <div className="container">
                     <div className="col-md-12">
                         <h2 style={{'fontWeight': 'bold'}}>We need to connect to your calendar :(</h2>
-                        <p>You can read more about why we need to connect to a calendar <a target="_blank" href="https://eventcalendarapp.com/support/2017/02/18/why-do-i-have-to-connect-my-calendar-to-event-calendar-app/">here</a>.</p>
+                        <p>You can read more about why we need to connect to a calendar <a target="_blank" href="https://support.eventcalendarapp.com/connecting-your-calendar-events-to-event-calendar-app/why-do-i-have-to-connect-my-calendar-to-event-calendar-app">here</a>.</p>
                         <p>Once you've got your calendar account ready, <strong>try linking your calendar again.</strong></p>
                         <a href='#' onClick={() => {this.context.router.push('link-calendar')}} className="start-trial">Back to link options</a>
                     </div>
