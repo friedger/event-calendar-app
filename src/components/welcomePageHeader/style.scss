@@ -11,6 +11,9 @@
 
     &__sub-text {
         padding-bottom: 30px;
+        p {
+            color:#6d6d6d;
+        }
     }
 
     &__collapse-link {
@@ -74,6 +77,7 @@ iframe {
     &__header {
         font-weight: bold;
         padding-bottom: 15px;
+        font-size:18px;
     }
     &__connect {
         border: 3px solid #444;
@@ -98,7 +102,6 @@ iframe {
             color: #999;
             margin-bottom: 0px;
             padding-bottom: 10px;
-            font-size: 14px;
         }
     }
     &__cronofy-desription {

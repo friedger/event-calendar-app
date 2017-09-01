@@ -18,6 +18,16 @@ body {
     }
 }
 
+.handshake {
+    &--small {
+        font-size:24px !important;
+    }
+    &--medium {
+        position: absolute;
+        font-size: 37px;
+    }
+}
+
 .strong {
     font-weight: bold;
 }
@@ -69,7 +79,7 @@ select {
 
 p {
     color: #333333;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: normal;
 }
 

@@ -47,7 +47,7 @@ const component = React.createClass({
     render() {
         const {user} = this.props.appState;
         return (
-            <div>
+            <div className="here">
                 <div>
                     <ProgressBar></ProgressBar>
                 </div>

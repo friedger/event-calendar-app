@@ -40,7 +40,7 @@ export default React.createClass({
                                   </div>
                               </div>
                               <div className="row">
-                                  <div className="col-md-12" style={{ overflow: 'scroll', height: 'calc(100vh - 126px)' }}>
+                                  <div className="col-md-12" style={{ overflow: 'scroll', height: 'calc(100vh - 130px)' }}>
                                       <div className="row">
                                           <div className="col-md-12">
                                               <SuggestionInstructions show={this.props.suggestions} />

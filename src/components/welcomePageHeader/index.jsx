@@ -5,7 +5,7 @@ if (typeof window !== 'undefined') {
 const config = require('../../../config');
 import React from 'react';
 import Collapse from 'react-collapse';
-import {Button, Modal} from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 
 import EventCal from '../eventCal';
 import CalendarSelection from '../calendarSelection';
@@ -14,13 +14,14 @@ import intercom from '../../utils/intercom';
 import venobox from 'venobox/venobox/venobox.min.js';
 
 import getFacebookAuthUrl from '../../utils/getFacebookAuthUrl';
+import WelcomeCard from '../welcomeCard';
 
 export default React.createClass({
     getInitialState() {
         return {
             displayIcsForm: false,
             showCronofyModal: false
-        }
+        };
     },
     componentDidMount() {
         $('.venobox').venobox();
@@ -32,22 +33,22 @@ export default React.createClass({
         window.open(url, name, specs);
     },
     toggleModal() {
-        const {user} = this.props;
+        const { user } = this.props;
         if (this.state.showCronofyModal && user) {
             intercom.trackEvent('Closed Cronofy Modal');
-            intercom.update({user_id: user.userId, email: user.email})
+            intercom.update({ user_id: user.userId, email: user.email });
         }
 
-        this.setState({showCronofyModal: !this.state.showCronofyModal});
+        this.setState({ showCronofyModal: !this.state.showCronofyModal });
     },
     hitCronofy() {
-        var child = window.open(this.props.authUrl, "_blank");
+        var child = window.open(this.props.authUrl, '_blank');
         var leftDomain = false;
 
         const interval = setInterval(function() {
             try {
                 if (child.document.domain === document.domain) {
-                    if (leftDomain && child.document.readyState === "complete") {
+                    if (leftDomain && child.document.readyState === 'complete') {
                         child.close();
                         clearInterval(interval);
                         setTimeout(() => {
@@ -67,102 +68,105 @@ export default React.createClass({
                 }
                 leftDomain = true;
             }
-
         }, 500);
-
     },
     render() {
-
-        const {user, authUrl} = this.props;
+        const { user, authUrl } = this.props;
 
         return (
             <div className="welcome-page-header">
-                <h2>Link your calendar to Event Calendar App</h2>
+                <h2 style={{ 'position': 'relative' }}>
+                    <span style={{ 'padding-right': '10px' }}>
+                        Sync your calendar to Event Calendar App
+                    </span>{' '}
+                    <span className="handshake handshake--medium">🤝</span>
+                </h2>
                 <div className="welcome-page-header__sub-text">
-                <p>Where are your events, or where will they be in the future?</p>
+                    <p>Where are your events, or where will they be in the future?</p>
                 </div>
                 <div className="row">
-                    <div className="col-md-12">
-                        <div className="welcome-card welcome-card--primary">
-                            <div className="row">
-                                <div className="col-sm-8">
-                                    <div className="welcome-card__header welcome-card--primary__header">
-                                        Google, Apple, Outlook or Exchange
-                                    </div>
-                                    <div className="welcome-card__description welcome-card--primary__description">
-                                        <p>The simplest way to connect your calendar to Event Calendar App</p>
-                                    </div>
-                                </div>
-                                <div className="col-sm-4">
-                                    <div>
-                                        <a href='#' onClick={() => this.toggleModal()} className="welcome-card__connect welcome-card--primary__connect">Connect</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-md-12">
-                        <div className="welcome-card__recommended">
-                            <p>Most Popular!</p>
-                        </div>
-                    </div>
-
                     <Modal show={this.state.showCronofyModal} onHide={this.toggleModal}>
                         <Modal.Header closeButton>
-                            <Modal.Title><span>You're about to be taken to our partner...</span></Modal.Title>
-                          </Modal.Header>
+                            <Modal.Title>
+                                <span>You're about to be taken to our partner...</span>
+                            </Modal.Title>
+                        </Modal.Header>
                         <div className="col-md-12 connection-modal">
                             <div className="connection-modal__cronofy">
                                 <img src="https://3o7nze1htecu8vh6nuko0m13-wpengine.netdna-ssl.com/wp-content/themes/cronofy-2015/images/cronofy_logo-wide-colour.svg" />
                             </div>
                             <div className="connection-modal__content">
-                                <p>We use a third party service called <strong>Cronofy</strong> to connect Event Calendar App to your Google, Apple, or Outlook calendar. You will briefly be taken away from our site while you connect.</p>
+                                <p>
+                                    We use a third party service called <strong>Cronofy</strong> to
+                                    connect Event Calendar App to your Google, Apple, or Outlook
+                                    calendar. You will briefly be taken away from our site while you
+                                    connect.
+                                </p>
                                 <p>Don't worry, you only have to do this once!</p>
                             </div>
-                            {this.props.user && this.props.user.bigcommerceUser ? <a target="_blank" onClick={this.hitCronofy} className="action full-width">Connect</a> : <a href={this.props.authUrl} className="action full-width">Connect</a>}
+                            {this.props.user && this.props.user.bigcommerceUser
+                                ? <a
+                                      target="_blank"
+                                      onClick={this.hitCronofy}
+                                      className="action full-width"
+                                  >
+                                      Connect
+                                  </a>
+                                : <a href={this.props.authUrl} className="action full-width">
+                                      Connect
+                                  </a>}
                         </div>
                     </Modal>
-                    <div className="col-md-12">
-                        <div className="welcome-card">
-                            <div className="row">
-                                <div className="col-sm-8">
-                                    <div className="welcome-card__header">
-                                        Facebook
-                                    </div>
-                                    <div className="welcome-card__description">
-                                        <p>Use for connecting to <strong>Facebook</strong>.</p>
-                                    </div>
-                                </div>
-                                <div className="col-sm-4">
-                                    <div>
-                                        <a href="#" onClick={this.linkFacebookClicked} className="welcome-card__connect">Connect</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
+                    <WelcomeCard
+                        mostPopular={true}
+                        header={'Google, Apple, Outlook or Exchange (via Cronofy)'}
+                        description={
+                            'The simplest way to connect your calendar to Event Calendar App'
+                        }
+                    >
+                        <a href="#" onClick={() => this.toggleModal()} className="button secondary">
+                            📆 Connect
+                        </a>
+                    </WelcomeCard>
+
+                    <WelcomeCard header={'Facebook'} description={'Use for connecting to Facebook events'}>
+                        <a href="#" onClick={this.linkFacebookClicked} className="button secondary">
+                            📆 Connect
+                        </a>
+                    </WelcomeCard>
+
+                    <WelcomeCard
+                        header={'ICS'}
+                        description={'Requires you to know the .ICS feed url of your calendar.'}
+                    >
+                        <a
+                            href="#"
+                            className="button secondary"
+                            onClick={this.props.clickIcsConnect}
+                        >
+                            📆 Connect
+                        </a>
+                    </WelcomeCard>
+                </div>
+                <div className="row" style={{'margin-bottom': '50px', 'text-align': 'center'}}>
                     <div className="col-md-12">
-                        <div className="welcome-card">
-                            <div className="row">
-                                <div className="col-sm-8">
-                                    <div className="welcome-card__header">
-                                        ICS Feed
-                                    </div>
-                                    <div className="welcome-card__description">
-                                        <p>Requires you to know the .ICS feed url of your calendar.</p>
-                                    </div>
-                                </div>
-                                <div className="col-sm-4">
-                                    <div>
-                                        <a href="#" className="welcome-card__connect" onClick={this.props.clickIcsConnect}>Connect</a>
-                                    </div>
-                                </div>
-                            </div>
+                        <h3 style={{'border-top': '1px solid #c9c9c9', 'margin-top': '28px', 'padding-top': '33px'}}>Don't have a Calendar to sync to? 🤔</h3>
+                        <div className="welcome-page-header__sub-text">
+                            <p>Register for a free calendar at any of the main calendar providers</p>
                         </div>
+                        <a target="_blank" href="https://www.google.com/calendar" className="create-calendar-with create-calendar-with--google">
+                            <i className="fa fa-google" aria-hidden="true"></i> GOOGLE
+                        </a>
+                        <a target="_blank" href="https://www.icloud.com/calendar" className="create-calendar-with create-calendar-with--apple">
+                            <i className="fa fa-apple" aria-hidden="true"></i> APPLE
+                        </a>
+                        <a target="_blank" href="https://office.live.com/start/Calendar.aspx" className="create-calendar-with create-calendar-with--outlook">
+                            <i className="fa fa-windows" aria-hidden="true"></i> Outlook
+                            </a>
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 });

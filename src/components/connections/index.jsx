@@ -91,7 +91,7 @@ export default React.createClass({
                                 Disconnect
                             </a>}
                     </WelcomeCard>
-                    <WelcomeCard header={'Facebook'} description={'Use for connecting to Facebook'}>
+                    <WelcomeCard header={'Facebook'} description={'Use for connecting to Facebook Page/Business events'}>
                         <a
                             href="#"
                             onClick={this.linkFacebookClicked}

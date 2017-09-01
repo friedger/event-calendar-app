@@ -64,7 +64,7 @@ const component = React.createClass({
                 >
                     <div className="row">
                         <AccountNavigation selected={'account'}></AccountNavigation>
-                        <div className="col-md-9 account__container" style={{ 'min-height': 'calc(100vh - 70px)', height: '100%' }}>
+                        <div className="col-md-9 account__container" style={{ 'min-height': 'calc(100vh - 74px)', height: '100%' }}>
                             <div className="row account__header">
                                 <div className="col-md-12">
                                     <h2>Billing</h2>

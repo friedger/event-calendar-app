@@ -85,7 +85,7 @@ const component = React.createClass({
             );
         }
         return (
-            <div style={{ height: '100vh', overflow: 'scroll'}}>
+            <div style={{ height: '100vh', overflow: 'scroll', background: `${(connections && connections.length === 0) ? '#f5f5f5' : '#fff'}` }}>
                 <SuggestionModals
                     status={get(this, 'props.appState.user.status')}
                 />
