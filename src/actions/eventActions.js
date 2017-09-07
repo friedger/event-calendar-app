@@ -19,7 +19,6 @@ const config = require('../../config');
 import { reset } from 'redux-form';
 
 export function eventSelected(details) {
-    console.log(details)
     return dispatch => {
         dispatch({
             type: GET_EVENT
