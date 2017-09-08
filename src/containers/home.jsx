@@ -58,7 +58,10 @@ const component = React.createClass({
                 <div className="container-fluid" style={{marginTop: '50px'}}>
                     <div className="row">
                         {this.props.appState.user && <NewWidgetButton weeblyUser={get(this, 'props.appState.user.weeblyUser')} onClick={this.props.postWidgets}></NewWidgetButton>}
-                        {this.props.appState.widgets.map((widget, index) => {
+                        {this.props.appState.widgets.map((widget, index, fullArr) => {
+                            if (fullArr.length === 1) {
+                                return <WidgetButton widget={widget} number={index + 1}></WidgetButton>
+                            }
                             return <WidgetButton deleteAction={this.props.deleteWidget} widget={widget} number={index + 1}></WidgetButton>
                         })}
                     </div>

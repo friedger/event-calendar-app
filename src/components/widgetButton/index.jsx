@@ -21,12 +21,12 @@ export default React.createClass({
                     <div className="widget-button__text">
                         Calendar {this.props.number}
                     </div>
-                    <div className="widget-button__trash">
+                    {this.props.deleteAction && <div className="widget-button__trash">
                         <i onClick={(e) => {
                             e.preventDefault();
                             this.setState({modalOpen: true})
                         }} className="fa fa-trash" aria-hidden="true"></i>
-                    </div>
+                    </div>}
                 </div>
                 <Modal show={this.state.modalOpen} onHide={() => this.setState({modalOpen: false})} className="widget-button-modal">
                     <Modal.Header closeButton>
