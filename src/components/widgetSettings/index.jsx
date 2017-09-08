@@ -5,13 +5,12 @@ import TimezoneSelection from '../timezoneSelection';
 import CalendarSelection from '../calendarSelection';
 import ViewModeSelection from '../viewModeSelection';
 import SubscriptionButtonSelection from '../subscriptionButtonSelection';
-import get from 'lodash.get';
 import featurePermissions from '../../utils/featurePermissions';
 import cn from 'classnames';
 
 export default React.createClass({
     getInitialState() {
-        return {};
+        return { showComponent: this.props.show };
     },
     componentWillReceiveProps(nextProps) {
         if (nextProps.show) {
@@ -53,9 +52,10 @@ export default React.createClass({
                 />
                 <TimezoneSelection putSettingsAction={putSettings.bind(null, eventCalWidgetUuid)} />
                 <SubscriptionButtonSelection
-                    validWithPlan={
-                        featurePermissions.checkFeatureAvailability(userStatus, 'subscriptions')
-                    }
+                    validWithPlan={featurePermissions.checkFeatureAvailability(
+                        userStatus,
+                        'subscriptions'
+                    )}
                     putSettingsAction={this.props.putSettings.bind(null, eventCalWidgetUuid)}
                 />
             </div>
