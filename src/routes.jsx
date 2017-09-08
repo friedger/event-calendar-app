@@ -33,16 +33,19 @@ function recordIntercomEvent(eventName) {
 }
 
 function editorOnEnter(nextState, replace, callback) {
+    const token = cookieUtil.getItem('eventcal-admin');
+    if (!token) {
+        replace({ pathname: '/login', query: { loginFailure: true } });
+        return callback();
+    }
     if (!nextState.params.eventCalWidgetUuid) {
-        //get the users default widget
-        const token = cookieUtil.getItem('eventcal-admin');
-        return request.get(`${config.apiUrl}/widgets?token=${token}`)
-        .end((err, res) => {
+        // get the users default widget
+        return request.get(`${config.apiUrl}/widgets?token=${token}`).end((err, res) => {
             const defaultUuid = res.body && res.body[0] && res.body[0].uuid;
             if (defaultUuid) {
-                replace(`/editor/${res.body[0].uuid}`)
+                replace(`/editor/${res.body[0].uuid}`);
             } else {
-                replace('/home/account-error')
+                replace('/home/account-error');
             }
             recordIntercomEvent('visited-dashboard-router-enter');
             callback();
@@ -52,19 +55,27 @@ function editorOnEnter(nextState, replace, callback) {
     callback();
 }
 
-export default (store) => {
+export default store => {
     return (
-        <Route component={App} name='app' path='/'>
+        <Route component={App} name="app" path="/">
             <Route path="login" component={Login} />
             <Route path="dashboard" component={Home}>
                 <Route path="transaction-complete" component={TransactionComplete} />
-                <Route path="plans" component={Plans}/>
+                <Route path="plans" component={Plans} />
                 <Route path="account-error" component={AccountError} />
                 <Route path="network-error" component={NetworkError} />
             </Route>
-            <Route onEnter={editorOnEnter} path="editor(/:eventCalWidgetUuid)" component={Dashboard}></Route>
-            <Route path="account" component={Account}></Route>
-            <Route onEnter={() => recordIntercomEvent('visited-link-page-router-enter')} path="link-calendar" component={Dashboard}/>
+            <Route
+                onEnter={editorOnEnter}
+                path="editor(/:eventCalWidgetUuid)"
+                component={Dashboard}
+            />
+            <Route path="account" component={Account} />
+            <Route
+                onEnter={() => recordIntercomEvent('visited-link-page-router-enter')}
+                path="link-calendar"
+                component={Dashboard}
+            />
             <Route path="firsttime-link-calendar" component={Dashboard} />
             <Route path="register" component={Register} />
             <Route path="help" component={Help} />
@@ -79,5 +90,5 @@ export default (store) => {
             <Route path="/connections" component={Connections} />
             <Route path="*" component={NotFoundComponent} />
         </Route>
-    )
+    );
 };
