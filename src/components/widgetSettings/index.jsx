@@ -7,10 +7,11 @@ import ViewModeSelection from '../viewModeSelection';
 import SubscriptionButtonSelection from '../subscriptionButtonSelection';
 import featurePermissions from '../../utils/featurePermissions';
 import cn from 'classnames';
+import SettingsCategorySelection from '../settingsCategorySelection';
 
 export default React.createClass({
     getInitialState() {
-        return { showComponent: this.props.show };
+        return { showComponent: this.props.show, settingsToDisplay: 'sources' };
     },
     componentWillReceiveProps(nextProps) {
         if (nextProps.show) {
@@ -27,6 +28,9 @@ export default React.createClass({
             return collection;
         }, {});
     },
+    settingClicked(setting) {
+        this.setState({ settingsToDisplay: setting });
+    },
     render() {
         const {
             putCalendars,
@@ -38,14 +42,18 @@ export default React.createClass({
         } = this.props;
         return (
             <div className={cn('widget-settings', { show: this.state.showComponent })}>
-                <CalendarSelection
+                <SettingsCategorySelection settingClicked={this.settingClicked}></SettingsCategorySelection>
+                {this.state.settingsToDisplay === 'sources' && <CalendarSelection
                     onChange={putCalendars.bind(null, eventCalWidgetUuid)}
                     toggleConnectionsScreen={this.props.toggleConnectionsScreen}
                     initialValues={this.getCalendarFormInitialValues(calendars)}
                     loading={calendarsLoading}
+                    addEventClicked={this.props.addEventClicked}
                     fields={Object.keys(calendars)}
                     calendars={calendars}
-                />
+                />}
+                {this.state.settingsToDisplay === 'layout' &&
+                <div>
                 <ViewModeSelection putSettingsAction={putSettings.bind(null, eventCalWidgetUuid)} />
                 <NumberOfEventsToDisplay
                     putSettingsAction={putSettings.bind(null, eventCalWidgetUuid)}
@@ -58,6 +66,7 @@ export default React.createClass({
                     )}
                     putSettingsAction={this.props.putSettings.bind(null, eventCalWidgetUuid)}
                 />
+                </div>}
             </div>
         );
     }

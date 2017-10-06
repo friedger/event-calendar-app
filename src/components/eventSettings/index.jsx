@@ -7,6 +7,7 @@ import debounce from 'lodash.debounce';
 import uploadcare from 'uploadcare-widget';
 import LockedFeature from '../lockedFeature';
 import { TwitterPicker } from 'react-color';
+import NewPostForm from '../newPostForm';
 
 var timer;
 
@@ -43,7 +44,7 @@ var Component = React.createClass({
     componentWillMount() {
         this.makeApiCall = debounce(values => {
             this.props.putEventAction(values);
-        }, 100);
+        }, 1000);
     },
     componentDidMount() {
         if (this.props.validWithPlan && !this.props.demoEvent) {
@@ -110,6 +111,11 @@ var Component = React.createClass({
             this.initialiseWidgets();
         }
     },
+    manualEventSettingsUpdated(handleSubmit, manualEventSettings) {
+        setTimeout(() => {
+            handleSubmit(values => this.makeApiCall(Object.assign(manualEventSettings, values)))();
+        }, 0);
+    },
     componentWillReceiveProps(nextProps) {
         if (nextProps.fields.image.value && this.state.widget) {
             ignoreImageOnChange = true;
@@ -155,6 +161,16 @@ var Component = React.createClass({
         }
         return (
             <div className={cn('event-settings', { show: this.state.showComponent })}>
+                <button onClick={this.props.deleteManualEvent} className="danger delete-event">Delete event</button>
+                {this.props.manualEventSelected && <NewPostForm
+                    ref="newPostForm"
+                    inputChange={() => {
+                        this.refs.newPostForm.submit();
+                    }}
+                    onSubmit={values => {
+                        this.manualEventSettingsUpdated(handleSubmit, values);
+                    }}
+                />}
                 <div className="row settings-form">
                     <div className="col-md-12">
                         <form ref="settingsForm" className="form-horizontal">
@@ -170,24 +186,37 @@ var Component = React.createClass({
                                         </ControlLabel>
                                         <p>Color code your event.</p>
                                     </Col>
-                                    {validWithPlan &&
+                                    {validWithPlan && (
                                         <Col md={6}>
                                             <div className="the-colour-picker">
-                                            <TwitterPicker color={ color.value === null ? false : color.value } onChange={(picker) => this.inputOnChange(picker && picker.hex, color, handleSubmit)} triangle={'hide'} colors={pickerColours} width={260} />
-                                            {color.value &&
-                                                <button
-                                                    onClick={this.deleteColor}
-                                                    className="danger danger--small delete-color"
+                                                <TwitterPicker
+                                                    color={
+                                                        color.value === null ? false : color.value
+                                                    }
+                                                    onChange={picker =>
+                                                        this.inputOnChange(
+                                                            picker && picker.hex,
+                                                            color,
+                                                            handleSubmit
+                                                        )}
+                                                    triangle={'hide'}
+                                                    colors={pickerColours}
+                                                    width={260}
+                                                />
+                                                {color.value && (
+                                                    <button
+                                                        onClick={this.deleteColor}
+                                                        className="danger danger--small delete-color"
                                                     >
-                                                    Delete
-                                                </button>}
+                                                        Delete
+                                                    </button>
+                                                )}
                                             </div>
-                                        </Col>}
-                                    {!validWithPlan &&
-                                        <LockedFeature
-                                            columns={6}
-                                            title={'Upgrade your account'}
-                                        />}
+                                        </Col>
+                                    )}
+                                    {!validWithPlan && (
+                                        <LockedFeature columns={6} title={'Upgrade your account'} />
+                                    )}
                                 </Row>
                                 <Row className="settings-space">
                                     <Col md={6}>
@@ -200,7 +229,7 @@ var Component = React.createClass({
                                         </ControlLabel>
                                         <p>Where can people buy tickets to your event?</p>
                                     </Col>
-                                    {validWithPlan &&
+                                    {validWithPlan && (
                                         <Col md={6}>
                                             <FormControl
                                                 {...ticketsLink}
@@ -213,12 +242,11 @@ var Component = React.createClass({
                                                         handleSubmit
                                                     )}
                                             />
-                                        </Col>}
-                                    {!validWithPlan &&
-                                        <LockedFeature
-                                            columns={6}
-                                            title={'Upgrade your account'}
-                                        />}
+                                        </Col>
+                                    )}
+                                    {!validWithPlan && (
+                                        <LockedFeature columns={6} title={'Upgrade your account'} />
+                                    )}
                                 </Row>
                                 <Row className="settings-space">
                                     <Col md={6}>
@@ -227,11 +255,12 @@ var Component = React.createClass({
                                                 'setting-title--strike': !validWithPlan
                                             })}
                                         >
-                                            {' '}🎫 Tickets Text:
+                                            {' '}
+                                            🎫 Tickets Text:
                                         </ControlLabel>
                                         <p>What text would you like to display in the button?</p>
                                     </Col>
-                                    {validWithPlan &&
+                                    {validWithPlan && (
                                         <Col md={6}>
                                             <FormControl
                                                 {...purchaseText}
@@ -247,12 +276,11 @@ var Component = React.createClass({
                                                         handleSubmit
                                                     )}
                                             />
-                                        </Col>}
-                                    {!validWithPlan &&
-                                        <LockedFeature
-                                            columns={6}
-                                            title={'Upgrade your account'}
-                                        />}
+                                        </Col>
+                                    )}
+                                    {!validWithPlan && (
+                                        <LockedFeature columns={6} title={'Upgrade your account'} />
+                                    )}
                                 </Row>
                                 <Row className="settings-space">
                                     <Col md={6}>
@@ -261,11 +289,12 @@ var Component = React.createClass({
                                                 'setting-title--strike': !validWithPlan
                                             })}
                                         >
-                                            {' '}🌄 Image Url:
+                                            {' '}
+                                            🌄 Image Url:
                                         </ControlLabel>
                                         <p>The image to be displayed for your event.</p>
                                     </Col>
-                                    {validWithPlan &&
+                                    {validWithPlan && (
                                         <Col md={6}>
                                             <div>
                                                 <input
@@ -277,19 +306,19 @@ var Component = React.createClass({
                                                     data-image-shrink="1080x270 75%"
                                                 />
                                             </div>
-                                            {image.value &&
+                                            {image.value && (
                                                 <button
                                                     onClick={this.deleteImage}
                                                     className="danger danger--small"
                                                 >
                                                     Delete
-                                                </button>}
-                                        </Col>}
-                                    {!validWithPlan &&
-                                        <LockedFeature
-                                            columns={6}
-                                            title={'Upgrade your account'}
-                                        />}
+                                                </button>
+                                            )}
+                                        </Col>
+                                    )}
+                                    {!validWithPlan && (
+                                        <LockedFeature columns={6} title={'Upgrade your account'} />
+                                    )}
                                 </Row>
                                 <Row className="settings-space">
                                     <Col md={6}>
@@ -298,11 +327,12 @@ var Component = React.createClass({
                                                 'setting-title--strike': !validWithPlan
                                             })}
                                         >
-                                            {' '}🌄 Thumbnail Url:
+                                            {' '}
+                                            🌄 Thumbnail Url:
                                         </ControlLabel>
                                         <p>The image to display as the thumbnail.</p>
                                     </Col>
-                                    {validWithPlan &&
+                                    {validWithPlan && (
                                         <Col md={6}>
                                             <div>
                                                 <input
@@ -314,19 +344,19 @@ var Component = React.createClass({
                                                     data-image-shrink="125x125 75%"
                                                 />
                                             </div>
-                                            {thumbnail.value &&
+                                            {thumbnail.value && (
                                                 <button
                                                     onClick={this.deleteThumbnail}
                                                     className="danger danger--small"
                                                 >
                                                     Delete
-                                                </button>}
-                                        </Col>}
-                                    {!validWithPlan &&
-                                        <LockedFeature
-                                            columns={6}
-                                            title={'Upgrade your account'}
-                                        />}
+                                                </button>
+                                            )}
+                                        </Col>
+                                    )}
+                                    {!validWithPlan && (
+                                        <LockedFeature columns={6} title={'Upgrade your account'} />
+                                    )}
                                 </Row>
                                 <Row className="settings-space">
                                     <Col md={12}>

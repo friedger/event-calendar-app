@@ -23,7 +23,14 @@ export function eventSelected(details) {
         dispatch({
             type: GET_EVENT
         });
-        request.get(`${config.apiUrl}/event?uuid=${details.uuid}&calendarId=${details.calendar_id}`).end((err, res) => {
+
+        var endpoint = `${config.apiUrl}/event?uuid=${details.uuid}&calendarId=${details.calendar_id}`;
+
+        if (details.manualEvent) {
+            endpoint += `&manualEvent=${details.manualEvent}`;
+        }
+
+        request.get(endpoint).end((err, res) => {
             if (err) {
                 return dispatch({
                     type: GET_EVENT_ERROR,
@@ -43,7 +50,8 @@ export function eventSelected(details) {
                 type: GET_EVENT_SUCCESS,
                 payload: {
                     responseBody: res.body,
-                    eventDetail: details
+                    eventDetail: details,
+                    manualEvent: details.manualEvent
                 }
             });
         });

@@ -10,6 +10,12 @@
         opacity:1;
         position: relative;
     }
+    .delete-event {
+        position: absolute;
+        right: 0;
+        top: 16px;
+        z-index:1;
+    }
     .delete-color {
         position: absolute;
         bottom: 0px;

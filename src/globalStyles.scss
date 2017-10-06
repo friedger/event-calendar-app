@@ -3,6 +3,7 @@
 @import './dashboardSettings';
 @import './uploadcare';
 @import './eventcalOverrides';
+@import './datepicker';
 
 html {
     height: 100%;
@@ -259,7 +260,7 @@ h1 {
 .dashboard-header {
     padding: 13px;
     font-size: 20px;
-    font-weight: 100;
+    font-weight: bold;
     &__event-settings {
         padding-left: 40px;
     }

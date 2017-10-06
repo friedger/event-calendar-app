@@ -8,9 +8,8 @@ import Loader from 'react-loader';
 
 var Component = React.createClass({
     formChange(id, event) {
-        this.props.onChange(id, event.target.checked)
+        this.props.onChange(id, event.target.checked);
     },
-
     render() {
         const { fields, handleSubmit, submitting } = this.props;
         return (
@@ -18,14 +17,50 @@ var Component = React.createClass({
                 {this.props.loading ?
                     <div className="calendar-selection__loading"><Loader type='spin' color='#000' width={2} radius={3} /></div>
                 :
+                <div>
                 <Row className="settings-space">
                     <div className="col-md-7">
-                        <span className="setting-title">Calendars</span>
-                        <p class="calendar-selection__description">The calendars containing your events</p>
+                        <span className="setting-title">Manually add events</span>
+                        <p className="calendar-selection__description">Toggle manually added events from displaying in your Events Calendar</p>
                     </div>
                     <div className="col-md-5 calendar-selection__add-more-calendars">
                         <div className="text-header">
-                            <button className="action" onClick={this.props.toggleConnectionsScreen}>📆 Add more calendars</button>
+                            <button className="action" onClick={this.props.addEventClicked}>📆 Add Event</button>
+                        </div>
+                    </div>
+                    <Col md={12}>
+                        <form>
+                            <FormGroup>
+                                <Row className="calendar-selection">
+                                    {Object.keys(fields).map((calendar, index) => {
+                                        if (this.props.calendars[calendar].calendar_type !== 'manual') {
+                                            return;
+                                        }
+                                        const field = fields[calendar];
+                                        return (
+                                            <Col md={12} key={index}>
+                                                <div className="checkbox">
+                                                    <input id={index + '-checkbox'} type="checkbox" onClick={this.formChange.bind(null, this.props.calendars[calendar].calendar_id)} {...field}/>
+                                                    <label htmlFor={index + '-checkbox'}>
+                                                        <div className="hideOverflow">{this.props.calendars[calendar].calendar_name}</div>
+                                                    </label>
+                                                </div>
+                                            </Col>
+                                        )
+                                    })}
+                                </Row>
+                            </FormGroup>
+                        </form>
+                    </Col>
+                </Row>
+                <Row className="settings-space">
+                    <div className="col-md-7">
+                        <span className="setting-title">Synced Calendars</span>
+                        <p className="calendar-selection__description">External calendars we are currently synced to. Select those you would like to appear in your Events Calendar.</p>
+                    </div>
+                    <div className="col-md-5 calendar-selection__add-more-calendars">
+                        <div className="text-header">
+                            <button className="action" onClick={this.props.toggleConnectionsScreen}>📆 Sync another calendar</button>
                         </div>
                     </div>
                     <Col md={12}>
@@ -33,11 +68,14 @@ var Component = React.createClass({
                         <FormGroup>
                             <Row className="calendar-selection">
                         {Object.keys(fields).map((calendar, index) => {
+                            if (this.props.calendars[calendar].calendar_type === 'manual') {
+                                return;
+                            }
                             const field = fields[calendar];
                             return (
-                                <Col md={4} key={index}>
+                                <Col md={12} key={index}>
                                     <div className="checkbox">
-                                        <input id={index + '-checkbox'} type="checkbox" onClick={this.formChange.bind(null, this.props.calendars[calendar].calendar_id)} {...field}/>
+                                        <input id={index + '-checkbox'} onChange={() => console.log('change fired')} type="checkbox" onClick={this.formChange.bind(null, this.props.calendars[calendar].calendar_id)} {...field}/>
                                         <label htmlFor={index + '-checkbox'}>
                                             <div className="hideOverflow">{this.props.calendars[calendar].calendar_name}</div>
                                         </label>
@@ -50,6 +88,8 @@ var Component = React.createClass({
                     </form>
                 </Col>
                 </Row>
+                </div>
+
             }
         </div>
         )

@@ -1,0 +1,13 @@
+.newPost {
+    &__add-event-header {
+        position:absolute;
+        right: 0;
+        top: -7px;
+    }
+}
+
+.form-control, textarea {
+    &.error {
+        border-color: red;
+    }
+}

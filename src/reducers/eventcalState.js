@@ -3,6 +3,10 @@ import {
     PUT_CALENDARS_SUCCESS
 } from '../actions/calendarActions';
 
+import {
+    POST_MANUAL_EVENT_SUCCESS,
+} from '../actions/manualEventActions';
+
 export default function eventCal(state = {
     eventcalHasNoEvents: false
 }, action) {
@@ -14,6 +18,12 @@ export default function eventCal(state = {
         }
         return Object.assign({}, state, {
             eventcalHasNoEvents: true
+        });
+    }
+
+    if (action.type === POST_MANUAL_EVENT_SUCCESS) {
+        return Object.assign({}, state, {
+            eventcalHasNoEvents: false
         });
     }
 
