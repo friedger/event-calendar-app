@@ -53,7 +53,6 @@ const component = React.createClass({
         this.props.blowState();
     },
     componentDidMount() {
-        console.log('mounted component');
         this.props.getUser();
         this.props.getCalendars(this.props.params.eventCalWidgetUuid);
         this.props.getSettings(this.props.params.eventCalWidgetUuid);
@@ -61,7 +60,7 @@ const component = React.createClass({
         this.props.getOnboardingStatus();
     },
     userHasLinkedCalendarOrChosenManual() {
-        return (this.props.connections && this.props.connections.length > 0) || (this.props.onBoardingState && this.props.onBoardingState.selected_manual_events);
+        return (this.props.appState.connections && this.props.appState.connections.length > 0) || (this.props.onBoardingState && this.props.onBoardingState.selected_manual_events);
     },
     render() {
         const { user, connections } = this.props.appState;

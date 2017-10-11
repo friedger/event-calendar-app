@@ -8,3 +8,10 @@
         text-align: right;
     }
 }
+
+.calendar-selection-container {
+    display: none;
+    &.show {
+        display: block;
+    }
+}

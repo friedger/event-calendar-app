@@ -5,6 +5,7 @@ if (typeof window !== 'undefined') {
 import {Input, Row, Col, Checkbox, FormGroup, ControlLabel} from 'react-bootstrap';
 import {reduxForm} from 'redux-form';
 import Loader from 'react-loader';
+import cn from 'classnames';
 
 var Component = React.createClass({
     formChange(id, event) {
@@ -13,7 +14,7 @@ var Component = React.createClass({
     render() {
         const { fields, handleSubmit, submitting } = this.props;
         return (
-            <div>
+            <div className={cn('calendar-selection-container', { show: this.props.show })}>
                 {this.props.loading ?
                     <div className="calendar-selection__loading"><Loader type='spin' color='#000' width={2} radius={3} /></div>
                 :
@@ -97,7 +98,8 @@ var Component = React.createClass({
 });
 
 export default Component = reduxForm({ // <----- THIS IS THE IMPORTANT PART!
-  form: 'calendarSelection'                         // a unique name for this form
+  form: 'calendarSelection',
+  destroyOnUnmount: false                       // a unique name for this form
 })(Component);
 
 import React from 'react';

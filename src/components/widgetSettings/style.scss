@@ -14,3 +14,10 @@
         z-index: 1;
     }
 }
+
+.layout-options-container {
+    display: none;
+    &.show {
+        display: block;
+    }
+}

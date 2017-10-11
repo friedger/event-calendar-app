@@ -161,7 +161,7 @@ var Component = React.createClass({
         }
         return (
             <div className={cn('event-settings', { show: this.state.showComponent })}>
-                <button onClick={this.props.deleteManualEvent} className="danger delete-event">Delete event</button>
+                {this.props.manualEventSelected && <button onClick={this.props.deleteManualEvent} className="danger delete-event">Delete event</button>}
                 {this.props.manualEventSelected && <NewPostForm
                     ref="newPostForm"
                     inputChange={() => {

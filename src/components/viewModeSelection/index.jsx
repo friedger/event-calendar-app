@@ -83,7 +83,8 @@ var Component = React.createClass({
 export default Component = reduxForm({ // <----- THIS IS THE IMPORTANT PART!
     form: 'viewmodeSelection', // a unique name for this form
     fields: ['listView', 'gridView', 'defaultView'],
-    overwriteOnInitialValuesChange: false
+    overwriteOnInitialValuesChange: false,
+    destroyOnUnmount: false
 }, (state) => {
     return {initialValues: state.appState};
 })(Component);

@@ -20,7 +20,7 @@ import {
 } from '../actions/widgetActions';
 
 export default function appState(state = {
-    calendars: {},
+    calendars: [],
     suggestions: false,
     widgets: []
 }, action) {

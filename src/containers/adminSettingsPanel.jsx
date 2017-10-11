@@ -12,6 +12,8 @@ import EmbedCode from '../components/embedCode';
 import get from 'lodash.get';
 import featurePermissions from '../utils/featurePermissions';
 import NewPost from '../components/newPost';
+import AddedFirstEventSuccess from '../components/modals/addedFirstEventSuccess';
+import ManualEventsNotSelected from '../components/modals/manualEventsNotSelected';
 
 const mapState = ({ appState, eventState, manualEventState, onBoardingState }) => {
     return {
@@ -43,14 +45,18 @@ const component = React.createClass({
             displayConnectionsScreen: false,
             addCalendarSelected: false,
             displayAddEventScreen: false,
-            eventHasBeenAdded: false
+            eventHasBeenAdded: false,
+            showFirstEventSuccessModal: false,
+            turnOnManualEventsModal: false
         };
     },
     componentDidMount() {
         document.addEventListener('ECA_event-clicked', e => {
             if (e.detail.opening) {
-                this.props.closeNewEventForm();
-                this.props.eventSelected(e.detail);
+                if (this.userDoesNotNeedToAddAnEvent()) {
+                    this.props.closeNewEventForm();
+                    this.props.eventSelected(e.detail);
+                }
             }
         });
     },
@@ -62,15 +68,21 @@ const component = React.createClass({
         return this.props.eventState.calendar_id && this.props.eventState.uuid;
     },
     addEventClicked() {
+        if (!this.manualEventsSelected()) {
+            return this.setState({ turnOnManualEventsModal: true });
+        }
         this.props.openNewEventForm();
         this.props.addNewEvent();
     },
-    exitAddEventScreen() {
-        if (
+    userDoesNotNeedToAddAnEvent() {
+        return (
             this.state.eventHasBeenAdded ||
             this.props.onBoardingState.linked_calendar ||
             this.props.onBoardingState.added_an_event
-        ) {
+        );
+    },
+    exitAddEventScreen() {
+        if (this.userDoesNotNeedToAddAnEvent()) {
             this.props.closeNewEventForm();
             return this.props.addNewEvent();
         }
@@ -88,6 +100,10 @@ const component = React.createClass({
         this.props.addNewEvent();
     },
     postManualEvent(event) {
+        if (localStorage && !localStorage.getItem('onboarding.addedEvent')) {
+            localStorage.setItem('onboarding.addedEvent', 1);
+            this.setState({ showFirstEventSuccessModal: true });
+        }
         this.props.postManualEvent(event);
         this.setState({ eventHasBeenAdded: true });
         const calendarToDeselect = this.props.appState.calendars.find(
@@ -101,11 +117,35 @@ const component = React.createClass({
     },
     deleteManualEvent() {
         const currentlySelectedEvent = this.props.eventState;
-        this.props.deleteManualEvent({ calendarId: currentlySelectedEvent.calendar_id, id: currentlySelectedEvent.id });
+        this.props.deleteManualEvent({
+            calendarId: currentlySelectedEvent.calendar_id,
+            id: currentlySelectedEvent.id
+        });
+    },
+    manualEventsSelected() {
+        if (this.props.appState && this.props.appState.calendars) {
+            return this.props.appState.calendars.find(calendar => {
+                return calendar.calendar_type === 'manual' && calendar.selected === true;
+            });
+        }
+        return false;
     },
     render() {
         return (
             <div className="dashboard-settings">
+                <AddedFirstEventSuccess
+                    show={this.state.showFirstEventSuccessModal}
+                    hide={() => this.setState({ showFirstEventSuccessModal: false })}
+                />
+                <ManualEventsNotSelected
+                    show={this.state.turnOnManualEventsModal}
+                    hide={() => this.setState({ turnOnManualEventsModal: false })}
+                    continueAnyway={() => {
+                        this.props.openNewEventForm();
+                        this.props.addNewEvent();
+                        this.setState({ turnOnManualEventsModal: false })
+                    }}
+                />
                 {this.eventActivated() && (
                     <div
                         onClick={() => this.props.exitEventSettings()}
@@ -123,10 +163,7 @@ const component = React.createClass({
                         onClick={() => this.exitAddEventScreen()}
                         className="dashboard-header__close"
                     >
-                        <i
-                            className="fa fa-times"
-                            aria-hidden="true"
-                        />{' '}
+                        <i className="fa fa-times" aria-hidden="true" />{' '}
                     </div>
                 )}
                 <div className="dashboard-header dashboard-header--right row">
@@ -184,6 +221,7 @@ const component = React.createClass({
                                 manualEventState={this.props.manualEventState}
                                 postManualEvent={this.postManualEvent}
                                 close={this.exitAddEventScreen}
+                                manualEventsSelected={this.manualEventsSelected()}
                                 editEventClicked={this.editEventClicked}
                                 addNewEventClicked={this.addNewEventClicked}
                             />

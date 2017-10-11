@@ -55,6 +55,19 @@
         text-align: center;
     }
 
+    &__help-image {
+        img {
+            width: 80%;
+        }
+    }
+
+    &__buttons {
+        text-align: center;
+        button {
+            margin-right: 5px;
+        }
+    }
+
     &__content {
         padding-bottom: 13px;
 
