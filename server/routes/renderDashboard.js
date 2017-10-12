@@ -50,6 +50,12 @@ module.exports = function (req, res) {
 
         res.render('index.hbs', renderConfig);
     }).catch(err => {
+        if (err.code === 'ECONNREFUSED') {
+            logger.error('A user saw the network error. The api was down', {
+                url: req.originalUrl
+            });
+            return res.redirect('/dashboard/network-error');
+        }
         logger.error('A user saw the account error', {
             url: req.originalUrl,
             cookies: req.cookies,
