@@ -19,7 +19,7 @@ export default React.createClass({
         if (nextProps.show) {
             theTimeout = window.setTimeout(() => {
                 this.setState({ showComponent: true });
-            }, 500);
+            }, 250);
             return;
         }
         window.clearTimeout(theTimeout);

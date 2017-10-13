@@ -19,8 +19,8 @@ export default React.createClass({
                         <img src="/images/help/turnOnManualEvents.gif"></img>
                     </div>
                     <div className="connection-modal__buttons">
-                        <button onClick={this.props.continueAnyway} className="default">Continue anyway</button>
                         <button onClick={this.props.hide} className="action">Back to settings</button>
+                        <button onClick={this.props.continueAnyway} className="default">Continue anyway</button>
                     </div>
                 </div>
             </Modal>

@@ -19,6 +19,10 @@ export default React.createClass({
                 this.setState({ displaySubmitButtons: true });
             }, 2000);
         }
+
+        if (this.props.postedEvent && (nextProps.postedEvent === false) && (nextProps.postingEvent === false)) {
+            this.setState({ postingWasSuccess: false, displaySubmitButtons: false });
+        }
     },
     render() {
         const { postedEvent, postingEvent } = this.props;
