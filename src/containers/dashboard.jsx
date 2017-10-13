@@ -20,12 +20,13 @@ import SuggestionModals from '../components/suggestionModals';
 import cn from 'classnames';
 import getCronofyAuthUrl from '../utils/getCronofyAuthUrl';
 
-const mapState = ({ appState, form, eventcalState, eventState }) => {
+const mapState = ({ appState, form, eventcalState, eventState, onBoardingState }) => {
     return {
         appState,
         form,
         eventcalState,
-        eventState
+        eventState,
+        onBoardingState
     };
 };
 
@@ -56,9 +57,14 @@ const component = React.createClass({
         this.props.getCalendars(this.props.params.eventCalWidgetUuid);
         this.props.getSettings(this.props.params.eventCalWidgetUuid);
         this.props.getConnections();
+        this.props.getOnboardingStatus();
+    },
+    userHasLinkedCalendarOrChosenManual() {
+        return (this.props.appState.connections && this.props.appState.connections.length > 0) || (this.props.onBoardingState && this.props.onBoardingState.selected_manual_events);
     },
     render() {
         const { user, connections } = this.props.appState;
+        const onBoarding = this.props.onBoardingState;
         const testMode = this.props.location.query.testMode;
 
         const userHasRegisteredOrCancelled =
@@ -69,11 +75,10 @@ const component = React.createClass({
         const containerClassNames = cn(
             {
                 'container-fluid':
-                    connections &&
-                    connections.length > 0 &&
+                    this.userHasLinkedCalendarOrChosenManual() &&
                     (userHasSubscribed || userHasRegisteredOrCancelled)
             },
-            { container: connections && connections.length === 0 },
+            { container: !this.userHasLinkedCalendarOrChosenManual() },
             'dashboard'
         );
 
@@ -85,13 +90,13 @@ const component = React.createClass({
             );
         }
         return (
-            <div style={{ height: '100vh', overflow: 'scroll', background: `${(connections && connections.length === 0) ? '#f5f5f5' : '#fff'}` }}>
+            <div style={{ height: '100vh', overflow: 'scroll', background: `${!this.userHasLinkedCalendarOrChosenManual() ? '#f5f5f5' : '#fff'}` }}>
                 <SuggestionModals
                     status={get(this, 'props.appState.user.status')}
                 />
                 <Header
-                    doNotDisplayDashboardLink={connections && connections.length === 0}
-                    useFluidContainer={connections && connections.length > 0}
+                    doNotDisplayDashboardLink={!this.userHasLinkedCalendarOrChosenManual()}
+                    useFluidContainer={this.userHasLinkedCalendarOrChosenManual()}
                     loggedIn={true}
                 />
                 {this.props.location.query.showSuccessModal &&
@@ -99,7 +104,7 @@ const component = React.createClass({
                     <SuccessfulLinkModal />}
                 <div className={containerClassNames}>
                     {userHasRegisteredOrCancelled &&
-                        connections &&
+                        (connections && onBoarding) &&
                         <RegisteredUser
                             testMode={testMode}
                             user={this.props.appState.user}
@@ -113,9 +118,10 @@ const component = React.createClass({
                             eventcalRemovedAction={this.props.eventcalRemoved}
                             eventcalHasNoEvents={this.props.eventcalState.eventcalHasNoEvents}
                             eventCalWidgetUuid={this.props.params.eventCalWidgetUuid}
+                            onBoardingState={this.props.onBoardingState}
                         />}
                     {userHasSubscribed &&
-                        connections &&
+                        (connections && onBoarding) &&
                         <SubscriptionUser
                             connections={connections}
                             user={this.props.appState.user}
@@ -130,6 +136,7 @@ const component = React.createClass({
                             eventcalRemovedAction={this.props.eventcalRemoved}
                             eventcalHasNoEvents={this.props.eventcalState.eventcalHasNoEvents}
                             eventCalWidgetUuid={this.props.params.eventCalWidgetUuid}
+                            onBoardingState={this.props.onBoardingState}
                         />}
                 </div>
             </div>

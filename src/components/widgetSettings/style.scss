@@ -3,11 +3,21 @@
     transition: opacity 300ms ease-in;
     position: absolute;
     left: 15px;
+    top: 0;
     right: 15px;
+    z-index: -1;
     &.show {
         left:auto;
         right: auto;
         opacity: 1;
         position: relative;
+        z-index: 1;
+    }
+}
+
+.layout-options-container {
+    display: none;
+    &.show {
+        display: block;
     }
 }

@@ -1,0 +1,22 @@
+.settings-navigation {
+    .setting {
+        display: inline-block;
+        cursor: pointer;
+        width: 50%;
+        border-bottom: 3px solid #eee;
+        font-size: 18px;
+        font-weight: bold;
+        padding-bottom: 13px;
+        margin-top: 5px;
+        color: #999999;
+        transition: color 0.1s ease-in;
+        &:hover {
+            color: #444;
+        }
+        &--active {
+            opacity: 1;
+            color:#444;
+            border-bottom: 3px solid #6786ab;
+        }
+    }
+}

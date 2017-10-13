@@ -8,6 +8,10 @@
         font-weight: bold;
     }
 
+    &__or {
+        padding-top: 19px;
+    }
+
 
     &__sub-text {
         padding-bottom: 30px;
@@ -49,6 +53,19 @@
 
     &__cronofy {
         text-align: center;
+    }
+
+    &__help-image {
+        img {
+            width: 80%;
+        }
+    }
+
+    &__buttons {
+        text-align: center;
+        button {
+            margin-right: 5px;
+        }
     }
 
     &__content {

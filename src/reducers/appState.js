@@ -20,7 +20,7 @@ import {
 } from '../actions/widgetActions';
 
 export default function appState(state = {
-    calendars: {},
+    calendars: [],
     suggestions: false,
     widgets: []
 }, action) {
@@ -62,9 +62,15 @@ export default function appState(state = {
             calendarsLoading: true
         });
     case PUT_CALENDARS_SUCCESS:
+        const calendars = state.calendars.map((calendar) => {
+            if (action.payload.calendarId === calendar.calendar_id) {
+                return Object.assign({}, calendar, { selected: action.payload.selected });
+            }
+            return Object.assign({}, calendar);
+        });
         return Object.assign({}, state, {
             calendarsLoading: false
-        });
+        }, { calendars });
     case GET_SETTINGS_SUCCESS:
         return Object.assign({}, state, action.payload.body);
     case GET_CONNECTIONS_SUCCESS:

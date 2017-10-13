@@ -6,6 +6,10 @@ import {
     RESET_EVENT
 } from '../actions/eventActions';
 
+import {
+    DELETE_MANUAL_EVENT_SUCCESS
+} from '../actions/manualEventActions';
+
 export default function eventState(state = {}, action) {
     switch (action.type) {
     case GET_EVENT:
@@ -17,7 +21,8 @@ export default function eventState(state = {}, action) {
             {
                 calendar_id: action.payload.eventDetail.calendar_id,
                 uuid: action.payload.eventDetail.uuid,
-                demoEventSelected: action.payload.eventDetail.demoCalendar
+                demoEventSelected: action.payload.eventDetail.demoCalendar,
+                manualEventSelected: action.payload.eventDetail.manualEvent
             },
                 { eventSettingsLoading: false },
                 action.payload.responseBody
@@ -26,13 +31,16 @@ export default function eventState(state = {}, action) {
         return Object.assign({}, state, { demoEventSelected: true });
     case EXIT_EVENT_SETTINGS:
         return { eventSettingsLoading: false, demoEventSelected: false };
+    case DELETE_MANUAL_EVENT_SUCCESS:
+        return {};
     case RESET_EVENT:
         return Object.assign(
                 {},
             {
                 calendar_id: action.payload.eventDetail.calendar_id,
                 uuid: action.payload.eventDetail.uuid,
-                demoEventSelected: action.payload.eventDetail.demoCalendar
+                demoEventSelected: action.payload.eventDetail.demoCalendar,
+                manualEventSelected: action.payload.eventDetail.manualEvent
             },
                 { eventSettingsLoading: false }
             );

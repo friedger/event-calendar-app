@@ -150,14 +150,14 @@ export function putCalendars(eventCalWidgetUuid, calendarId, selected) {
                         if (eventsResponseContainsEvents(res)) {
                             dispatch({
                                 type: PUT_CALENDARS_SUCCESS,
-                                payload: {res:putCalendarsResponse, hasEvents: true}
+                                payload: { res: putCalendarsResponse, hasEvents: true, calendarId, selected }
                             });
                             var a = new MouseEvent('refreshCalendar', {});
                             document.dispatchEvent(a);
                         } else {
                             dispatch({
                                 type: PUT_CALENDARS_SUCCESS,
-                                payload: {res:putCalendarsResponse, hasEvents: false}
+                                payload: {res:putCalendarsResponse, hasEvents: false, calendarId, selected}
                             });
                             setTimeout(() => {
                                 var a = new MouseEvent('refreshCalendar', {});

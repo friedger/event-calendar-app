@@ -1,0 +1,19 @@
+.addEventSubmitButtons {
+    button {
+        margin-right: 5px;
+    }
+}
+
+.secondary {
+    transition: background 0.4s ease-in;
+}
+
+button.secondary.animate-success {
+    background: #67ab6e;
+    border-bottom: 2px solid #316937;
+    &:hover {
+        background: #67ab6e;
+        border-bottom: 2px solid #316937;
+        text-decoration: none;
+    }
+}

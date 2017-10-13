@@ -149,7 +149,7 @@ export default React.createClass({
                         </a>
                     </WelcomeCard>
                 </div>
-                <div className="row" style={{'margin-bottom': '50px', 'text-align': 'center'}}>
+                <div className="row" style={{'margin-bottom': '38px', 'text-align': 'center'}}>
                     <div className="col-md-12">
                         <h3 style={{'border-top': '1px solid #c9c9c9', 'margin-top': '28px', 'padding-top': '33px'}}>Don't have a Calendar to sync to? 🤔</h3>
                         <div className="welcome-page-header__sub-text">
@@ -165,6 +165,16 @@ export default React.createClass({
                             <i className="fa fa-windows" aria-hidden="true"></i> Outlook
                             </a>
                     </div>
+                    <div className="col-md-12">
+                        <h3 className="welcome-page-header__or">Or...</h3>
+                    </div>
+                </div>
+                <div className="row" style={{'margin-bottom': '50px'}}>
+                    <WelcomeCard header={'Manually add events'} description={'Use for manually adding your events into Event Calendar App'}>
+                        <a href="#" className="button secondary" onClick={this.props.clickManualEvents}>
+                            📆 Go
+                        </a>
+                    </WelcomeCard>
                 </div>
             </div>
         );

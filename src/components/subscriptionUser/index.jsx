@@ -6,6 +6,7 @@ import React from 'react';
 import EventCal from '../eventCal';
 import CalendarCodeTextArea from '../calendarCodeTextArea';
 import AdminSettingsPanel from '../../containers/adminSettingsPanel';
+import AddNewEvent from '../../containers/addNewEvent';
 import LinkCalendar from '../../containers/linkCalendar';
 import Suggestions from '../suggestions';
 import SuggestionInstructions from '../suggestionInstructions';
@@ -16,15 +17,15 @@ export default React.createClass({
         $('.venobox').venobox();
     },
     render() {
-        const { authUrl, connections } = this.props;
+        const { authUrl, connections, onBoardingState } = this.props;
         return (
             <div style={{ height: '100%' }}>
-                {connections && connections.length > 0
+                {(connections && connections.length > 0) || (onBoardingState && onBoardingState.selected_manual_events === true)
                     ? <div style={{ height: '100%' }}>
                           <div className="col-sm-5 calendar-settings col-sm-push-7">
                               <AdminSettingsPanel
-                                  eventCalWidgetUuid={this.props.eventCalWidgetUuid}
-                              />
+                                    eventCalWidgetUuid={this.props.eventCalWidgetUuid}
+                                />
                           </div>
                           <div className="col-sm-7 col-sm-pull-5">
                               <div className="dashboard-header dashboard-header--left row">

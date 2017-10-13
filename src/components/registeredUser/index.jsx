@@ -17,10 +17,10 @@ export default React.createClass({
         });
     },
     render() {
-        const { authUrl, connections } = this.props;
+        const { authUrl, connections, onBoardingState } = this.props;
         return (
             <div style={{ height: '100%' }}>
-                {connections && connections.length > 0
+                {(connections && connections.length > 0) || (onBoardingState && onBoardingState.selected_manual_events === true)
                     ? <div style={{ height: '100%' }}>
                           <div className="col-sm-5 calendar-settings col-sm-push-7">
                               <AdminSettingsPanel

@@ -14,10 +14,11 @@ button, a, .button {
         background: #dfdfdf;
         color: #999999;
         border:0;
-        font-weight: lighter;
+        font-weight: bold;
         border-bottom: 2px solid #bfbebe;
         padding: 10px;
         border-radius: 2px;
+        font-size: 14px;
         display: inline-block;
         text-shadow: none;
         &.disabled {

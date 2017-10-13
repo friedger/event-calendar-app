@@ -89,6 +89,7 @@ export default (Component = reduxForm(
         // <----- THIS IS THE IMPORTANT PART!
         form: 'subscriptionButtonSelection', // a unique name for this form
         fields: ['subscriptionButton'],
+        destroyOnUnmount: false,
         overwriteOnInitialValuesChange: false
     },
     state => {

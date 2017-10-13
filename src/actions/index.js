@@ -2,6 +2,14 @@ export const GET_USER = 'GET_USER';
 export const GET_USER_SUCCESS = 'GET_USER_SUCCESS';
 export const GET_USER_FAILURE = 'GET_USER_FAILURE';
 
+export const POST_ONBOARDING = 'POST_ONBOARDING';
+export const POST_ONBOARDING_SUCCESS = 'POST_ONBOARDING_SUCCESS';
+export const POST_ONBOARDING_FAILURE = 'POST_ONBOARDING_FAILURE';
+
+export const GET_ONBOARDINGSTATUS = 'GET_ONBOARDINGSTATUS';
+export const GET_ONBOARDINGSTATUS_SUCCESS = 'GET_ONBOARDINGSTATUS_SUCCESS';
+export const GET_ONBOARDINGSTATUS_FAILURE = 'GET_ONBOARDINGSTATUS_FAILURE';
+
 export const ADD_USER = 'GET_USER';
 export const ADD_USER_SUCCESS = 'GET_USER_SUCCESS';
 export const ADD_USER_FAILURE = 'GET_USER_FAILURE';
@@ -88,6 +96,59 @@ export function addUser(formState) {
 
             });
     }
+}
+
+export function getOnboardingStatus(pushToEditorWhenDone) {
+    return (dispatch) => {
+        const token = cookieUtil.getItem('eventcal-admin');
+
+        dispatch({
+            type: GET_ONBOARDINGSTATUS
+        });
+        request
+            .get(`${config.apiUrl}/onboarding?token=${token}`)
+            .end((err, res) => {
+                if (err) {
+                    return dispatch({
+                        type: GET_ONBOARDINGSTATUS_FAILURE,
+                        error: err
+                    });
+                }
+
+                dispatch({
+                    type: GET_ONBOARDINGSTATUS_SUCCESS,
+                    payload: res.body
+                });
+
+            });
+    }
+}
+
+export function postOnboarding(update) {
+    return (dispatch) => {
+        const token = cookieUtil.getItem('eventcal-admin');
+
+        dispatch({
+            type: POST_ONBOARDING
+        });
+        request
+            .post(`${config.apiUrl}/onboarding?token=${token}`)
+            .send(update)
+            .end((err, res) => {
+                if (err) {
+                    return dispatch({
+                        type: POST_ONBOARDING_FAILURE,
+                        error: err
+                    });
+                }
+
+                dispatch({
+                    type: POST_ONBOARDING_SUCCESS,
+                    payload: res.body
+                });
+
+            });
+    };
 }
 
 export function popuplateRegisterFormFromQuery(query) {
