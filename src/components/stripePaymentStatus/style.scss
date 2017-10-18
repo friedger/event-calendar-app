@@ -10,13 +10,13 @@
     &--success {
         background: #67ab6e;
         .payment-processing__content {
-            padding: 10px 0 10px 63px;
+            padding: 10px 0 10px 30px;
         }
     }
     &--error {
         background: #c72731;
         .payment-processing__content {
-            padding: 10px 0 10px 63px;
+            padding: 10px 0 10px 30px;
         }
     }
 }
