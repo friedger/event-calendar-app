@@ -54,6 +54,11 @@ var Component = React.createClass({
                         </form>
                     </Col>
                 </Row>
+                <Row>
+                    <Col md={12}>
+                        <hr></hr>
+                    </Col>
+                </Row>
                 <Row className="settings-space">
                     <div className="col-md-7">
                         <span className="setting-title">Synced Calendars</span>

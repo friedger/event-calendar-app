@@ -160,7 +160,7 @@ var Component = React.createClass({
             );
         }
         return (
-            <div className={cn('event-settings', { show: this.state.showComponent })}>
+            <div className={cn('event-settings show', { show: this.state.showComponent })}>
                 {this.props.manualEventSelected && <button onClick={this.props.deleteManualEvent} className="danger delete-event">Delete event</button>}
                 {this.props.manualEventSelected && <NewPostForm
                     ref="newPostForm"
@@ -217,6 +217,11 @@ var Component = React.createClass({
                                     {!validWithPlan && (
                                         <LockedFeature columns={6} title={'Upgrade your account'} />
                                     )}
+                                </Row>
+                                <Row>
+                                    <Col md={12}>
+                                        <hr></hr>
+                                    </Col>
                                 </Row>
                                 <Row className="settings-space">
                                     <Col md={6}>
@@ -281,6 +286,11 @@ var Component = React.createClass({
                                     {!validWithPlan && (
                                         <LockedFeature columns={6} title={'Upgrade your account'} />
                                     )}
+                                </Row>
+                                <Row>
+                                    <Col md={12}>
+                                        <hr></hr>
+                                    </Col>
                                 </Row>
                                 <Row className="settings-space">
                                     <Col md={6}>
@@ -357,6 +367,11 @@ var Component = React.createClass({
                                     {!validWithPlan && (
                                         <LockedFeature columns={6} title={'Upgrade your account'} />
                                     )}
+                                </Row>
+                                <Row>
+                                    <Col md={12}>
+                                        <hr></hr>
+                                    </Col>
                                 </Row>
                                 <Row className="settings-space">
                                     <Col md={12}>

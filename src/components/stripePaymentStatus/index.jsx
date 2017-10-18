@@ -24,7 +24,7 @@ export default React.createClass({
                                     color: '#fff',
                                     width: 2,
                                     radius: 3,
-                                    left: '30px',
+                                    left: '43px',
                                     top: '21px'
                                 }}
                             />

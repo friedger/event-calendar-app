@@ -57,7 +57,7 @@ var Component = React.createClass({
                         <textarea
                             {...eventDescription}
                             disabled={this.props.disableInputs}
-                            className={cn({'error': eventDescription.touched && eventDescription.error})}
+                            className={cn('form-control', {'error': eventDescription.touched && eventDescription.error})}
                             onChange={e => {
                                 eventDescription.onChange(e);
                                 setTimeout(() => this.props.inputChange(), 0);
@@ -73,6 +73,11 @@ var Component = React.createClass({
                             )}
                     </Col>
                 </Row>
+                <Row>
+                    <Col md={12}>
+                        <hr></hr>
+                    </Col>
+                </Row>
                 <Row className="settings-space">
                     <Col md={12}>
                         <ControlLabel className={'setting-title'}>🌎 Location:</ControlLabel>
@@ -83,6 +88,11 @@ var Component = React.createClass({
                             eventLocation.onChange(e);
                             setTimeout(() => this.props.inputChange(), 0);
                         }} type="text" placeholder="Event location" />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col md={12}>
+                        <hr></hr>
                     </Col>
                 </Row>
                 <Row className="settings-space">
@@ -121,6 +131,11 @@ var Component = React.createClass({
                                 setTimeout(() => this.props.inputChange(), 0);
                             }}
                         />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col md={12}>
+                        <hr></hr>
                     </Col>
                 </Row>
                 <Row className="settings-space">
@@ -181,6 +196,11 @@ var Component = React.createClass({
                         >
                             No
                         </Radio>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col md={12}>
+                        <hr></hr>
                     </Col>
                 </Row>
             </FormGroup>

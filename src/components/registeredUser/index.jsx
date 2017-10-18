@@ -1,3 +1,4 @@
+require('./style.scss');
 import React from 'react';
 import ga from 'react-ga';
 
@@ -39,7 +40,7 @@ export default React.createClass({
                                           />}
                                   </div>
                               </div>
-                              <div className="row">
+                              <div className="row" style={{'padding': '0 30px'}}>
                                   <div className="col-md-12" style={{ overflow: 'scroll', height: 'calc(100vh - 130px)' }}>
                                       <div className="row">
                                           <div className="col-md-12">
@@ -54,8 +55,12 @@ export default React.createClass({
                                           suggestionsActive={this.props.suggestions}
                                           userId={this.props.user.userId}
                                           />
-                                      <hr />
-                                      <div>
+                                      <div className="row calendar-trial-divide">
+                                          <div className="col-md-12">
+                                              <hr />
+                                          </div>
+                                      </div>
+                                      <div className="start-trial-container">
                                           <p>
                                               Once you&#39;re ready to add the calendar to your site, follow
                                               the link below to begin your trial.{' '}

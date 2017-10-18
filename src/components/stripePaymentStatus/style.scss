@@ -1,20 +1,22 @@
 .payment-processing {
     background: #da4167;
     color:#fff;
+    position: relative;
     transition: background 0.3s ease-in-out;
     &__content {
-        padding: 10px 0 10px 35px;
+        position: relative;
+        padding: 10px 0 10px 63px;
     }
     &--success {
         background: #67ab6e;
         .payment-processing__content {
-            padding: 10px 0 10px 0;
+            padding: 10px 0 10px 63px;
         }
     }
     &--error {
         background: #c72731;
         .payment-processing__content {
-            padding: 10px 0 10px 0;
+            padding: 10px 0 10px 63px;
         }
     }
 }

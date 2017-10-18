@@ -1,10 +1,17 @@
 @import '../../_variables.scss';
 
+.navigation-container {
+    background: $primary;
+    border-top: 4px solid #da4167;
+}
+
 .navigation {
     text-align:right;
     background: $primary;
     padding: 22px 0px 18px;
-    border-top: 4px solid #da4167;
+    &--extra-padding {
+        padding: 22px 30px 18px;
+    }
     ul {
         margin: 0;
     }
@@ -37,6 +44,16 @@
 .navigation li{
     display: inline;
     list-style: none;
+}
+
+.container-fluid {
+    .navigation li {
+        &:last-child {
+            a {
+                padding-right: 0;
+            }
+        }
+    }
 }
 
 .navigation ul.logged-in li a {

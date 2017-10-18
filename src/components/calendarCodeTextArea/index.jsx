@@ -12,7 +12,7 @@ export default React.createClass({
     },
     render() {
         return (
-            <Row>
+            <Row className="calendarcode-container">
                 <Col md={12} className="calendarCode">
                     <p>Copy and paste the below onto your site:</p>
                     <textarea readOnly rows="4" cols="50" defaultValue={this.getEmbedString()} />

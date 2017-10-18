@@ -681,7 +681,7 @@ img.figlio {
   background: #6787ab;
   color: #fff;
   border-radius: 2px 2px 0px 0px;
-  padding: 40px 20px 40px 20px; }
+  padding: 30px 20px 30px 20px; }
 
 .account__header h2 {
   font-weight: bold;
@@ -747,8 +747,7 @@ img.figlio {
   flex-direction: column;
   /* Lay out item’s contents vertically  */
   align-items: center;
-  justify-content: center;
-  height: 100%; }
+  justify-content: center; }
 
 .plans2 .pricing-plan__seperating-border {
   height: 1px;

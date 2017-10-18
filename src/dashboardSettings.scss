@@ -1,7 +1,14 @@
 .dashboard-settings {
     height: 100%;
+    hr {
+        margin: 15px 0;
+    }
     label {
         margin-bottom: 0;
+        margin-right: 6px;
+        span {
+            margin-left: 2px;
+        }
     }
     &__embed {
         float: right;

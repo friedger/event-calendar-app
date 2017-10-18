@@ -1,9 +1,15 @@
 .settings-space {
     padding-bottom:10px;
-    border-bottom: 1px solid #eee;
-    padding: 16px 0px;
+    padding: 20px 0px;
     &--top-border {
         border-top: 1px solid #eee;
+    }
+    &--center {
+        display: flex;
+        align-items: center;
+    }
+    &--bottom-padding-0 {
+        // padding-bottom: 0;
     }
     .control-label {
         text-align: left;

@@ -73,21 +73,23 @@ const component = React.createClass({
                                     </span>
                                 </div>
                             </div>
-                            {(paymentLoading ||
-                                paymentSuccess ||
-                                paymentError ||
-                                this.props.location.query.planUpdated ||
-                                accountLoading) &&
-                                <StripePaymentStatus
-                                    paymentLoading={paymentLoading}
-                                    paymentError={paymentError}
-                                    paymentSuccess={paymentSuccess}
-                                    updateSuccessful={this.props.location.query.planUpdated}
-                                    accountLoading={accountLoading}
-                                />}
-                                {accountProps && !accountLoading &&
+                            <div>
+                                {(paymentLoading ||
+                                    paymentSuccess ||
+                                    paymentError ||
+                                    this.props.location.query.planUpdated ||
+                                    accountLoading) &&
+                                    <StripePaymentStatus
+                                        paymentLoading={paymentLoading}
+                                        paymentError={paymentError}
+                                        paymentSuccess={paymentSuccess}
+                                        updateSuccessful={this.props.location.query.planUpdated}
+                                        accountLoading={accountLoading}
+                                        />}
+                            </div>
+                            <div className="row account-content">
                                     <Account { ...accountProps }></Account>
-                                }
+                            </div>
                         </div>
                     </div>
                 </div>

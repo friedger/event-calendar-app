@@ -21,7 +21,7 @@ export default React.createClass({
                             'setting--active': this.state.activeSetting === 'sources'
                         })}
                     >
-                        Event Sources
+                        🌎 Event Sources
                     </div>
                     <div
                         className={cn('setting', {
@@ -32,7 +32,7 @@ export default React.createClass({
                             this.props.settingClicked('layout');
                         }}
                     >
-                        Layout
+                        ✏️ Layout
                     </div>
                 </div>
             </Row>

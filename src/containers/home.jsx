@@ -56,7 +56,7 @@ const component = React.createClass({
                 </Modal>
                 <Header loggedIn={true} useFluidContainer={true}/>
                 <div className="container-fluid" style={{marginTop: '50px'}}>
-                    <div className="row">
+                    <div className="row" style={{padding: '0 30px;'}}>
                         {this.props.appState.user && <NewWidgetButton weeblyUser={get(this, 'props.appState.user.weeblyUser')} onClick={this.props.postWidgets}></NewWidgetButton>}
                         {this.props.appState.widgets.map((widget, index, fullArr) => {
                             if (fullArr.length === 1) {

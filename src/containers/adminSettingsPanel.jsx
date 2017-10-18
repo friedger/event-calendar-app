@@ -143,7 +143,7 @@ const component = React.createClass({
                     continueAnyway={() => {
                         this.props.openNewEventForm();
                         this.props.addNewEvent();
-                        this.setState({ turnOnManualEventsModal: false })
+                        this.setState({ turnOnManualEventsModal: false });
                     }}
                 />
                 {this.eventActivated() && (
@@ -178,45 +178,60 @@ const component = React.createClass({
                             !this.props.manualEventState.displayAddEventScreen && (
                                 <span>Event calendar settings</span>
                             )}
-                        {!this.props.appState.user.weeblyUser && (
-                            <EmbedCode
-                                eventCalWidgetUuid={this.props.eventCalWidgetUuid}
-                                userIsAGuest={this.props.appState.user.status === 'registered'}
-                                userId={this.props.appState.user.userId}
-                                shopifyUser={this.props.appState.user.shopifyUser}
-                                calendarBuildUrl={this.props.calendarBuildUrl}
-                            />
-                        )}
+                        {!this.props.appState.user.weeblyUser &&
+                            !this.eventActivated &&
+                            !this.state.displayAddEventScreen && (
+                                <EmbedCode
+                                    eventCalWidgetUuid={this.props.eventCalWidgetUuid}
+                                    userIsAGuest={this.props.appState.user.status === 'registered'}
+                                    userId={this.props.appState.user.userId}
+                                    shopifyUser={this.props.appState.user.shopifyUser}
+                                    calendarBuildUrl={this.props.calendarBuildUrl}
+                                />
+                            )}
                     </div>
                 </div>
-                <div className="row">
-                    <div
-                        className="col-md-12"
-                        style={{ overflow: 'scroll', height: 'calc(100vh - 130px)' }}
-                    >
-                        <EventSettings
-                            demoEvent={this.props.eventState.demoEventSelected}
-                            show={
-                                this.eventActivated() && !this.props.eventState.eventSettingsLoading
-                            }
-                            manualEventSelected={this.props.eventState.manualEventSelected}
-                            validWithPlan={
-                                get(this, 'props.appState.user.status') &&
-                                featurePermissions.checkFeatureAvailability(
-                                    this.props.appState.user.status,
-                                    'event-settings'
-                                )
-                            }
-                            putEventAction={this.props.putEvent.bind(
-                                null,
-                                this.props.eventState.calendar_id,
-                                this.props.eventState.uuid
+                <div className="row scrollable-area" style={{ padding: '0 23px 0 30px' }}>
+                    <div className="col-md-12" style={{ height: 'calc(100vh - 130px)' }}>
+                        {this.eventActivated() &&
+                            !this.props.eventState.eventSettingsLoading && (
+                                <EventSettings
+                                    demoEvent={this.props.eventState.demoEventSelected}
+                                    manualEventSelected={this.props.eventState.manualEventSelected}
+                                    validWithPlan={
+                                        get(this, 'props.appState.user.status') &&
+                                        featurePermissions.checkFeatureAvailability(
+                                            this.props.appState.user.status,
+                                            'event-settings'
+                                        )
+                                    }
+                                    putEventAction={this.props.putEvent.bind(
+                                        null,
+                                        this.props.eventState.calendar_id,
+                                        this.props.eventState.uuid
+                                    )}
+                                    deleteManualEvent={this.deleteManualEvent}
+                                    exitAction={this.props.exitEventSettings}
+                                />
                             )}
-                            deleteManualEvent={this.deleteManualEvent}
-                            exitAction={this.props.exitEventSettings}
-                        />
 
-                        {this.props.manualEventState.displayAddEventScreen ? (
+                        {!this.eventActivated() &&
+                            !this.props.eventState.eventSettingsLoading &&
+                            !this.props.manualEventState.displayAddEventScreen && (
+                                <WidgetSettings
+                                    key={1}
+                                    putCalendars={this.props.putCalendars}
+                                    calendarsLoading={this.props.appState.calendarsLoading}
+                                    calendars={this.props.appState.calendars}
+                                    putSettings={this.props.putSettings}
+                                    addEventClicked={this.addEventClicked}
+                                    toggleConnectionsScreen={this.toggleConnectionsScreen}
+                                    eventCalWidgetUuid={this.props.eventCalWidgetUuid}
+                                    userStatus={get(this, 'props.appState.user.status')}
+                                />
+                            )}
+
+                        {this.props.manualEventState.displayAddEventScreen && (
                             <NewPost
                                 manualEventState={this.props.manualEventState}
                                 postManualEvent={this.postManualEvent}
@@ -224,22 +239,6 @@ const component = React.createClass({
                                 manualEventsSelected={this.manualEventsSelected()}
                                 editEventClicked={this.editEventClicked}
                                 addNewEventClicked={this.addNewEventClicked}
-                            />
-                        ) : (
-                            <WidgetSettings
-                                key={1}
-                                show={
-                                    !this.eventActivated() &&
-                                    !this.props.eventState.eventSettingsLoading
-                                }
-                                putCalendars={this.props.putCalendars}
-                                calendarsLoading={this.props.appState.calendarsLoading}
-                                calendars={this.props.appState.calendars}
-                                putSettings={this.props.putSettings}
-                                addEventClicked={this.addEventClicked}
-                                toggleConnectionsScreen={this.toggleConnectionsScreen}
-                                eventCalWidgetUuid={this.props.eventCalWidgetUuid}
-                                userStatus={get(this, 'props.appState.user.status')}
                             />
                         )}
                     </div>

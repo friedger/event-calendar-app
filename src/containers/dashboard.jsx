@@ -103,6 +103,7 @@ const component = React.createClass({
                     !this.state.userHasSeenSuccessfulLinkModal &&
                     <SuccessfulLinkModal />}
                 <div className={containerClassNames}>
+                    <div className="row">
                     {userHasRegisteredOrCancelled &&
                         (connections && onBoarding) &&
                         <RegisteredUser
@@ -138,6 +139,7 @@ const component = React.createClass({
                             eventCalWidgetUuid={this.props.params.eventCalWidgetUuid}
                             onBoardingState={this.props.onBoardingState}
                         />}
+                    </div>
                 </div>
             </div>
         );

@@ -39,7 +39,7 @@ var Component = React.createClass({
                 <Col md={12}>
                 <form ref='settingsForm' className="form-horizontal">
                     <FormGroup>
-                        <Row className="settings-space">
+                        <Row className="settings-space settings-space--center settings-space--bottom-padding-0">
                             <Col md={8}>
                                 <ControlLabel className="setting-title">Calendar timezone:</ControlLabel>
                             </Col>
@@ -60,6 +60,11 @@ var Component = React.createClass({
                             <Col md={4}>
                                 <Radio inline name="timeformat" {...timeformat} onChange={(e) => this.inputOnChange(e, timeformat, handleSubmit)} checked={timeformat.value === 12 || timeformat.value === '12'} value={12}>12hr</Radio>
                                 <Radio inline name="timeformat" {...timeformat} onChange={(e) => this.inputOnChange(e, timeformat, handleSubmit)} checked={timeformat.value === 24 || timeformat.value === '24'} value={24}>24hr</Radio>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col md={12}>
+                                <hr></hr>
                             </Col>
                         </Row>
                     </FormGroup>

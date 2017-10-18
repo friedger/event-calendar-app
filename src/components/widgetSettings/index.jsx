@@ -45,7 +45,7 @@ export default React.createClass({
             userStatus
         } = this.props;
         return (
-            <div className={cn('widget-settings', { show: this.state.showComponent })}>
+            <div className={cn('widget-settings show', { show: this.state.showComponent })}>
                 <SettingsCategorySelection settingClicked={this.settingClicked}></SettingsCategorySelection>
                 <CalendarSelection
                     onChange={putCalendars.bind(null, eventCalWidgetUuid)}

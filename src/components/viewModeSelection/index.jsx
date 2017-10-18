@@ -39,7 +39,7 @@ var Component = React.createClass({
                 <Col md={12}>
                 <form>
                     <FormGroup>
-                        <Row className="viewmode-selection settings-space settings-space">
+                        <Row className="viewmode-selection settings-space settings-space settings-space--bottom-padding-0">
                             <Col md={12}>
                                 <ControlLabel className="setting-title">Calendar layouts to display:</ControlLabel>
                             </Col>
@@ -70,6 +70,11 @@ var Component = React.createClass({
                             <Col md={4}>
                                 <Radio inline name="defaultLayout" {...defaultView} onChange={(e) => this.defaultCalendarOnChange(e, defaultView, handleSubmit)} checked={defaultView.value === 'list'} value={'list'}>List</Radio>
                                 <Radio inline name="defaultLayout" {...defaultView} onChange={(e) => this.defaultCalendarOnChange(e, defaultView, handleSubmit)} checked={defaultView.value === 'grid'} value={'grid'}>Grid</Radio>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col md={12}>
+                                <hr></hr>
                             </Col>
                         </Row>
                     </FormGroup>

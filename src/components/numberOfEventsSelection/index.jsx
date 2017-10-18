@@ -38,7 +38,7 @@ var Component = React.createClass({
                 <Col md={12}>
                 <form ref='settingsForm' className="form-horizontal">
                     <FormGroup>
-                        <Row className="settings-space">
+                        <Row className="settings-space settings-space--center settings-space--bottom-padding-0">
                             <Col md={8}>
                                 <ControlLabel className="setting-title">How many events to display at once:</ControlLabel>
                             </Col>
@@ -53,6 +53,11 @@ var Component = React.createClass({
                             <Col md={4}>
                                 <Radio inline name="pastEvents" {...pastEvents} onChange={(e) => this.inputOnChange(e, pastEvents, handleSubmit)} checked={pastEvents.value === true || pastEvents.value === 'true'} value={true}>Yes</Radio>
                                 <Radio inline name="pastEvents" {...pastEvents} onChange={(e) => this.inputOnChange(e, pastEvents, handleSubmit)} checked={pastEvents.value === false || pastEvents.value === 'false'} value={false}>No</Radio>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col md={12}>
+                                <hr></hr>
                             </Col>
                         </Row>
                     </FormGroup>
