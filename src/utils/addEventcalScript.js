@@ -9,11 +9,25 @@ function isMyScriptLoaded(url) {
 }
 
 export default function addScriptToPage(userId) {
-    const scriptUrl = `${config.apiUrl}/integration-script.js`;
-    if (!isMyScriptLoaded(scriptUrl) || window.eventCalId !== userId) {
+    const mainScriptUrl = `${config.calendarBuildUrl}/main.js`;
+    if (!isMyScriptLoaded(mainScriptUrl) || window.eventCalId !== userId) {
         window.eventCalId = userId;
+
         var mainScript = document.createElement('script');
-        mainScript.setAttribute('src',`${config.apiUrl}/integration-script.js`);
+        mainScript.setAttribute('src', `${config.calendarBuildUrl}/main.js`);
         document.head.appendChild(mainScript);
+
+        var stylesheet = document.createElement('link');
+        stylesheet.setAttribute('href', `${config.calendarBuildUrl}/styles.css`);
+        stylesheet.setAttribute('rel', 'stylesheet');
+        document.head.appendChild(stylesheet);
+
+        var fontAwesome = document.createElement('link');
+        fontAwesome.setAttribute(
+            'href',
+            'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'
+        );
+        fontAwesome.setAttribute('rel', 'stylesheet');
+        document.head.appendChild(fontAwesome);
     }
 }
