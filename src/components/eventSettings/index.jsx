@@ -151,7 +151,7 @@ var Component = React.createClass({
         } = this.props;
         if (this.props.demoEvent) {
             return (
-                <div className={cn('event-settings', { show: this.state.showComponent })}>
+                <div className={cn('event-settings show', { show: this.state.showComponent })}>
                     <div className="demo-event-message">
                         <p>This is an event from our demo calendar and cannot be edited.</p>{' '}
                         <p>Choose one of your own events.</p>
