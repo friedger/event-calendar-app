@@ -7,7 +7,6 @@ import React from 'react';
 import Collapse from 'react-collapse';
 import { Button, Modal } from 'react-bootstrap';
 
-import EventCal from '../eventCal';
 import CalendarSelection from '../calendarSelection';
 import intercom from '../../utils/intercom';
 

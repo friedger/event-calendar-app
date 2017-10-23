@@ -1,12 +1,12 @@
-if (typeof window !== 'undefined') {
-    require('./style.scss');
-}
+require('./style.scss');
 
-import {Input, Row, Col} from 'react-bootstrap';
-import addEventcalScript from '../../utils/addEventcalScript';
+import React from 'react';
 import cn from 'classnames';
+import addEventcalScript from '../../../utils/addEventcalScript';
 
-var Component = React.createClass({
+import { Row, Col } from 'react-bootstrap';
+
+export default React.createClass({
     componentDidMount() {
         addEventcalScript(this.props.userId);
         if (window.eventCalendarAppUtilities) {
@@ -18,7 +18,14 @@ var Component = React.createClass({
             <Row>
                 <Col md={12}>
                     <p>{this.props.headerText}</p>
-                    <div data-widgetuuid={this.props.eventCalWidgetUuid} className={cn({'show': this.props.show}, {'adjusted': this.props.suggestionsActive}, 'eca-app-container')}></div>
+                    <div
+                        data-widgetuuid={this.props.eventCalWidgetUuid}
+                        className={cn(
+                            { show: this.props.show },
+                            { adjusted: this.props.suggestionsActive },
+                            'eca-app-container'
+                        )}
+                    />
                 </Col>
             </Row>
         );
@@ -30,7 +37,3 @@ var Component = React.createClass({
         this.props.eventcalRemovedAction();
     }
 });
-
-export default Component;
-
-import React from 'react';

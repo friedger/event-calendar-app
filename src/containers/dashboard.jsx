@@ -11,8 +11,7 @@ const cookieUtil = require('../utils/cookieUtil').default;
 const config = require('../../config');
 import get from 'lodash.get';
 
-import RegisteredUser from '../components/registeredUser';
-import SubscriptionUser from '../components/subscriptionUser';
+import Editor from '../components/editor';
 import Header from '../components/header';
 import SuccessfulLinkModal from '../components/successfulLinkModal';
 import SuggestionModals from '../components/suggestionModals';
@@ -65,7 +64,6 @@ const component = React.createClass({
     render() {
         const { user, connections } = this.props.appState;
         const onBoarding = this.props.onBoardingState;
-        const testMode = this.props.location.query.testMode;
 
         const userHasRegisteredOrCancelled =
             user && (user.status === 'registered' || user.status === 'cancelled');
@@ -104,29 +102,10 @@ const component = React.createClass({
                     <SuccessfulLinkModal />}
                 <div className={containerClassNames}>
                     <div className="row">
-                    {userHasRegisteredOrCancelled &&
-                        (connections && onBoarding) &&
-                        <RegisteredUser
-                            testMode={testMode}
-                            user={this.props.appState.user}
-                            submitPaymentAction={this.props.submitPayment}
-                            calendars={this.props.appState.calendars}
-                            connections={connections}
-                            authUrl={getCronofyAuthUrl()}
-                            connections={connections}
-                            suggestions={this.props.appState.suggestions}
-                            suggestionToggleAction={this.props.toggleSugesstions}
-                            eventcalRemovedAction={this.props.eventcalRemoved}
-                            eventcalHasNoEvents={this.props.eventcalState.eventcalHasNoEvents}
-                            eventCalWidgetUuid={this.props.params.eventCalWidgetUuid}
-                            onBoardingState={this.props.onBoardingState}
-                        />}
-                    {userHasSubscribed &&
-                        (connections && onBoarding) &&
-                        <SubscriptionUser
+                    {(connections && onBoarding) &&
+                        <Editor
                             connections={connections}
                             user={this.props.appState.user}
-                            calendarBuildUrl={config.calendarBuildUrl}
                             calendars={this.props.appState.calendars}
                             authUrl={getCronofyAuthUrl()}
                             suggestions={
@@ -138,6 +117,8 @@ const component = React.createClass({
                             eventcalHasNoEvents={this.props.eventcalState.eventcalHasNoEvents}
                             eventCalWidgetUuid={this.props.params.eventCalWidgetUuid}
                             onBoardingState={this.props.onBoardingState}
+                            calendarBuildUrl={config.calendarBuildUrl}
+                            userHasSubscribed={userHasSubscribed}
                         />}
                     </div>
                 </div>
