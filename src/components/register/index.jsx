@@ -55,7 +55,6 @@ var Component = React.createClass({
                             <ControlLabel>Username</ControlLabel>
                             <FormControl
                                type="text"
-                               placeholder="Enter text"
                                {...username}
                              />
                              {username.touched && username.error && <HelpBlock>{username.error}</HelpBlock>}
@@ -64,7 +63,6 @@ var Component = React.createClass({
                             <ControlLabel>Email</ControlLabel>
                             <FormControl
                                type="text"
-                               placeholder="Enter text"
                                {...email}
                              />
                          {email.touched && email.error && <HelpBlock>{email.error}</HelpBlock>}
@@ -73,7 +71,6 @@ var Component = React.createClass({
                             <ControlLabel>Password</ControlLabel>
                             <FormControl
                                type="password"
-                               placeholder="Enter text"
                                {...password}
                              />
                          {password.touched && password.error && <HelpBlock>{password.error}</HelpBlock>}
@@ -82,15 +79,14 @@ var Component = React.createClass({
                             <ControlLabel>Confirm Password</ControlLabel>
                             <FormControl
                                type="password"
-                               placeholder="Enter text"
                                {...confirmpassword}
                              />
                          {confirmpassword.touched && confirmpassword.error && <HelpBlock>{confirmpassword.error}</HelpBlock>}
                         </FormGroup>
-                        <Button type="submit" disabled={submitting} className={'action-button'} value="Submit">
+                        <button type="submit" disabled={submitting} className={'register-button secondary full-width'} value="Submit">
                         <div className={cn({'opacity-0': submitting})}>CREATE YOUR ACCOUNT</div>
                         {submitting && <div className='large-loader'><Loader type='spin' color='#000' width={3} radius={7} /></div>}
-                        </Button>
+                        </button>
                         {error && <div>{error}</div>}
                     </form>
                 </Col>

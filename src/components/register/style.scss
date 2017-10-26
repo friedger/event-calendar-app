@@ -3,10 +3,16 @@
 .register-form {
     box-shadow:0 1px 1px #e2e8ea;
     background: #fff;
-    margin-top:36px;
+    margin-top:66px;
     padding: 20px;
     padding-bottom: 20px;
     border-radius:2px;
+    padding-top: 52px;
+}
+
+.register-button {
+    height: 60px;
+    margin-top: 24px;
 }
 
 .register-form__highlight {

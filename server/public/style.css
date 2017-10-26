@@ -46,7 +46,8 @@ ul {
   float: left;
   color: #fff;
   font-size: 20px;
-  display: none; }
+  display: none;
+  width: 200px; }
 
 .navigation__links {
   text-align: center; }

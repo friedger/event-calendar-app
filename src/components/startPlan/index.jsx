@@ -70,6 +70,7 @@ export default React.createClass({
                     <StripeCheckout
                         token={beginPaymentAction && beginPaymentAction.bind(null, planId)}
                         name="Event Calendar App"
+                        image="/images/logo-stripe.jpg"
                         description="Cancelable Subscription"
                         currency="USD"
                         stripeKey={stripePublishableToken}
