@@ -13,6 +13,9 @@ ul {
   margin: 0;
   padding: 0; }
 
+.shopify-logo-container {
+  width: 200px; }
+
 .home-page .navigation,
 .shoppify-layout .navigation {
   background: url("https://eventcalendarapp.com/images/header.jpg");
@@ -20,6 +23,18 @@ ul {
   width: 100%;
   background-size: cover;
   background-position: center top; }
+
+a.svg {
+  position: relative;
+  display: inline-block; }
+
+a.svg:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0; }
 
 .navigation {
   text-align: right;
@@ -799,6 +814,155 @@ img.figlio {
 .plans2 .faq p.lighter {
   color: #737272; }
 
+.testimonial.feature-one {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  text-align: left; }
+
+.testimonial .catch-line {
+  text-align: left; }
+
+.testimonial .avatar-container {
+  text-align: center; }
+
+.testimonial .what-customers-think {
+  text-align: center; }
+
+.testimonial__person-name {
+  font-weight: bold;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  color: #333; }
+
+.testimonial__business-name {
+  margin-top: 0;
+  padding-top: 0;
+  color: #333; }
+
+.testimonial .avatar-image {
+  border: 4px solid #fff;
+  box-shadow: 0 0 0 2pt #dfdede;
+  height: 50px;
+  width: 50px;
+  margin-right: 24px;
+  float: left;
+  border-radius: 50%; }
+
+button, a, .button {
+  position: relative;
+  cursor: pointer; }
+
+button.full-width, a.full-width, .button.full-width {
+  width: 100%; }
+
+button:hover, a:hover, .button:hover {
+  text-decoration: underline; }
+
+button.default, a.default, .button.default {
+  background: #dfdfdf;
+  color: #999999;
+  border: 0;
+  font-weight: bold;
+  border-bottom: 2px solid #bfbebe;
+  padding: 10px;
+  border-radius: 2px;
+  font-size: 14px;
+  display: inline-block;
+  text-shadow: none; }
+
+button.default.disabled, a.default.disabled, .button.default.disabled {
+  pointer: default; }
+
+button.default.disabled:hover, a.default.disabled:hover, .button.default.disabled:hover {
+  text-decoration: none; }
+
+button.default--thick, a.default--thick, .button.default--thick {
+  padding: 15px 12px;
+  font-size: 16px; }
+
+button.danger, a.danger, .button.danger {
+  background: #ee1717;
+  color: #fff;
+  text-align: center;
+  border: 0;
+  font-weight: bold;
+  border-bottom: 2px solid #a20f0f;
+  padding: 10px;
+  border-radius: 2px;
+  text-shadow: none; }
+
+button.danger--small, a.danger--small, .button.danger--small {
+  font-size: 12px;
+  padding: 3px 11px; }
+
+button.action, a.action, .button.action {
+  background: #2e3d4e;
+  border: 0;
+  box-shadow: none;
+  color: #fff;
+  text-shadow: none;
+  display: inline-block;
+  padding: 10px;
+  border: 0;
+  border-bottom: 2px solid #171c22;
+  border-radius: 2px;
+  font-size: 14px;
+  font-weight: bold; }
+
+button.action:hover, a.action:hover, .button.action:hover {
+  background: #5f82ab;
+  border-bottom: 2px solid #435b77; }
+
+button.action--skinny, a.action--skinny, .button.action--skinny {
+  font-size: 12px;
+  padding: 8px 17px;
+  position: absolute;
+  right: 15px; }
+
+button.secondary, a.secondary, .button.secondary {
+  padding: 10px;
+  font-size: 14px;
+  color: #fff;
+  border: 0;
+  border-radius: 2px;
+  display: inline-block;
+  cursor: pointer;
+  font-weight: bold;
+  background: #DA4167;
+  border-bottom: 2px solid #a3304d;
+  text-align: center; }
+
+button.secondary:hover, a.secondary:hover, .button.secondary:hover {
+  background: #ee4a72; }
+
+button.secondary--inverse, a.secondary--inverse, .button.secondary--inverse {
+  font-size: 14px;
+  background: #fff;
+  border: 2px solid #DA4167;
+  border-radius: 0;
+  color: #DA4167; }
+
+button.secondary--inverse:hover, a.secondary--inverse:hover, .button.secondary--inverse:hover {
+  text-decoration: underline;
+  color: #DA4167; }
+
+button.secondary--thick, a.secondary--thick, .button.secondary--thick {
+  padding: 15px 12px;
+  font-size: 16px; }
+
+button.secondary--skinny, a.secondary--skinny, .button.secondary--skinny {
+  font-size: 12px;
+  padding: 8px 17px;
+  position: absolute;
+  top: 0;
+  right: 0; }
+
+button.submit-inline, a.submit-inline, .button.submit-inline {
+  padding: 4px; }
+
+button.full-width, a.full-width, .button.full-width {
+  width: 100%; }
+
 img {
   width: 100%; }
 
@@ -848,16 +1012,21 @@ img {
   font-weight: 100; }
 
 .header a {
-  color: #fff;
-  border: 2px solid #fff;
-  font-weight: bold;
-  text-align: center; }
+  text-align: center;
+  color: #fff; }
+
+.header a.video {
+  margin-left: 10px; }
 
 .header a:hover {
   color: #fff; }
 
 .header .buy {
   border: 3px solid #fff; }
+
+.header .buy.video {
+  padding: 12px 23px 12px;
+  margin-left: 20px; }
 
 .header h1 {
   font-size: 50px;

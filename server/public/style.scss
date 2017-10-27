@@ -4,6 +4,8 @@
 @import './buttons.scss';
 @import './venobox.scss';
 @import './pricing.scss';
+@import './shopify.scss';
+@import '../../src/_buttons.scss';
 
 img {
     width: 100%;
@@ -72,10 +74,12 @@ img {
     }
 
     a {
-        color: #fff;
-        border: 2px solid #fff;
-        font-weight: bold;
         text-align: center;
+        color:#fff;
+
+        &.video {
+            margin-left:10px;
+        }
 
         &:hover {
             color: #fff;
@@ -84,6 +88,10 @@ img {
 
     .buy {
         border: 3px solid #fff;
+        &.video {
+            padding: 12px 23px 12px;
+            margin-left:20px;
+        }
     }
 
     h1 {

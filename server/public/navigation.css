@@ -6,6 +6,18 @@
   background-size: cover;
   background-position: center top; }
 
+a.svg {
+  position: relative;
+  display: inline-block; }
+
+a.svg:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0; }
+
 .navigation {
   text-align: right;
   background: #2e3d4e;
