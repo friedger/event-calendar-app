@@ -40,7 +40,7 @@ module.exports = React.createClass({
                                             </Link>
                                         </li>
                                         <li>
-                                            <a href="/register" className="bold primary-color">
+                                            <a href="/register" className="secondary" style={{ display: 'inline' }}>
                                                 Get Started
                                             </a>
                                         </li>
