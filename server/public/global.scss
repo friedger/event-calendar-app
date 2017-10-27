@@ -18,3 +18,16 @@ ul {
 .shopify-logo-container {
     width: 200px;
 }
+
+.get-started-installing {
+    a {
+        color:#DA4167;
+        text-decoration: underline;
+        font-size:18px;
+        margin-bottom: 0;
+        &:hover {
+            text-decoration: none;
+            color:#DA4167;
+        }
+    }
+}

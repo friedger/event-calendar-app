@@ -16,6 +16,16 @@ ul {
 .shopify-logo-container {
   width: 200px; }
 
+.get-started-installing a {
+  color: #DA4167;
+  text-decoration: underline;
+  font-size: 18px;
+  margin-bottom: 0; }
+
+.get-started-installing a:hover {
+  text-decoration: none;
+  color: #DA4167; }
+
 .home-page .navigation,
 .shoppify-layout .navigation {
   background: url("https://eventcalendarapp.com/images/header.jpg");
