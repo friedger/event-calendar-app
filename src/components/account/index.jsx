@@ -1,18 +1,18 @@
 require('./style.scss');
 import React from 'react';
-import ActivePlan from '../activePlan';
-import StartPlan from '../startPlan';
+import ActivePlan from './activePlan';
+import StartPlan from './startPlan';
 
 export default React.createClass({
     getUrlForPlan(planId) {
         return `${this.props.beginPaymentUrl}&planId=${planId}`;
     },
     render() {
-        const { activePlan, userHasNoPlan, upgradePaymentAction } = this.props;
+        const { activePlan, userHasNoPlan, upgradePaymentAction, updateCardDetails } = this.props;
         return (
             <div className="col-md-12 account__container">
                 <div className="row account__content">
-                    {activePlan && !userHasNoPlan && <ActivePlan activePlan={activePlan} />}
+                    {activePlan && !userHasNoPlan && <ActivePlan updateCardDetails={updateCardDetails} activePlan={activePlan} />}
                     <div className="col-md-12">
                         <h2>👨‍💻 Plans</h2>
                         <p>Choose the plan that best suits your business.</p>

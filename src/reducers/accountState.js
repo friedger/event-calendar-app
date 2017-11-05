@@ -7,20 +7,26 @@ import {
     SUBMIT_STRIPE_PAYMENT_ERROR,
     LEFT_ACCOUNT_PAGE,
     CHANGE_STRIPE_PAYMENT,
-    CHANGE_STRIPE_PAYMENT_SUCCESS
+    CHANGE_STRIPE_PAYMENT_SUCCESS,
+    UPDATE_STRIPE_DETAILS,
+    UPDATE_STRIPE_DETAILS_SUCCESS
 } from '../actions/accountActions';
+
+const defaultState = {
+    accountLoading: false,
+    paymentLoading: false,
+    paymentError: false,
+    paymentSuccess: false,
+    updatingPaymentDetails: false,
+    updatedPaymentDetails: false
+};
 
 export default function appState(state = {}, action) {
     switch (action.type) {
     case LEFT_ACCOUNT_PAGE:
-        return Object.assign({
-            accountLoading: false,
-            paymentLoading: false,
-            paymentError: false,
-            paymentSuccess: false
-        });
+        return Object.assign({}, state, defaultState);
     case GET_PLAN:
-        return Object.assign({}, state, {
+        return Object.assign({}, state, defaultState, {
             accountLoading: true
         });
     case GET_PLAN_SUCCESS:
@@ -34,12 +40,21 @@ export default function appState(state = {}, action) {
             accountLoading: false,
             userHasNoPlan: true
         });
-    case SUBMIT_STRIPE_PAYMENT:
+    case UPDATE_STRIPE_DETAILS:
+        return Object.assign({}, state, defaultState, {
+            updatingPaymentDetails: true
+        });
+    case UPDATE_STRIPE_DETAILS_SUCCESS:
         return Object.assign({}, state, {
+            updatingPaymentDetails: false,
+            updatedPaymentDetails: true
+        });
+    case SUBMIT_STRIPE_PAYMENT:
+        return Object.assign({}, state, defaultState, {
             paymentLoading: true
         });
     case CHANGE_STRIPE_PAYMENT:
-        return Object.assign({}, state, {
+        return Object.assign({}, state, defaultState, {
             paymentLoading: true
         });
     case CHANGE_STRIPE_PAYMENT_SUCCESS:

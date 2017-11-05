@@ -11,7 +11,9 @@ export default React.createClass({
             paymentError,
             paymentLoading,
             updateSuccessful,
-            accountLoading
+            accountLoading,
+            updatingPaymentDetails,
+            updatedPaymentDetails
         } = this.props;
         if (accountLoading) {
             return (
@@ -37,13 +39,13 @@ export default React.createClass({
         return (
             <div
                 className={cn('row', 'payment-processing', {
-                    'payment-processing--success': paymentSuccess || updateSuccessful,
+                    'payment-processing--success': paymentSuccess || updateSuccessful || updatedPaymentDetails,
                     'payment-processing--error': paymentError
                 })}
             >
                 <div className="col-md-12">
                     <div className="payment-processing__content">
-                        {(paymentLoading || accountLoading) &&
+                        {(paymentLoading || accountLoading || updatingPaymentDetails) &&
                             <Loader
                                 options={{
                                     type: 'spin',
@@ -55,10 +57,12 @@ export default React.createClass({
                                 }}
                             />}
                         {accountLoading && <span>Loading your details...</span>}
+                        {updatingPaymentDetails && <span>Updating your details...</span>}
                         {paymentLoading && <span>Processing transaction...</span>}
-                        {(paymentSuccess || updateSuccessful) &&
+                        {(paymentSuccess || updateSuccessful || updatedPaymentDetails) &&
                             <i className="fa fa-check" aria-hidden="true" />}{' '}
                         {updateSuccessful && <span>Your plan was updated successfully</span>}
+                        {updatedPaymentDetails && <span>Your payment details were updated successfully</span>}
                         {paymentSuccess &&
                             <span>
                                 The transaction was successful. Your plan details can be found

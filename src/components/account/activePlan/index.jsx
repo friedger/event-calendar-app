@@ -1,10 +1,11 @@
 require('./style.scss');
 import React from 'react';
 import capitalize from 'capitalize';
+import UpdateCardDetails from '../updateCardDetails';
 
 export default React.createClass({
     render() {
-        const { activePlan } = this.props;
+        const { activePlan, updateCardDetails } = this.props;
         if (activePlan.status === 'cancelled') {
             return (
                 <div className="col-md-12">
@@ -36,6 +37,7 @@ export default React.createClass({
                         }
                     </div>
                 </div>
+                {updateCardDetails && <UpdateCardDetails updateCardDetails={updateCardDetails}></UpdateCardDetails>}
                 <div className="active-plan__cancel">
                     <a className="" href="mailto:hello@eventcalendarapp.com">Request cancellation</a>
                 </div>

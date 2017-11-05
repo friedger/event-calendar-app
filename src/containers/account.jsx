@@ -8,8 +8,8 @@ import * as appActions from '../actions/index';
 import cookieUtil from '../utils/cookieUtil';
 const config = require('../../config');
 import Account from '../components/account';
-import StripePaymentStatus from '../components/stripePaymentStatus';
-import AccountNavigation from '../components/accountNavigation';
+import StripePaymentStatus from '../components/account/stripePaymentStatus';
+import AccountNavigation from '../components/account/accountNavigation';
 
 import Header from '../components/header';
 
@@ -42,14 +42,28 @@ const component = React.createClass({
         const beginPaymentUrl = `${config.apiUrl}/shoppify/begin-payment?token=${encodeURIComponent(
             token
         )}`;
-        const { paymentLoading, paymentSuccess, paymentError, accountLoading, userHasNoPlan } = this.props.account;
+        const {
+            paymentLoading,
+            paymentSuccess,
+            paymentError,
+            accountLoading,
+            userHasNoPlan,
+            updatingPaymentDetails,
+            updatedPaymentDetails
+        } = this.props.account;
         const user = this.props.appState.user;
 
         const accountProps =
             user && user.shopifyUser
                 ? { activePlan, beginPaymentUrl, shopifyUser: true, userHasNoPlan }
-                : { activePlan, beginPaymentAction: this.props.submitStripePayment, upgradePaymentAction: this.props.changeStripeSubscription, shopifyUser: false, userHasNoPlan };
-
+                : {
+                    updateCardDetails: this.props.updateCardDetails,
+                    activePlan,
+                    beginPaymentAction: this.props.submitStripePayment,
+                    upgradePaymentAction: this.props.changeStripeSubscription,
+                    shopifyUser: false,
+                    userHasNoPlan
+                };
         return (
             <div
                 style={{
@@ -59,12 +73,13 @@ const component = React.createClass({
                 }}
             >
                 <Header loggedIn={true} useFluidContainer={true} />
-                <div
-                    className="container-fluid"
-                >
+                <div className="container-fluid">
                     <div className="row">
-                        <AccountNavigation selected={'account'}></AccountNavigation>
-                        <div className="col-md-9 account__container" style={{ 'min-height': 'calc(100vh - 74px)', height: '100%' }}>
+                        <AccountNavigation selected={'account'} />
+                        <div
+                            className="col-md-9 account__container"
+                            style={{ 'min-height': 'calc(100vh - 74px)', height: '100%' }}
+                        >
                             <div className="row account__header">
                                 <div className="col-md-12">
                                     <h2>Billing</h2>
@@ -77,18 +92,23 @@ const component = React.createClass({
                                 {(paymentLoading ||
                                     paymentSuccess ||
                                     paymentError ||
+                                    updatingPaymentDetails ||
+                                    updatedPaymentDetails ||
                                     this.props.location.query.planUpdated ||
-                                    accountLoading) &&
-                                    <StripePaymentStatus
-                                        paymentLoading={paymentLoading}
-                                        paymentError={paymentError}
-                                        paymentSuccess={paymentSuccess}
-                                        updateSuccessful={this.props.location.query.planUpdated}
-                                        accountLoading={accountLoading}
-                                        />}
+                                    accountLoading) && (
+                                        <StripePaymentStatus
+                                            paymentLoading={paymentLoading}
+                                            paymentError={paymentError}
+                                            paymentSuccess={paymentSuccess}
+                                            updateSuccessful={this.props.location.query.planUpdated}
+                                            accountLoading={accountLoading}
+                                            updatedPaymentDetails={updatedPaymentDetails}
+                                            updatingPaymentDetails={updatingPaymentDetails}
+                                        />
+                                    )}
                             </div>
                             <div className="row account-content">
-                                    <Account { ...accountProps }></Account>
+                                <Account {...accountProps} />
                             </div>
                         </div>
                     </div>

@@ -5,8 +5,8 @@ import * as calendarActions from '../actions/calendarActions';
 import Header from '../components/header';
 import Connections from '../components/connections';
 import getCronofyAuthUrl from '../utils/getCronofyAuthUrl';
-import StripePaymentStatus from '../components/stripePaymentStatus';
-import AccountNavigation from '../components/accountNavigation';
+import StripePaymentStatus from '../components/account/stripePaymentStatus';
+import AccountNavigation from '../components/account/accountNavigation';
 
 const hasCronofyConnection = state => {
     if (!state.appState.connections) {

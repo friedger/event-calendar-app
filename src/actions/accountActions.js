@@ -10,6 +10,10 @@ export const CHANGE_STRIPE_PAYMENT = 'CHANGE_STRIPE_PAYMENT';
 export const CHANGE_STRIPE_PAYMENT_SUCCESS = 'CHANGE_STRIPE_PAYMENT_SUCCESS';
 export const CHANGE_STRIPE_PAYMENT_ERROR = 'CHANGE_STRIPE_PAYMENT_ERROR';
 
+export const UPDATE_STRIPE_DETAILS = 'UPDATE_STRIPE_DETAILS';
+export const UPDATE_STRIPE_DETAILS_SUCCESS = 'UPDATE_STRIPE_DETAILS_SUCCESS';
+export const UPDATE_STRIPE_DETAILS_ERROR = 'UPDATE_STRIPE_DETAILS_ERROR';
+
 export const TRIGGER_SHOPIFY_PLAN = 'TRIGGER_SHOPIFY_PLAN';
 export const TRIGGER_SHOPIFY_PLAN_SUCCESS = 'TRIGGER_SHOPIFY_PLAN_SUCCESS';
 export const TRIGGER_SHOPIFY_PLAN_ERROR = 'TRIGGER_SHOPIFY_PLAN_ERROR';
@@ -102,6 +106,33 @@ export function changeStripeSubscription(planIdToChangeTo) {
                 });
 
                 return getPlan()(dispatch);
+            });
+    };
+}
+
+export function updateCardDetails(stripeToken) {
+    return dispatch => {
+
+        dispatch({
+            type: UPDATE_STRIPE_DETAILS
+        });
+
+        const token = cookieUtil.getItem('eventcal-admin');
+        request
+            .put(`${config.apiUrl}/payment?token=${token}`)
+            .send({ stripeToken })
+            .end((err, res) => {
+                if (err) {
+                    return dispatch({
+                        type: UPDATE_STRIPE_DETAILS_ERROR,
+                        error: err
+                    });
+                }
+
+                dispatch({
+                    type: UPDATE_STRIPE_DETAILS_SUCCESS,
+                    payload: res
+                });
             });
     };
 }
