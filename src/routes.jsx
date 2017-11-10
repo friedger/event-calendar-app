@@ -32,6 +32,14 @@ function recordIntercomEvent(eventName) {
     }
 }
 
+function restrictAccess(nextState, replace, callback) {
+    const token = cookieUtil.getItem('eventcal-admin');
+    if (!token) {
+        replace({ pathname: '/login', query: { loginFailure: true } });
+    }
+    return callback();
+}
+
 function editorOnEnter(nextState, replace, callback) {
     const token = cookieUtil.getItem('eventcal-admin');
     if (!token) {
@@ -59,7 +67,7 @@ export default store => {
     return (
         <Route component={App} name="app" path="/">
             <Route path="login" component={Login} />
-            <Route path="dashboard" component={Home}>
+            <Route path="dashboard" component={Home} onEnter={restrictAccess}>
                 <Route path="transaction-complete" component={TransactionComplete} />
                 <Route path="plans" component={Plans} />
                 <Route path="account-error" component={AccountError} />
@@ -70,7 +78,7 @@ export default store => {
                 path="editor(/:eventCalWidgetUuid)"
                 component={Dashboard}
             />
-            <Route path="account" component={Account} />
+            <Route path="account" component={Account} onEnter={restrictAccess}/>
             <Route
                 onEnter={() => recordIntercomEvent('visited-link-page-router-enter')}
                 path="link-calendar"
