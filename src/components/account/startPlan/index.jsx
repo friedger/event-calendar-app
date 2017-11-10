@@ -11,6 +11,9 @@ export default React.createClass({
         return { modalOpen: false, shopifyLinkClicked: false };
     },
     getUrlForPlan(planId) {
+        if (window.nextShopifyChargeIsATest) {
+            return `${this.props.beginPaymentUrl}&planId=${planId}&testCharge=true`;
+        }
         return `${this.props.beginPaymentUrl}&planId=${planId}`;
     },
     render() {
