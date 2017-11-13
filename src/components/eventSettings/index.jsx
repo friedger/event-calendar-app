@@ -389,6 +389,10 @@ var Component = React.createClass({
                 </div>
             </div>
         );
+    },
+    componentWillUnmount() {
+        ignoreImageOnChange = false;
+        ignoreThumbnailOnChange = false;
     }
 });
 
