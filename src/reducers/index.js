@@ -16,6 +16,7 @@ import accountState from './accountState';
 import facebookState from './facebookState';
 import manualEventState from './manualEventState';
 import onBoardingState from './onBoarding';
+import passwordResetState from './passwordResetState';
 
 function initialRegisterState(state = {}, action) {
     if (action.type === POPULATE_REGISTER_FORM) {
@@ -34,7 +35,8 @@ const appReducer = combineReducers({
     manualEventState: manualEventState,
     facebookState: facebookState,
     initialRegisterState: initialRegisterState,
-    onBoardingState: onBoardingState
+    onBoardingState: onBoardingState,
+    passwordResetState: passwordResetState
 });
 
 export default (state, action) => {

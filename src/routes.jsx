@@ -10,6 +10,7 @@ import NotFoundComponent from './containers/notFound';
 import WeeblyIframe from './containers/weeblyIframe';
 import FailToLink from './containers/FailToLink';
 import LinkCalendar from './containers/LinkCalendar';
+import ResetPassword from './containers/reset-password';
 import Connections from './containers/connections';
 import AddSubscription from './containers/AddSubscription';
 import Plans from './containers/plans';
@@ -84,6 +85,7 @@ export default store => {
                 path="link-calendar"
                 component={Dashboard}
             />
+            <Route path="reset-password" component={ResetPassword} />
             <Route path="firsttime-link-calendar" component={Dashboard} />
             <Route path="register" component={Register} />
             <Route path="help" component={Help} />

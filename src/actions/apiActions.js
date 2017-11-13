@@ -103,3 +103,39 @@ export const postOnboarding = update => {
             });
     });
 };
+
+export const postResetPassword = data => {
+    return new Promise((resolve, reject) => {
+        request
+            .post(`${config.apiUrl}/reset-password`)
+            .send(data)
+            .end((err, res) => {
+                if (err) {
+                    var error = { _error: 'There was an error' };
+                    if (res.body.message === 'Email does not exist') {
+                        error = { _error: 'This email does not exist' };
+                    }
+                    return reject(error);
+                }
+                resolve();
+            });
+    });
+};
+
+export const putResetPassword = data => {
+    return new Promise((resolve, reject) => {
+        request
+            .put(`${config.apiUrl}/reset-password`)
+            .send(data)
+            .end((err, res) => {
+                if (err) {
+                    var error = { _error: 'There was an error' };
+                    if (res.body.message === 'Email does not exist') {
+                        error = { _error: 'This email does not exist' };
+                    }
+                    return reject(error);
+                }
+                resolve();
+            });
+    });
+};
