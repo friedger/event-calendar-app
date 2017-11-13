@@ -5,7 +5,7 @@ import React from 'react';
 import {bindActionCreators} from 'redux';
 import * as appActions from '../actions/index';
 
-import RegistrationForm from '../components/register';
+import RegistrationForm from '../components/authentication/register';
 import Header from '../components/header';
 
 const mapState = ({appState, loginState}) => {
