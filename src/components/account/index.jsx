@@ -12,7 +12,14 @@ export default React.createClass({
         return (
             <div className="col-md-12 account__container">
                 <div className="row account__content">
-                    {activePlan && !userHasNoPlan && <ActivePlan updateCardDetails={updateCardDetails} activePlan={activePlan} />}
+                    {activePlan &&
+                        !userHasNoPlan && (
+                            <ActivePlan
+                                shopifyUser={this.props.shopifyUser}
+                                updateCardDetails={updateCardDetails}
+                                activePlan={activePlan}
+                            />
+                        )}
                     <div className="col-md-12">
                         <h2>👨‍💻 Plans</h2>
                         <p>Choose the plan that best suits your business.</p>
@@ -46,24 +53,26 @@ export default React.createClass({
                                 <div className="pricing-plan__notes">
                                     Cancel during your trial period and you will not be charged.
                                 </div>
-                                {(this.props.activePlan || userHasNoPlan) &&
-                                    <StartPlan
-                                        activePlan={this.props.activePlan}
-                                        beginPaymentUrl={this.props.beginPaymentUrl}
-                                        beginPaymentAction={this.props.beginPaymentAction}
-                                        planName="hobby"
-                                        shopifyUser={this.props.shopifyUser}
-                                        planId={2}
-                                        userHasNoPlan={userHasNoPlan}
-                                        upgradePaymentAction={upgradePaymentAction}
+                                {(this.props.activePlan || userHasNoPlan) && (
+                                        <StartPlan
+                                            activePlan={this.props.activePlan}
+                                            beginPaymentUrl={this.props.beginPaymentUrl}
+                                            beginPaymentAction={this.props.beginPaymentAction}
+                                            planName="hobby"
+                                            shopifyUser={this.props.shopifyUser}
+                                            planId={2}
+                                            userHasNoPlan={userHasNoPlan}
+                                            upgradePaymentAction={upgradePaymentAction}
                                         />
-                                }
+                                    )}
                             </div>
                         </div>
 
                         <div className="col-md-4">
                             <div className="pricing-plan">
-                                {!this.props.activePlan && <div className="pricing-plan__highlight">Most Popular!</div>}
+                                {!this.props.activePlan && (
+                                    <div className="pricing-plan__highlight">Most Popular!</div>
+                                )}
                                 <div className="pricing-plan__header">PROFESSIONAL</div>
                                 <div className="pricing-plan__price-container">
                                     <div className="pricing-plan__price">
@@ -79,7 +88,9 @@ export default React.createClass({
                                 </div>
                                 <div className="pricing-plan__features">
                                     <ul>
-                                        <li><strong>All hobby features +</strong></li>
+                                        <li>
+                                            <strong>All hobby features +</strong>
+                                        </li>
                                         <li>Multi Event Calendar support (up to 3)</li>
                                         <li>Subscribable Event Calendar</li>
                                         <li>Ticket Links</li>
@@ -90,19 +101,19 @@ export default React.createClass({
                                 <div className="pricing-plan__notes">
                                     Cancel during your trial period and you will not be charged.
                                 </div>
-                                {(this.props.activePlan || userHasNoPlan) &&
-                                    <StartPlan
-                                        activePlan={this.props.activePlan}
-                                        beginPaymentUrl={this.props.beginPaymentUrl}
-                                        beginPaymentAction={this.props.beginPaymentAction}
-                                        planName="professional"
-                                        highlight={true}
-                                        planId={5}
-                                        userHasNoPlan={userHasNoPlan}
-                                        shopifyUser={this.props.shopifyUser}
-                                        upgradePaymentAction={upgradePaymentAction}
+                                {(this.props.activePlan || userHasNoPlan) && (
+                                        <StartPlan
+                                            activePlan={this.props.activePlan}
+                                            beginPaymentUrl={this.props.beginPaymentUrl}
+                                            beginPaymentAction={this.props.beginPaymentAction}
+                                            planName="professional"
+                                            highlight={true}
+                                            planId={5}
+                                            userHasNoPlan={userHasNoPlan}
+                                            shopifyUser={this.props.shopifyUser}
+                                            upgradePaymentAction={upgradePaymentAction}
                                         />
-                                }
+                                    )}
                             </div>
                         </div>
 
@@ -122,7 +133,11 @@ export default React.createClass({
                                     </div>
                                     <div className="pricing-plan__features">
                                         <ul>
-                                            <li><strong>All hobby and professional features +</strong></li>
+                                            <li>
+                                                <strong>
+                                                    All hobby and professional features +
+                                                </strong>
+                                            </li>
                                             <li>Multi Event Calendar support (up to 10)</li>
                                             <li>No Event Calendar App Branding</li>
                                             <li>-</li>
@@ -134,18 +149,18 @@ export default React.createClass({
                                 <div className="pricing-plan__notes">
                                     Cancel during your trial period and you will not be charged.
                                 </div>
-                                {(this.props.activePlan || userHasNoPlan) &&
-                                    <StartPlan
-                                        activePlan={this.props.activePlan}
-                                        beginPaymentUrl={this.props.beginPaymentUrl}
-                                        planName="business"
-                                        beginPaymentAction={this.props.beginPaymentAction}
-                                        planId={9}
-                                        userHasNoPlan={userHasNoPlan}
-                                        shopifyUser={this.props.shopifyUser}
-                                        upgradePaymentAction={upgradePaymentAction}
+                                {(this.props.activePlan || userHasNoPlan) && (
+                                        <StartPlan
+                                            activePlan={this.props.activePlan}
+                                            beginPaymentUrl={this.props.beginPaymentUrl}
+                                            planName="business"
+                                            beginPaymentAction={this.props.beginPaymentAction}
+                                            planId={9}
+                                            userHasNoPlan={userHasNoPlan}
+                                            shopifyUser={this.props.shopifyUser}
+                                            upgradePaymentAction={upgradePaymentAction}
                                         />
-                                }
+                                    )}
                             </div>
                         </div>
                     </div>
