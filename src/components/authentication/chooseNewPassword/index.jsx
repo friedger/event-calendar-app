@@ -72,7 +72,7 @@ var Component = React.createClass({
                 <div className="col-md-12">
                     {!this.props.codeValid && !this.state.submitted && this.renderCodeInvalidMessage()}
                     {this.props.codeValid && !this.state.submitted && this.renderNewPasswordForm()}
-                    {this.state.submitted && <p>Your password has been reset. Please proceed to <a href="https://eventcalendarapp.com/loging">login</a></p>}
+                    {this.state.submitted && <p>Your password has been reset. Please proceed to <a href="https://eventcalendarapp.com/login">login</a></p>}
                 </div>
             </div>
         );
