@@ -1,7 +1,14 @@
 require('./style.scss');
 import { reduxForm } from 'redux-form';
 import React from 'react';
+import AvailableFilterOptions from '../availableFilterOptions';
+
 var Component = React.createClass({
+    getInitialState() {
+        return {
+            expandedState: []
+        };
+    },
     test(handleSubmit, field, e) {
         field.onChange(e);
         handleSubmit(() => {
@@ -14,35 +21,47 @@ var Component = React.createClass({
     render() {
         const { fields, handleSubmit } = this.props;
         return (
-            <form onChange={this.props.onChange}>
-                {Object.keys(fields).map((filterId, index) => {
-                    const field = fields[filterId];
-                    const filter = this.props.availableFilters.find(
-                        theFilter => theFilter.id.toString() === filterId
-                    );
-                    return (
-                        <label className="filter" key={index}>
-                            <input
-                                id={index + '-checkbox-eca'}
-                                type="checkbox"
-                                onClick={this.test.bind(null, handleSubmit, field)}
-                                {...field}
-                            />
-                            <label className="filters__name" htmlFor={index + '-checkbox-eca'}>
-                                {filter.name}
-                            </label>
-                        </label>
-                    );
-                })}
-            </form>
+            <div className="row filters-form">
+                <div className="col-md-12">
+                    <h4>
+                        <strong>Your existing filters</strong>
+                    </h4>
+                    <form onChange={this.props.onChange}>
+                        {Object.keys(fields).map((filterId, index) => {
+                            const field = fields[filterId];
+                            const filter = this.props.availableFilters.find(
+                                theFilter => theFilter.id.toString() === filterId
+                            );
+                            return (
+                                <div>
+                                <label className="filter" key={index}>
+                                    <input
+                                        id={index + '-checkbox-eca'}
+                                        type="checkbox"
+                                        onClick={this.test.bind(null, handleSubmit, field)}
+                                        {...field}
+                                    />
+                                    <label
+                                        className="filter__name"
+                                        htmlFor={index + '-checkbox-eca'}
+                                    >
+                                        {filter.name} <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    </label>
+                                    <AvailableFilterOptions />
+                                </label>
+                                <hr></hr>
+                                </div>
+                            );
+                        })}
+                    </form>
+                </div>
+            </div>
         );
     }
 });
 
-export default (Component = reduxForm(
-    {
-        form: 'availableFilters',
-        overwriteOnInitialValuesChange: true,
-        destroyOnUnmount: false
-    }
-)(Component));
+export default (Component = reduxForm({
+    form: 'availableFilters',
+    overwriteOnInitialValuesChange: false,
+    destroyOnUnmount: false
+})(Component));

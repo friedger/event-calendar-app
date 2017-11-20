@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as filterActions from '../actions/filterActions';
 import { Modal } from 'react-bootstrap';
 import AvailableFiltersForm from '../components/filters/availableFiltersForm';
+import CreateFiltersForm from '../components/filters/createFiltersForm';
 
 const mapState = ({ filterState, eventState, form }) => {
     return {
@@ -59,6 +60,12 @@ const component = React.createClass({
         returnValue = { initialValues: initialState };
         return returnValue.initialValues;
     },
+    createFilterSubmitted(values) {
+        this.props.postFilter(values);
+    },
+    filterDeleted(values) {
+        this.props.deleteFilter({ id: values });
+    },
     render() {
         const { availableFilters } = this.props.filterState;
         return (
@@ -82,15 +89,14 @@ const component = React.createClass({
                     </Modal.Header>
                     <div className="col-md-12 connection-modal">
                         <div className="connection-modal__content">
-                            <h4>
-                                <strong>Available filters</strong>
-                            </h4>
                                 <AvailableFiltersForm
                                     fields={availableFilters.map(filter => filter.id.toString())}
                                     availableFilters={availableFilters}
                                     filterSelected={this.filterSelected}
                                     initialValues={this.filtersInitialState()}
+                                    filterDeleted={this.filterDeleted}
                                 />
+                            <CreateFiltersForm onSubmit={this.createFilterSubmitted}></CreateFiltersForm>
                         </div>
                     </div>
                 </Modal>

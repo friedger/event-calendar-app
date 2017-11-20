@@ -1,0 +1,22 @@
+.filter {
+    display: block;
+    margin-bottom: 13px;
+    position: relative;
+    &__name {
+        margin-left: 6px;
+    }
+    &__delete {
+        float:right;
+    }
+}
+
+.filters-form {
+    h4 {
+        margin-bottom: 25px;
+    }
+
+    hr {
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }
+}
