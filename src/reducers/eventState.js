@@ -25,6 +25,7 @@ export default function eventState(state = {}, action) {
                 manualEventSelected: action.payload.eventDetail.manualEvent
             },
                 { eventSettingsLoading: false },
+                { filters: false },
                 action.payload.responseBody
             );
     case DEMO_EVENT_SELECTED:

@@ -14,6 +14,7 @@ import featurePermissions from '../utils/featurePermissions';
 import NewPost from '../components/newPost';
 import AddedFirstEventSuccess from '../components/modals/addedFirstEventSuccess';
 import ManualEventsNotSelected from '../components/modals/manualEventsNotSelected';
+import Filters from './filters';
 
 const mapState = ({ appState, eventState, manualEventState, onBoardingState }) => {
     return {
@@ -193,6 +194,7 @@ const component = React.createClass({
                 </div>
                 <div className="row scrollable-area" style={{ padding: '0 23px 0 30px' }}>
                     <div className="col-md-12" style={{ height: 'calc(100vh - 130px)' }}>
+                        <Filters></Filters>
                         {this.eventActivated() &&
                             !this.props.eventState.eventSettingsLoading && (
                                 <EventSettings
