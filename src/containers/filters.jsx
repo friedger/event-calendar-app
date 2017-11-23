@@ -95,6 +95,7 @@ const component = React.createClass({
                                     filterSelected={this.filterSelected}
                                     initialValues={this.filtersInitialState()}
                                     filterDeleted={this.filterDeleted}
+                                    putFilter={this.props.putFilter}
                                 />
                             <CreateFiltersForm onSubmit={this.createFilterSubmitted}></CreateFiltersForm>
                         </div>

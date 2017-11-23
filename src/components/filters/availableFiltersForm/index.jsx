@@ -33,8 +33,8 @@ var Component = React.createClass({
                                 theFilter => theFilter.id.toString() === filterId
                             );
                             return (
-                                <div>
-                                <label className="filter" key={index}>
+                                <div key={index}>
+                                <label className="filter">
                                     <input
                                         id={index + '-checkbox-eca'}
                                         type="checkbox"
@@ -47,7 +47,7 @@ var Component = React.createClass({
                                     >
                                         {filter.name} <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
                                     </label>
-                                    <AvailableFilterOptions />
+                                    <AvailableFilterOptions currentFilterName={filter.name} putFilter={this.props.putFilter} filterId={filterId} />
                                 </label>
                                 <hr></hr>
                                 </div>

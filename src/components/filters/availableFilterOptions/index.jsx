@@ -27,7 +27,7 @@ var Component = React.createClass({
         };
     },
     render() {
-        const { fields: { colour }, handleSubmit } = this.props;
+        const { fields: { colour, name }, handleSubmit } = this.props;
         return (
             <div>
                 <span
@@ -39,22 +39,22 @@ var Component = React.createClass({
                 <Collapse isOpened={this.state.expanded}>
                     <div className="filter-options">
                         <div className="filter-options__option">
-                            <span
-                                className={'setting-title'}
-                                >
-                                🖍 Filter Color:
-                            </span>
+                            <span className={'setting-title'}>🖍 Filter Color:</span>
                             <p>All events in this filter will appear with this colour</p>
                             <TwitterPicker triangle={'hide'} colors={pickerColours} width={260} />
                         </div>
-                        <span
-                            className={'setting-title'}
-                        >
-                            Filter name:
-                        </span>
+                        <span className={'setting-title'}>Filter name:</span>
                         <p>Change the name of the filter</p>
-                        <input type="text" className="form-control" />
-                        <button className="default">Change name</button>
+                        <input {...name} placeholder={this.props.currentFilterName} type="text" className="form-control" />
+                        <button
+                            className="action"
+                            onClick={e => {
+                                e.preventDefault();
+                                this.props.putFilter({ id: this.props.filterId, name: name.value });
+                            }}
+                        >
+                            Change name
+                        </button>
                     </div>
                 </Collapse>
             </div>

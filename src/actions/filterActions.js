@@ -18,6 +18,10 @@ export const DELETE_FILTER = 'DELETE_FILTER';
 export const DELETE_FILTER_SUCCESS = 'DELETE_FILTER_SUCCESS';
 export const DELETE_FILTER_ERROR = 'DELETE_FILTER_ERROR';
 
+export const PUT_FILTER = 'PUT_FILTER';
+export const PUT_FILTER_SUCCESS = 'PUT_FILTER_SUCCESS';
+export const PUT_FILTER_ERROR = 'PUT_FILTER_ERROR';
+
 export function getAvailableFilters() {
     return (dispatch) => {
         dispatch({
@@ -123,6 +127,35 @@ export function assignFilter(filterData) {
                     filterData: filterData
                 }
             });
+        });
+    };
+}
+
+export function putFilter(filterData) {
+    return (dispatch) => {
+        dispatch({
+            type: PUT_FILTER
+        });
+
+        const token = cookieUtil.getItem('eventcal-admin');
+        request.put(`${config.apiUrl}/filters?token=${token}`)
+        .send(filterData)
+        .end((err, res) => {
+            if (err) {
+                return dispatch({
+                    type: PUT_FILTER_ERROR,
+                    error: err
+                });
+            }
+
+            dispatch({
+                type: PUT_FILTER_SUCCESS,
+                payload: res
+            });
+
+            getAvailableFilters()(dispatch);
+            var a = new MouseEvent('refreshCalendar', {});
+            document.dispatchEvent(a);
         });
     };
 }
