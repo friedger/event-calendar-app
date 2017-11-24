@@ -71,12 +71,13 @@ const component = React.createClass({
         return (
             <div>
                 <button
-                    onClick={() => {
+                    onClick={(e) => {
+                        e.preventDefault();
                         this.setState({ modalOpen: true });
                     }}
                     className="secondary"
                 >
-                    Manage
+                    Manage Filters
                 </button>
                 <Modal
                     show={this.state.modalOpen}

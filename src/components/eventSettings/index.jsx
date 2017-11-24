@@ -8,7 +8,7 @@ import uploadcare from 'uploadcare-widget';
 import LockedFeature from '../lockedFeature';
 import { TwitterPicker } from 'react-color';
 import NewPostForm from '../newPostForm';
-
+import Filters from '../../containers/filters';
 var timer;
 
 var ignoreImageOnChange = false;
@@ -175,6 +175,26 @@ var Component = React.createClass({
                     <div className="col-md-12">
                         <form ref="settingsForm" className="form-horizontal">
                             <FormGroup>
+                                <Row className="settings-space">
+                                    <Col md={6}>
+                                        <ControlLabel
+                                            className={cn('setting-title', {
+                                                'setting-title--strike': !validWithPlan
+                                            })}
+                                        >
+                                             Manage your filters:
+                                         </ControlLabel>
+                                         <p>Sort your events into filters</p>
+                                    </Col>
+                                    <Col md={6}>
+                                        <Filters></Filters>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col md={12}>
+                                        <hr></hr>
+                                    </Col>
+                                </Row>
                                 <Row className="settings-space">
                                     <Col md={6}>
                                         <ControlLabel

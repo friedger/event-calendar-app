@@ -25,7 +25,7 @@ var Component = React.createClass({
                                 placeholder="Filter name"
                                 {...name}
                                 />
-                            <button className="default">Add filter</button>
+                            <button className="action">Add filter</button>
                         </Col>
 
                     </Row>

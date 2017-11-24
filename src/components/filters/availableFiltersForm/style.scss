@@ -2,16 +2,39 @@
     display: block;
     margin-bottom: 13px;
     position: relative;
+    .checkbox {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        label {
+            padding-left: 11px;
+        }
+    }
     &__name {
-        margin-left: 6px;
+        user-select: none;
+    }
+    &__colour {
+        width: 17px;
+        height: 17px;
+        display: inline-block;
+        background: #bfbfbf;
+        border-radius: 50%;
+        margin-right: 12px;
+    }
+    &__delete-colour {
+        margin-top: 5px;
     }
     &__delete {
         float:right;
+        top: -3px;
+    }
+    &__info {
+        line-height: 1;
+        display: flex;
     }
 }
 
 .filters-form {
-    h4 {
+    p {
         margin-bottom: 25px;
     }
 

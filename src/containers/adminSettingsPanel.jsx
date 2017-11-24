@@ -194,7 +194,6 @@ const component = React.createClass({
                 </div>
                 <div className="row scrollable-area" style={{ padding: '0 23px 0 30px' }}>
                     <div className="col-md-12" style={{ height: 'calc(100vh - 130px)' }}>
-                        <Filters></Filters>
                         {this.eventActivated() &&
                             !this.props.eventState.eventSettingsLoading && (
                                 <EventSettings

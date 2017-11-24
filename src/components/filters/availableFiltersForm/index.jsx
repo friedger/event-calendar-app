@@ -26,29 +26,35 @@ var Component = React.createClass({
                     <h4>
                         <strong>Your existing filters</strong>
                     </h4>
+                    <p>Select the filters you would like this event to appear in.</p>
                     <form onChange={this.props.onChange}>
                         {Object.keys(fields).map((filterId, index) => {
                             const field = fields[filterId];
                             const filter = this.props.availableFilters.find(
                                 theFilter => theFilter.id.toString() === filterId
                             );
+                            console.log(filter);
                             return (
                                 <div key={index}>
-                                <label className="filter">
-                                    <input
-                                        id={index + '-checkbox-eca'}
-                                        type="checkbox"
-                                        onClick={this.test.bind(null, handleSubmit, field)}
-                                        {...field}
-                                    />
-                                    <label
-                                        className="filter__name"
-                                        htmlFor={index + '-checkbox-eca'}
-                                    >
-                                        {filter.name} <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                    </label>
-                                    <AvailableFilterOptions currentFilterName={filter.name} putFilter={this.props.putFilter} filterId={filterId} />
-                                </label>
+                                <div className="filter">
+                                    <span className="checkbox">
+                                        <input
+                                            id={index + '-checkbox-eca'}
+                                            type="checkbox"
+                                            onClick={this.test.bind(null, handleSubmit, field)}
+                                            {...field}
+                                            />
+                                        <label
+                                            className="filter__name"
+                                            htmlFor={index + '-checkbox-eca'}
+                                            >
+                                            <div className="filter__info">
+                                                <div style={{background: filter.color}} className="filter__colour"></div><span>{filter.name}</span>
+                                            </div>
+                                        </label>
+                                    </span>
+                                    <AvailableFilterOptions form={`availableFilterOptions_${filterId}`} initialValues={filter} filterDeleted={this.props.filterDeleted} currentFilterName={filter.name} putFilter={this.props.putFilter} filterId={filterId} />
+                                </div>
                                 <hr></hr>
                                 </div>
                             );
