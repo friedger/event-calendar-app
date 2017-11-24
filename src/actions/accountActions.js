@@ -53,7 +53,7 @@ export function getPlan() {
     };
 }
 
-export function submitStripePayment(planId, stripeToken) {
+export function submitStripePayment(planId, coupon, stripeToken) {
     return dispatch => {
         dispatch({
             type: SUBMIT_STRIPE_PAYMENT
@@ -62,7 +62,7 @@ export function submitStripePayment(planId, stripeToken) {
         const token = cookieUtil.getItem('eventcal-admin');
         request
             .post(`${config.apiUrl}/payment`)
-            .send({ stripeToken, token, planId })
+            .send({ stripeToken, token, planId, coupon })
             .end((err, res) => {
                 if (err) {
                     return dispatch({

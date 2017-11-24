@@ -8,13 +8,18 @@ import Loader from 'react-loader';
 
 export default React.createClass({
     getInitialState() {
-        return { modalOpen: false, shopifyLinkClicked: false };
+        return { modalOpen: false, shopifyLinkClicked: false, displayTokenInput: false };
     },
     getUrlForPlan(planId) {
         if (window.nextShopifyChargeIsATest) {
             return `${this.props.beginPaymentUrl}&planId=${planId}&testCharge=true`;
         }
         return `${this.props.beginPaymentUrl}&planId=${planId}`;
+    },
+    submitPaymentWithCoupon(token) {
+        const beginPaymentAction = this.props.beginPaymentAction;
+        const planId = this.props.planId;
+        return beginPaymentAction && beginPaymentAction.bind(null, planId, (this.refs.coupon && this.refs.coupon.value))(token);
     },
     render() {
         const {
@@ -70,8 +75,9 @@ export default React.createClass({
                     </div>
                 </Modal>
                 {((!activePlan && !shopifyUser) || (!shopifyUser && accountIsCancelled)) &&
+                    <div>
                     <StripeCheckout
-                        token={beginPaymentAction && beginPaymentAction.bind(null, planId)}
+                        token={this.submitPaymentWithCoupon}
                         name="Event Calendar App"
                         image="/images/logo-stripe.jpg"
                         description="Cancelable Subscription"
@@ -86,7 +92,12 @@ export default React.createClass({
                         >
                             Start plan
                         </a>
-                    </StripeCheckout>}
+                    </StripeCheckout>
+                    <div style={{'margin-top': '20px'}}>
+                        {!this.state.displayTokenInput && <span onClick={() => {this.setState({displayTokenInput: true})}}>Got a coupon?</span>}
+                        {this.state.displayTokenInput && <input className="form-control" ref="coupon" placeholder="Coupon code" type="text"/>}
+                    </div>
+                </div>}
                 {shopifyUser &&
                     <a
                         onClick={() => this.setState({ shopifyLinkClicked: true })}
