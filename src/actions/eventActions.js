@@ -38,14 +38,7 @@ export function eventSelected(details) {
                 });
             }
             dispatch(destroy('availableFilters'));
-
-            if (res.body.message === 'No event found with the matching uuid') {
-                dispatch(reset('eventSettingsForm'));
-                return dispatch({
-                    type: RESET_EVENT,
-                    payload: { eventDetail: details }
-                });
-            }
+            dispatch(reset('eventSettingsForm'));
 
             dispatch({
                 type: GET_EVENT_SUCCESS,
