@@ -14,6 +14,7 @@ import featurePermissions from '../utils/featurePermissions';
 import NewPost from '../components/newPost';
 import AddedFirstEventSuccess from '../components/modals/addedFirstEventSuccess';
 import ManualEventsNotSelected from '../components/modals/manualEventsNotSelected';
+import Filters from './filters';
 
 const mapState = ({ appState, eventState, manualEventState, onBoardingState }) => {
     return {

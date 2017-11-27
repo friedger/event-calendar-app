@@ -1,0 +1,32 @@
+.filter {
+    &__delete {
+        position: absolute;
+        right: 0;
+        top: 0px;
+        cursor: pointer;
+    }
+
+    .setting-title {
+        font-weight: bold;
+    }
+}
+
+.filter-options {
+    background: #f4f4f4;
+    padding: 15px;
+    margin: 15px 0px;
+    &__option {
+        margin-bottom: 15px;
+    }
+    input {
+        margin-bottom: 13px;
+    }
+    &__delete-colour {
+        margin-top: 12px;
+    }
+    &__note {
+        font-size: 12px;
+        margin-bottom: 0 !important;
+        margin-top: 16px;
+    }
+}

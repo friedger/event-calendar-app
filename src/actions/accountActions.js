@@ -83,7 +83,6 @@ export function submitStripePayment(planId, coupon, stripeToken) {
 
 export function changeStripeSubscription(planIdToChangeTo) {
     return dispatch => {
-        console.log('hit!');
 
         dispatch({
             type: CHANGE_STRIPE_PAYMENT

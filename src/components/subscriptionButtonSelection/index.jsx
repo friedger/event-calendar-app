@@ -93,7 +93,6 @@ export default (Component = reduxForm(
         overwriteOnInitialValuesChange: false
     },
     state => {
-        console.log(state, 'the state');
         const initialState = Object.assign({}, state.appState, {
             subscriptionButton: state.appState.subscriptionButton.value
         });

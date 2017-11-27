@@ -16,7 +16,7 @@ export const RESET_EVENT = 'RESET_EVENT';
 import request from 'superagent';
 var cookieUtil = require('../utils/cookieUtil').default;
 const config = require('../../config');
-import { reset } from 'redux-form';
+import { destroy, reset } from 'redux-form';
 
 export function eventSelected(details) {
     return dispatch => {
@@ -37,14 +37,8 @@ export function eventSelected(details) {
                     error: err
                 });
             }
-
-            if (res.body.message === 'No event found with the matching uuid') {
-                dispatch(reset('eventSettingsForm'));
-                return dispatch({
-                    type: RESET_EVENT,
-                    payload: { eventDetail: details }
-                });
-            }
+            dispatch(destroy('availableFilters'));
+            dispatch(reset('eventSettingsForm'));
 
             dispatch({
                 type: GET_EVENT_SUCCESS,
