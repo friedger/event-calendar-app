@@ -5,7 +5,7 @@ import * as filterActions from '../actions/filterActions';
 import { Modal } from 'react-bootstrap';
 import AvailableFiltersForm from '../components/filters/availableFiltersForm';
 import CreateFiltersForm from '../components/filters/createFiltersForm';
-
+import NoAvailableFiltersMessage from '../components/filters/noAvailableFiltersMessage';
 const mapState = ({ filterState, eventState, form }) => {
     return {
         filterState,
@@ -90,14 +90,15 @@ const component = React.createClass({
                     </Modal.Header>
                     <div className="col-md-12 connection-modal">
                         <div className="connection-modal__content">
-                                <AvailableFiltersForm
+                                {availableFilters && availableFilters.length === 0 && <NoAvailableFiltersMessage></NoAvailableFiltersMessage>}
+                                {availableFilters && availableFilters.length > 0 && <AvailableFiltersForm
                                     fields={availableFilters.map(filter => filter.id.toString())}
                                     availableFilters={availableFilters}
                                     filterSelected={this.filterSelected}
                                     initialValues={this.filtersInitialState()}
                                     filterDeleted={this.filterDeleted}
                                     putFilter={this.props.putFilter}
-                                />
+                                />}
                             <CreateFiltersForm onSubmit={this.createFilterSubmitted}></CreateFiltersForm>
                         </div>
                     </div>

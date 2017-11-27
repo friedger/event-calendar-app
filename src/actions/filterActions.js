@@ -127,6 +127,9 @@ export function assignFilter(filterData) {
                     filterData: filterData
                 }
             });
+            getAvailableFilters()(dispatch);
+            var a = new MouseEvent('refreshCalendar', {});
+            document.dispatchEvent(a);
         });
     };
 }
