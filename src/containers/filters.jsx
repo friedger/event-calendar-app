@@ -6,11 +6,17 @@ import { Modal } from 'react-bootstrap';
 import AvailableFiltersForm from '../components/filters/availableFiltersForm';
 import CreateFiltersForm from '../components/filters/createFiltersForm';
 import NoAvailableFiltersMessage from '../components/filters/noAvailableFiltersMessage';
-const mapState = ({ filterState, eventState, form }) => {
+import LockedFeature from '../components/lockedFeature';
+import get from 'lodash.get';
+
+import featurePermissions from '../utils/featurePermissions';
+
+const mapState = ({ filterState, eventState, form, appState }) => {
     return {
         filterState,
         eventState,
-        form
+        form,
+        appState
     };
 };
 
@@ -66,11 +72,18 @@ const component = React.createClass({
     filterDeleted(values) {
         this.props.deleteFilter({ id: values });
     },
+    validWithPlan() {
+        return get(this, 'props.appState.user.status') &&
+        featurePermissions.checkFeatureAvailability(
+            this.props.appState.user.status,
+            'event-settings'
+        );
+    },
     render() {
         const { availableFilters } = this.props.filterState;
         return (
             <div>
-                <button
+                {this.validWithPlan() ? <button
                     onClick={(e) => {
                         e.preventDefault();
                         this.setState({ modalOpen: true });
@@ -79,6 +92,9 @@ const component = React.createClass({
                 >
                     Manage Filters
                 </button>
+                :
+                <LockedFeature columns={0} title={'Upgrade your account'} />
+                }
                 <Modal
                     show={this.state.modalOpen}
                     onHide={() => this.setState({ modalOpen: false })}
