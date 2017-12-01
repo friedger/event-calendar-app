@@ -8,6 +8,16 @@ import { Row, Col } from 'react-bootstrap';
 import Loader from 'react-loader';
 import cn from 'classnames';
 
+function triggerRegistrationConversion() {
+    if (window.google_trackConversion) {
+        window.google_trackConversion({
+            google_conversion_id: 1023858504,
+            google_conversion_label: 'YP3_CMn47XkQyK6b6AM',  // if provided, remove this line if not provided
+            google_remarketing_only: false
+        });
+    }
+}
+
 const validate = values => {
     const errors = {};
     if (!values.username) {
@@ -50,6 +60,7 @@ var Component = React.createClass({
                         onSubmit={handleSubmit((values) => {
                             return postUsers(values, this.props.location)
                                 .then(() => {
+                                    triggerRegistrationConversion();
                                     return postLogin(values);
                                 })
                                 .then(

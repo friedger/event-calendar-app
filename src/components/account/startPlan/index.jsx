@@ -6,6 +6,16 @@ import cn from 'classnames';
 import { Modal } from 'react-bootstrap';
 import Loader from 'react-loader';
 
+function triggerBeginTrialConversion() {
+    if (window.google_trackConversion) {
+        window.google_trackConversion({
+            google_conversion_id: 1023858504,
+            google_conversion_label: 'kphWCPv6hHoQyK6b6AM',  // if provided, remove this line if not provided
+            google_remarketing_only: false
+        });
+    }
+}
+
 export default React.createClass({
     getInitialState() {
         return { modalOpen: false, shopifyLinkClicked: false, displayTokenInput: false };
@@ -19,7 +29,8 @@ export default React.createClass({
     submitPaymentWithCoupon(token) {
         const beginPaymentAction = this.props.beginPaymentAction;
         const planId = this.props.planId;
-        return beginPaymentAction && beginPaymentAction.bind(null, planId, (this.refs.coupon && this.refs.coupon.value))(token);
+        beginPaymentAction.bind(null, planId, (this.refs.coupon && this.refs.coupon.value))(token);
+        return triggerBeginTrialConversion();
     },
     render() {
         const {
