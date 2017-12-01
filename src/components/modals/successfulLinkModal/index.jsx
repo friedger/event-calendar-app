@@ -4,7 +4,7 @@ if (typeof window !== 'undefined') {
 
 import React from 'react';
 import {Modal, Button} from 'react-bootstrap';
-const cookieUtil = require('../../utils/cookieUtil').default;
+const cookieUtil = require('../../../utils/cookieUtil').default;
 
 export default React.createClass({
     getInitialState() {

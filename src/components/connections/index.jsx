@@ -5,7 +5,7 @@ const config = require('../../../config');
 import AddIcsModal from '../modals/addIcsModal';
 import CronofyRedirectModal from '../modals/cronofyRedirectModal';
 import CronofyDisconnectModal from '../modals/cronofyDisconnectModal';
-import WelcomeCard from '../welcomeCard';
+import ConnectionCard from '../connectionCard';
 import capitalize from 'capitalize';
 import getFacebookAuthUrl from '../../utils/getFacebookAuthUrl';
 
@@ -81,7 +81,7 @@ export default React.createClass({
                     <h2>🙌 Add a new calendar source</h2>
                     <p>Where else are your events located?</p>
                 </div>
-                <WelcomeCard
+                <ConnectionCard
                     header={'Google, Apple, Outlook or Exchange (via Cronofy)'}
                     description={'The simplest way to connect your calendar to Event Calendar App'}
                 >
@@ -99,23 +99,23 @@ export default React.createClass({
                             Disconnect
                         </a>
                     )}
-                </WelcomeCard>
-                <WelcomeCard
+                </ConnectionCard>
+                <ConnectionCard
                     header={'Facebook'}
                     description={'Use for connecting to Facebook Page/Business events'}
                 >
                     <a href="#" onClick={this.linkFacebookClicked} className="button secondary">
                         Connect
                     </a>
-                </WelcomeCard>
-                <WelcomeCard
+                </ConnectionCard>
+                <ConnectionCard
                     header={'ICS'}
                     description={'Requires you to know the .ICS feed url of your calendar.'}
                 >
                     <a href="#" className="button secondary" onClick={this.toggleIcsModal}>
                         Connect
                     </a>
-                </WelcomeCard>
+                </ConnectionCard>
             </div>
         );
     }

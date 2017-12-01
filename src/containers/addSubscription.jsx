@@ -5,7 +5,6 @@ import * as appActions from '../actions/index';
 import * as calendarActions from '../actions/calendarActions';
 import * as paymentActions from '../actions/paymentActions';const Link = require('react-router').Link;
 import Header from '../components/header';
-import BeginTrial from '../components/BeginTrial';
 const StripeCheckout = require('react-stripe-checkout');
 const config = require('../../config');
 

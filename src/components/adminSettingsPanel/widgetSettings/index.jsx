@@ -5,7 +5,7 @@ import TimezoneSelection from '../timezoneSelection';
 import CalendarSelection from '../calendarSelection';
 import ViewModeSelection from '../viewModeSelection';
 import SubscriptionButtonSelection from '../subscriptionButtonSelection';
-import featurePermissions from '../../utils/featurePermissions';
+import featurePermissions from '../../../utils/featurePermissions';
 import cn from 'classnames';
 import SettingsCategorySelection from '../settingsCategorySelection';
 

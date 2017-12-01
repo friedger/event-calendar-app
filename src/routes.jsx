@@ -13,14 +13,13 @@ import LinkCalendar from './containers/LinkCalendar';
 import ResetPassword from './containers/reset-password';
 import Connections from './containers/connections';
 import AddSubscription from './containers/AddSubscription';
-import Plans from './containers/plans';
 import AccountError from './containers/accountError';
 import NetworkError from './containers/networkError';
 import PrivacyPolicy from './containers/privacyPolicy';
 import TermsOfUse from './containers/termsOfUse';
 import FacebookSelectPage from './containers/facebookSelectPage';
-import FacebookAuthSuccess from './components/facebookAuthSuccess';
-import FacebookAuthFail from './components/facebookAuthFail';
+import FacebookAuthSuccess from './components/facebookAuth/facebookAuthSuccess';
+import FacebookAuthFail from './components/facebookAuth/facebookAuthFail';
 import Home from './containers/home';
 import Account from './containers/account';
 var cookieUtil = require('./utils/cookieUtil').default;
@@ -70,7 +69,6 @@ export default store => {
             <Route path="login" component={Login} />
             <Route path="dashboard" component={Home} onEnter={restrictAccess}>
                 <Route path="transaction-complete" component={TransactionComplete} />
-                <Route path="plans" component={Plans} />
                 <Route path="account-error" component={AccountError} />
                 <Route path="network-error" component={NetworkError} />
             </Route>

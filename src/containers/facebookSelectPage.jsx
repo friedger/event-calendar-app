@@ -3,7 +3,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import * as facebookActions from '../actions/facebookActions';
 import Header from '../components/header';
-import FacebookSelect from '../components/facebookSelect';
+import FacebookSelect from '../components/facebookAuth/facebookSelect';
 
 const mapState = ({ facebookState }) => {
     return {

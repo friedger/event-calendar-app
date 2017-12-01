@@ -8,8 +8,8 @@ const config = require('../../config');
 const Link = require('react-router').Link;
 
 import Header from '../components/header';
-import NewWidgetButton from '../components/newWidgetButton';
-import WidgetButton from '../components/widgetButton';
+import NewWidgetButton from '../components/dashboard/newWidgetButton';
+import WidgetButton from '../components/dashboard/widgetButton';
 import { Modal } from 'react-bootstrap';
 import get from 'lodash.get';
 

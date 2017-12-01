@@ -6,7 +6,7 @@ import { Modal } from 'react-bootstrap';
 import AvailableFiltersForm from '../components/filters/availableFiltersForm';
 import CreateFiltersForm from '../components/filters/createFiltersForm';
 import NoAvailableFiltersMessage from '../components/filters/noAvailableFiltersMessage';
-import LockedFeature from '../components/lockedFeature';
+import LockedFeature from '../components/adminSettingsPanel/lockedFeature';
 import get from 'lodash.get';
 
 import featurePermissions from '../utils/featurePermissions';

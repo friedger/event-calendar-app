@@ -2,18 +2,17 @@ if (typeof window !== 'undefined') {
     require('./style.scss');
 }
 
-const config = require('../../../config');
+const config = require('../../../../config');
 import React from 'react';
 import Collapse from 'react-collapse';
 import { Button, Modal } from 'react-bootstrap';
 
-import CalendarSelection from '../calendarSelection';
-import intercom from '../../utils/intercom';
+import intercom from '../../../utils/intercom';
 
 import venobox from 'venobox/venobox/venobox.min.js';
 
-import getFacebookAuthUrl from '../../utils/getFacebookAuthUrl';
-import WelcomeCard from '../welcomeCard';
+import getFacebookAuthUrl from '../../../utils/getFacebookAuthUrl';
+import ConnectionCard from '../../connectionCard';
 
 export default React.createClass({
     getInitialState() {
@@ -117,7 +116,7 @@ export default React.createClass({
                         </div>
                     </Modal>
 
-                    <WelcomeCard
+                    <ConnectionCard
                         mostPopular={true}
                         header={'Google, Apple, Outlook or Exchange (via Cronofy)'}
                         description={
@@ -127,15 +126,15 @@ export default React.createClass({
                         <a href="#" onClick={() => this.toggleModal()} className="button secondary">
                             📆 Connect
                         </a>
-                    </WelcomeCard>
+                    </ConnectionCard>
 
-                    <WelcomeCard header={'Facebook'} description={'Use for connecting to Facebook events'}>
+                    <ConnectionCard header={'Facebook'} description={'Use for connecting to Facebook events'}>
                         <a href="#" onClick={this.linkFacebookClicked} className="button secondary">
                             📆 Connect
                         </a>
-                    </WelcomeCard>
+                    </ConnectionCard>
 
-                    <WelcomeCard
+                    <ConnectionCard
                         header={'ICS'}
                         description={'Requires you to know the .ICS feed url of your calendar.'}
                     >
@@ -146,7 +145,7 @@ export default React.createClass({
                         >
                             📆 Connect
                         </a>
-                    </WelcomeCard>
+                    </ConnectionCard>
                 </div>
                 <div className="row" style={{'margin-bottom': '38px', 'text-align': 'center'}}>
                     <div className="col-md-12">
@@ -169,11 +168,11 @@ export default React.createClass({
                     </div>
                 </div>
                 <div className="row" style={{'margin-bottom': '50px'}}>
-                    <WelcomeCard header={'Manually add events'} description={'Use for manually adding your events into Event Calendar App'}>
+                    <ConnectionCard header={'Manually add events'} description={'Use for manually adding your events into Event Calendar App'}>
                         <a href="#" className="button secondary" onClick={this.props.clickManualEvents}>
                             📆 Go
                         </a>
-                    </WelcomeCard>
+                    </ConnectionCard>
                 </div>
             </div>
         );

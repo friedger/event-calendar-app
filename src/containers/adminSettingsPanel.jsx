@@ -6,12 +6,12 @@ import * as calendarActions from '../actions/calendarActions';
 import * as eventActions from '../actions/eventActions';
 import * as manualEventActions from '../actions/manualEventActions';
 
-import WidgetSettings from '../components/widgetSettings';
-import EventSettings from '../components/eventSettings';
-import EmbedCode from '../components/embedCode';
+import WidgetSettings from '../components/adminSettingsPanel/widgetSettings';
+import EventSettings from '../components/adminSettingsPanel/eventSettings';
+import EmbedCode from '../components/editor/embedCode';
 import get from 'lodash.get';
 import featurePermissions from '../utils/featurePermissions';
-import NewPost from '../components/newPost';
+import NewPost from '../components/adminSettingsPanel/newPost';
 import AddedFirstEventSuccess from '../components/modals/addedFirstEventSuccess';
 import ManualEventsNotSelected from '../components/modals/manualEventsNotSelected';
 import Filters from './filters';

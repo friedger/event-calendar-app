@@ -5,10 +5,10 @@ import * as appActions from '../actions/index';
 import * as calendarActions from '../actions/calendarActions';
 import { postOnboarding } from '../actions/apiActions';
 
-import WelcomePageHeader from '../components/welcomePageHeader';
+import CalendarSyncSelection from '../components/calendarSyncPage/calendarSyncSelection';
 import getCronofyAuthUrl from '../utils/getCronofyAuthUrl';
 import AddIcsCalendarForm from '../components/addIcsCalendarForm';
-import ProgressBar from '../components/progressBar';
+import ProgressBar from '../components/calendarSyncPage/progressBar';
 import intercom from '../utils/intercom';
 
 const mapState = ({ appState, onBoardingState }) => {
@@ -71,7 +71,7 @@ const component = React.createClass({
                             </div>
                         </div>
                     ) : (
-                        <WelcomePageHeader
+                        <CalendarSyncSelection
                             user={user}
                             clickIcsConnect={() => {
                                 this.setState({ displayIcsForm: true });

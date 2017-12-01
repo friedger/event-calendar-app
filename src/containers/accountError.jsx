@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as appActions from '../actions/index';
 const Link = require('react-router').Link;
 import Header from '../components/header';
-import AccountErrorMessage from '../components/accountErrorMessage';
+import AccountErrorMessage from '../components/errorPages/accountErrorMessage';
 
 const mapState = ({appState}) => {
     return {appState}

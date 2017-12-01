@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import * as manualEventActions from '../actions/manualEventActions';
-import NewPost from '../components/newPost';
+import NewPost from '../components/adminSettingsPanel/newPost';
 
 const mapState = ({ appState, eventState }) => {
     return {

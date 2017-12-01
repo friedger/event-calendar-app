@@ -5,8 +5,8 @@ import * as appActions from '../actions/index';
 import * as calendarActions from '../actions/calendarActions';
 const Link = require('react-router').Link;
 import WeeblyIframe from '../components/weeblyIframe';
-import WeeblyNoSubscriptionMessage from '../components/weeblyNoSubscriptionMessage';
-import WeeblyWelcomeMessage from '../components/weeblyWelcomeMessage';
+import WeeblyNoSubscriptionMessage from '../components/weeblyIframe/weeblyNoSubscriptionMessage';
+import WeeblyWelcomeMessage from '../components/weeblyIframe/weeblyWelcomeMessage';
 
 const mapState = ({appState}) => {
     return {appState}

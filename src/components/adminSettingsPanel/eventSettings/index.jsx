@@ -8,7 +8,7 @@ import uploadcare from 'uploadcare-widget';
 import LockedFeature from '../lockedFeature';
 import { TwitterPicker } from 'react-color';
 import NewPostForm from '../newPostForm';
-import Filters from '../../containers/filters';
+import Filters from '../../../containers/filters';
 var timer;
 
 var ignoreImageOnChange = false;

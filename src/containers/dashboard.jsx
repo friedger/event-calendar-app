@@ -13,8 +13,8 @@ import get from 'lodash.get';
 
 import Editor from '../components/editor';
 import Header from '../components/header';
-import SuccessfulLinkModal from '../components/successfulLinkModal';
-import SuggestionModals from '../components/suggestionModals';
+import SuccessfulLinkModal from '../components/modals/successfulLinkModal';
+import SuggestionModals from '../components/modals/suggestionModals';
 
 import cn from 'classnames';
 import getCronofyAuthUrl from '../utils/getCronofyAuthUrl';

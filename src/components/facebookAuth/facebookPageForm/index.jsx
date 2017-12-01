@@ -7,7 +7,7 @@ import { reduxForm } from 'redux-form';
 import Loader from 'react-loader';
 import cn from 'classnames';
 
-import { postFacebookCalendarUrl } from '../../actions/facebookActions';
+import { postFacebookCalendarUrl } from '../../../actions/facebookActions';
 
 const validate = values => {
     const errors = {};

@@ -1,6 +1,6 @@
 import React from 'react';
 import BackToWeeblyMessage from '../backToWeeblyMessage';
-import CalendarCodeTextArea from '../../calendarCodetextArea';
+import CalendarCodeTextArea from '../calendarCodetextArea';
 
 export default React.createClass({
     componentDidMount() {

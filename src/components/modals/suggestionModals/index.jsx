@@ -1,7 +1,7 @@
 require('./style.scss');
 import React from 'react';
 import { Modal } from 'react-bootstrap';
-import featurePermissions from '../../utils/featurePermissions';
+import featurePermissions from '../../../utils/featurePermissions';
 
 export default React.createClass({
     getInitialState() {
