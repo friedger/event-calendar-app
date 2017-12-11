@@ -333,7 +333,6 @@ var Component = React.createClass({
                                                     role="uploadcare-uploader"
                                                     id={'somediv'}
                                                     data-crop="4:1"
-                                                    data-image-shrink="1080x270 75%"
                                                 />
                                             </div>
                                             {image.value && (
@@ -371,7 +370,6 @@ var Component = React.createClass({
                                                     type="hidden"
                                                     id={'thumbnailImageUpload'}
                                                     data-crop="1:1"
-                                                    data-image-shrink="125x125 75%"
                                                 />
                                             </div>
                                             {thumbnail.value && (
