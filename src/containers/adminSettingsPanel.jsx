@@ -79,7 +79,8 @@ const component = React.createClass({
         return (
             this.state.eventHasBeenAdded ||
             this.props.onBoardingState.linked_calendar ||
-            this.props.onBoardingState.added_an_event
+            this.props.onBoardingState.added_an_event ||
+            this.props.onBoardingState.userHasNoOnboardingRecord
         );
     },
     exitAddEventScreen() {
