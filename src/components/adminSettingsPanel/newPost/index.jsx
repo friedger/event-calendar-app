@@ -1,10 +1,16 @@
 require('./style.scss');
 import React from 'react';
 import NewPostForm from '../newPostForm';
-import { Row, Col } from 'react-bootstrap';
 import AddEventSubmitButtons from '../addEventSubmitButtons';
+import cn from 'classnames';
+import SidePanelWrapper from '../sidePanelWrapper';
 
 export default React.createClass({
+    getInitialState() {
+        return {
+            additionalNegativeHeight: '- 33px'
+        };
+    },
     submit(values) {
         this.props.postManualEvent(values);
     },
@@ -14,11 +20,24 @@ export default React.createClass({
     render() {
         const { postedEvent, postingEvent } = this.props.manualEventState;
         return (
-            <div className="row">
-                <div
-                    className="col-md-12"
-                    style={{ height: 'calc(100vh - 130px)' }}
-                >
+            <div className="new-post-container">
+                <SidePanelWrapper enableActionBar={true} additionalNegativeHeight={this.state.additionalNegativeHeight}>
+                    <div className="row">
+                        <div className="col-md-12" style={{ height: 'calc(100vh - 133px)' }}>
+                            <NewPostForm
+                                ref="newPostForm"
+                                inputChange={() => {}}
+                                show={true}
+                                disableInputs={postedEvent}
+                                initialValues={{ start: 'hey' }}
+                                displayAdditionalOptionsMessage={false}
+                                onSubmit={values => {
+                                    this.submit(values);
+                                }}
+                            />
+                        </div>
+                    </div>
+                </SidePanelWrapper>
                 <AddEventSubmitButtons
                     addEventClicked={this.addEventClicked}
                     postedEvent={postedEvent}
@@ -26,26 +45,8 @@ export default React.createClass({
                     addNewEventClicked={this.props.addNewEventClicked}
                     editEventClicked={this.props.editEventClicked}
                     close={this.props.close}
-                ></AddEventSubmitButtons>
-                    <NewPostForm
-                        ref="newPostForm"
-                        inputChange={() => {}}
-                        disableInputs={postedEvent}
-                        initialValues={{ start: 'hey' }}
-                        onSubmit={values => {
-                            this.submit(values);
-                        }}
-                    />
-
-                <AddEventSubmitButtons
-                    addEventClicked={this.addEventClicked}
-                    postedEvent={postedEvent}
-                    postingEvent={postingEvent}
-                    addNewEventClicked={this.props.addNewEventClicked}
-                    editEventClicked={this.props.editEventClicked}
-                    close={this.props.close}
-                ></AddEventSubmitButtons>
-                </div>
+                    onButtonTypeSwitch={() => this.setState({ additionalNegativeHeight: '' })}
+                />
             </div>
         );
     }

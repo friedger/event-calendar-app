@@ -49,7 +49,7 @@ export default React.createClass({
                             <div className="row" style={{ padding: '0 30px' }}>
                                 <div
                                     className="col-sm-12"
-                                    style={{ overflow: 'scroll', height: 'calc(100vh - 130px)' }}
+                                    style={{ overflow: 'scroll', height: 'calc(100vh - 133px)' }}
                                 >
                                     <div className="row">
                                         <div className="col-md-12">

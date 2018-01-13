@@ -8,12 +8,13 @@ import SubscriptionButtonSelection from '../subscriptionButtonSelection';
 import featurePermissions from '../../../utils/featurePermissions';
 import cn from 'classnames';
 import SettingsCategorySelection from '../settingsCategorySelection';
+import SidePanelWrapper from '../sidePanelWrapper';
 
 var theTimeout;
 
 export default React.createClass({
     getInitialState() {
-        return { showComponent: this.props.show, settingsToDisplay: 'sources' };
+        return { showComponent: this.props.show, settingsToDisplay: 'Event Sources' };
     },
     componentWillReceiveProps(nextProps) {
         if (nextProps.show) {
@@ -45,8 +46,12 @@ export default React.createClass({
             userStatus
         } = this.props;
         return (
+            <SidePanelWrapper>
             <div className={cn('widget-settings show', { show: this.state.showComponent })}>
-                <SettingsCategorySelection settingClicked={this.settingClicked}></SettingsCategorySelection>
+                <SettingsCategorySelection
+                    options={[{ name: 'Event Sources', emoji: '🌍' }, { name: 'Layout', emoji: '✏️' }]}
+                    settingClicked={this.settingClicked}
+                />
                 <CalendarSelection
                     onChange={putCalendars.bind(null, eventCalWidgetUuid)}
                     toggleConnectionsScreen={this.props.toggleConnectionsScreen}
@@ -55,14 +60,22 @@ export default React.createClass({
                     addEventClicked={this.props.addEventClicked}
                     fields={Object.keys(calendars)}
                     calendars={calendars}
-                    show={this.state.settingsToDisplay === 'sources'}
+                    show={this.state.settingsToDisplay === 'Event Sources'}
                 />
-                <div className={cn('layout-options-container', { show: this.state.settingsToDisplay === 'layout' })}>
-                    <ViewModeSelection putSettingsAction={putSettings.bind(null, eventCalWidgetUuid)} />
+                <div
+                    className={cn('layout-options-container', {
+                        show: this.state.settingsToDisplay === 'Layout'
+                    })}
+                >
+                    <ViewModeSelection
+                        putSettingsAction={putSettings.bind(null, eventCalWidgetUuid)}
+                    />
                     <NumberOfEventsToDisplay
                         putSettingsAction={putSettings.bind(null, eventCalWidgetUuid)}
                     />
-                    <TimezoneSelection putSettingsAction={putSettings.bind(null, eventCalWidgetUuid)} />
+                    <TimezoneSelection
+                        putSettingsAction={putSettings.bind(null, eventCalWidgetUuid)}
+                    />
                     <SubscriptionButtonSelection
                         validWithPlan={featurePermissions.checkFeatureAvailability(
                             userStatus,
@@ -72,6 +85,7 @@ export default React.createClass({
                     />
                 </div>
             </div>
+        </SidePanelWrapper>
         );
     }
 });

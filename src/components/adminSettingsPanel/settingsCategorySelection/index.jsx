@@ -6,34 +6,25 @@ import cn from 'classnames';
 
 export default React.createClass({
     getInitialState() {
-        return { activeSetting: 'sources' };
+        return { activeSetting: this.props.options[0].name };
     },
     render() {
         return (
             <Row className="settings-space settings-navigation" style={{ border: 0 }}>
                 <div className="col-md-12">
-                    <div
-                        onClick={() => {
-                            this.setState({ activeSetting: 'sources' })
-                            this.props.settingClicked('sources');
-                        }}
-                        className={cn('setting', {
-                            'setting--active': this.state.activeSetting === 'sources'
-                        })}
-                    >
-                        🌎 Event Sources
-                    </div>
-                    <div
-                        className={cn('setting', {
-                            'setting--active': this.state.activeSetting === 'layout'
-                        })}
-                        onClick={() => {
-                            this.setState({ activeSetting: 'layout' })
-                            this.props.settingClicked('layout');
-                        }}
-                    >
-                        ✏️ Layout
-                    </div>
+                    {this.props.options.map(option => {
+                        return (<div
+                            onClick={() => {
+                                this.setState({ activeSetting: option.name })
+                                this.props.settingClicked(option.name);
+                            }}
+                            className={cn('setting', {
+                                'setting--active': this.state.activeSetting === option.name
+                            })}
+                            >
+                            {option.emoji} {option.name}
+                        </div>);
+                    })}
                 </div>
             </Row>
         );

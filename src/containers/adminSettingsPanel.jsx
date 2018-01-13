@@ -15,6 +15,8 @@ import NewPost from '../components/adminSettingsPanel/newPost';
 import AddedFirstEventSuccess from '../components/modals/addedFirstEventSuccess';
 import ManualEventsNotSelected from '../components/modals/manualEventsNotSelected';
 import Filters from './filters';
+import AdminSettingsPanelHeader from '../components/adminSettingsPanel/header';
+import EventActions from '../components/adminSettingsPanel/eventActions';
 
 const mapState = ({ appState, eventState, manualEventState, onBoardingState }) => {
     return {
@@ -135,6 +137,7 @@ const component = React.createClass({
     render() {
         return (
             <div className="dashboard-settings">
+                {/* Onboading modals*/}
                 <AddedFirstEventSuccess
                     show={this.state.showFirstEventSuccessModal}
                     hide={() => this.setState({ showFirstEventSuccessModal: false })}
@@ -148,6 +151,7 @@ const component = React.createClass({
                         this.setState({ turnOnManualEventsModal: false });
                     }}
                 />
+                {/* Different Headers*/}
                 {this.eventActivated() && (
                     <div
                         onClick={() => this.props.exitEventSettings()}
@@ -168,33 +172,16 @@ const component = React.createClass({
                         <i className="fa fa-times" aria-hidden="true" />{' '}
                     </div>
                 )}
-                <div className="dashboard-header dashboard-header--right row">
-                    <div className="col-md-12">
-                        {this.eventActivated() && (
-                            <span className="dashboard-header__event-settings">Event settings</span>
-                        )}
-                        {this.props.manualEventState.displayAddEventScreen && (
-                            <span className="dashboard-header__event-settings">Add new event</span>
-                        )}
-                        {!this.eventActivated() &&
-                            !this.props.manualEventState.displayAddEventScreen && (
-                                <span>Event calendar settings</span>
-                            )}
-                        {!this.props.appState.user.weeblyUser &&
-                            !this.eventActivated &&
-                            !this.state.displayAddEventScreen && (
-                                <EmbedCode
-                                    eventCalWidgetUuid={this.props.eventCalWidgetUuid}
-                                    userIsAGuest={this.props.appState.user.status === 'registered'}
-                                    userId={this.props.appState.user.userId}
-                                    shopifyUser={this.props.appState.user.shopifyUser}
-                                    calendarBuildUrl={this.props.calendarBuildUrl}
-                                />
-                            )}
-                    </div>
-                </div>
-                <div className="row scrollable-area" style={{ padding: '0 23px 0 30px' }}>
-                    <div className="col-md-12" style={{ height: 'calc(100vh - 130px)' }}>
+                <AdminSettingsPanelHeader
+                    eventActivated={this.eventActivated()}
+                    addingEvent={this.props.manualEventState.displayAddEventScreen}
+                    displayEmbedCode={
+                        !this.props.appState.user.weeblyUser &&
+                        !this.eventActivated &&
+                        !this.state.displayAddEventScreen
+                    }
+                />
+
                         {this.eventActivated() &&
                             !this.props.eventState.eventSettingsLoading && (
                                 <EventSettings
@@ -243,8 +230,12 @@ const component = React.createClass({
                                 addNewEventClicked={this.addNewEventClicked}
                             />
                         )}
-                    </div>
-                </div>
+                {this.eventActivated() &&
+                    !this.props.eventState.eventSettingsLoading &&
+                <EventActions
+                    exitAction={this.props.exitEventSettings}
+                    deleteManualEvent={this.props.eventState.manualEventSelected && this.deleteManualEvent}
+                />}
             </div>
         );
     }

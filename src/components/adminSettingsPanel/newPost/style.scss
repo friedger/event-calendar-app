@@ -1,8 +1,25 @@
 .newPost {
+    display: none;
     &__add-event-header {
         position:absolute;
         right: 0;
         top: -7px;
     }
 
+    &.show {
+        display: block;
+    }
+
+}
+
+.new-post-container {
+    height: calc(100vh - 77px - 56px);
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
 }

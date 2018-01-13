@@ -1,6 +1,20 @@
 .addEventSubmitButtons {
+    padding: 0 23px 0 30px;
     button {
         margin-right: 5px;
+    }
+    .tertiary:first-child {
+        margin-left: 0;
+    }
+
+    &__actions {
+        border-top:1px solid #eee;
+        padding: 20px 0;
+    }
+
+    &__note {
+        font-size: 14px;
+        color: #999;
     }
 }
 

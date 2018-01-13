@@ -11,3 +11,10 @@
         border-color: red;
     }
 }
+
+.new-post-form {
+    display: none;
+    &.show {
+        display: block;
+    }
+}

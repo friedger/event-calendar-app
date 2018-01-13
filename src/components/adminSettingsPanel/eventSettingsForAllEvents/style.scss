@@ -1,0 +1,7 @@
+.eventSettingsForAllEvents {
+    display: none;
+
+    &.show {
+        display: block;
+    }
+}
