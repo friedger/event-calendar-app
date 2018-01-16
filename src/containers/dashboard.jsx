@@ -6,6 +6,7 @@ import * as calendarActions from '../actions/calendarActions';
 import * as paymentActions from '../actions/paymentActions';
 import * as accountActions from '../actions/accountActions';
 import * as eventActions from '../actions/eventActions';
+import * as onBoardingActions from '../actions/onBoardingActions';
 
 const cookieUtil = require('../utils/cookieUtil').default;
 const config = require('../../config');
@@ -15,6 +16,7 @@ import Editor from '../components/editor';
 import Header from '../components/header';
 import SuccessfulLinkModal from '../components/modals/successfulLinkModal';
 import SuggestionModals from '../components/modals/suggestionModals';
+import AddedScriptModal from '../components/modals/addedScriptModal';
 
 import cn from 'classnames';
 import getCronofyAuthUrl from '../utils/getCronofyAuthUrl';
@@ -36,7 +38,8 @@ const mapDispatch = dispatch => {
             ...calendarActions,
             ...paymentActions,
             ...accountActions,
-            ...eventActions
+            ...eventActions,
+            ...onBoardingActions
         },
         dispatch
     );
@@ -45,7 +48,8 @@ const mapDispatch = dispatch => {
 const component = React.createClass({
     getInitialState() {
         return {
-            userHasSeenSuccessfulLinkModal: cookieUtil.getItem('seen-successful-link-modal')
+            userHasSeenSuccessfulLinkModal: cookieUtil.getItem('seen-successful-link-modal'),
+            displayAddedScriptModal: false
         };
     },
     componentWillUnmount() {
@@ -56,7 +60,8 @@ const component = React.createClass({
         this.props.getCalendars(this.props.params.eventCalWidgetUuid);
         this.props.getSettings(this.props.params.eventCalWidgetUuid);
         this.props.getConnections();
-        this.props.getOnboardingStatus();
+        this.props.getPlan();
+        this.props.getOnboarding();
     },
     userHasLinkedCalendarOrChosenManual() {
         return (this.props.appState.connections && this.props.appState.connections.length > 0) || (this.props.onBoardingState && this.props.onBoardingState.selected_manual_events);
@@ -92,6 +97,7 @@ const component = React.createClass({
                 <SuggestionModals
                     status={get(this, 'props.appState.user.status')}
                 />
+            <AddedScriptModal show={this.state.displayAddedScriptModal} hide={() => {this.setState({displayAddedScriptModal: false})}}/>
                 <Header
                     doNotDisplayDashboardLink={!this.userHasLinkedCalendarOrChosenManual()}
                     useFluidContainer={this.userHasLinkedCalendarOrChosenManual()}
@@ -119,6 +125,10 @@ const component = React.createClass({
                             onBoardingState={this.props.onBoardingState}
                             calendarBuildUrl={config.calendarBuildUrl}
                             userHasSubscribed={userHasSubscribed}
+                            userSelectedScriptAdded={() => {
+                                this.props.postOnBoarding({ user_clicked_added_script: true }, true);
+                                this.setState({displayAddedScriptModal: true})
+                            }}
                         />}
                     </div>
                 </div>

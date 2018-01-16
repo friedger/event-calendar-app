@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal } from 'react-bootstrap';
-import CalendarCodetextArea from '../calendarCodetextArea';
+import CalendarCodetextArea from '../calendarCodeTextArea';
 const Link = require('react-router').Link;
 
 export default React.createClass({

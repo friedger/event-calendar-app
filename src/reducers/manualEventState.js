@@ -7,8 +7,8 @@ import {
 } from '../actions/manualEventActions';
 
 import {
-    GET_ONBOARDINGSTATUS_SUCCESS
-} from '../actions/index';
+    GET_ONBOARDING_SUCCESS
+} from '../actions/onBoardingActions';
 
 export default function manualEventState(state = {}, action) {
     switch (action.type) {
@@ -34,7 +34,7 @@ export default function manualEventState(state = {}, action) {
                 postedEvent: false
             }
         );
-    case GET_ONBOARDINGSTATUS_SUCCESS:
+    case GET_ONBOARDING_SUCCESS:
         if (action.payload.selected_manual_events && !action.payload.added_an_event) {
             return Object.assign({}, state, {
                 displayAddEventScreen: true

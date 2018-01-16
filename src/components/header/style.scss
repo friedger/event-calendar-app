@@ -100,3 +100,15 @@ object.logo {
 .navigation li a.primary-color:hover {
     text-decoration: underline;
 }
+
+.next-step {
+    background: #da4167;
+    padding: 11px;
+    color: #fff;
+    padding-left: 30px;
+
+    &:hover {
+        background: #ee4a72;
+        cursor: pointer;
+    }
+}

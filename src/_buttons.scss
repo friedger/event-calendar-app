@@ -120,6 +120,27 @@ button, a, .button {
         }
     }
 
+    &.positive {
+        background: #27ae60;
+        border: 0;
+        box-shadow: none;
+        color: #fff;
+        text-shadow: none;
+        display: inline-block;
+        padding: 10px;
+        margin: 0 20px;
+        border: 0;
+        border-bottom: 2px solid #188947;
+        border-radius: 2px;
+        font-size: 14px;
+        font-weight: bold;
+
+        &:hover {
+            text-decoration: none;
+            background: #35c572;
+        }
+    }
+
     &.tertiary {
         background: transparent;
         border: 0;

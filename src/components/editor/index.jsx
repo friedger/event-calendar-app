@@ -57,6 +57,15 @@ export default React.createClass({
                                         </div>
                                     </div>
                                     {this.props.eventcalHasNoEvents && <NoEventsMessage />}
+                                    {this.props.userHasSubscribed && this.props.onBoardingState.user_clicked_added_script === false && !this.props.user.weeblyUser && <IntegrationSection
+                                        weeblyUser={this.props.user.weeblyUser}
+                                        bigcommerceUser={this.props.user.bigcommerceUser}
+                                        shopifyUser={this.props.user.shopifyUser}
+                                        userId={this.props.user.userId}
+                                        eventCalWidgetUuid={this.props.eventCalWidgetUuid}
+                                        highlightCodeArea={!this.props.onBoardingState.user_clicked_added_script}
+                                        userSelectedScriptAdded={this.props.userSelectedScriptAdded}
+                                    />}
                                     <EventCal
                                         eventCalWidgetUuid={this.props.eventCalWidgetUuid}
                                         show={!this.props.eventcalHasNoEvents}
@@ -64,17 +73,18 @@ export default React.createClass({
                                         suggestionsActive={this.props.suggestions}
                                         userId={this.props.user.userId}
                                     />
-                                    {this.props.userHasSubscribed ? (
+                                {this.props.userHasSubscribed && (this.props.user.weeblyUser || this.props.onBoardingState.user_clicked_added_script || this.props.onBoardingState.user_clicked_added_script === null) && (
                                         <IntegrationSection
                                             weeblyUser={this.props.user.weeblyUser}
                                             bigcommerceUser={this.props.user.bigcommerceUser}
                                             shopifyUser={this.props.user.shopifyUser}
                                             userId={this.props.user.userId}
                                             eventCalWidgetUuid={this.props.eventCalWidgetUuid}
+                                            highlightCodeArea={this.props.onBoardingState.user_clicked_added_script === false}
+                                            userSelectedScriptAdded={this.props.userSelectedScriptAdded}
                                         />
-                                    ) : (
-                                        <BeginTrial />
                                     )}
+                                    {!this.props.userHasSubscribed && <BeginTrial />}
                                 </div>
                             </div>
                         </div>

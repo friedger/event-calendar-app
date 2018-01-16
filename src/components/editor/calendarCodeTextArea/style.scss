@@ -4,6 +4,50 @@
     }
 }
 
+.calendarcode-container--highlight {
+    background: #da4167;
+    padding: 17px 0;
+    animation-name: color;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    textarea {
+        background: #ae2647;
+        border: 0;
+        color: #fff;
+        padding: 5px 15px;
+        font-size: 12px;
+        outline: none;
+        margin: 0 0 10px;
+        &:focus {
+            box-shadow: 0 0 0 2px #951b38
+        }
+    }
+    p {
+        color: #fff;
+    }
+
+    .calendarCode__shopify {
+        padding-top: 13px;
+        padding-bottom: 0;
+        text-decoration: underline;
+        a {
+            color:#fff;
+        }
+    }
+}
+
 .calendarCode__shopify {
     padding-bottom: 20px;
+}
+
+@keyframes color {
+  0% {
+    background-color: #da4167;
+  }
+  50% {
+    background-color: #eb4f75;
+  }
+  100 {
+    background-color: #da4167;
+  }
 }

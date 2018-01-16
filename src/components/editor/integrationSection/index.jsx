@@ -1,6 +1,6 @@
 import React from 'react';
 import BackToWeeblyMessage from '../backToWeeblyMessage';
-import CalendarCodeTextArea from '../calendarCodetextArea';
+import CalendarCodeTextArea from '../calendarCodeTextArea';
 
 export default React.createClass({
     componentDidMount() {
@@ -31,6 +31,8 @@ export default React.createClass({
                         eventCalWidgetUuid={eventCalWidgetUuid}
                         shopifyUser={shopifyUser}
                         userId={userId}
+                        userSelectedScriptAdded={this.props.userSelectedScriptAdded}
+                        highlight={this.props.highlightCodeArea}
                     />
                 )}
             </div>
