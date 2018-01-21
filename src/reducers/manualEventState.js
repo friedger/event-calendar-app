@@ -22,7 +22,8 @@ export default function manualEventState(state = {}, action) {
                 calendarId: action.payload.calendarId,
                 uuid: action.payload.uuid,
                 postingEvent: false,
-                postedEvent: true
+                postedEvent: true,
+                displayAddEventTip: false
             }
             );
     case ADD_NEW_EVENT:
@@ -37,7 +38,8 @@ export default function manualEventState(state = {}, action) {
     case GET_ONBOARDING_SUCCESS:
         if (action.payload.selected_manual_events && !action.payload.added_an_event) {
             return Object.assign({}, state, {
-                displayAddEventScreen: true
+                displayAddEventScreen: true,
+                displayAddEventTip: true
             });
         }
 

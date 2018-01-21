@@ -10,6 +10,16 @@
         display: block;
     }
 
+    &__tip {
+        background: #da4167;
+        padding: 15px;
+        color: #fff;
+        margin-top: 15px;
+        animation-name: color;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+    }
+
 }
 
 .new-post-container {
@@ -22,4 +32,16 @@
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
+}
+
+@keyframes color {
+  0% {
+    background-color: #da4167;
+  }
+  50% {
+    background-color: #eb4f75;
+  }
+  100 {
+    background-color: #da4167;
+  }
 }

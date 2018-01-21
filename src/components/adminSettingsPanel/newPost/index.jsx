@@ -18,12 +18,15 @@ export default React.createClass({
         this.refs.newPostForm.submit();
     },
     render() {
-        const { postedEvent, postingEvent } = this.props.manualEventState;
+        const { postedEvent, postingEvent, displayAddEventTip } = this.props.manualEventState;
         return (
             <div className="new-post-container">
                 <SidePanelWrapper enableActionBar={true} additionalNegativeHeight={this.state.additionalNegativeHeight}>
                     <div className="row">
                         <div className="col-md-12" style={{ height: 'calc(100vh - 133px)' }}>
+                            {displayAddEventTip && <div className="newPost__tip">
+                                🚧 Get started by adding your first event. Don't worry, you can edit it later if you choose.
+                            </div>}
                             <NewPostForm
                                 ref="newPostForm"
                                 inputChange={() => {}}
