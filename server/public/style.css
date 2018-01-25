@@ -21,7 +21,6 @@ ul {
 
 .get-started-installing a {
   color: #DA4167;
-  text-decoration: underline;
   font-size: 18px; }
 
 .get-started-installing a:hover {
@@ -50,11 +49,11 @@ object.logo {
 
 .home-page .navigation,
 .shoppify-layout .navigation {
-  background: url("https://eventcalendarapp.com/images/header.jpg");
+  background: url("/images/header.jpg");
   height: 100%;
   width: 100%;
   background-size: cover;
-  background-position: center top; }
+  background-position: center; }
 
 a.svg {
   position: relative;
@@ -902,6 +901,9 @@ button.default, a.default, .button.default {
   display: inline-block;
   text-shadow: none; }
 
+button.default.thin, a.default.thin, .button.default.thin {
+  padding: 4px 17px; }
+
 button.default.disabled, a.default.disabled, .button.default.disabled {
   pointer: default; }
 
@@ -934,7 +936,7 @@ button.action, a.action, .button.action {
   color: #fff;
   text-shadow: none;
   display: inline-block;
-  padding: 10px;
+  padding: 10px 20px;
   border: 0;
   border-bottom: 2px solid #171c22;
   border-radius: 2px;
@@ -971,11 +973,11 @@ button.secondary:hover, a.secondary:hover, .button.secondary:hover {
 button.secondary--inverse, a.secondary--inverse, .button.secondary--inverse {
   font-size: 14px;
   background: #fff;
-  border: 2px solid #DA4167;
   border-radius: 0;
   color: #DA4167; }
 
 button.secondary--inverse:hover, a.secondary--inverse:hover, .button.secondary--inverse:hover {
+  background: transparent;
   text-decoration: underline;
   color: #DA4167; }
 
@@ -989,6 +991,49 @@ button.secondary--skinny, a.secondary--skinny, .button.secondary--skinny {
   position: absolute;
   top: 0;
   right: 0; }
+
+button.positive, a.positive, .button.positive {
+  background: #27ae60;
+  border: 0;
+  box-shadow: none;
+  color: #fff;
+  text-shadow: none;
+  display: inline-block;
+  padding: 10px;
+  margin: 0 20px;
+  border: 0;
+  border-bottom: 2px solid #188947;
+  border-radius: 2px;
+  font-size: 14px;
+  font-weight: bold; }
+
+button.positive:hover, a.positive:hover, .button.positive:hover {
+  text-decoration: none;
+  background: #35c572; }
+
+button.tertiary, a.tertiary, .button.tertiary {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  color: #444;
+  text-shadow: none;
+  display: inline-block;
+  padding: 10px 0px;
+  margin: 0 20px;
+  border: 0;
+  border-bottom: 2px solid #444;
+  border-radius: 2px;
+  font-size: 14px;
+  font-weight: bold; }
+
+button.tertiary:hover, a.tertiary:hover, .button.tertiary:hover {
+  text-decoration: none; }
+
+button.tertiary--skinny, a.tertiary--skinny, .button.tertiary--skinny {
+  font-size: 12px;
+  padding: 8px 17px;
+  position: absolute;
+  right: 15px; }
 
 button.submit-inline, a.submit-inline, .button.submit-inline {
   padding: 4px; }
@@ -1071,16 +1116,13 @@ img {
 .shoppify-layout .demo-header h1 {
   margin: 50px 0 16px; }
 
-.widget {
-  padding-bottom: 50px; }
-
 .catch-line {
   text-align: center; }
 
 .catch-line p {
   color: #999999;
   font-weight: lighter;
-  font-size: 20px; }
+  font-size: 24px; }
 
 .pricing {
   color: #fff; }

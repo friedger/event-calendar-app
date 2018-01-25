@@ -50,7 +50,7 @@ export default React.createClass({
                     {manualEventSelected && <SettingsCategorySelection
                         options={[
                             { name: 'Content & time', emoji: '📝' },
-                            { name: 'Appearance', emoji: '😆' }
+                            { name: 'Appearance', emoji: '😍' }
                         ]}
                         settingClicked={this.settingClicked}
                     />}

@@ -21,7 +21,7 @@ export default React.createClass({
                             />
                         )}
                     <div className="col-md-12">
-                        <h2>👨‍💻 Plans</h2>
+                        <h2>📊 Plans</h2>
                         <p>Choose the plan that best suits your business.</p>
                     </div>
                     <div className="plans2">

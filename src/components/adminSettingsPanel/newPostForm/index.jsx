@@ -189,7 +189,7 @@ var Component = React.createClass({
                     </Row>
                     <Row className="settings-space">
                         <Col md={12}>
-                            <ControlLabel className={'setting-title'}>🙌 Repeat:</ControlLabel>
+                            <ControlLabel className={'setting-title'}>🔁 Repeat:</ControlLabel>
                         </Col>
                         <Col md={12}>
                             <select
@@ -210,7 +210,7 @@ var Component = React.createClass({
                     </Row>
                     <Row className="settings-space">
                         <Col md={8}>
-                            <ControlLabel className="setting-title">⛰ All day:</ControlLabel>
+                            <ControlLabel className="setting-title">🌅 All day:</ControlLabel>
                         </Col>
                         <Col md={4}>
                             <Radio
