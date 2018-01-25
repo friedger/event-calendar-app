@@ -12,8 +12,9 @@ export default React.createClass({
         return (
             <Row className="settings-space settings-navigation" style={{ border: 0 }}>
                 <div className="col-md-12">
-                    {this.props.options.map(option => {
+                    {this.props.options.map((option, index) => {
                         return (<div
+                            key={index}
                             onClick={() => {
                                 this.setState({ activeSetting: option.name })
                                 this.props.settingClicked(option.name);
