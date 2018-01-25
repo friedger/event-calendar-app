@@ -1,4 +1,5 @@
 require('./style.scss');
+// require('./editor.scss');
 import React from 'react';
 import { Row, Col, FormGroup, ControlLabel, FormControl, Radio, HelpBlock } from 'react-bootstrap';
 import Datetime from 'react-datetime';
@@ -6,6 +7,7 @@ import { reduxForm } from 'redux-form';
 import moment from 'moment';
 import cn from 'classnames';
 import debounce from 'lodash.debounce';
+import Editor from 'react-rte/lib/RichTextEditor';
 
 const validate = values => {
     const errors = {};
@@ -20,10 +22,28 @@ const validate = values => {
 };
 
 var Component = React.createClass({
+    getInitialState() {
+        console.log(this.props, 'the props');
+        return {
+            value: this.props.fields.eventDescription.value
+                ? Editor.createValueFromString(this.props.fields.eventDescription.value, 'html')
+                : Editor.createEmptyValue()
+        };
+    },
+    onEditorStateChange(editorState) {
+        console.log(editorState.toString('html'));
+    },
     componentWillMount() {
         this.makeApiCall = debounce(values => {
             this.props.putEventAction(values);
         }, 1000);
+    },
+    componentDidMount() {
+        // this.setState({
+        //     value: this.props.input.value
+        //         ? Editor.createValueFromString(this.props.eventDescription.value, 'markdown')
+        //         : Editor.createEmptyValue()
+        // });
     },
     inputChanged() {
         if (this.props.putToApiOnChange) {
@@ -32,10 +52,24 @@ var Component = React.createClass({
             }, 0);
         }
     },
+    handleChange(value) {
+        this.setState({ value });
+        let markdown = value.toString('html');
+        if (
+            markdown.length === 2 &&
+            markdown.charCodeAt(0) === 8203 &&
+            markdown.charCodeAt(1) === 10
+        ) {
+            markdown = '';
+        }
+        this.inputChanged();
+        this.props.fields.eventDescription.onChange(markdown);
+    },
     render() {
         const {
             fields: { eventName, eventDescription, eventLocation, start, end, repeat, allDay }
         } = this.props;
+
         return (
             <form>
                 <FormGroup className={cn('new-post-form', { show: this.props.show })}>
@@ -95,21 +129,8 @@ var Component = React.createClass({
                             <p>Some more information about your event</p>
                         </Col>
                         <Col md={12}>
-                            <textarea
-                                {...eventDescription}
-                                disabled={this.props.disableInputs}
-                                className={cn('form-control', {
-                                    error: eventDescription.touched && eventDescription.error
-                                })}
-                                onChange={e => {
-                                    eventDescription.onChange(e);
-                                    setTimeout(() => this.inputChanged(), 0);
-                                }}
-                                style={{ width: '100%', 'min-height': '200px' }}
-                                type="textarea"
-                                rows="4"
-                                placeholder="Event description"
-                            />
+                            <Editor value={this.state.value} onChange={this.handleChange} />
+
                             {eventDescription.touched &&
                                 eventDescription.error && (
                                     <HelpBlock>{eventDescription.error}</HelpBlock>
