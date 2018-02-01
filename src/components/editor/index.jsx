@@ -73,7 +73,7 @@ export default React.createClass({
                                         suggestionsActive={this.props.suggestions}
                                         userId={this.props.user.userId}
                                     />
-                                {this.props.userHasSubscribed && (this.props.user.weeblyUser || this.props.onBoardingState.user_clicked_added_script || this.props.onBoardingState.user_clicked_added_script === null) && (
+                                {this.props.userHasSubscribed && (this.props.user.weeblyUser || this.props.onBoardingState.user_clicked_added_script || this.props.onBoardingState.user_clicked_added_script === null || this.props.onBoardingState.userHasNoOnboardingRecord) && (
                                         <IntegrationSection
                                             weeblyUser={this.props.user.weeblyUser}
                                             bigcommerceUser={this.props.user.bigcommerceUser}
