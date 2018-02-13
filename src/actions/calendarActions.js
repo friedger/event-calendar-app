@@ -79,11 +79,17 @@ export function putSettings(eventCalWidgetUuid, values) {
                 document.dispatchEvent(a);
 
             });
-    }
+    };
 }
 
 function eventsResponseContainsEvents(res) {
-    return res.body.events && res.body.events.length > 0;
+    const hasEvents = res.body.events && res.body.events.length > 0;
+    const hasPages = res.body.pages;
+
+    if (hasPages || hasEvents) {
+        return true;
+    }
+    return false;
 }
 
 export function getCalendars(eventCalWidgetUuid) {
