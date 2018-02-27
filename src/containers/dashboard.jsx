@@ -112,6 +112,7 @@ const component = React.createClass({
                         <Editor
                             connections={connections}
                             user={this.props.appState.user}
+                            appState={this.props.appState}
                             calendars={this.props.appState.calendars}
                             authUrl={getCronofyAuthUrl()}
                             suggestions={
@@ -125,6 +126,7 @@ const component = React.createClass({
                             onBoardingState={this.props.onBoardingState}
                             calendarBuildUrl={config.calendarBuildUrl}
                             userHasSubscribed={userHasSubscribed}
+                            postOnBoarding={this.props.postOnBoarding}
                             userSelectedScriptAdded={() => {
                                 this.props.postOnBoarding({ user_clicked_added_script: true }, true);
                                 this.setState({displayAddedScriptModal: true})

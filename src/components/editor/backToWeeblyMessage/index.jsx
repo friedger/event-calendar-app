@@ -1,25 +1,36 @@
+require('./style.scss');
 import React from 'react';
 
 export default React.createClass({
+    getInitialState() {
+        return {
+            open: true
+        };
+    },
     render() {
         return (
-            <div className="head-back-to-weebly">
-                <p>
-                    <strong>That's it.</strong> Head back to your{' '}
-                    <a
-                        target="_blank"
-                        href="https://www.weebly.com/editor/main.php"
-                    >
-                        weebly dashboard
-                    </a>{' '}
-                    to see your updated calendar!
-                </p>
-                <a
-                    href="https://www.weebly.com/editor/main.php"
-                    className="weebly-button inline-button action-button btn btn-default"
-                >
-                    Back to Weebly Dashboard
-                </a>
+            <div>
+                {this.state.open && (
+                    <div className="start-trial-container">
+                        <span
+                            className="back-to-weebly-message__close"
+                            onClick={() => {
+                                this.props.close();
+                                this.setState({ open: false });
+                            }}
+                        >
+                            <i className="fa fa-times" />
+                        </span>
+                        <p>Changes here will be automatically reflected in Weebly</p>
+                        <a
+                            href="https://www.weebly.com/editor/main.php"
+                            target="_blank"
+                            className="start-trial start-trial--no-margin"
+                        >
+                            Back to Weebly Dashboard
+                        </a>
+                    </div>
+                )}
             </div>
         );
     }

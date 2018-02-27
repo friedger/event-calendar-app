@@ -17,7 +17,7 @@ export default React.createClass({
                         className="dashboard-settings__embed button action action--skinny"
                         to="/account"
                     >
-                        <i className="fa fa-code" aria-hidden="true" /> Embed code
+                        <i className="fa fa-code" aria-hidden="true" /> Add to your website
                     </Link>
                 )}
                 {!this.props.userIsAGuest && (
@@ -25,7 +25,7 @@ export default React.createClass({
                         onClick={() => this.setState({ modalOpen: true })}
                         className="dashboard-settings__embed button action action--skinny"
                     >
-                        <i className="fa fa-code" aria-hidden="true" /> Embed code
+                        <i className="fa fa-code" aria-hidden="true" /> Add to your website
                     </a>
                 )}
                 <Modal
@@ -43,6 +43,7 @@ export default React.createClass({
                                 eventCalWidgetUuid={this.props.eventCalWidgetUuid}
                                 userId={this.props.userId}
                                 shopifyUser={this.props.shopifyUser}
+                                bigcommerceUser={this.props.bigcommerceUser}
                             />
                         </div>
                     </div>

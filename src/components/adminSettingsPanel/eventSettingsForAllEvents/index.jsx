@@ -102,7 +102,9 @@ var Component = React.createClass({
         field.onChange(e);
         // Settimeout ensures we include the latest value
         setTimeout(() => {
-            handleSubmit(values => this.makeApiCall(values))();
+            handleSubmit(values => {
+                this.makeApiCall(values);
+            })();
         }, 0);
     },
     componentDidUpdate() {

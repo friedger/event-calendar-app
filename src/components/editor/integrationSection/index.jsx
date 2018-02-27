@@ -14,22 +14,11 @@ export default React.createClass({
                 {weeblyUser && (
                     <BackToWeeblyMessage></BackToWeeblyMessage>
                 )}
-                {bigcommerceUser && (
-                    <div className="calendarCode__shopify">
-                        <a
-                            className="venobox"
-                            data-autoplay="true"
-                            data-vbtype="video"
-                            href="https://www.youtube.com/watch?v=R6uKvhyHYVg"
-                            >
-                            BigCommerce integration guide
-                        </a>
-                    </div>
-                )}
                 {!weeblyUser && (
                     <CalendarCodeTextArea
                         eventCalWidgetUuid={eventCalWidgetUuid}
                         shopifyUser={shopifyUser}
+                        bigcommerceUser={bigcommerceUser}
                         userId={userId}
                         userSelectedScriptAdded={this.props.userSelectedScriptAdded}
                         highlight={this.props.highlightCodeArea}

@@ -1,8 +1,9 @@
 import React from 'react';
+import EmbedCode from '../../editor/embedCode';
 
 export default React.createClass({
     render() {
-        const { eventActivated, displayEmbedCode, addingEvent } = this.props;
+        const { eventActivated, displayEmbedCode, addingEvent, user } = this.props;
         return (
             <div className="dashboard-header dashboard-header--right row">
                 <div className="col-md-12">
@@ -19,7 +20,7 @@ export default React.createClass({
                             </span>
                         )}
                     {displayEmbedCode && (
-                        <EmbedCode />
+                        <EmbedCode shopifyUser={user.shopifyUser} bigcommerceUser={user.bigcommerceUser} />
                     )}
                 </div>
             </div>

@@ -12,6 +12,7 @@ import SuggestionInstructions from './suggestionInstructions';
 import NoEventsMessage from './noEventsMessage';
 import IntegrationSection from './integrationSection';
 import BeginTrial from './beginTrial';
+import BackToWeeblyMessage from './backToWeeblyMessage';
 
 export default React.createClass({
     userReadyToBeShownEditor() {
@@ -44,12 +45,12 @@ export default React.createClass({
                                             }
                                         />
                                     )}
+                                    {this.props.user.weeblyUser && <button className="back-to-weebly secondary secondary--small">Back to Weebly</button>}
                                 </div>
                             </div>
-                            <div className="row" style={{ padding: '0 30px' }}>
+                            <div className="row dashboard-editor" style={{ padding: '0 30px', height: 'calc(100vh - 133px)', overflow: 'scroll', background: this.props.appState.canvasBackgroundColor }}>
                                 <div
-                                    className="col-sm-12"
-                                    style={{ overflow: 'scroll', height: 'calc(100vh - 133px)' }}
+                                    className="col-sm-12 dashboard-editor__content"
                                 >
                                     <div className="row">
                                         <div className="col-md-12">
@@ -73,18 +74,14 @@ export default React.createClass({
                                         suggestionsActive={this.props.suggestions}
                                         userId={this.props.user.userId}
                                     />
-                                {this.props.userHasSubscribed && (this.props.user.weeblyUser || this.props.onBoardingState.user_clicked_added_script || this.props.onBoardingState.user_clicked_added_script === null || this.props.onBoardingState.userHasNoOnboardingRecord) && (
-                                        <IntegrationSection
-                                            weeblyUser={this.props.user.weeblyUser}
-                                            bigcommerceUser={this.props.user.bigcommerceUser}
-                                            shopifyUser={this.props.user.shopifyUser}
-                                            userId={this.props.user.userId}
-                                            eventCalWidgetUuid={this.props.eventCalWidgetUuid}
-                                            highlightCodeArea={this.props.onBoardingState.user_clicked_added_script === false}
-                                            userSelectedScriptAdded={this.props.userSelectedScriptAdded}
-                                        />
-                                    )}
-                                    {!this.props.userHasSubscribed && <BeginTrial />}
+                            </div>
+                            <div class="col-md-12">
+                                {!this.props.onBoardingState.user_closed_weebly_dashboard_link && this.props.userHasSubscribed && this.props.user.weeblyUser &&
+                                    <BackToWeeblyMessage close={() => {
+                                            this.props.postOnBoarding({ user_closed_weebly_dashboard_link: true });
+                                        }}></BackToWeeblyMessage>
+                                }
+                                {!this.props.userHasSubscribed && <BeginTrial />}
                                 </div>
                             </div>
                         </div>

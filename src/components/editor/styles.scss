@@ -1,3 +1,17 @@
+.back-to-weebly {
+    margin-left: 13px;
+    vertical-align: middle;
+}
+
+.dashboard-editor {
+    display: flex;
+    flex-flow: column;
+    &__content {
+        flex: 1;
+        overflow:scroll;
+    }
+}
+
 .calendar-settings {
     border-left: 1px solid #eee;
     .setting-title {

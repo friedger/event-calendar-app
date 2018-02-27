@@ -9,6 +9,7 @@ import featurePermissions from '../../../utils/featurePermissions';
 import cn from 'classnames';
 import SettingsCategorySelection from '../settingsCategorySelection';
 import SidePanelWrapper from '../sidePanelWrapper';
+import DesignFrom from '../designForm';
 
 var theTimeout;
 
@@ -47,45 +48,58 @@ export default React.createClass({
         } = this.props;
         return (
             <SidePanelWrapper>
-            <div className={cn('widget-settings show', { show: this.state.showComponent })}>
-                <SettingsCategorySelection
-                    options={[{ name: 'Event Sources', emoji: '🌍' }, { name: 'Layout', emoji: '✏️' }]}
-                    settingClicked={this.settingClicked}
-                />
-                <CalendarSelection
-                    onChange={putCalendars.bind(null, eventCalWidgetUuid)}
-                    toggleConnectionsScreen={this.props.toggleConnectionsScreen}
-                    initialValues={this.getCalendarFormInitialValues(calendars)}
-                    loading={calendarsLoading}
-                    addEventClicked={this.props.addEventClicked}
-                    fields={Object.keys(calendars)}
-                    calendars={calendars}
-                    show={this.state.settingsToDisplay === 'Event Sources'}
-                />
-                <div
-                    className={cn('layout-options-container', {
-                        show: this.state.settingsToDisplay === 'Layout'
-                    })}
-                >
-                    <ViewModeSelection
-                        putSettingsAction={putSettings.bind(null, eventCalWidgetUuid)}
+                <div className={cn('widget-settings show', { show: this.state.showComponent })}>
+                    <SettingsCategorySelection
+                        options={[
+                            { name: 'Event Sources', emoji: '🌍' },
+                            { name: 'Layout', emoji: '✏️' },
+                            { name: 'Design', emoji: '🎨' }
+                        ]}
+                        settingClicked={this.settingClicked}
                     />
-                    <NumberOfEventsToDisplay
-                        putSettingsAction={putSettings.bind(null, eventCalWidgetUuid)}
+                    <CalendarSelection
+                        onChange={putCalendars.bind(null, eventCalWidgetUuid)}
+                        toggleConnectionsScreen={this.props.toggleConnectionsScreen}
+                        initialValues={this.getCalendarFormInitialValues(calendars)}
+                        loading={calendarsLoading}
+                        addEventClicked={this.props.addEventClicked}
+                        fields={Object.keys(calendars)}
+                        calendars={calendars}
+                        show={this.state.settingsToDisplay === 'Event Sources'}
                     />
-                    <TimezoneSelection
-                        putSettingsAction={putSettings.bind(null, eventCalWidgetUuid)}
+                    <DesignFrom
+                        show={this.state.settingsToDisplay === 'Design'}
+                        onFormChange={putSettings.bind(null, eventCalWidgetUuid)}
+                        validWithPlan={true}
+                        canvasBackgroundModified={this.props.canvasBackgroundModified}
                     />
-                    <SubscriptionButtonSelection
-                        validWithPlan={featurePermissions.checkFeatureAvailability(
-                            userStatus,
-                            'subscriptions'
-                        )}
-                        putSettingsAction={this.props.putSettings.bind(null, eventCalWidgetUuid)}
-                    />
+                    <div
+                        className={cn('layout-options-container', {
+                            show: this.state.settingsToDisplay === 'Layout'
+                        })}
+                    >
+                        <ViewModeSelection
+                            putSettingsAction={putSettings.bind(null, eventCalWidgetUuid)}
+                        />
+                        <NumberOfEventsToDisplay
+                            putSettingsAction={putSettings.bind(null, eventCalWidgetUuid)}
+                        />
+                        <TimezoneSelection
+                            putSettingsAction={putSettings.bind(null, eventCalWidgetUuid)}
+                        />
+                        <SubscriptionButtonSelection
+                            validWithPlan={featurePermissions.checkFeatureAvailability(
+                                userStatus,
+                                'subscriptions'
+                            )}
+                            putSettingsAction={this.props.putSettings.bind(
+                                null,
+                                eventCalWidgetUuid
+                            )}
+                        />
+                    </div>
                 </div>
-            </div>
-        </SidePanelWrapper>
+            </SidePanelWrapper>
         );
     }
 });

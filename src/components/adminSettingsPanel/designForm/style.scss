@@ -1,0 +1,6 @@
+.design-form {
+    display: none;
+    &.show {
+        display: block;
+    }
+}

@@ -177,9 +177,11 @@ const component = React.createClass({
                     addingEvent={this.props.manualEventState.displayAddEventScreen}
                     displayEmbedCode={
                         !this.props.appState.user.weeblyUser &&
-                        !this.eventActivated &&
+                        !this.eventActivated() &&
                         !this.state.displayAddEventScreen
                     }
+                    user={get(this, 'props.appState.user')}
+
                 />
 
                         {this.eventActivated() &&
@@ -217,6 +219,7 @@ const component = React.createClass({
                                     toggleConnectionsScreen={this.toggleConnectionsScreen}
                                     eventCalWidgetUuid={this.props.eventCalWidgetUuid}
                                     userStatus={get(this, 'props.appState.user.status')}
+                                    canvasBackgroundModified={this.props.canvasBackgroundModified}
                                 />
                             )}
 
