@@ -32,6 +32,8 @@ export default React.createClass({
                         <div className="col-sm-5 calendar-settings col-sm-push-7">
                             <AdminSettingsPanel
                                 eventCalWidgetUuid={this.props.eventCalWidgetUuid}
+                                userHasSubscribed={this.props.userHasSubscribed}
+                                userId={this.props.user.userId}
                             />
                         </div>
                         <div className="col-sm-7 col-sm-pull-5">
@@ -48,7 +50,7 @@ export default React.createClass({
                                     {this.props.user.weeblyUser && <button className="back-to-weebly secondary secondary--small">Back to Weebly</button>}
                                 </div>
                             </div>
-                            <div className="row dashboard-editor" style={{ padding: '0 30px', height: 'calc(100vh - 133px)', overflow: 'scroll', background: this.props.appState.canvasBackgroundColor }}>
+                            <div className="row dashboard-editor" style={{ padding: '0 30px', height: 'calc(100vh - 133px)', background: this.props.appState.canvasBackgroundColor }}>
                                 <div
                                     className="col-sm-12 dashboard-editor__content"
                                 >

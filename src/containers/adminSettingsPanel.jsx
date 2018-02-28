@@ -175,6 +175,8 @@ const component = React.createClass({
                 <AdminSettingsPanelHeader
                     eventActivated={this.eventActivated()}
                     addingEvent={this.props.manualEventState.displayAddEventScreen}
+                    userIsAGuest={!this.props.userHasSubscribed}
+                    eventCalWidgetUuid={this.props.eventCalWidgetUuid}
                     displayEmbedCode={
                         !this.props.appState.user.weeblyUser &&
                         !this.eventActivated() &&

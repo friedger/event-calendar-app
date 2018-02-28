@@ -773,7 +773,10 @@ img.figlio {
 
 .plans2 .pricing-plan ul li {
   margin: 0;
-  padding: 0; }
+  padding: 5px; }
+
+.plans2 .pricing-plan ul li.negative {
+  color: #999; }
 
 .plans2 .pricing-plan__highlight {
   background: #da4167;
@@ -815,7 +818,7 @@ img.figlio {
 
 .plans2 .pricing-plan__features {
   padding: 10px 0px;
-  font-size: 12px;
+  font-size: 14px;
   padding: 25px 0px; }
 
 .plans2 .pricing-plan__notes {
@@ -953,6 +956,10 @@ button.action--skinny, a.action--skinny, .button.action--skinny {
   position: absolute;
   right: 15px; }
 
+button.action--small, a.action--small, .button.action--small {
+  font-size: 12px;
+  padding: 3px 11px; }
+
 button.secondary, a.secondary, .button.secondary {
   padding: 10px;
   font-size: 14px;
@@ -991,6 +998,10 @@ button.secondary--skinny, a.secondary--skinny, .button.secondary--skinny {
   position: absolute;
   top: 0;
   right: 0; }
+
+button.secondary--small, a.secondary--small, .button.secondary--small {
+  font-size: 12px;
+  padding: 3px 11px; }
 
 button.positive, a.positive, .button.positive {
   background: #27ae60;

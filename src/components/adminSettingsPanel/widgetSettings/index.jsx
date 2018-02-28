@@ -10,12 +10,17 @@ import cn from 'classnames';
 import SettingsCategorySelection from '../settingsCategorySelection';
 import SidePanelWrapper from '../sidePanelWrapper';
 import DesignFrom from '../designForm';
+import DesignPresets from '../designPresets';
 
 var theTimeout;
 
 export default React.createClass({
     getInitialState() {
-        return { showComponent: this.props.show, settingsToDisplay: 'Event Sources' };
+        return {
+            showComponent: this.props.show,
+            settingsToDisplay: 'Event Sources',
+            designPageToDisplay: 'Presets'
+        };
     },
     componentWillReceiveProps(nextProps) {
         if (nextProps.show) {
@@ -36,6 +41,9 @@ export default React.createClass({
     },
     settingClicked(setting) {
         this.setState({ settingsToDisplay: setting });
+    },
+    desginSettingClicked(setting) {
+        this.setState({ designPageToDisplay: setting });
     },
     render() {
         const {
@@ -68,9 +76,14 @@ export default React.createClass({
                         show={this.state.settingsToDisplay === 'Event Sources'}
                     />
                     <DesignFrom
-                        show={this.state.settingsToDisplay === 'Design'}
+                        show={
+                            this.state.settingsToDisplay === 'Design'
+                        }
                         onFormChange={putSettings.bind(null, eventCalWidgetUuid)}
-                        validWithPlan={true}
+                        validWithPlan={featurePermissions.checkFeatureAvailability(
+                            userStatus,
+                            'theming'
+                        )}
                         canvasBackgroundModified={this.props.canvasBackgroundModified}
                     />
                     <div

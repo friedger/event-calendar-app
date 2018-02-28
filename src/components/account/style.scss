@@ -69,7 +69,10 @@
             list-style-type: none;
             li {
                 margin: 0;
-                padding: 0;
+                padding: 3px;
+                &.negative {
+                    color: #999;
+                }
             }
         }
 
@@ -118,7 +121,7 @@
 
         &__features {
             padding: 10px 0px;
-            font-size: 12px;
+            font-size: 14px;
             padding: 25px 0px;
         }
 

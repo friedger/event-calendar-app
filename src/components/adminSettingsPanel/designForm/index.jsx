@@ -9,6 +9,7 @@ import { ChromePicker } from 'react-color';
 import ColourPicker from '../colourPicker';
 import SettingsCategorySelection from '../settingsCategorySelection';
 import defaultDesignSettings from './defaults';
+import DesignPresets from '../designPresets';
 
 const pickerColours = [
     '#f44336',
@@ -35,12 +36,14 @@ const fontList = [
     'Ubuntu',
     'PT Sans + PT Serif',
     'Old Standard TT',
-    'Droid Sans'
+    'Droid Sans',
+    'Nunito',
+    'Montserrat'
 ];
 
 var Component = React.createClass({
     getInitialState() {
-        return { widgetsInit: false, settingClicked: 'List view' };
+        return { widgetsInit: false, settingClicked: 'List view', designPageToDisplay: 'Presets' };
     },
     refreshCalendar(e, handleSubmit) {
         e.preventDefault();
@@ -48,6 +51,9 @@ var Component = React.createClass({
     },
     settingClicked(setting) {
         this.setState({settingClicked: setting});
+    },
+    desginSettingClicked(setting) {
+        this.setState({ designPageToDisplay: setting });
     },
     finishEditing(e) {
         e.preventDefault();
@@ -69,6 +75,11 @@ var Component = React.createClass({
         setTimeout(() => {
             handleSubmit(values => this.makeApiCall(values))();
         }, 0);
+    },
+    changeInputsToPresetValue(preset) {
+        Object.keys(preset).forEach(presetKey => {
+            this.props.fields[presetKey].onChange(preset[presetKey]);
+        });
     },
     resetToDefault(fieldName, e) {
         e.preventDefault();
@@ -103,9 +114,27 @@ var Component = React.createClass({
             handleSubmit
         } = this.props;
         return (
+            <div>
+                {this.props.show && <SettingsCategorySelection
+                    options={[
+                        { name: 'Presets', emoji: '' },
+                        { name: 'Customise', emoji: '' }
+                    ]}
+                    settingClicked={this.desginSettingClicked}
+                />}
+                <DesignPresets
+                    show={
+                        this.props.show && this.state.designPageToDisplay === 'Presets'
+                    }
+                    validWithPlan={validWithPlan}
+                    fields={this.props.fields}
+                    onFormChange={this.props.onFormChange}
+                    canvasBackgroundModified={this.props.canvasBackgroundModified}
+                />
             <form
                 ref="settingsForm"
-                className={cn('form-horizontal', 'design-form', { show: this.props.show })}
+                className="design-form"
+                className={cn('form-horizontal', 'design-form', { show: this.props.show && this.state.designPageToDisplay === 'Customise' })}
                 onSubmit={() => {}}
             >
                 <FormGroup>
@@ -127,8 +156,6 @@ var Component = React.createClass({
                                         formField={canvasBackgroundColor}
                                         handleSubmit={handleSubmit}
                                         inputOnChange={(picker, e) => {
-
-                                            console.log('INPUT CHANGED', picker);
                                             this.props.canvasBackgroundModified(picker.hex);
                                             this.inputOnChange(
                                                 picker && picker.hex,
@@ -379,11 +406,13 @@ var Component = React.createClass({
                     </Row>
                     <Row className="settings-space settings-space--center settings-space--bottom-padding-0">
                         <Col md={6}>
-                            <ControlLabel className="setting-title">
+                            <ControlLabel className="setting-title" className={cn('setting-title', {
+                                'setting-title--strike': !validWithPlan
+                            })}>
                                 Font:
                             </ControlLabel>
                         </Col>
-                        <Col md={6}>
+                        {validWithPlan && <Col md={6}>
                             <select {...font}
                                 onChange={(e) => this.inputOnChange(e, font, handleSubmit)}
                                 onBlur={(e) => this.inputOnChange(e, font, handleSubmit)}>
@@ -402,7 +431,10 @@ var Component = React.createClass({
                                     Reset to default
                                 </button>
                             }
-                        </Col>
+                        </Col>}
+                        {!validWithPlan && (
+                            <LockedFeature columns={6} title={'Upgrade your account'} />
+                        )}
                     </Row>
                     <SettingsCategorySelection
                         options={[
@@ -413,14 +445,16 @@ var Component = React.createClass({
                     />
                 {this.state.settingClicked === 'List view' && <Row className="settings-space settings-space--center settings-space--bottom-padding-0">
                         <Col md={6}>
-                            <ControlLabel className="setting-title">
+                            <ControlLabel className="setting-title" className={cn('setting-title', {
+                                'setting-title--strike': !validWithPlan
+                            })}>
                                 Event bottom spacing (px):
                             </ControlLabel>
                             <p className="calendar-selection__description">
                                 <strong>The gap between each event.</strong>
                             </p>
                         </Col>
-                        <Col md={6}>
+                        {validWithPlan && <Col md={6}>
                             <FormControl
                                 type="number"
                                 placeholder="5"
@@ -441,18 +475,23 @@ var Component = React.createClass({
                                     Reset to default
                                 </button>
                             }
-                        </Col>
+                        </Col>}
+                        {!validWithPlan && (
+                            <LockedFeature columns={6} title={'Upgrade your account'} />
+                        )}
                     </Row>}
                     {this.state.settingClicked === 'Grid view' && <Row className="settings-space settings-space--center settings-space--bottom-padding-0">
                         <Col md={6}>
-                            <ControlLabel className="setting-title">
+                            <ControlLabel className="setting-title" className={cn('setting-title', {
+                                'setting-title--strike': !validWithPlan
+                            })}>
                                 Background:
                             </ControlLabel>
                             <p className="calendar-selection__description">
                                 <strong>The grid view background.</strong>
                             </p>
                         </Col>
-                        <Col md={6}>
+                        {validWithPlan && <Col md={6}>
                             <ColourPicker
                                 formField={gridViewBackgroundColor}
                                 handleSubmit={handleSubmit}
@@ -475,18 +514,23 @@ var Component = React.createClass({
                                         Reset to default
                                     </button>
                                 )}
-                        </Col>
+                        </Col>}
+                        {!validWithPlan && (
+                            <LockedFeature columns={6} title={'Upgrade your account'} />
+                        )}
                     </Row>}
                     {this.state.settingClicked === 'Grid view' && <Row className="settings-space settings-space--center settings-space--bottom-padding-0">
                         <Col md={6}>
-                            <ControlLabel className="setting-title">
+                            <ControlLabel className="setting-title" className={cn('setting-title', {
+                                'setting-title--strike': !validWithPlan
+                            })}>
                                 Border:
                             </ControlLabel>
                             <p className="calendar-selection__description">
                                 <strong>The grid view border.</strong>
                             </p>
                         </Col>
-                        <Col md={6}>
+                        {validWithPlan && <Col md={6}>
                             <ColourPicker
                                 formField={gridViewBorderColor}
                                 handleSubmit={handleSubmit}
@@ -509,7 +553,10 @@ var Component = React.createClass({
                                         Reset to default
                                     </button>
                                 )}
-                        </Col>
+                        </Col>}
+                        {!validWithPlan && (
+                            <LockedFeature columns={6} title={'Upgrade your account'} />
+                        )}
                     </Row>}
                     <Row>
                         <Col md={12}>
@@ -518,6 +565,7 @@ var Component = React.createClass({
                     </Row>
                 </FormGroup>
             </form>
+            </div>
         );
     }
 });
