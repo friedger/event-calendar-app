@@ -51,7 +51,7 @@ export default React.createClass({
                                         <li>Event Calendar Search</li>
                                         <li className="negative">Customers cannot subscribe</li>
                                         <li className="negative">No themes</li>
-                                        <li class="negative">No event images</li>
+                                        <li className="negative">No event images</li>
                                         <li>-</li>
                                         <li>-</li>
                                         <li>-</li>
