@@ -29,7 +29,8 @@ var Component = React.createClass({
         const {
             fields: {
                 timezone,
-                timeformat
+                timeformat,
+                endTimes
             },
             handleSubmit,
             submitting
@@ -62,6 +63,15 @@ var Component = React.createClass({
                                 <Radio inline name="timeformat" {...timeformat} onChange={(e) => this.inputOnChange(e, timeformat, handleSubmit)} checked={timeformat.value === 24 || timeformat.value === '24'} value={24}>24hr</Radio>
                             </Col>
                         </Row>
+                        <Row className="settings-space">
+                            <Col md={8}>
+                                <ControlLabel className="setting-title">Display end times:</ControlLabel>
+                            </Col>
+                            <Col md={4}>
+                                <Radio inline name="timeformat" {...endTimes} onChange={(e) => this.inputOnChange(e, endTimes, handleSubmit)} checked={endTimes.value === true || endTimes.value === 'true'} value={true}>Yes</Radio>
+                                <Radio inline name="timeformat" {...endTimes} onChange={(e) => this.inputOnChange(e, endTimes, handleSubmit)} checked={endTimes.value === false || endTimes.value === 'false'} value={false}>No</Radio>
+                            </Col>
+                        </Row>
                         <Row>
                             <Col md={12}>
                                 <hr></hr>
@@ -77,7 +87,7 @@ var Component = React.createClass({
 
 export default Component = reduxForm({ // <----- THIS IS THE IMPORTANT PART!
     form: 'timezoneSelection', // a unique name for this form
-    fields: ['timezone', 'timeformat'],
+    fields: ['timezone', 'timeformat', 'endTimes'],
     destroyOnUnmount: false,
     overwriteOnInitialValuesChange: false
 }, state => ({initialValues: state.appState}))(Component);

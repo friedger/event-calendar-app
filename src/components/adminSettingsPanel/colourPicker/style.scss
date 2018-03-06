@@ -1,0 +1,20 @@
+.chrome-picker {
+    width: 100% !important;
+    margin-top: 13px !important;
+}
+
+.color-container {
+    .form-control {
+        padding-left: 35px;
+    }
+    &__preview {
+        background: #fff;
+        width: 20px;
+        height: 20px;
+        border: 1px solid #ccc;
+        border-radius: 2px;
+        position: absolute;
+        top: 9px;
+        left: 23px;
+    }
+}

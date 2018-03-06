@@ -15,6 +15,7 @@ export const ADD_USER_SUCCESS = 'GET_USER_SUCCESS';
 export const ADD_USER_FAILURE = 'GET_USER_FAILURE';
 
 export const POPULATE_REGISTER_FORM = 'POPULATE_REGISTER_FORM';
+export const CANVAS_BACKGROUND_MODIFIED = 'CANVAS_BACKGROUND_MODIFIED';
 
 export const TOGGLE_SUGESSTIONS = 'TOGGLE_SUGESSTIONS';
 export const EVENTCAL_REMOVED = 'EVENTCAL_REMOVED';
@@ -168,6 +169,14 @@ export function eventcalRemoved() {
     return {
         type: EVENTCAL_REMOVED
     }
+}
+
+export function canvasBackgroundModified(value) {
+    console.log(value);
+    return {
+        type: CANVAS_BACKGROUND_MODIFIED,
+        payload: value
+    };
 }
 
 export function logOut() {

@@ -1,7 +1,8 @@
 import {
     GET_USER_SUCCESS,
     TOGGLE_SUGESSTIONS,
-    EVENTCAL_REMOVED
+    EVENTCAL_REMOVED,
+    CANVAS_BACKGROUND_MODIFIED
 } from '../actions';
 import {
     PUT_CALENDARS,
@@ -73,6 +74,8 @@ export default function appState(state = {
         }, { calendars });
     case GET_SETTINGS_SUCCESS:
         return Object.assign({}, state, action.payload.body);
+    case CANVAS_BACKGROUND_MODIFIED:
+        return Object.assign({}, state, { canvasBackgroundColor: action.payload });
     case GET_CONNECTIONS_SUCCESS:
         return Object.assign({}, state, {
             connections: action.payload,

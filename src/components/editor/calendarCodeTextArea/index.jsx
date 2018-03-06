@@ -81,6 +81,18 @@ export default React.createClass({
                             </a>
                         </div>
                     )}
+                    {this.props.bigcommerceUser && (
+                        <div className="calendarCode__shopify">
+                            <a
+                                className="venobox"
+                                data-autoplay="true"
+                                data-vbtype="video"
+                                href="https://www.youtube.com/watch?v=R6uKvhyHYVg"
+                                >
+                                BigCommerce integration guide
+                            </a>
+                        </div>
+                    )}
                 </Col>
             </Row>
         );

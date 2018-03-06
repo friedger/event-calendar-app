@@ -9,6 +9,7 @@ import { Row, Col } from 'react-bootstrap';
 import SocialProof from '../components/authentication/socialProof';
 import config from '../../config';
 import InlineSVG from 'svg-inline-react';
+const Link = require('react-router').Link;
 
 const mapState = ({ form, initialRegisterState }) => {
     return {
@@ -56,9 +57,9 @@ const component = React.createClass({
                                 </div>
                             </Col>
                             <Col md={12}>
-                                <div className="logo-container">
+                                <a href="/" className="logo-container">
                                     <InlineSVG src={svgSource} />
-                                </div>
+                                </a>
                             </Col>
                         </Row>
                         <RegistrationForm

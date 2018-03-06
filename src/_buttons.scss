@@ -77,6 +77,11 @@ button, a, .button {
             position: absolute;
             right: 15px;
         }
+
+        &--small {
+            font-size: 12px;
+            padding: 3px 11px;
+        }
     }
 
     &.secondary {
@@ -117,6 +122,10 @@ button, a, .button {
             position: absolute;
             top: 0;
             right: 0;
+        }
+        &--small {
+            font-size: 12px;
+            padding: 3px 11px;
         }
     }
 

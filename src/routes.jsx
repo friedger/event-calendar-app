@@ -8,6 +8,7 @@ import Help from './containers/help';
 import TransactionComplete from './containers/transactionComplete';
 import NotFoundComponent from './containers/notFound';
 import WeeblyIframe from './containers/weeblyIframe';
+import Notifications from './containers/notifications';
 import FailToLink from './containers/FailToLink';
 import LinkCalendar from './containers/LinkCalendar';
 import ResetPassword from './containers/reset-password';
@@ -95,6 +96,7 @@ export default store => {
             <Route path="/facebook/select-page" component={FacebookSelectPage} />
             <Route path="/facebook/auth-success" component={FacebookAuthSuccess} />
             <Route path="/facebook/auth-fail" component={FacebookAuthFail} />
+            <Route path="/notifications" component={Notifications} />
             <Route path="/connections" component={Connections} />
             <Route path="*" component={NotFoundComponent} />
         </Route>

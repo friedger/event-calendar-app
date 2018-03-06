@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, FormGroup, ControlLabel, Radio } from 'react-bootstrap';
+import { Row, Col, FormGroup, ControlLabel, Radio, FormControl } from 'react-bootstrap';
 import cn from 'classnames';
 import { reduxForm } from 'redux-form';
 import LockedFeature from '../lockedFeature';
@@ -12,7 +12,7 @@ var Component = React.createClass({
         });
     },
     render() {
-        const { fields: { subscriptionButton }, handleSubmit, validWithPlan } = this.props;
+        const { fields: { subscriptionButton, calendarName }, handleSubmit, validWithPlan } = this.props;
         return (
             <Row
                 onClick={() => {
@@ -76,6 +76,21 @@ var Component = React.createClass({
                                     </Col>}
                                 {!validWithPlan && <LockedFeature columns={4} title={'Enable users to subscribe to your calendar'}/>}
                             </Row>
+                            <Row className="settings-space">
+                                <Col md={8}>
+                                    <ControlLabel
+                                        className={cn('setting-title', {
+                                            'setting-title--strike': !validWithPlan
+                                        })}
+                                    >
+                                        Calendar Name for subscribers:
+                                    </ControlLabel>
+                                    <p className="calendar-selection__description">People will see this inside of their calendar application when they subscribe to your event calendar. <strong>It will take 30min for this change to take effect.</strong></p>
+                                </Col>
+                                <Col md={4}>
+                                    <FormControl type="text" placeholder="calendar" {...calendarName} onChange={(e) => this.inputOnChange(e, calendarName, handleSubmit)} onBlur={(e) => this.inputOnChange(e, calendarName, handleSubmit)}/>
+                                </Col>
+                            </Row>
                         </FormGroup>
                     </form>
                 </Col>
@@ -88,7 +103,7 @@ export default (Component = reduxForm(
     {
         // <----- THIS IS THE IMPORTANT PART!
         form: 'subscriptionButtonSelection', // a unique name for this form
-        fields: ['subscriptionButton'],
+        fields: ['subscriptionButton', 'calendarName'],
         destroyOnUnmount: false,
         overwriteOnInitialValuesChange: false
     },

@@ -1,0 +1,52 @@
+.design-presets {
+    display: none;
+    margin-top: 50px;
+    &.show {
+        display: block;
+    }
+    .settings-form__locked {
+        top:0;
+        right: 15px;
+    }
+}
+
+.preset {
+    box-shadow: 0 1px 4px #cfd2d4;
+    border-radius: 2px;
+    margin-bottom: 30px;
+    &:hover {
+        cursor: pointer;
+        transform: translateY(-1px);
+    }
+    &__locked {
+        text-align: left;
+        font-size: 35px;
+        color: #e3ea3c;
+        position: absolute;
+        right: 15px;
+        top: 0;
+        cursor: pointer;
+    }
+    &__colours {
+        display: flex;
+        background: #eee;
+        height: 58px;
+    }
+    &__colour {
+        background: #fff;
+        flex: 1;
+        height: 100%;
+        display: inline-block;
+    }
+    &__content {
+        font-weight: bold;
+        font-size: 18px;
+        padding: 12px;
+        position: relative;
+        text-transform: capitalize;
+        button {
+            position: absolute;
+            right: 12px;
+        }
+    }
+}

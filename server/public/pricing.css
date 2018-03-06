@@ -56,7 +56,10 @@
 
 .plans2 .pricing-plan ul li {
   margin: 0;
-  padding: 0; }
+  padding: 5px; }
+
+.plans2 .pricing-plan ul li.negative {
+  color: #999; }
 
 .plans2 .pricing-plan__highlight {
   background: #da4167;
@@ -98,7 +101,7 @@
 
 .plans2 .pricing-plan__features {
   padding: 10px 0px;
-  font-size: 12px;
+  font-size: 14px;
   padding: 25px 0px; }
 
 .plans2 .pricing-plan__notes {

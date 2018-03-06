@@ -1,5 +1,6 @@
 import React from 'react';
-import { Col, Modal } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
+import UpgradeModal from '../../modals/upgradeModal';
 
 export default React.createClass({
     getInitialState() {
@@ -11,27 +12,17 @@ export default React.createClass({
         const { columns, title } = this.props;
         return (
             <Col md={columns}>
-                <Modal
+                <UpgradeModal
                     show={this.state.showModal}
-                    onHide={() => {
+                    title={title}
+                    hide={() => {
                         this.setState({ showModal: false });
                     }}
+                />
+                <div
+                    className="settings-form__locked"
+                    onClick={() => this.setState({ showModal: true })}
                 >
-                    <Modal.Header closeButton>
-                        <Modal.Title>
-                            <span>
-                                {title}
-                            </span>
-                        </Modal.Title>
-                    </Modal.Header>
-                    <div className="col-md-12 connection-modal">
-                        <div className="connection-modal__content">
-                            Unfortunately this feature is not available on your current plan.
-                            Upgrade to enable it.
-                        </div>
-                    </div>
-                </Modal>
-                <div className="settings-form__locked" onClick={() => this.setState({ showModal: true })}>
                     <i className="fa fa-lock" aria-hidden="true" />
                 </div>
             </Col>

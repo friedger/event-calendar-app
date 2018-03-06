@@ -15,6 +15,7 @@ export default React.createClass({
                 <ul>
                     <li onClick={() => browserHistory.push('/account')} className={this.props.selected === 'account' ? 'selected' : ''}>😊 Account</li>
                     <li onClick={() => browserHistory.push('/connections')} className={this.props.selected === 'connections' ? 'selected' : ''}>📅 Calendar Connections</li>
+                    <li onClick={() => browserHistory.push('/notifications')} className={this.props.selected === 'notifications' ? 'selected' : ''}>🔔 Notifications</li>
                 </ul>
             </div>
         )

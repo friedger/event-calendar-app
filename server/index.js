@@ -40,6 +40,7 @@ app.use('/dashboard/account-error', function (req, res, next) {
 app.use('/dashboard', notLoggedInRedirect, renderDashboard);
 app.use('/editor/:uuid', notLoggedInRedirect, renderDashboard);
 app.use('/account', notLoggedInRedirect, renderApp);
+app.use('/notifications', notLoggedInRedirect, renderApp);
 app.use('/add-subscription', notLoggedInRedirect, renderDashboard);
 app.use('/link-calendar', notLoggedInRedirect, renderApp);
 app.use('/firsttime-link-calendar', notLoggedInRedirect, renderApp);

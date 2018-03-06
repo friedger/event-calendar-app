@@ -10,7 +10,7 @@ export default React.createClass({
     },
     render() {
         return (
-            <Row className="settings-space settings-navigation" style={{ border: 0 }}>
+            <Row className={"settings-space settings-navigation"} style={{ border: 0 }}>
                 <div className="col-md-12">
                     {this.props.options.map((option, index) => {
                         return (<div
@@ -22,6 +22,7 @@ export default React.createClass({
                             className={cn('setting', {
                                 'setting--active': this.state.activeSetting === option.name
                             })}
+                            style={{width: `${100 / this.props.options.length}%`}}
                             >
                             {option.emoji} {option.name}
                         </div>);

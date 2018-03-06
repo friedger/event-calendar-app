@@ -21,7 +21,7 @@ export default React.createClass({
                             />
                         )}
                     <div className="col-md-12">
-                        <h2>👨‍💻 Plans</h2>
+                        <h2>📊 Plans</h2>
                         <p>Choose the plan that best suits your business.</p>
                     </div>
                     <div className="plans2">
@@ -43,11 +43,20 @@ export default React.createClass({
                                 <div className="pricing-plan__features">
                                     <ul>
                                         <li>Unlimited Traffic</li>
+                                        <li>Unlimited Events</li>
                                         <li>1 Event Calendar</li>
                                         <li>Grid & Map View</li>
-                                        <li>Google, Apple, Outlook Integration</li>
+                                        <li>Google, Apple, Outlook, Facebook Integration</li>
                                         <li>ICS Support</li>
                                         <li>Event Calendar Search</li>
+                                        <li className="negative">Customers cannot subscribe</li>
+                                        <li className="negative">No themes</li>
+                                        <li className="negative">No event images</li>
+                                        <li>-</li>
+                                        <li>-</li>
+                                        <li>-</li>
+                                        <li>-</li>
+                                        <li>-</li>
                                     </ul>
                                 </div>
                                 <div className="pricing-plan__notes">
@@ -88,14 +97,21 @@ export default React.createClass({
                                 </div>
                                 <div className="pricing-plan__features">
                                     <ul>
-                                        <li>
-                                            <strong>All hobby features +</strong>
-                                        </li>
-                                        <li>Multi Event Calendar support (up to 3)</li>
+                                        <li>Unlimited Traffic</li>
+                                        <li>Unlimited Events</li>
+                                        <li>Multi Event Calendar support <strong>(up to 3)</strong></li>
+                                        <li>Grid & Map View</li>
+                                        <li>Google, Apple, Outlook, Facebook Integration</li>
+                                        <li>ICS Support</li>
+                                        <li>Event Calendar Search</li>
                                         <li>Subscribable Event Calendar</li>
                                         <li>Ticket Links</li>
                                         <li>Event Images</li>
                                         <li>Event Thumbnails</li>
+                                        <li>Event Filters</li>
+                                        <li>Colour coded events</li>
+                                        <li>Themes and custom designs</li>
+                                        <li>-</li>
                                     </ul>
                                 </div>
                                 <div className="pricing-plan__notes">
@@ -133,16 +149,21 @@ export default React.createClass({
                                     </div>
                                     <div className="pricing-plan__features">
                                         <ul>
-                                            <li>
-                                                <strong>
-                                                    All hobby and professional features +
-                                                </strong>
-                                            </li>
-                                            <li>Multi Event Calendar support (up to 10)</li>
-                                            <li>No Event Calendar App Branding</li>
-                                            <li>-</li>
-                                            <li>-</li>
-                                            <li>-</li>
+                                            <li>Unlimited Traffic</li>
+                                            <li>Unlimited Events</li>
+                                            <li>Multi Event Calendar support <strong>(up to 10)</strong></li>
+                                            <li>Grid & Map View</li>
+                                            <li>Google, Apple, Outlook, Facebook Integration</li>
+                                            <li>ICS Support</li>
+                                            <li>Event Calendar Search</li>
+                                            <li>Subscribable Event Calendar</li>
+                                            <li>Ticket Links</li>
+                                            <li>Event Images</li>
+                                            <li>Event Thumbnails</li>
+                                            <li>Event Filters</li>
+                                            <li>Colour coded events</li>
+                                            <li>Themes and custom designs</li>
+                                            <li><strong>No Event Calendar App Branding</strong></li>
                                         </ul>
                                     </div>
                                 </div>
