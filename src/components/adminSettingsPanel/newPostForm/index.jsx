@@ -48,7 +48,7 @@ var Component = React.createClass({
     inputChanged() {
         if (this.props.putToApiOnChange) {
             setTimeout(() => {
-                this.props.handleSubmit(values => this.makeApiCall(values))();
+                this.props.handleSubmit(values => this.makeApiCall(Object.assign(values, { usesHTMLEditor: true })))();
             }, 0);
         }
     },
@@ -63,6 +63,8 @@ var Component = React.createClass({
             markdown = '';
         }
         this.inputChanged();
+        const shortDescription = value.getEditorState().getCurrentContent().getPlainText();
+        this.props.fields.shortDescription.onChange(shortDescription);
         this.props.fields.eventDescription.onChange(markdown);
     },
     render() {
@@ -304,7 +306,8 @@ export default (Component = reduxForm(
             'start',
             'end',
             'repeat',
-            'allDay'
+            'allDay',
+            'shortDescription'
         ],
         validate
     },
