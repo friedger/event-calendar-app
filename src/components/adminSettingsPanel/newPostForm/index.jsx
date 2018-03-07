@@ -1,4 +1,5 @@
 require('./style.scss');
+// require('./editor.scss');
 import React from 'react';
 import { Row, Col, FormGroup, ControlLabel, FormControl, Radio, HelpBlock } from 'react-bootstrap';
 import Datetime from 'react-datetime';
@@ -6,6 +7,12 @@ import { reduxForm } from 'redux-form';
 import moment from 'moment';
 import cn from 'classnames';
 import debounce from 'lodash.debounce';
+import { Editor } from '@tinymce/tinymce-react';
+import tinymce from 'tinymce';
+import 'tinymce/themes/modern';
+import 'tinymce/plugins/link';
+import 'tinymce/plugins/code';
+import config from '../../../../config';
 
 const validate = values => {
     const errors = {};
@@ -20,7 +27,16 @@ const validate = values => {
 };
 
 var Component = React.createClass({
+    getInitialState() {
+        return {
+            editor: false
+        };
+    },
+    onEditorStateChange(editorState) {
+        console.log(editorState.toString('html'));
+    },
     componentWillMount() {
+        tinyMCE.baseURL = `${config.appUrl}/tinymce`;
         this.makeApiCall = debounce(values => {
             this.props.putEventAction(values);
         }, 1000);
@@ -32,10 +48,16 @@ var Component = React.createClass({
             }, 0);
         }
     },
+    handleChange() {
+        this.props.fields.shortDescription.onChange(this.state.editor.getContent({ format: 'text' }));
+        this.props.fields.eventDescription.onChange(this.state.editor.getContent());
+        this.inputChanged();
+    },
     render() {
         const {
             fields: { eventName, eventDescription, eventLocation, start, end, repeat, allDay }
         } = this.props;
+
         return (
             <form>
                 <FormGroup className={cn('new-post-form', { show: this.props.show })}>
@@ -95,20 +117,33 @@ var Component = React.createClass({
                             <p>Some more information about your event</p>
                         </Col>
                         <Col md={12}>
-                            <textarea
-                                {...eventDescription}
-                                disabled={this.props.disableInputs}
-                                className={cn('form-control', {
-                                    error: eventDescription.touched && eventDescription.error
-                                })}
-                                onChange={e => {
-                                    eventDescription.onChange(e);
-                                    setTimeout(() => this.inputChanged(), 0);
+                            <Editor
+                                initialValue={this.props.fields.eventDescription.value
+                                    ? this.props.fields.eventDescription.value.split('\n').map((item, i) => {
+                                        return '<p>' + item + '</p>';
+                                    }).join('')
+                                    : ''}
+                                init={{
+                                    formats: {
+                                        alignleft: {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'left'},
+                                        aligncenter: {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'center'},
+                                        alignright: {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'right'},
+                                        alignjustify: {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'full'},
+                                        underline: {inline : 'span', 'classes' : 'underline', exact : true}
+                                    },
+                                    plugins: 'link code',
+                                    menubar: false,
+                                    inline_styles : false,
+                                    toolbar: 'undo redo | formatselect | bold italic | link | alignleft aligncenter alignright | code |',
+                                    height: '250px',
+                                    setup: editor => {
+                                        this.setState({ editor });
+                                        editor.on('keyup change', () => {
+                                            console.log('change getting triggerd');
+                                            this.handleChange();
+                                        });
+                                    }
                                 }}
-                                style={{ width: '100%', 'min-height': '200px' }}
-                                type="textarea"
-                                rows="4"
-                                placeholder="Event description"
                             />
                             {eventDescription.touched &&
                                 eventDescription.error && (
@@ -283,7 +318,8 @@ export default (Component = reduxForm(
             'start',
             'end',
             'repeat',
-            'allDay'
+            'allDay',
+            'shortDescription'
         ],
         validate
     },

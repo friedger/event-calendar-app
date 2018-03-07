@@ -15,7 +15,21 @@ module.exports = {
         publicPath: '/'
     },
     module: {
-        loaders: [{
+        loaders: [
+            {
+        test: require.resolve('tinymce/tinymce'),
+        loaders: [
+          'imports?this=>window',
+          'exports?window.tinymce'
+        ]
+      },
+      {
+        test: /tinymce\/(themes|plugins)\//,
+        loaders: [
+          'imports?this=>window'
+        ]
+    },    
+            {
             test: /\.jsx?$/,
             exclude: /(node_modules)/,
             loader: 'babel',
@@ -45,6 +59,12 @@ module.exports = {
             test: /\.scss$/,
             loaders: ['style', 'css', 'sass']
         }, {
+    test: /\.css$/,
+    loaders: [
+      'style-loader',
+      'css-loader?modules'
+    ]
+  }, {
             include: /\.json$/,
             loaders: ["json-loader"]
         }]

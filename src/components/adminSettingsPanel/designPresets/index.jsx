@@ -51,9 +51,10 @@ export default React.createClass({
                                 }}
                             >
                                 <div className="preset__colours">
-                                    {this.getColoursFromPreset(presets[presetName]).map(color => {
+                                    {this.getColoursFromPreset(presets[presetName]).map((color, index) => {
                                         return (
                                             <span
+                                                key={index}
                                                 className="preset__colour"
                                                 style={{ background: color }}
                                             />

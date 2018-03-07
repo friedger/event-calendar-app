@@ -365,6 +365,10 @@ h1 {
     border-radius: 2px;
     height: 38px;
 
+    &--no-fixed-height {
+        height: auto;
+    }
+
     &.has-error {
         box-shadow: none;
 
@@ -391,4 +395,27 @@ h1 {
     border-radius: 4px;
     background-color: rgba(0,0,0,.5);
     -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+.mce-tinymce {
+    box-shadow: none !important;
+}
+
+.mce-panel {
+    border: 0 solid #ccc;
+}
+
+.mce-content-body {
+    padding: 11px 12px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    .center {
+        text-align: center;
+    }
+    .right {
+        text-align: right;
+    }
+    .left {
+        text-align: left;
+    }
 }

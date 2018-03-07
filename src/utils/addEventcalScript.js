@@ -22,6 +22,11 @@ export default function addScriptToPage(userId) {
         stylesheet.setAttribute('rel', 'stylesheet');
         document.head.appendChild(stylesheet);
 
+        var stylesheet = document.createElement('link');
+        stylesheet.setAttribute('href', `${config.apiUrl}/cleanslate.css`);
+        stylesheet.setAttribute('rel', 'stylesheet');
+        document.head.appendChild(stylesheet);
+
         var fontAwesome = document.createElement('link');
         fontAwesome.setAttribute(
             'href',

@@ -33,7 +33,6 @@ var component = React.createClass({
         const userClickedAddedScript = this.props.onBoardingState.user_clicked_added_script;
         const plan = this.props.account.plan;
         const user = get(this, 'props.appState.user');
-        console.log(userClickedAddedScript, 'status')
         return (
             <div className="navigation-container">
                 <div className={this.props.useFluidContainer ? 'container-fluid' : 'container'}>
