@@ -109,7 +109,7 @@ export default (Component = reduxForm(
     },
     state => {
         const initialState = Object.assign({}, state.appState, {
-            subscriptionButton: state.appState.subscriptionButton.value
+            subscriptionButton: state.appState.subscriptionButton && state.appState.subscriptionButton.value
         });
         return { initialValues: initialState };
     }
