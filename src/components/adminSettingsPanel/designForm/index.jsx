@@ -61,7 +61,6 @@ var Component = React.createClass({
     },
     componentWillMount() {
         this.makeApiCall = debounce(values => {
-            console.log('its hitting herrrrreee');
             this.props.onFormChange(values);
         }, 1000);
     },
@@ -69,7 +68,6 @@ var Component = React.createClass({
         field.onChange(e);
     },
     inputOnChange(e, field, handleSubmit) {
-        console.log('input on change blah blah')
         field.onChange(e);
         // Settimeout ensures we include the latest value
         setTimeout(() => {
@@ -85,7 +83,6 @@ var Component = React.createClass({
         e.preventDefault();
         const onChangeObj = {};
         onChangeObj[fieldName] = defaultDesignSettings[fieldName];
-        console.log('its fesseettt');
         this.props.onFormChange(onChangeObj);
         this.props.fields[fieldName].onChange(defaultDesignSettings[fieldName]);
 

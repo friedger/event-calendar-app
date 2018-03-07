@@ -33,7 +33,6 @@ var Component = React.createClass({
                             const filter = this.props.availableFilters.find(
                                 theFilter => theFilter.id.toString() === filterId
                             );
-                            console.log(filter);
                             return (
                                 <div key={index}>
                                 <div className="filter">

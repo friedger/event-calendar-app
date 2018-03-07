@@ -30,9 +30,9 @@ export default React.createClass({
                         this.setState({ showUpgradeModal: false });
                     }}
                 />
-                {Object.keys(presets).map(presetName => {
+            {Object.keys(presets).map((presetName, index) => {
                     return (
-                        <div className="col-md-6">
+                        <div className="col-md-6" key={index}>
                             <div
                                 className="preset"
                                 onClick={() => {

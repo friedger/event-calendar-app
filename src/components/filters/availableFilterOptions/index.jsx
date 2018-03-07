@@ -27,7 +27,6 @@ var Component = React.createClass({
     },
     render() {
         const { fields: { color, name } } = this.props;
-        console.log(name, 'the name');
         return (
             <div>
                 <span

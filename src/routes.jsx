@@ -10,7 +10,7 @@ import NotFoundComponent from './containers/notFound';
 import WeeblyIframe from './containers/weeblyIframe';
 import Notifications from './containers/notifications';
 import FailToLink from './containers/FailToLink';
-import LinkCalendar from './containers/LinkCalendar';
+import LinkCalendar from './containers/linkCalendar';
 import ResetPassword from './containers/reset-password';
 import Connections from './containers/connections';
 import AddSubscription from './containers/AddSubscription';
