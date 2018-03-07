@@ -416,8 +416,8 @@ var Component = React.createClass({
                             <select {...font}
                                 onChange={(e) => this.inputOnChange(e, font, handleSubmit)}
                                 onBlur={(e) => this.inputOnChange(e, font, handleSubmit)}>
-                                {fontList.map(itemName => {
-                                    return <option>{itemName}</option>
+                                {fontList.map((itemName, index) => {
+                                    return <option key={index}>{itemName}</option>
                                 }) }
                             </select>
                         {!this.valueIsDefault('font') &&

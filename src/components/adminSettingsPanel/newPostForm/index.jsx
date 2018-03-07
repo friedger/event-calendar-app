@@ -7,7 +7,12 @@ import { reduxForm } from 'redux-form';
 import moment from 'moment';
 import cn from 'classnames';
 import debounce from 'lodash.debounce';
-import Editor from 'react-rte/lib/RichTextEditor';
+import { Editor } from '@tinymce/tinymce-react';
+import tinymce from 'tinymce';
+import 'tinymce/themes/modern';
+import 'tinymce/plugins/link';
+import 'tinymce/plugins/code';
+import config from '../../../../config';
 
 const validate = values => {
     const errors = {};
@@ -23,49 +28,30 @@ const validate = values => {
 
 var Component = React.createClass({
     getInitialState() {
-        console.log(this.props, 'the props');
         return {
-            value: this.props.fields.eventDescription.value
-                ? Editor.createValueFromString(this.props.fields.eventDescription.value, 'html')
-                : Editor.createEmptyValue()
+            editor: false
         };
     },
     onEditorStateChange(editorState) {
         console.log(editorState.toString('html'));
     },
     componentWillMount() {
+        tinyMCE.baseURL = `${config.appUrl}/tinymce`;
         this.makeApiCall = debounce(values => {
             this.props.putEventAction(values);
         }, 1000);
     },
-    componentDidMount() {
-        // this.setState({
-        //     value: this.props.input.value
-        //         ? Editor.createValueFromString(this.props.eventDescription.value, 'markdown')
-        //         : Editor.createEmptyValue()
-        // });
-    },
     inputChanged() {
         if (this.props.putToApiOnChange) {
             setTimeout(() => {
-                this.props.handleSubmit(values => this.makeApiCall(Object.assign(values, { usesHTMLEditor: true })))();
+                this.props.handleSubmit(values => this.makeApiCall(values))();
             }, 0);
         }
     },
-    handleChange(value) {
-        this.setState({ value });
-        let markdown = value.toString('html');
-        if (
-            markdown.length === 2 &&
-            markdown.charCodeAt(0) === 8203 &&
-            markdown.charCodeAt(1) === 10
-        ) {
-            markdown = '';
-        }
+    handleChange() {
+        this.props.fields.shortDescription.onChange(this.state.editor.getContent({ format: 'text' }));
+        this.props.fields.eventDescription.onChange(this.state.editor.getContent());
         this.inputChanged();
-        const shortDescription = value.getEditorState().getCurrentContent().getPlainText();
-        this.props.fields.shortDescription.onChange(shortDescription);
-        this.props.fields.eventDescription.onChange(markdown);
     },
     render() {
         const {
@@ -131,8 +117,34 @@ var Component = React.createClass({
                             <p>Some more information about your event</p>
                         </Col>
                         <Col md={12}>
-                            <Editor value={this.state.value} onChange={this.handleChange} />
-
+                            <Editor
+                                initialValue={this.props.fields.eventDescription.value
+                                    ? this.props.fields.eventDescription.value.split('\n').map((item, i) => {
+                                        return '<p>' + item + '</p>';
+                                    }).join('')
+                                    : ''}
+                                init={{
+                                    formats: {
+                                        alignleft: {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'left'},
+                                        aligncenter: {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'center'},
+                                        alignright: {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'right'},
+                                        alignjustify: {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'full'},
+                                        underline: {inline : 'span', 'classes' : 'underline', exact : true}
+                                    },
+                                    plugins: 'link code',
+                                    menubar: false,
+                                    inline_styles : false,
+                                    toolbar: 'undo redo | formatselect | bold italic | link | alignleft aligncenter alignright | code |',
+                                    height: '250px',
+                                    setup: editor => {
+                                        this.setState({ editor });
+                                        editor.on('keyup change', () => {
+                                            console.log('change getting triggerd');
+                                            this.handleChange();
+                                        });
+                                    }
+                                }}
+                            />
                             {eventDescription.touched &&
                                 eventDescription.error && (
                                     <HelpBlock>{eventDescription.error}</HelpBlock>

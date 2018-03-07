@@ -15,7 +15,21 @@ module.exports = {
         publicPath: '/'
     },
     module: {
-        loaders: [{
+        loaders: [
+            {
+        test: require.resolve('tinymce/tinymce'),
+        loaders: [
+          'imports?this=>window',
+          'exports?window.tinymce'
+        ]
+      },
+      {
+        test: /tinymce\/(themes|plugins)\//,
+        loaders: [
+          'imports?this=>window'
+        ]
+    },    
+            {
             test: /\.jsx?$/,
             exclude: /(node_modules)/,
             loader: 'babel',
