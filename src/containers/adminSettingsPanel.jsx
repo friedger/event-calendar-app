@@ -180,7 +180,7 @@ const component = React.createClass({
                     displayEmbedCode={
                         !this.props.appState.user.weeblyUser &&
                         !this.eventActivated() &&
-                        !this.state.displayAddEventScreen
+                        !this.props.manualEventState.displayAddEventScreen
                     }
                     user={get(this, 'props.appState.user')}
 
