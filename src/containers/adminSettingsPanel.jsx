@@ -57,7 +57,7 @@ const component = React.createClass({
         document.addEventListener('ECA_event-clicked', e => {
             if (e.detail.opening) {
                 if (this.userDoesNotNeedToAddAnEvent()) {
-                    this.props.closeNewEventForm();
+                    // this.props.closeNewEventForm(); // This causes too many renders. Makes thigns slow.
                     this.props.eventSelected(e.detail);
                 }
             }
@@ -135,8 +135,30 @@ const component = React.createClass({
         return false;
     },
     render() {
+        console.log('render');
         return (
             <div className="dashboard-settings">
+                {this.eventActivated() &&
+                    <style>
+                        {`
+                            #event-calendar-app .calendar-list-event.uuid-${this.props.eventState.uuid}{
+                                border: 3px solid #da4167 !important;
+                            }
+                            #event-calendar-app .calendar-list-event.uuid-${this.props.eventState.uuid}:after{
+                                content: "Editing this event" !important;
+                                width: 100px !important;
+                                height: 20px !important;
+                                color: #fff !important;
+                                text-align: center !important;
+                                font-size: 11px !important;
+                                background: #db4066 !important;
+                                position: absolute !important;
+                                top: 0 !important;
+                                right: 0 !important;
+                            }
+                        `}
+                    </style>
+                }
                 {/* Onboading modals*/}
                 <AddedFirstEventSuccess
                     show={this.state.showFirstEventSuccessModal}
