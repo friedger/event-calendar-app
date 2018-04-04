@@ -62,7 +62,8 @@ const component = React.createClass({
                     beginPaymentAction: this.props.submitStripePayment,
                     upgradePaymentAction: this.props.changeStripeSubscription,
                     shopifyUser: false,
-                    userHasNoPlan
+                    userHasNoPlan,
+                    user
                 };
         return (
             <div

@@ -72,6 +72,7 @@ export default React.createClass({
                                             planId={2}
                                             userHasNoPlan={userHasNoPlan}
                                             upgradePaymentAction={upgradePaymentAction}
+                                            email={this.props.user.email}
                                         />
                                     )}
                             </div>
@@ -128,6 +129,7 @@ export default React.createClass({
                                             userHasNoPlan={userHasNoPlan}
                                             shopifyUser={this.props.shopifyUser}
                                             upgradePaymentAction={upgradePaymentAction}
+                                            email={this.props.user.email}
                                         />
                                     )}
                             </div>
@@ -180,6 +182,7 @@ export default React.createClass({
                                             userHasNoPlan={userHasNoPlan}
                                             shopifyUser={this.props.shopifyUser}
                                             upgradePaymentAction={upgradePaymentAction}
+                                            email={this.props.user.email}
                                         />
                                     )}
                             </div>

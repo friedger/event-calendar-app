@@ -90,6 +90,7 @@ export default React.createClass({
                     <StripeCheckout
                         token={this.submitPaymentWithCoupon}
                         name="Event Calendar App"
+                        email={this.props.email}
                         image="/images/logo-stripe.jpg"
                         description="Cancelable Subscription"
                         currency="USD"
