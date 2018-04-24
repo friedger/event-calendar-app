@@ -8,13 +8,15 @@ import CronofyDisconnectModal from '../modals/cronofyDisconnectModal';
 import ConnectionCard from '../connectionCard';
 import capitalize from 'capitalize';
 import getFacebookAuthUrl from '../../utils/getFacebookAuthUrl';
+import FacebookIssueModal from '../modals/facebookIssueModal';
 
 export default React.createClass({
     getInitialState() {
         return {
             showCronofyModal: false,
             showCronofyDisconnectModal: false,
-            icsModal: false
+            icsModal: false,
+            showFacebookModal: false
         };
     },
     deleteCalendarMethods() {
@@ -100,12 +102,15 @@ export default React.createClass({
                         </a>
                     )}
                 </ConnectionCard>
+                <FacebookIssueModal show={this.state.showFacebookModal} hide={() => {
+                    this.setState({ showFacebookModal: false });
+                }}></FacebookIssueModal>
                 <ConnectionCard
                     header={'Facebook'}
                     description={'Use for connecting to Facebook Page/Business events'}
                 >
-                    <a href="#" onClick={this.linkFacebookClicked} className="button secondary">
-                        Connect
+                    <a href="#" onClick={() => this.setState({showFacebookModal: true})} className="button danger">
+                        Temporarily disabled
                     </a>
                 </ConnectionCard>
                 <ConnectionCard

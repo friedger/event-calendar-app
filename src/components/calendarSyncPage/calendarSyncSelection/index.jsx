@@ -13,12 +13,14 @@ import venobox from 'venobox/venobox/venobox.min.js';
 
 import getFacebookAuthUrl from '../../../utils/getFacebookAuthUrl';
 import ConnectionCard from '../../connectionCard';
+import FacebookIssueModal from '../../modals/facebookIssueModal';
 
 export default React.createClass({
     getInitialState() {
         return {
             displayIcsForm: false,
-            showCronofyModal: false
+            showCronofyModal: false,
+            showFacebookModal: false
         };
     },
     componentDidMount() {
@@ -116,6 +118,10 @@ export default React.createClass({
                         </div>
                     </Modal>
 
+                    <FacebookIssueModal show={this.state.showFacebookModal} hide={() => {
+                        this.setState({ showFacebookModal: false });
+                    }}></FacebookIssueModal>
+
                     <ConnectionCard
                         mostPopular={true}
                         header={'Google, Apple, Outlook or Exchange (via Cronofy)'}
@@ -129,8 +135,8 @@ export default React.createClass({
                     </ConnectionCard>
 
                     <ConnectionCard header={'Facebook'} description={'Use for connecting to Facebook events'}>
-                        <a href="#" onClick={this.linkFacebookClicked} className="button secondary">
-                            📆 Connect
+                        <a href="#" onClick={() => this.setState({showFacebookModal: true})} className="button danger">
+                            Temporarily disabled
                         </a>
                     </ConnectionCard>
 
