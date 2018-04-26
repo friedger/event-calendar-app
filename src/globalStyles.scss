@@ -463,3 +463,17 @@ h1 {
     background-color: #da4167;
   }
 }
+
+#event-calendar-app .calendar-list-event:after {
+    width: 100px !important;
+    height: 20px !important;
+    content: 'Editing this event' !important;
+    color: #fff !important;
+    text-align: center !important;
+    font-size: 11px !important;
+    background: #db4066 !important;
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    display: none;
+}
