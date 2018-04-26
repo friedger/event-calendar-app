@@ -139,7 +139,6 @@ var Component = React.createClass({
                                     setup: editor => {
                                         this.setState({ editor });
                                         editor.on('keyup change', () => {
-                                            console.log('change getting triggerd');
                                             this.handleChange();
                                         });
                                     }
