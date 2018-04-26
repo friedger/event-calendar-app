@@ -172,7 +172,6 @@ export function eventcalRemoved() {
 }
 
 export function canvasBackgroundModified(value) {
-    console.log(value);
     return {
         type: CANVAS_BACKGROUND_MODIFIED,
         payload: value

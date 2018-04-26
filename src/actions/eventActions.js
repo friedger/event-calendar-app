@@ -7,6 +7,8 @@ export const PUT_EVENT = 'PUT_EVENT';
 export const PUT_EVENT_SUCCESS = 'PUT_EVENT_SUCCESS';
 export const PUT_EVENT_ERROR = 'PUT_EVENT_ERROR';
 
+export const EVENT_SAVED = 'EVENT_SAVED';
+
 export const GET_EVENT = 'GET_EVENT';
 export const GET_EVENT_SUCCESS = 'GET_EVENT_SUCCESS';
 export const GET_EVENT_ERROR = 'GET_EVENT_ERROR';
@@ -61,6 +63,12 @@ export function exitEventSettings() {
 export function demoEventSelected() {
     return {
         type: DEMO_EVENT_SELECTED
+    };
+}
+
+export function eventSaved() {
+    return {
+        type: EVENT_SAVED
     };
 }
 

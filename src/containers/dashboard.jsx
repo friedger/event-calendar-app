@@ -21,13 +21,14 @@ import AddedScriptModal from '../components/modals/addedScriptModal';
 import cn from 'classnames';
 import getCronofyAuthUrl from '../utils/getCronofyAuthUrl';
 
-const mapState = ({ appState, form, eventcalState, eventState, onBoardingState }) => {
+const mapState = ({ appState, form, eventcalState, eventState, onBoardingState, eventSavingState }) => {
     return {
         appState,
         form,
         eventcalState,
         eventState,
-        onBoardingState
+        onBoardingState,
+        eventSavingState
     };
 };
 
@@ -62,6 +63,9 @@ const component = React.createClass({
         this.props.getConnections();
         this.props.getPlan();
         this.props.getOnboarding();
+        document.addEventListener('ECA_events_loaded', () => {
+            this.props.eventSaved();
+        });
     },
     userHasLinkedCalendarOrChosenManual() {
         return (this.props.appState.connections && this.props.appState.connections.length > 0) || (this.props.onBoardingState && this.props.onBoardingState.selected_manual_events);
@@ -119,6 +123,7 @@ const component = React.createClass({
                                 this.props.appState.suggestions &&
                                 !this.props.eventcalState.eventcalHasNoEvents
                             }
+                            savingEvent={this.props.eventSavingState.savingEvent}
                             suggestionToggleAction={this.props.toggleSugesstions}
                             eventcalRemovedAction={this.props.eventcalRemoved}
                             eventcalHasNoEvents={this.props.eventcalState.eventcalHasNoEvents}

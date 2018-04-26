@@ -53,15 +53,16 @@ const component = React.createClass({
             turnOnManualEventsModal: false
         };
     },
-    componentDidMount() {
-        document.addEventListener('ECA_event-clicked', e => {
-            if (e.detail.opening) {
-                if (this.userDoesNotNeedToAddAnEvent()) {
-                    this.props.closeNewEventForm();
-                    this.props.eventSelected(e.detail);
-                }
+    handleEventClick(e) {
+        if (e.detail.opening) {
+            if (this.userDoesNotNeedToAddAnEvent()) {
+                this.props.closeNewEventForm();
+                this.props.eventSelected(e.detail);
             }
-        });
+        }
+    },
+    componentDidMount() {
+        document.addEventListener('ECA_event-clicked', this.handleEventClick);
     },
 
     toggleConnectionsScreen() {
@@ -243,6 +244,9 @@ const component = React.createClass({
                 />}
             </div>
         );
+    },
+    componentWillUnmount() {
+        document.removeEventListener('ECA_event-clicked', this.handleEventClick);
     }
 });
 

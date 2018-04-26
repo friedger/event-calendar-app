@@ -13,6 +13,8 @@ import NoEventsMessage from './noEventsMessage';
 import IntegrationSection from './integrationSection';
 import BeginTrial from './beginTrial';
 import BackToWeeblyMessage from './backToWeeblyMessage';
+import Loader from 'react-loader';
+import cn from 'classnames';
 
 export default React.createClass({
     userReadyToBeShownEditor() {
@@ -34,12 +36,21 @@ export default React.createClass({
                                 eventCalWidgetUuid={this.props.eventCalWidgetUuid}
                                 userHasSubscribed={this.props.userHasSubscribed}
                                 userId={this.props.user.userId}
-                            />
+                                />
                         </div>
                         <div className="col-sm-7 col-sm-pull-5">
                             <div className="dashboard-header dashboard-header--left row">
                                 <div className="col-md-12">
                                     <span>Event calendar preview</span>
+                                    <div className={cn("dashboard-header__loading-indicator-container", { display: this.props.savingEvent })}>
+                                        <div className="dashboard-header__loading-indicator">
+                                        <Loader
+                                        type="spin"
+                                        color="#fff"
+                                        width={1}
+                                        radius={1}
+                                        left='15px'
+                                    /> Applying updates...</div></div>
                                     {!this.props.eventcalHasNoEvents && (
                                         <Suggestions
                                             suggestionToggleAction={
@@ -95,3 +106,5 @@ export default React.createClass({
         );
     }
 });
+
+// this.props.savingEvent

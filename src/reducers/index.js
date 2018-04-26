@@ -19,6 +19,7 @@ import onBoardingState from './onBoarding';
 import passwordResetState from './passwordResetState';
 import filterState from './filterState';
 import notificationState from './notificationsState';
+import eventSavingState from './eventSavingState';
 
 function initialRegisterState(state = {}, action) {
     if (action.type === POPULATE_REGISTER_FORM) {
@@ -40,7 +41,8 @@ const appReducer = combineReducers({
     onBoardingState: onBoardingState,
     passwordResetState: passwordResetState,
     filterState: filterState,
-    notificationState: notificationState
+    notificationState: notificationState,
+    eventSavingState: eventSavingState
 });
 
 export default (state, action) => {

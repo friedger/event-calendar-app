@@ -281,6 +281,38 @@ h1 {
     padding: 13px 30px;
     font-size: 20px;
     font-weight: bold;
+    &__loading-indicator-container {
+        opacity: 0;
+        display: inline-block;
+        &.display {
+            animation-name: display;
+            animation-duration: 0.3s;
+            animation-delay: 1s;
+            animation-fill-mode: forwards;
+        }
+    }
+    @keyframes display {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    &__loading-indicator {
+        transition: opacity 0.3s ease-in;
+        display: inline-block;
+        position: relative;
+        font-size: 11px;
+        background: #db4066;
+        padding: 5px 5px 5px 30px;
+        border-radius: 2px;
+        margin-left: 11px;
+        margin-top: 0px;
+        animation-name: color;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+    }
     &__close {
         position: absolute;
         border-left: #a3304d;
@@ -418,4 +450,16 @@ h1 {
     .left {
         text-align: left;
     }
+}
+
+@keyframes color {
+  0% {
+    background-color: #da4167;
+  }
+  50% {
+    background-color: #eb4f75;
+  }
+  100 {
+    background-color: #da4167;
+  }
 }
