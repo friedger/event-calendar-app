@@ -2,7 +2,7 @@ const permissions = {
     cancelled: [{ 'multi-calendar': { quantity: 1 } }],
     registered: [{ 'multi-calendar': { quantity: 1 } }, 'event-settings', 'subscriptions', 'theming'],
     subscription: [{ 'multi-calendar': { quantity: 1 } }, 'event-settings', 'subscriptions', 'theming'],
-    hobby: [{ 'multi-calendar': { quantity: 1 } }],
+    hobby: [{ 'multi-calendar': { quantity: 1 } }, 'subscriptions'],
     professional: [{ 'multi-calendar': { quantity: 3 } }, 'event-settings', 'subscriptions', 'theming'],
     business: [
         { 'multi-calendar': { quantity: 10 } },

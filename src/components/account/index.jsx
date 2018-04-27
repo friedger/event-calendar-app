@@ -49,9 +49,9 @@ export default React.createClass({
                                         <li>Google, Apple, Outlook, Facebook Integration</li>
                                         <li>ICS Support</li>
                                         <li>Event Calendar Search</li>
-                                        <li className="negative">Customers cannot subscribe</li>
-                                        <li className="negative">No themes</li>
+                                        <li>Subscribable Event Calendar</li>
                                         <li className="negative">No event images</li>
+                                        <li className="negative">No ticket links</li>
                                         <li>-</li>
                                         <li>-</li>
                                         <li>-</li>
