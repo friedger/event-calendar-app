@@ -47,6 +47,9 @@ var Component = React.createClass({
                 this.props.handleSubmit(values => this.makeApiCall(values))();
             }, 0);
         }
+        if (this.props.inputChanged) {
+            this.props.inputChanged();
+        }
     },
     handleChange() {
         this.props.fields.shortDescription.onChange(this.state.editor.getContent({ format: 'text' }));
@@ -67,6 +70,7 @@ var Component = React.createClass({
                                 {!this.props.disableInputs && (
                                     <p className="sub-text">
                                         Note - once you've added the event, you will then have the
+
                                         option to add additional options such as images, thumbnails
                                         and much more.
                                     </p>
@@ -117,6 +121,7 @@ var Component = React.createClass({
                             <p>Some more information about your event</p>
                         </Col>
                         <Col md={12}>
+                            <div className={cn({'editor-validation-error': eventDescription.touched && eventDescription.error})}>
                             <Editor
                                 initialValue={this.props.fields.eventDescription.value
                                     ? this.props.fields.eventDescription.value.split('\n').map((item, i) => {
@@ -144,6 +149,7 @@ var Component = React.createClass({
                                     }
                                 }}
                             />
+                            </div>
                             {eventDescription.touched &&
                                 eventDescription.error && (
                                     <HelpBlock>{eventDescription.error}</HelpBlock>

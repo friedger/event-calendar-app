@@ -18,3 +18,7 @@
         display: block;
     }
 }
+
+.editor-validation-error .mce-container {
+    border-color: red;
+}

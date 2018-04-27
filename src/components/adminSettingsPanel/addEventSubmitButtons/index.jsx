@@ -43,13 +43,17 @@ export default React.createClass({
                                 </p>
                                 <button
                                     onClick={this.props.addEventClicked}
-                                    className={cn('secondary full-width', {
-                                        'animate-success': this.state.postingWasSuccess
+                                    className={cn('danger full-width', {
+                                        'animate-success': this.state.postingWasSuccess,
+                                        'secondary': !this.props.validationError,
+                                        'danger': this.props.validationError
                                     })}
+                                    disabled={this.props.validationError}
                                 >
                                     {!this.state.postingWasSuccess && (
                                         <div className={cn({ 'opacity-0': postingEvent })}>
-                                            Add event
+                                            {!this.props.validationError && 'Add event'}
+                                            {this.props.validationError && 'Whoops. You\'ve missed some details...'}
                                         </div>
                                     )}
                                     {postingEvent && (

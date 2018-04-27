@@ -248,6 +248,7 @@ const component = React.createClass({
                                 manualEventsSelected={this.manualEventsSelected()}
                                 editEventClicked={this.editEventClicked}
                                 addNewEventClicked={this.addNewEventClicked}
+                                formValidationError={this.props.formValidationError}
                             />
                         )}
                 {this.eventActivated() &&
