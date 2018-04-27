@@ -114,7 +114,7 @@ const component = React.createClass({
                     <SuccessfulLinkModal />}
                 <div className={containerClassNames}>
                     <div className="row">
-                    {(connections && onBoarding) &&
+                    {(connections && onBoarding && user) &&
                         <Editor
                             connections={connections}
                             user={this.props.appState.user}
