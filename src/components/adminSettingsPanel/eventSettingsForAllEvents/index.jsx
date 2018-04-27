@@ -47,6 +47,13 @@ var Component = React.createClass({
     },
     componentDidMount() {
         if (this.props.validWithPlan && !this.props.demoEvent) {
+            if (this.props.fields.image.initialValue) {
+                ignoreImageOnChange = true;
+            }
+            if (this.props.fields.thumbnail.initialValue) {
+                ignoreThumbnailOnChange = true;
+            }
+
             this.initialiseWidgets();
         }
     },
@@ -64,6 +71,7 @@ var Component = React.createClass({
                 });
             }
         });
+
         const widget2 = uploadcare.Widget('#thumbnailImageUpload');
         widget2.onChange(file => {
             if (ignoreThumbnailOnChange) {
@@ -107,29 +115,25 @@ var Component = React.createClass({
             })();
         }, 0);
     },
-    componentDidUpdate() {
-        if (this.props.validWithPlan && !this.props.demoEvent && !this.state.widgetsInit) {
-            this.initialiseWidgets();
-        }
-    },
     manualEventSettingsUpdated(handleSubmit, manualEventSettings) {
         setTimeout(() => {
             handleSubmit(values => this.makeApiCall(Object.assign(manualEventSettings, values)))();
         }, 0);
     },
     componentWillReceiveProps(nextProps) {
-        if (nextProps.fields.image.value && this.state.widget) {
-            ignoreImageOnChange = true;
-            if (nextProps.fields.image.value !== this.props.fields.image.value) {
-                this.state.widget.value(nextProps.fields.image.value);
+        const nextImage = nextProps.fields.image.value;
+        const nextThumbnail = nextProps.fields.thumbnail.value;
+
+        if (nextImage && this.state.widget) {
+            if (nextImage !== this.props.fields.image.value) {
+                this.state.widget.value(nextImage);
             }
         } else if (this.state.widget) {
             this.state.widget.value(false);
         }
-        if (nextProps.fields.thumbnail.value && this.state.widget2) {
-            ignoreThumbnailOnChange = true;
-            if (nextProps.fields.thumbnail.value !== this.props.fields.thumbnail.value) {
-                this.state.widget2.value(nextProps.fields.thumbnail.value);
+        if (nextThumbnail && this.state.widget2) {
+            if (nextThumbnail !== this.props.fields.thumbnail.value) {
+                this.state.widget2.value(nextThumbnail);
             }
         } else if (this.state.widget2) {
             this.state.widget2.value(false);
