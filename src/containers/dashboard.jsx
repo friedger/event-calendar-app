@@ -55,6 +55,7 @@ const component = React.createClass({
     },
     componentWillUnmount() {
         this.props.blowState();
+        document.removeEventListener('ECA_events_loaded', this.eventsLoadedHandler);
     },
     componentDidMount() {
         this.props.getUser();
@@ -63,9 +64,10 @@ const component = React.createClass({
         this.props.getConnections();
         this.props.getPlan();
         this.props.getOnboarding();
-        document.addEventListener('ECA_events_loaded', () => {
-            this.props.eventSaved();
-        });
+        document.addEventListener('ECA_events_loaded', this.eventsLoadedHandler);
+    },
+    eventsLoadedHandler() {
+        this.props.eventSaved();
     },
     userHasLinkedCalendarOrChosenManual() {
         return (this.props.appState.connections && this.props.appState.connections.length > 0) || (this.props.onBoardingState && this.props.onBoardingState.selected_manual_events);
