@@ -170,7 +170,7 @@ const component = React.createClass({
 
                         </div>
                         <div className="col-md-4">
-                            <h3 style={{'margin-top':50 + 'px'}}>All Platforms</h3>
+                            <h3 style={{'marginTop':50 + 'px'}}>All Platforms</h3>
                             <ul>
                                 <li><a href="#introduction">Introduction</a></li>
                                 <li><a href="#linking">Linking to your calendar</a></li>

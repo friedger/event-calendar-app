@@ -105,7 +105,7 @@ export default React.createClass({
                             Start plan
                         </a>
                     </StripeCheckout>
-                    <div style={{'margin-top': '20px'}}>
+                    <div style={{'marginTop': '20px'}}>
                         {!this.state.displayTokenInput && <span onClick={() => {this.setState({displayTokenInput: true})}}>Got a coupon?</span>}
                         {this.state.displayTokenInput && <input className="form-control" ref="coupon" placeholder="Coupon code" type="text"/>}
                     </div>

@@ -30,10 +30,11 @@ export default function appState(state = {}, action) {
             accountLoading: true
         });
     case GET_PLAN_SUCCESS:
+        const userHasAPlan = action.payload.body.hasPlan !== false;
         return Object.assign({}, state, {
-            plan: action.payload.body,
+            plan: userHasAPlan && action.payload.body,
             accountLoading: false,
-            userHasNoPlan: false
+            userHasNoPlan: !userHasAPlan
         });
     case GET_PLAN_ERROR:
         return Object.assign({}, state, {

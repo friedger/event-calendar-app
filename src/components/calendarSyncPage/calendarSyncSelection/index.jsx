@@ -155,7 +155,7 @@ export default React.createClass({
                 </div>
                 <div className="row" style={{'margin-bottom': '38px', 'text-align': 'center'}}>
                     <div className="col-md-12">
-                        <h3 style={{'border-top': '1px solid #c9c9c9', 'margin-top': '28px', 'padding-top': '33px'}}>Don't have a Calendar to sync to? 🤔</h3>
+                        <h3 style={{'border-top': '1px solid #c9c9c9', 'marginTop': '28px', 'padding-top': '33px'}}>Don't have a Calendar to sync to? 🤔</h3>
                         <div className="welcome-page-header__sub-text">
                             <p>Register for a free calendar at any of the main calendar providers</p>
                         </div>
