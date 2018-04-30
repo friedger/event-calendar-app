@@ -46,7 +46,7 @@ const component = React.createClass({
     render() {
         return (
             <div style={{ height: '100%' }}>
-                <Header />
+                <Header userIsLoggedOut={true}/>
                 <Modal
                     show={this.state.showLoginModal}
                     onHide={() => this.setState({ showLoginModal: false })}

@@ -22,9 +22,11 @@ const mapDispatch = dispatch => {
 
 var component = React.createClass({
     componentDidMount() {
-        this.props.getOnboarding();
-        this.props.getUser();
-        this.props.getPlan();
+        if (!this.props.userIsLoggedOut) {
+            this.props.getOnboarding();
+            this.props.getUser();
+            this.props.getPlan();
+        }
     },
     conditionsToDisplayAddScriptNextStep() {
 
