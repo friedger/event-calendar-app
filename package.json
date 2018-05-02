@@ -15,6 +15,7 @@
   "dependencies": {
     "@tinymce/tinymce-react": "^2.2.0",
     "capitalize": "^1.0.0",
+    "chart.js": "^1.1.1",
     "classnames": "^2.2.5",
     "cookie-parser": "^1.4.1",
     "debug": "^2.2.0",
@@ -39,6 +40,7 @@
     "react": "^0.14.9",
     "react-addons-css-transition-group": "0.14",
     "react-bootstrap": "^0.29.4",
+    "react-chartjs": "^1.2.0",
     "react-collapse": "^2.2.3",
     "react-color": "^2.13.4",
     "react-copy-to-clipboard": "^4.3.1",

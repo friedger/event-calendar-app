@@ -1,0 +1,22 @@
+.statistic {
+    &__container {
+        box-shadow: 0 1px 4px #cfd2d4;
+        padding: 20px 40px;
+        margin: 20px 0 49px;
+        background: #fff;
+        height: 208px;
+        canvas {
+            margin: 15px 0 0;
+        }
+    }
+    &__value {
+        font-size: 40px;
+        font-weight: bold;
+        line-height: 1;
+        color:#575962;
+        padding-bottom: 10px;
+    }
+    &__value-name {
+        color:#999999;
+    }
+}
