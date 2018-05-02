@@ -40,6 +40,10 @@ const component = React.createClass({
             this.props.getAnalytics();
         }
     },
+    disableAnalytics() {
+        const status = this.props.appState.user && this.props.appState.user.status;
+        return status === 'registered' || status === 'cancelled';
+    },
     render() {
         if (this.props.children) {
             return <div style={{ height: '100%' }}>{this.props.children}</div>;
@@ -68,8 +72,40 @@ const component = React.createClass({
                         <div className="col-md-12">
                             <h3>Analytics</h3>
                         </div>
-                            <Statistic loading={this.props.analyticsState.loading} data={this.props.analyticsState.subscriberCount} color="#9556bf" value="292" name="❤️ Subscribers"></Statistic>
-                            <Statistic loading={this.props.analyticsState.loading} data={this.props.analyticsState.widgetViews} color="#6787ab" value="10,232" name="📊 Event Calendar Views"></Statistic>
+                        <Statistic
+                            loading={
+                                this.disableAnalytics() ? false : this.props.analyticsState.loading
+                            }
+                            data={
+                                this.disableAnalytics()
+                                    ? [5762, 6242, 6745, 7396, 7813]
+                                    : this.props.analyticsState.subscriberCount
+                            }
+                            color="#9556bf"
+                            value="292"
+                            error={this.props.analyticsState.error}
+                            name="❤️ Subscribers"
+                            displayUpgradeMessage={this.disableAnalytics()}
+                            disabled={this.disableAnalytics()}
+                            tryAgainButtonAction={() => this.props.getAnalytics()}
+                        />
+                        <Statistic
+                            loading={
+                                this.disableAnalytics() ? false : this.props.analyticsState.loading
+                            }
+                            data={
+                                this.disableAnalytics()
+                                    ? [53, 60, 65, 68, 100]
+                                    : this.props.analyticsState.widgetViews
+                            }
+                            color="#6787ab"
+                            value="10,232"
+                            error={this.props.analyticsState.error}
+                            name="📊 Event Calendar Views"
+                            disabled={this.disableAnalytics()}
+                            tryAgainButtonAction={() => this.props.getAnalytics()}
+
+                        />
                     </div>
                 </div>
                 <div className="container-fluid event-calendar-section">

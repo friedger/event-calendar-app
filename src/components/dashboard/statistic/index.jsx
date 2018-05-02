@@ -2,6 +2,8 @@ require('./style.scss');
 import React from 'react';
 var LineChart = require('react-chartjs').Line;
 import Loader from 'react-loader';
+import cn from 'classnames';
+const Link = require('react-router').Link;
 
 const options = {
     title: { display: false },
@@ -56,23 +58,49 @@ export default React.createClass({
                 }
             ]
         };
+        const {
+            error,
+            displayUpgradeMessage,
+            loading,
+            disabled,
+            displayCollectingDataMessage
+        } = this.props;
         return (
             <div className="col-md-3">
-                <div className="statistic__container">
-                    {!this.props.loading && (
+                <div className={'statistic__container'}>
+                    {error && (
                         <div>
-                            <div className="statistic__value">{data[data.length - 1]}</div>
-                            <div className="statistic__value-name">{name}</div>
-                            <LineChart
-                                redraw
-                                data={graphData}
-                                options={options}
-                                width="400"
-                                height="100"
-                            />
+                            <p>We're currently having some trouble fetching your analytics.</p>
+                            <button className="secondary" onClick={() => this.props.tryAgainButtonAction()}>Try again</button>
                         </div>
                     )}
-                    {this.props.loading && (
+                    {displayUpgradeMessage && (
+                        <div className="statistic__upgrade-overlay">
+                            <p>Start a plan to get access to your analytics</p>
+                            <Link to="/account" className="secondary">
+                                Start plan
+                            </Link>
+                        </div>
+                    )}
+                    {!loading &&
+                        !error && (
+                            <div
+                                className={cn({
+                                    disabled: disabled || displayCollectingDataMessage
+                                })}
+                            >
+                                <div className="statistic__value">{data[data.length - 1]}</div>
+                                <div className="statistic__value-name">{name}</div>
+                                <LineChart
+                                    redraw
+                                    data={graphData}
+                                    options={options}
+                                    width="400"
+                                    height="100"
+                                />
+                            </div>
+                        )}
+                    {loading && (
                         <div>
                             <div className="statistic__value">
                                 <Loader type="spin" color="#000" width={3} radius={7} />
