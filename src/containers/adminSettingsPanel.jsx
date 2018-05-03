@@ -17,6 +17,7 @@ import ManualEventsNotSelected from '../components/modals/manualEventsNotSelecte
 import Filters from './filters';
 import AdminSettingsPanelHeader from '../components/adminSettingsPanel/header';
 import EventActions from '../components/adminSettingsPanel/eventActions';
+import escapeCSS from '../utils/escapeCSS';
 
 const mapState = ({ appState, eventState, manualEventState, onBoardingState }) => {
     return {
@@ -142,11 +143,11 @@ const component = React.createClass({
                 {this.eventActivated() &&
                     <style>
                         {`
-                            #event-calendar-app .calendar-list-view .calendar-list-event.uuid-${this.props.eventState.uuid}.col-md-12{
+                            #event-calendar-app .calendar-list-view .calendar-list-event.uuid-${escapeCSS(this.props.eventState.uuid)}.col-md-12{
                                 border: 3px solid #da4167 !important;
                                 border-bottom: 3px solid #da4167 !important;
                             }
-                            #event-calendar-app .calendar-list-event.uuid-${this.props.eventState.uuid}:after{
+                            #event-calendar-app .calendar-list-event.uuid-${escapeCSS(this.props.eventState.uuid)}:after{
                                 display: block;
                             }
                         `}
