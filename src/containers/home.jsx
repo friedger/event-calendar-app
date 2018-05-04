@@ -78,7 +78,7 @@ const component = React.createClass({
                             }
                             data={
                                 this.disableAnalytics()
-                                    ? [5762, 6242, 6745, 7396, 7813]
+                                    ? [53, 60, 65]
                                     : this.props.analyticsState.subscriberCount
                             }
                             color="#9556bf"
@@ -95,7 +95,7 @@ const component = React.createClass({
                             }
                             data={
                                 this.disableAnalytics()
-                                    ? [53, 60, 65, 68, 100]
+                                    ? [5762, 6242, 6745]
                                     : this.props.analyticsState.widgetViews
                             }
                             color="#6787ab"

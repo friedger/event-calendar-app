@@ -23,28 +23,11 @@ export default React.createClass({
     getInitialState() {
         return {};
     },
-    componentWillMount() {
-        this.setState({
-            labels: ['January', 'February', 'March', 'April', 'May'],
-            datasets: [
-                {
-                    label: 'My First dataset',
-                    fillColor: 'rgba(220,220,220,0)',
-                    strokeColor: this.props.color,
-                    pointColor: this.props.color,
-                    pointStrokeColor: '#fff',
-                    pointHighlightFill: '#fff',
-                    pointHighlightStroke: this.props.color,
-                    data: this.props.data
-                }
-            ]
-        });
-    },
     render() {
         const { data, name, color } = this.props;
 
         const graphData = {
-            labels: ['January', 'February', 'March', 'April', 'May'],
+            labels: ['January', 'February', 'March'],
             datasets: [
                 {
                     label: 'My First dataset',
