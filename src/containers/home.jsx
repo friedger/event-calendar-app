@@ -100,7 +100,7 @@ const component = React.createClass({
                             }
                             color="#6787ab"
                             value="10,232"
-                            error={this.props.analyticsState.error}
+                            error={this.disableAnalytics() ? false : this.props.analyticsState.error}
                             name="📊 Event Calendar Views"
                             disabled={this.disableAnalytics()}
                             tryAgainButtonAction={() => this.props.getAnalytics()}
