@@ -36,7 +36,8 @@ const mapState = state => {
         facebookState: state.facebookState,
         cronofyConnection: hasCronofyConnection(state),
         groupedConnections: groupedConnectionsIntoTypes(state),
-        loading: state.appState.connectionsLoading
+        loading: state.appState.connectionsLoading,
+        deletingCalendar: state.appState.connectionsLoading
     };
 };
 
@@ -60,11 +61,7 @@ const component = React.createClass({
         this.props.getConnections();
     },
     disconnectCronofy(cronofy) {
-        this.setState({ loading: true });
-        this.props.deleteCalendar(cronofy).then(() => {
-            //thiz nevver gets fired maaaan
-            this.setState({ loading: false });
-        });
+        this.props.deleteCalendar(cronofy);
     },
     icsAddedAction() {
         this.props.getConnections();
@@ -85,7 +82,7 @@ const component = React.createClass({
                                     </span>
                                 </div>
                             </div>
-                            {(this.props.loading || this.state.loading) &&
+                            {(this.props.loading || this.state.loading || this.props.deletingCalendar) &&
                                 <StripePaymentStatus accountLoading={true} />}
                             {!this.props.loading &&
                                 <Connections

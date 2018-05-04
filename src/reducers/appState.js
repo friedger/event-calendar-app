@@ -11,6 +11,7 @@ import {
     GET_CONNECTIONS_SUCCESS,
     GET_CONNECTIONS,
     DELETE_CALENDAR,
+    DELETE_CALENDAR_SUCCESS,
     GET_CALENDARS,
     PUT_CALENDARS_SUCCESS
 } from '../actions/calendarActions';
@@ -86,7 +87,7 @@ export default function appState(state = {
             connectionsLoading: true
         });
     case DELETE_CALENDAR:
-        return Object.assign({}, state, {
+        return Object.assign({}, state, { deletingCalendar: true }, {
             connections: state.connections.map(connection => {
 
                 if (connection.calendarId && (connection.calendarId === action.payload.calendarId)) {
@@ -100,6 +101,8 @@ export default function appState(state = {
                 return connection;
             })
         });
+    case DELETE_CALENDAR_SUCCESS:
+        return Object.assign({}, state, { deletingCalendar: false });
     default:
         return state;
     }
