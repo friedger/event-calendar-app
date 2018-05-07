@@ -59,7 +59,7 @@ export default React.createClass({
                     )}
                     {displayUpgradeMessage && (
                         <div className="statistic__upgrade-overlay">
-                            <p>Start a plan to get access to your analytics</p>
+                            <p>Get access to analytics</p>
                             <Link to="/account" className="secondary">
                                 Start plan
                             </Link>
