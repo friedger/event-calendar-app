@@ -88,6 +88,7 @@ const component = React.createClass({
                             displayUpgradeMessage={this.disableAnalytics()}
                             disabled={this.disableAnalytics()}
                             tryAgainButtonAction={() => this.props.getAnalytics()}
+                            helpUrl={'https://support.eventcalendarapp.com/faqs-and-troubleshooting/how-do-event-calendar-subscriptions-work'}
                         />
                         <Statistic
                             loading={

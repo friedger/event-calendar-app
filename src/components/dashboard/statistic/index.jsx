@@ -72,7 +72,11 @@ export default React.createClass({
                                     disabled: disabled || displayCollectingDataMessage
                                 })}
                             >
-                                <div className="statistic__value">{data[data.length - 1]}</div>
+                                <div className="statistic__value">{data[data.length - 1]}
+                                    {this.props.helpUrl &&
+                                        <a href={this.props.helpUrl} target="_blank"><i className="fa fa-info-circle" aria-hidden="true"></i></a>
+                                    }
+                                </div>
                                 <div className="statistic__value-name">{name}</div>
                             </div>
                         )}
