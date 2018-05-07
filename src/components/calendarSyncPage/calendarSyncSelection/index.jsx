@@ -77,12 +77,12 @@ export default React.createClass({
             <div className="welcome-page-header">
                 <h2 style={{ 'position': 'relative' }}>
                     <span style={{ 'padding-right': '10px' }}>
-                        Sync your calendar to Event Calendar App
+                        How would you like to add your events?
                     </span>{' '}
                     <span className="handshake handshake--medium">🤝</span>
                 </h2>
                 <div className="welcome-page-header__sub-text">
-                    <p>Where are your events, or where will they be in the future?</p>
+                    <p>Don't worry, you can change your mind later.</p>
                 </div>
                 <div className="row">
                     <Modal show={this.state.showCronofyModal} onHide={this.toggleModal}>
@@ -121,6 +121,16 @@ export default React.createClass({
                     <FacebookIssueModal show={this.state.showFacebookModal} hide={() => {
                         this.setState({ showFacebookModal: false });
                     }}></FacebookIssueModal>
+
+                    <ConnectionCard header={'Manually add events'} description={'Use for manually adding your events into Event Calendar App'}>
+                        <a href="#" className="button secondary" onClick={this.props.clickManualEvents}>
+                            📆 Get Started
+                        </a>
+                    </ConnectionCard>
+
+                    <div className="col-md-12">
+                        <h3 className="welcome-page-header__or" style={{'padding-bottom': '20px'}}>Or sync with an existing calendar:</h3>
+                    </div>
 
                     <ConnectionCard
                         mostPopular={true}
@@ -169,16 +179,6 @@ export default React.createClass({
                             <i className="fa fa-windows" aria-hidden="true"></i> Outlook
                             </a>
                     </div>
-                    <div className="col-md-12">
-                        <h3 className="welcome-page-header__or">Or...</h3>
-                    </div>
-                </div>
-                <div className="row" style={{'margin-bottom': '50px'}}>
-                    <ConnectionCard header={'Manually add events'} description={'Use for manually adding your events into Event Calendar App'}>
-                        <a href="#" className="button secondary" onClick={this.props.clickManualEvents}>
-                            📆 Go
-                        </a>
-                    </ConnectionCard>
                 </div>
             </div>
         );

@@ -9,14 +9,17 @@
     }
 
     &__or {
-        padding-top: 19px;
+        padding-bottom: 12px;
+        margin-bottom: 10px;
+        font-size:30px;
     }
 
 
     &__sub-text {
-        padding-bottom: 30px;
         p {
             color:#6d6d6d;
+            padding-bottom: 12px;
+            margin-bottom: 10px;
         }
     }
 
