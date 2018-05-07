@@ -74,21 +74,14 @@ export default React.createClass({
                             >
                                 <div className="statistic__value">{data[data.length - 1]}</div>
                                 <div className="statistic__value-name">{name}</div>
-                                <LineChart
-                                    redraw
-                                    data={graphData}
-                                    options={options}
-                                    width="400"
-                                    height="100"
-                                />
                             </div>
                         )}
                     {loading && (
                         <div>
-                            <div className="statistic__value">
+                            <div className="statistic__value-name">{name}</div>
+                            <div className="statistic__loader">
                                 <Loader type="spin" color="#000" width={3} radius={7} />
                             </div>
-                            <div className="statistic__value-name">{name}</div>
                         </div>
                     )}
                 </div>

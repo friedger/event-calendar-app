@@ -4,7 +4,7 @@
         padding: 20px 40px;
         margin: 20px 0 49px;
         background: #fff;
-        height: 208px;
+        height: 117px;
         position: relative;
         canvas {
             margin: 15px 0 0;
@@ -12,6 +12,10 @@
         .disabled {
             opacity:0.2;
         }
+    }
+    &__loader {
+        position: relative;
+        margin-top: 28px;
     }
     &__upgrade-overlay {
         position: absolute;
