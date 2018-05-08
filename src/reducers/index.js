@@ -49,7 +49,9 @@ const appReducer = combineReducers({
 
 export default (state, action) => {
     if (action.type === BLOW_STATE) {
-        state = Object.assign({}, state.analyticsState);
+        const analyticsCurrentState = Object.assign({}, state.analyticsState);
+        state = {};
+        state.analyticsState = analyticsCurrentState;
     }
 
     return appReducer(state, action);
