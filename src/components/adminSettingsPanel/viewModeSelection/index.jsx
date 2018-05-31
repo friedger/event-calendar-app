@@ -32,7 +32,8 @@ var Component = React.createClass({
         const { fields: {
             listView,
             gridView,
-            defaultView
+            defaultView,
+            boardView
         }, handleSubmit, submitting } = this.props;
         return (
             <Row>
@@ -62,14 +63,30 @@ var Component = React.createClass({
                                     </label>
                                 </div>
                             </Col>
+                            <Col md={4}>
+                                <div className="checkbox">
+                                    <input disabled={defaultView.value === 'board'} id="boardview" name="boardview" onClick={(e) => this.visibleLayoutsOnChange(e, boardView, handleSubmit)} type="checkbox" {...boardView}/>
+                                    <label htmlFor="gridview">
+                                        <div className="hideOverflow">Board View</div>
+                                    </label>
+                                </div>
+                            </Col>
                         </Row>
                         <Row className="settings-space">
-                            <Col md={8}>
+                            <Col md={12}>
                                 <ControlLabel className="setting-title">Default calendar layout:</ControlLabel>
                             </Col>
+                            <Col md={12}>
+                                <p className="calendar-selection__description">The layout to be displayed when the Event Calendar initially loads</p>
+                            </Col>
                             <Col md={4}>
-                                <Radio inline name="defaultLayout" {...defaultView} onChange={(e) => this.defaultCalendarOnChange(e, defaultView, handleSubmit)} checked={defaultView.value === 'list'} value={'list'}>List</Radio>
-                                <Radio inline name="defaultLayout" {...defaultView} onChange={(e) => this.defaultCalendarOnChange(e, defaultView, handleSubmit)} checked={defaultView.value === 'grid'} value={'grid'}>Grid</Radio>
+                                <Radio inline name="defaultLayout" {...defaultView} onChange={(e) => this.defaultCalendarOnChange(e, defaultView, handleSubmit)} checked={defaultView.value === 'list'} value={'list'}>List View</Radio>
+                            </Col>
+                            <Col md={4}>
+                                <Radio inline name="defaultLayout" {...defaultView} onChange={(e) => this.defaultCalendarOnChange(e, defaultView, handleSubmit)} checked={defaultView.value === 'grid'} value={'grid'}>Grid View</Radio>
+                            </Col>
+                            <Col md={4}>
+                                <Radio inline name="defaultLayout" {...defaultView} onChange={(e) => this.defaultCalendarOnChange(e, defaultView, handleSubmit)} checked={defaultView.value === 'board'} value={'board'}>Board View</Radio>
                             </Col>
                         </Row>
                         <Row>
@@ -87,7 +104,7 @@ var Component = React.createClass({
 
 export default Component = reduxForm({ // <----- THIS IS THE IMPORTANT PART!
     form: 'viewmodeSelection', // a unique name for this form
-    fields: ['listView', 'gridView', 'defaultView'],
+    fields: ['listView', 'gridView', 'defaultView', 'boardView'],
     overwriteOnInitialValuesChange: false,
     destroyOnUnmount: false
 }, (state) => {
