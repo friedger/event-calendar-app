@@ -67,7 +67,7 @@ var Component = React.createClass({
                                 <div className="checkbox">
                                     <input disabled={defaultView.value === 'board'} id="boardview" name="boardview" onClick={(e) => this.visibleLayoutsOnChange(e, boardView, handleSubmit)} type="checkbox" {...boardView}/>
                                     <label htmlFor="gridview">
-                                        <div className="hideOverflow">Board View</div>
+                                        <div className="hideOverflow">Tile View</div>
                                     </label>
                                 </div>
                             </Col>
@@ -86,7 +86,7 @@ var Component = React.createClass({
                                 <Radio inline name="defaultLayout" {...defaultView} onChange={(e) => this.defaultCalendarOnChange(e, defaultView, handleSubmit)} checked={defaultView.value === 'grid'} value={'grid'}>Grid View</Radio>
                             </Col>
                             <Col md={4}>
-                                <Radio inline name="defaultLayout" {...defaultView} onChange={(e) => this.defaultCalendarOnChange(e, defaultView, handleSubmit)} checked={defaultView.value === 'board'} value={'board'}>Board View</Radio>
+                                <Radio inline name="defaultLayout" {...defaultView} onChange={(e) => this.defaultCalendarOnChange(e, defaultView, handleSubmit)} checked={defaultView.value === 'board'} value={'board'}>Tile View</Radio>
                             </Col>
                         </Row>
                         <Row>
