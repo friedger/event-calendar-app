@@ -109,8 +109,8 @@ export default React.createClass({
                     header={'Facebook'}
                     description={'Use for connecting to Facebook Page/Business events'}
                 >
-                    <a href="#" onClick={() => this.setState({showFacebookModal: true})} className="button danger">
-                        Temporarily disabled
+                    <a href="#" onClick={this.linkFacebookClicked} className="button secondary">
+                        Connect
                     </a>
                 </ConnectionCard>
                 <ConnectionCard
