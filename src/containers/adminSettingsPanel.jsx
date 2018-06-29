@@ -263,6 +263,7 @@ const component = React.createClass({
                     eventDuplicationSuccess={this.props.manualEventState.eventDuplicationSuccess}
                     eventDuplicationError={this.props.manualEventState.eventDuplicationError}
                     duplicatingEvent={this.props.manualEventState.duplicatingEvent}
+                    displayDuplicationButton={this.props.eventState.manualEventSelected}
                     exitAction={this.props.exitEventSettings}
                     deleteManualEvent={this.props.eventState.manualEventSelected && this.deleteManualEvent}
                 />}

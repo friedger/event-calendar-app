@@ -14,14 +14,14 @@ export default React.createClass({
                         >
                             Finish editing event
                         </button>
-                        <DuplicateEventButton
+                        {this.props.displayDuplicationButton && <DuplicateEventButton
                             duplicatingEvent={this.props.duplicatingEvent}
                             duplicateManualEventAction={
                                 this.props.duplicateManualEventAction
                             }
                             eventDuplicationSuccess={this.props.eventDuplicationSuccess}
                             eventDuplicationError={this.props.eventDuplicationError}
-                        />
+                        />}
                         {this.props.deleteManualEvent && (
                             <button
                                 onClick={() => this.props.deleteManualEvent()}
