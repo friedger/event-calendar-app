@@ -22,12 +22,36 @@
     transition: background 0.4s ease-in;
 }
 
+.action {
+    transition: background 0.4s ease-in;
+}
+
 button.secondary.animate-success {
     background: #67ab6e;
     border-bottom: 2px solid #316937;
     &:hover {
         background: #67ab6e;
         border-bottom: 2px solid #316937;
+        text-decoration: none;
+    }
+}
+
+button.action.animate-success {
+    background: #67ab6e;
+    border-bottom: 2px solid #316937;
+    &:hover {
+        background: #67ab6e;
+        border-bottom: 2px solid #316937;
+        text-decoration: none;
+    }
+}
+
+button.action.animate-error {
+    background: #ee1717;
+    border-bottom: 2px solid #171c22;
+    &:hover {
+        background: #f03a3a;
+        border-bottom: 2px solid #435b77;
         text-decoration: none;
     }
 }

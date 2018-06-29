@@ -2,6 +2,12 @@ export const POST_MANUAL_EVENT = 'POST_MANUAL_EVENT';
 export const POST_MANUAL_EVENT_SUCCESS = 'POST_MANUAL_EVENT_SUCCESS';
 export const POST_MANUAL_EVENT_ERROR = 'POST_MANUAL_EVENT_ERROR';
 
+export const RESET_DUPLICATE_MANUAL_EVENT_STATUS = 'RESET_DUPLICATE_MANUAL_EVENT_STATUS';
+
+export const POST_DUPLICATE_MANUAL_EVENT = 'POST_DUPLICATE_MANUAL_EVENT';
+export const POST_DUPLICATE_MANUAL_EVENT_SUCCESS = 'POST_DUPLICATE_MANUAL_EVENT_SUCCESS';
+export const POST_DUPLICATE_MANUAL_EVENT_ERROR = 'POST_DUPLICATE_MANUAL_EVENT_ERROR';
+
 export const DELETE_MANUAL_EVENT = 'DELETE_MANUAL_EVENT';
 export const DELETE_MANUAL_EVENT_SUCCESS = 'DELETE_MANUAL_EVENT_SUCCESS';
 export const DELETE_MANUAL_EVENT_ERROR = 'DELETE_MANUAL_EVENT_ERROR';
@@ -33,6 +39,38 @@ export function postManualEvent(values) {
             dispatch({
                 type: POST_MANUAL_EVENT_SUCCESS,
                 payload: res.body
+            });
+
+            var a = new MouseEvent('refreshCalendar', {});
+            document.dispatchEvent(a);
+        });
+    };
+}
+
+export function duplicateManualEvent(duplicateId) {
+    return dispatch => {
+        dispatch({
+            type: POST_DUPLICATE_MANUAL_EVENT
+        });
+        const token = cookieUtil.getItem('eventcal-admin');
+        request.post(`${config.apiUrl}/manualEvents?token=${token}&duplicateId=${duplicateId}`).end((err, res) => {
+            if (err) {
+                return dispatch({
+                    type: POST_DUPLICATE_MANUAL_EVENT_ERROR,
+                    error: err
+                });
+            }
+
+            dispatch({
+                type: POST_DUPLICATE_MANUAL_EVENT_SUCCESS,
+                payload: res.body
+            });
+
+            setTimeout(() => {
+                dispatch({
+                    type: RESET_DUPLICATE_MANUAL_EVENT_STATUS,
+                    payload: res.body
+                });
             });
 
             var a = new MouseEvent('refreshCalendar', {});

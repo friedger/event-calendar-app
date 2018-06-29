@@ -128,6 +128,10 @@ const component = React.createClass({
             id: currentlySelectedEvent.id
         });
     },
+    duplicateManualEvent() {
+        const currentlySelectedEvent = this.props.eventState;
+        this.props.duplicateManualEvent(currentlySelectedEvent.id);
+    },
     manualEventsSelected() {
         if (this.props.appState && this.props.appState.calendars) {
             return this.props.appState.calendars.find(calendar => {
@@ -255,6 +259,10 @@ const component = React.createClass({
                 {this.eventActivated() &&
                     !this.props.eventState.eventSettingsLoading &&
                 <EventActions
+                    duplicateManualEventAction={this.duplicateManualEvent}
+                    eventDuplicationSuccess={this.props.manualEventState.eventDuplicationSuccess}
+                    eventDuplicationError={this.props.manualEventState.eventDuplicationError}
+                    duplicatingEvent={this.props.manualEventState.duplicatingEvent}
                     exitAction={this.props.exitEventSettings}
                     deleteManualEvent={this.props.eventState.manualEventSelected && this.deleteManualEvent}
                 />}

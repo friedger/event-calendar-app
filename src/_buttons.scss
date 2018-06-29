@@ -84,6 +84,38 @@ button, a, .button {
         }
     }
 
+    &.danger {
+        background: #ee1717;
+        border: 0;
+        box-shadow: none;
+        color: #fff;
+        text-shadow: none;
+        display: inline-block;
+        padding: 10px 20px;
+        border: 0;
+        border-bottom: 2px solid #171c22;
+        border-radius: 2px;
+        font-size: 14px;
+        font-weight: bold;
+
+        &:hover {
+            background: #f03a3a;
+            border-bottom: 2px solid #435b77;
+        }
+
+        &--skinny {
+            font-size:12px;
+            padding: 8px 17px;
+            position: absolute;
+            right: 15px;
+        }
+
+        &--small {
+            font-size: 12px;
+            padding: 3px 11px;
+        }
+    }
+
     &.secondary {
         padding: 10px;
         font-size: 14px;
