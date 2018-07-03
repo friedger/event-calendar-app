@@ -34,8 +34,9 @@ export default React.createClass({
                 })}
             >
                 <Col md={12} className="calendarCode">
+                    <p className="subtitle">Embed Code</p>
                     <p>
-                        🚧 Copy this code to the part of your website you would like the Event
+                        Copy this code to the part of your site you would like the Event
                         Calendar to appear:
                     </p>
                     <textarea
@@ -57,7 +58,7 @@ export default React.createClass({
                             }
                         }}
                     >
-                        <button className="action">
+                        <button className={cn('action', {'full-width': this.props.fullWidthCopyButton})}>
                             {this.state.copied ? 'Copied!' : 'Copy Code'}
                         </button>
                     </CopyToClipboard>
@@ -90,6 +91,16 @@ export default React.createClass({
                                 href="https://www.youtube.com/watch?v=R6uKvhyHYVg"
                                 >
                                 BigCommerce integration guide
+                            </a>
+                        </div>
+                    )}
+                    {!this.props.shopifyUser && !this.props.bigcommerceUser && (
+                        <div className="calendarCode__shopify">
+                            <a
+                                target="_blank"
+                                href="https://support.eventcalendarapp.com/third-party-platform-integration"
+                            >
+                            <i className="fas fa-info-circle"></i>Specific platform instructions on how to add this to your website
                             </a>
                         </div>
                     )}

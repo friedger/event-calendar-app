@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+    {{> head title='Event Calendar for Squarespace' description='Add a stunning Event Calendar to your Squarespace website. Takes minutes to install.' }}
+    <body class="pricing">
+        <div class="navigation">
+            {{> navigation }}
+            <div class="container">
+                <div class="header">
+                    <h1>A stunning Event Calendar for your Squarespace website</h1>
+                    <p>ECA is the simplest way to add a stunning Event Calendar to your Squarespace website.</p>
+                    <a class="secondary secondary--thick" href="/register">Get Started</a>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row row-spacing catch-line" style="margin-bottom: 0px; padding-bottom: 0;">
+                <div class="col-md-12">
+                    <div>
+                        <h2>Install this calendar on your Squarespace site. In <strong>minutes.</strong></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container widget">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="app-container"></div><script>(function () {
+                        window.eventCalId=2;
+                        var integrationScript = document.createElement("script");
+                        integrationScript.async = 1;
+                        integrationScript.setAttribute("src", "https://drux6c7e0s0bo.cloudfront.net/integration-script-aws.js");
+                        document.head.appendChild(integrationScript);
+                        })();
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row row-spacing catch-line">
+                <div class="col-md-12">
+                    <div>
+                        <p style="margin-top:0"><a class="secondary" href="/register">Install on my website</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid feature-one">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>A more advanced, more sophisticated 'calendar block'</h2>
+                        <p>Event calendars are the only thing we do. I'm serious, the <strong>only</strong> thing.</p>
+                        <p class="connection-icons"><i class="fab fa-squarespace"></i></p>
+                        <p>We're able to focus purely on creating the best Event Calendar possible. The Squarespace calendar block is good, but when you're ready for something next level, we're here.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid feature-two">
+            <div class="row vertical-align">
+                <div class="col-md-3 col-md-offset-2">
+                    <img src="/images/homepage/editorscreen.jpg"></img>
+                </div>
+                <div class="col-md-4 col-md-offset-1 feature-two__content">
+                    <h1>Build your perfect Event Calendar</h1>
+                    <p>Use Event Calendar App's powerful editor to build exactly the kind of Event Calendar you want for Squarespace. Customise almost everything, Add images, filter options, images, thumbnails and much more!</p>
+                </div>
+            </div>
+            <div class="row vertical-align">
+                <div class="col-md-4 col-md-offset-2 feature-two__content">
+                    <h1>Unbelivably easy to add</h1>
+                    <p>No fancy trickery. You can add it to your Squarespace site as easily as any other block. Oh, and if you ever decide to move away from Squarespace, you can add Event Calendar App anywhere, on almost all platforms.</p>
+                </div>
+                <div class="col-md-6">
+                    <img src="/images/homepage/ssdash.jpg"></img>
+                </div>
+            </div>
+            <div class="row vertical-align">
+                <div class="col-md-3 col-md-offset-2">
+                    <img src="/images/homepage/three.jpg"></img>
+                </div>
+                <div class="col-md-4 col-md-offset-1 feature-two__content">
+                    <h1>Fully responsive and adaptable to your site</h1>
+                    <p>Event calendar app looks great on your desktop, tablet and mobile site. It also fully adapts to the space that you give it. Want a calendar that dominates your page? Great! Want a calendar that sits subtly in a sidebar? Also great!</p>
+                </div>
+            </div>
+            <div class="row vertical-align">
+                <div class="col-md-4 col-md-offset-2 feature-two__content">
+                    <h1>Let your customers subscribe to your events</h1>
+                    <p>Using Event Calendar App, your customers can subscribe to your events. This means all your events will appear inside their own calendar. This keeps them updated, even when they're not visiting your site.</p>
+                </div>
+                <div class="col-md-6">
+                    <img src="/images/homepage/one.jpg"></img>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid darker">
+            <div class="row catch-line row-spacing">
+                <div class="col-md-12">
+                    <h1>Give your events the attention they deserve.</h1>
+                    <p>Get started with a 7 day free trial.</p>
+                    {{#unless loggedIn}}
+                        <a class="secondary secondary--thick" href="http://eventcalendarapp.com/register">Get your event calendar</a>
+                    {{/unless}}
+                    {{#if loggedIn}}
+                        <a class="secondary secondary--thick" href="http://eventcalendarapp.com/dashboard">Get your event calendar</a>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid footer-container">
+            <div class="row catch-line footer">
+                <div class="col-md-12">
+                    <div class="legal"><a href="/terms-of-use">Terms of Use</a> | <a href="/privacy-policy">Privacy Policy</a></div>
+                    <div>© 2017 - EVENTCALENDARAPP</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

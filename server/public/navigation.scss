@@ -20,24 +20,99 @@ a.svg:after {
   left:0;
 }
 
+.navigation-bar {
+    display: flex;
+    flex-direction: row;
+    padding: 0px 15px;
+    .navigation__links {
+        align-self: flex-end;
+        margin-left: auto;
+    }
+    .navigation__logo {
+        display:flex;
+        align-items: center;
+    }
+}
+
 .navigation {
     text-align: right;
     background: #2e3d4e;
-    padding: 24px 0 21px;
+    padding: 24px 0 79px;
 
-    ul.logged-in li a {
-        color: #fff;
-    }
-
-    li {
-        display: inline;
-        list-style: none;
-
-        a {
+    &__links {
+        ul.logged-in li a {
             color: #fff;
-            padding: 12px;
-            margin: 0 0 0 12px;
-            font-size: 16px;
+        }
+
+        ul {
+            display: flex;
+            align-items: center;
+        }
+
+        li {
+            list-style: none;
+            position: relative;
+
+            a, span {
+                color: #fff;
+                padding: 18px 12px;
+                margin: 0 0 0 12px;
+                font-size: 16px;
+            }
+
+            .dropdown {
+                color: #fff;
+                margin: 0 0 0 12px;
+                font-size: 16px;
+                cursor: pointer;
+                }
+
+            ul {
+                display: none;
+                position: absolute;
+                margin-top: 18px;
+                top: 100%;
+                left: -15px;
+                box-shadow: 0 1px 1px #e2e8ea;
+                background: #fff;
+                padding: 15px;
+                border-radius: 2px;
+                &:before, &:after {
+                    bottom: 100%;
+                    left: 50%;
+                    border: solid transparent;
+                    content: " ";
+                    height: 0;
+                    width: 0;
+                    position: absolute;
+                    pointer-events: none;
+                }
+                &:after {
+                    border-color: rgba(255, 255, 255, 0);
+                    border-bottom-color: #fff;
+                    border-width: 6px;
+                    margin-left: -6px;
+                }
+                &:before {
+                    border-color: rgba(255, 255, 255, 0);
+                    border-bottom-color: #fff;
+                    border-width: 12px;
+                    margin-left: -12px;
+                }
+                li {
+                    a {
+                        color: #db4066;
+                        transition: color 0.1s ease-in;
+                    }
+                    a:hover {
+                        color: #db4066;
+                        text-decoration: underline;
+                    }
+                }
+            }
+            &:hover  ul {
+                display: block;
+            }
         }
     }
 
@@ -46,7 +121,6 @@ a.svg:after {
     }
 
     &__logo {
-        float: left;
         color: #fff;
         font-size: 20px;
         display: none;
@@ -55,6 +129,7 @@ a.svg:after {
 
     &__links {
         text-align: center;
+        display: none;
 
         li:nth-child(1) {
             display: none;
@@ -73,15 +148,76 @@ a.svg:after {
     li a.primary-color:hover {
         text-decoration: underline;
     }
+
+    &__mobile-hamburger {
+        margin-left: auto;
+        color: #fff;
+        padding: 20px 0px 30px 30px;
+        cursor: pointer;
+        font-size: 26px;
+    }
+    &__mobile-navigation {
+        background: #fff;
+        color: #000;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top:0;
+        text-align: left;
+        padding: 30px;
+        opacity: 0;
+        z-index: -100;
+        animation: fadeOut 0.2s forwards;
+        border-bottom: 5px solid #db4066;
+        &--active {
+            animation: fadeIn 0.2s forwards;
+        }
+        .dropdown {
+            padding: 10px 0px;
+            display: inline-block;
+        }
+        a {
+            color: #db4066;
+            transition: color 0.1s ease-in;
+        }
+        a:hover {
+            color: #6787ab;
+            text-decoration: none;
+        }
+        > ul {
+            display: flex;
+            list-style: none;
+            flex-direction: column;
+            > li {
+                padding: 10px;
+                ul {
+                    list-style: none;
+                    padding: 10px;
+                    padding-bottom: 0;
+                }
+            }
+        }
+        &__close {
+            position: absolute;
+            right: 30px;
+            top: 15px;
+            font-size: 30px;
+            color: #444;
+            padding: 10px;
+            cursor: pointer;
+        }
+    }
 }
 
 @media (min-width: 768px) {
+    .navigation-bar {
+        padding: 20px 40px;
+    }
     .navigation__logo {
         display: inline-block;
     }
 
     .navigation__links {
-        float: right;
         text-align: left;
     }
 
@@ -93,4 +229,60 @@ a.svg:after {
         display: inline-block;
     }
 
+    .navigation {
+        &__links {
+            display: block;
+        }
+        &__mobile-hamburger {
+            display: none;
+        }
+        &__close {
+            position: absolute;
+            right: 30px;
+            top: 15px;
+            font-size: 30px;
+            color: #444;
+            padding: 10px;
+            cursor: pointer;
+        }
+        &__mobile-navigation {
+            display:none;
+            animation: fadeOut 0.2s forwards;
+            border-bottom: 5px solid #db4066;
+            &--active {
+                animation: fadeIn 0.2s forwards;
+            }
+        }
+    }
+
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    z-index: 100;
+  }
+  99% {
+    opacity: 1;
+    z-index: 100;
+  }
+  100% {
+    opacity: 1;
+    z-index: 100;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    z-index: 100;
+  }
+  99% {
+    opacity: 0;
+    z-index: -100;
+  }
+  100% {
+    opacity: 0;
+    z-index: -100;
+  }
 }

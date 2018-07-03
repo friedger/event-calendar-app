@@ -1,6 +1,22 @@
 .calendarCode {
+    p {
+        font-size: 14px;
+        &.subtitle {
+            font-size: 16px;
+            font-weight: bold;
+            color: #444;
+            margin: 0;
+            padding: 0;
+        }
+    }
     textarea {
-        width:100%;
+        width: 100%;
+        background: #dadada;
+        color: #736f6f;
+        border: 0;
+        padding: 11px;
+        font-size: 11px;
+        border-radius: 1px;
     }
 }
 
@@ -24,6 +40,13 @@
     }
     p {
         color: #fff;
+        &.subtitle {
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
     }
 
     .calendarCode__shopify {
@@ -37,7 +60,14 @@
 }
 
 .calendarCode__shopify {
-    padding-bottom: 20px;
+    font-size:14px;
+    padding-top: 13px;
+    a {
+        text-align: left !important;
+    }
+    i {
+        padding-right: 5px;
+    }
 }
 
 @keyframes color {

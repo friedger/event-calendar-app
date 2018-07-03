@@ -3,6 +3,8 @@ const app = require('express')();
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const url = require('url');
+const hbs = require('hbs');
+const fs = require('fs');
 const renderConfig = require('./renderConfig');
 
 const redirectIfLoggedIn = require('./middleware/redirectIfLoggedIn');
@@ -18,6 +20,21 @@ app.set('view engine', 'hbs');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+var partialsDir = path.join(__dirname, 'staticSite/partials');
+
+var filenames = fs.readdirSync(partialsDir);
+
+filenames.forEach(function(filename) {
+    var matches = /^([^.]+).hbs$/.exec(filename);
+    if (!matches) {
+        return;
+    }
+    var name = matches[1];
+    var template = fs.readFileSync(partialsDir + '/' + filename, 'utf8');
+    hbs.registerPartial(name, template);
+});
+
+
 app.use('/favicon.ico', function (req, res, next) {
     res.send('');
 });
@@ -25,7 +42,7 @@ app.use('/favicon.ico', function (req, res, next) {
 app.use(cookieParser());
 
 if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'secureDev') {
-    combileWebpack(app);
+    // combileWebpack(app);
 }
 
 app.use('/login', redirectIfLoggedIn, renderApp);
@@ -52,6 +69,12 @@ app.use('/$', function (req, res, next) {
         return res.redirect('/dashboard');
     }
     res.render('./staticSite/index.hbs', renderConfig);
+});
+app.use('/integrations/squarespace', function (req, res, next) {
+    if (req.cookies['eventcal-admin']) {
+        return res.redirect('/dashboard');
+    }
+    res.render('./staticSite/integrations/squarespace.hbs', renderConfig);
 });
 app.use('/shoppify', function (req, res, next) {
     res.render('./shoppifySite/index.hbs', renderConfig);

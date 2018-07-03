@@ -34,18 +34,17 @@ export default React.createClass({
                 >
                     <Modal.Header closeButton>
                         <Modal.Title>
-                            <span>Add the calendar to your website</span>
+                            <span>Website Integration</span>
                         </Modal.Title>
                     </Modal.Header>
                     <div className="col-md-12 connection-modal">
-                        <div className="connection-modal__content">
-                            <CalendarCodetextArea
-                                eventCalWidgetUuid={this.props.eventCalWidgetUuid}
-                                userId={this.props.userId}
-                                shopifyUser={this.props.shopifyUser}
-                                bigcommerceUser={this.props.bigcommerceUser}
-                            />
-                        </div>
+                        <CalendarCodetextArea
+                            fullWidthCopyButton={true}
+                            eventCalWidgetUuid={this.props.eventCalWidgetUuid}
+                            userId={this.props.userId}
+                            shopifyUser={this.props.shopifyUser}
+                            bigcommerceUser={this.props.bigcommerceUser}
+                        />
                     </div>
                 </Modal>
             </span>
