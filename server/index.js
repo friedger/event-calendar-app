@@ -42,7 +42,7 @@ app.use('/favicon.ico', function (req, res, next) {
 app.use(cookieParser());
 
 if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'secureDev') {
-    // combileWebpack(app);
+    combileWebpack(app);
 }
 
 app.use('/login', redirectIfLoggedIn, renderApp);
