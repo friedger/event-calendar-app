@@ -144,9 +144,18 @@ a.svg:after {
   border-width: 12px;
   margin-left: -12px; }
 
+.navigation__links li ul li {
+  padding: 9px 15px;
+  display: block;
+  width: 100%; }
+
 .navigation__links li ul li a {
+  display: block;
+  width: 100%;
   color: #db4066;
-  transition: color 0.1s ease-in; }
+  transition: color 0.1s ease-in;
+  padding: 0;
+  margin: 0; }
 
 .navigation__links li ul li a:hover {
   color: #db4066;
@@ -229,6 +238,9 @@ a.svg:after {
   list-style: none;
   padding: 10px;
   padding-bottom: 0; }
+
+.navigation__mobile-navigation > ul > li ul > li {
+  padding: 10px 0px; }
 
 .navigation__mobile-navigation__close {
   position: absolute;

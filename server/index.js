@@ -76,6 +76,12 @@ app.use('/integrations/squarespace', function (req, res, next) {
     }
     res.render('./staticSite/integrations/squarespace.hbs', renderConfig);
 });
+app.use('/integrations/wix', function (req, res, next) {
+    if (req.cookies['eventcal-admin']) {
+        return res.redirect('/dashboard');
+    }
+    res.render('./staticSite/integrations/wix.hbs', renderConfig);
+});
 app.use('/shoppify', function (req, res, next) {
     res.render('./shoppifySite/index.hbs', renderConfig);
 });
