@@ -21,6 +21,7 @@ import filterState from './filterState';
 import notificationState from './notificationsState';
 import eventSavingState from './eventSavingState';
 import analyticsState from './analyticsState';
+import widgetState from './widgetState';
 
 function initialRegisterState(state = {}, action) {
     if (action.type === POPULATE_REGISTER_FORM) {
@@ -44,7 +45,8 @@ const appReducer = combineReducers({
     filterState: filterState,
     notificationState: notificationState,
     eventSavingState: eventSavingState,
-    analyticsState: analyticsState
+    analyticsState: analyticsState,
+    widgetState: widgetState
 });
 
 export default (state, action) => {

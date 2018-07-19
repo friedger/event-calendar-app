@@ -4,7 +4,7 @@ import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import cn from 'classnames';
-import { postOnboarding } from '../../../actions/apiActions';
+import PublicCalendarForm from '../../../containers/publicCalendarForm';
 
 export default React.createClass({
     getInitialState() {
@@ -104,6 +104,9 @@ export default React.createClass({
                             </a>
                         </div>
                     )}
+                    {this.props.displayPublicCalendarForm &&
+                        <PublicCalendarForm />
+                    }
                 </Col>
             </Row>
         );

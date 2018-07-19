@@ -1,0 +1,35 @@
+.subdomain-input {
+    display: flex;
+    &__subdomain {
+        border-right: 0;
+        border-radius: 2px 0 0 2px !important;
+    }
+    &__domain {
+        color: #736f6f;
+        padding: 0 15px;
+        display: flex;
+        align-items: center;
+        background: #dadada;
+        white-space: nowrap;
+        &--success {
+            background: #67ab6e;
+            color: #fff;
+        }
+        &--name-not-available {
+            background: #ee1717;
+            color: #fff;
+        }
+    }
+    &__public-url {
+        text-align: left !important;
+        // color: #444;
+        text-decoration: underline;
+    }
+}
+
+.url-to-public-calendar{
+    &__public-url {
+        text-align: left !important;
+        text-decoration: underline;
+    }
+}

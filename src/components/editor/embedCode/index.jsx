@@ -44,6 +44,7 @@ export default React.createClass({
                             userId={this.props.userId}
                             shopifyUser={this.props.shopifyUser}
                             bigcommerceUser={this.props.bigcommerceUser}
+                            displayPublicCalendarForm={true}
                         />
                     </div>
                 </Modal>

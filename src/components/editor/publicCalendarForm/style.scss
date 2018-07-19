@@ -1,0 +1,17 @@
+.public-calendar-form {
+    .settings-space {
+        padding: 8px 0px 12px 0;
+        &--no-bottom-padding {
+            padding: 8px 0px 0px 0;
+        }
+    }
+    &__switch-input {
+        display: flex;
+        padding-bottom: 9px;
+        display: flex;
+        align-items: center;
+        label {
+            margin-left: auto;
+        }
+    }
+}
