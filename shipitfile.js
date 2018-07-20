@@ -11,7 +11,8 @@ module.exports = function (shipit) {
             ignores: ['.git'],
             keepReleases: 5,
             deleteOnRollback: false,
-            shallowClone: true
+            shallowClone: true,
+            branch: 'master'
         },
         production: {
             servers: 'root@eventcalendarapp.com'
