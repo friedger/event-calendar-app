@@ -79,7 +79,7 @@ var Component = React.createClass({
                         You can access a public version of your Event Calendar
                         by going to:
                     </p>
-                    <a className="url-to-public-calendar__public-url" href={`https://${lastKnownSuccessfulAlias}.eventcalendarapp.com`}>{`${lastKnownSuccessfulAlias}.eventcalendarapp.com`}</a>
+                    <a className="url-to-public-calendar__public-url" target="_blank" href={`https://${lastKnownSuccessfulAlias}.eventcalendarapp.com`}>{`${lastKnownSuccessfulAlias}.eventcalendarapp.com`}</a>
                 </div>
                 }
             </div>
