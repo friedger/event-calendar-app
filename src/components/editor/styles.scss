@@ -3,6 +3,21 @@
     vertical-align: middle;
 }
 
+.setting-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #444;
+    margin-bottom: 0;
+    &--strike {
+        text-decoration: line-through;
+    }
+}
+
+.setting-sub-title {
+    font-size: 14px;
+    margin-bottom: 14px;
+}
+
 .dashboard-editor {
     display: flex;
     flex-flow: column;
@@ -14,14 +29,7 @@
 
 .calendar-settings {
     border-left: 1px solid #eee;
-    .setting-title {
-        font-size: 16px;
-        font-weight: bold;
-        color: #444;
-        &--strike {
-            text-decoration: line-through;
-        }
-    }
+
     .form-group {
         margin-bottom: 0;
     }

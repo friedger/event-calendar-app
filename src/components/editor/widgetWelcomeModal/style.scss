@@ -1,0 +1,48 @@
+.footer-button {
+    text-align: center;
+    // border-top: 1px solid #f0f0f0;
+    padding: 15px;
+    background: #da4167;
+    color: #fff;
+    cursor: pointer;
+    &:hover {
+        background: #ee4a72;
+    }
+}
+
+.welcome-screen {
+    background: #2f404c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    flex-direction: column;
+    color: #fff;
+    font-size: 26px;
+    font-weight: lighter;
+    text-align: center;
+    img {
+        height: 60px;
+        margin-bottom: 30px;
+    }
+}
+
+.widget-welcome-modal {
+    &__title {
+        font-size: 20px;
+        font-weight: bold;
+        margin: 0;
+    }
+    &__content {
+        font-size: 14px;
+    }
+    .settings-space {
+        padding: 8px 0px 12px 0;
+        &--no-bottom-padding {
+            padding: 8px 0px 0px 0;
+        }
+    }
+    iframe {
+        margin-top: 25px;
+    }
+}

@@ -105,7 +105,7 @@ export default React.createClass({
                         </div>
                     )}
                     {this.props.displayPublicCalendarForm &&
-                        <PublicCalendarForm />
+                        <PublicCalendarForm displayDirectUrl={true} />
                     }
                 </Col>
             </Row>

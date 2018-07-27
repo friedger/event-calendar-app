@@ -20,33 +20,6 @@ var Component = React.createClass({
         const { eventCalWidgetUuid } = this.props;
         return (
             <div className="public-calendar-form">
-                <hr />
-                <div className="settings-space settings-space--no-bottom-padding">
-                    <div className="public-calendar-form__switch-input">
-                        <p className="subtitle">Make this Event Calendar Public</p>
-                        <label className="switch">
-                            <input
-                                type="checkbox"
-                                checked={
-                                    publicWidget.value === true ||
-                                    publicWidget.value === 'true'
-                                }
-                                {...publicWidget}
-                                onClick={this.clickPublicButton}
-                                />
-                            <div className="slider round" />
-                        </label>
-                    </div>
-                    <p>
-                        This allows people to see your Event Calendar on a
-                        seperate page than your website.{' '}
-                        <strong>
-                            This is required for social media sharing or if you
-                            want to share direct links to your events.
-                        </strong>
-                    </p>
-                </div>
-                {calendarIsPublic && (
                             <SubdomainInput
                                 putWidgetAlias={this.props.putWidgetAliasAction}
                                 eventCalWidgetUuid={eventCalWidgetUuid}
@@ -54,8 +27,8 @@ var Component = React.createClass({
                                 aliasFail={this.props.aliasFail}
                                 aliasInvalid={this.props.aliasInvalid}
                                 lastKnownSuccessfulAlias={this.props.lastKnownSuccessfulAlias}
+                                displayDirectUrl={this.props.displayDirectUrl}
                             />
-                )}
             </div>
         );
     }

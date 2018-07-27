@@ -16,14 +16,13 @@ var Component = React.createClass({
         this.makeApiCall(e.target.value, this.props.eventCalWidgetUuid);
     },
     render() {
-        const { aliasSuccess, aliasFail, aliasInvalid, fields: { alias }, lastKnownSuccessfulAlias } = this.props;
+        const { aliasSuccess, aliasFail, aliasInvalid, fields: { alias }, lastKnownSuccessfulAlias, displayDirectUrl } = this.props;
         return (
             <div>
                 <div className="settings-space">
-                    <p className="subtitle">Url</p>
-                    <p>
-                        A name to use in the address bar when people see your
-                        public Event Calendar. Lowercase numbers and letters only.
+                    <label className="setting-title">Choose a name</label>
+                    <p className="setting-sub-title">
+                        This forms the URL to your Event Calendar. You use this URL to link directly to your events or share them on social media. You can change this later. Lowercase numbers and letters only. No spaces.
                     </p>
                     <div className="subdomain-input">
                         <input
@@ -72,7 +71,7 @@ var Component = React.createClass({
                         </div>
                     </div>
                 </div>
-                {lastKnownSuccessfulAlias &&
+                {lastKnownSuccessfulAlias && displayDirectUrl &&
                 <div className="settings-space url-to-public-calendar">
                     <p className="subtitle">Direct URL</p>
                     <p>
