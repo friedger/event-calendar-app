@@ -4,6 +4,7 @@ import NumberOfEventsToDisplay from '../numberOfEventsSelection';
 import TimezoneSelection from '../timezoneSelection';
 import CalendarSelection from '../calendarSelection';
 import ViewModeSelection from '../viewModeSelection';
+import MapsSelection from '../mapsSelection';
 import SubscriptionButtonSelection from '../subscriptionButtonSelection';
 import featurePermissions from '../../../utils/featurePermissions';
 import cn from 'classnames';
@@ -56,7 +57,11 @@ export default React.createClass({
         } = this.props;
         return (
             <SidePanelWrapper>
-                <div className={cn('widget-settings show', { show: this.state.showComponent })}>
+                <div
+                    className={cn('widget-settings show', {
+                        show: this.state.showComponent
+                    })}
+                >
                     <SettingsCategorySelection
                         options={[
                             { name: 'Event Sources', emoji: '🌍' },
@@ -67,8 +72,12 @@ export default React.createClass({
                     />
                     <CalendarSelection
                         onChange={putCalendars.bind(null, eventCalWidgetUuid)}
-                        toggleConnectionsScreen={this.props.toggleConnectionsScreen}
-                        initialValues={this.getCalendarFormInitialValues(calendars)}
+                        toggleConnectionsScreen={
+                            this.props.toggleConnectionsScreen
+                        }
+                        initialValues={this.getCalendarFormInitialValues(
+                            calendars
+                        )}
                         loading={calendarsLoading}
                         addEventClicked={this.props.addEventClicked}
                         fields={Object.keys(calendars)}
@@ -76,15 +85,18 @@ export default React.createClass({
                         show={this.state.settingsToDisplay === 'Event Sources'}
                     />
                     <DesignFrom
-                        show={
-                            this.state.settingsToDisplay === 'Design'
-                        }
-                        onFormChange={putSettings.bind(null, eventCalWidgetUuid)}
+                        show={this.state.settingsToDisplay === 'Design'}
+                        onFormChange={putSettings.bind(
+                            null,
+                            eventCalWidgetUuid
+                        )}
                         validWithPlan={featurePermissions.checkFeatureAvailability(
                             userStatus,
                             'theming'
                         )}
-                        canvasBackgroundModified={this.props.canvasBackgroundModified}
+                        canvasBackgroundModified={
+                            this.props.canvasBackgroundModified
+                        }
                     />
                     <div
                         className={cn('layout-options-container', {
@@ -92,13 +104,32 @@ export default React.createClass({
                         })}
                     >
                         <ViewModeSelection
-                            putSettingsAction={putSettings.bind(null, eventCalWidgetUuid)}
+                            putSettingsAction={putSettings.bind(
+                                null,
+                                eventCalWidgetUuid
+                            )}
                         />
                         <NumberOfEventsToDisplay
-                            putSettingsAction={putSettings.bind(null, eventCalWidgetUuid)}
+                            putSettingsAction={putSettings.bind(
+                                null,
+                                eventCalWidgetUuid
+                            )}
                         />
                         <TimezoneSelection
-                            putSettingsAction={putSettings.bind(null, eventCalWidgetUuid)}
+                            putSettingsAction={putSettings.bind(
+                                null,
+                                eventCalWidgetUuid
+                            )}
+                        />
+                        <MapsSelection
+                            putSettingsAction={putSettings.bind(
+                                null,
+                                eventCalWidgetUuid
+                            )}
+                            validWithPlan={featurePermissions.checkFeatureAvailability(
+                                userStatus,
+                                'maps'
+                            )}
                         />
                         <SubscriptionButtonSelection
                             validWithPlan={featurePermissions.checkFeatureAvailability(
