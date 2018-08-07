@@ -23,15 +23,7 @@ import WidgetWelcomeModal from '../components/editor/widgetWelcomeModal';
 import cn from 'classnames';
 import getCronofyAuthUrl from '../utils/getCronofyAuthUrl';
 
-const mapState = ({
-    appState,
-    form,
-    eventcalState,
-    eventState,
-    onBoardingState,
-    eventSavingState,
-    widgetState
-}) => {
+const mapState = ({ appState, form, eventcalState, eventState, onBoardingState, eventSavingState, widgetState }) => {
     return {
         appState,
         form,
@@ -61,18 +53,13 @@ const mapDispatch = dispatch => {
 const component = React.createClass({
     getInitialState() {
         return {
-            userHasSeenSuccessfulLinkModal: cookieUtil.getItem(
-                'seen-successful-link-modal'
-            ),
+            userHasSeenSuccessfulLinkModal: cookieUtil.getItem('seen-successful-link-modal'),
             displayAddedScriptModal: false
         };
     },
     componentWillUnmount() {
         this.props.blowState();
-        document.removeEventListener(
-            'ECA_events_loaded',
-            this.eventsLoadedHandler
-        );
+        document.removeEventListener('ECA_events_loaded', this.eventsLoadedHandler);
     },
     componentDidMount() {
         this.props.getUser();
@@ -82,40 +69,29 @@ const component = React.createClass({
         this.props.getPlan();
         this.props.getWidget(this.props.params.eventCalWidgetUuid);
         this.props.getOnboarding();
-        document.addEventListener(
-            'ECA_events_loaded',
-            this.eventsLoadedHandler
-        );
+        document.addEventListener('ECA_events_loaded', this.eventsLoadedHandler);
     },
     eventsLoadedHandler() {
         this.props.eventSaved();
     },
     userHasLinkedCalendarOrChosenManual() {
         return (
-            (this.props.appState.connections &&
-                this.props.appState.connections.length > 0) ||
-            (this.props.onBoardingState &&
-                this.props.onBoardingState.selected_manual_events)
+            (this.props.appState.connections && this.props.appState.connections.length > 0) ||
+            (this.props.onBoardingState && this.props.onBoardingState.selected_manual_events)
         );
     },
     render() {
-        const { user, connections } = this.props.appState;
+        const { user, connections, settingsLoaded } = this.props.appState;
         const onBoarding = this.props.onBoardingState;
         const widgetHasAnAlias = get(this.props.widgetState, 'widget.alias');
         const widgetHasLoaded = get(this.props.widgetState, 'widget');
 
-        const userHasRegisteredOrCancelled =
-            user &&
-            (user.status === 'registered' || user.status === 'cancelled');
-        const userHasSubscribed =
-            user &&
-            (user.status !== 'cancelled' && user.status !== 'registered');
+        const userHasRegisteredOrCancelled = user && (user.status === 'registered' || user.status === 'cancelled');
+        const userHasSubscribed = user && (user.status !== 'cancelled' && user.status !== 'registered');
 
         const containerClassNames = cn(
             {
-                'container-fluid':
-                    this.userHasLinkedCalendarOrChosenManual() &&
-                    (userHasSubscribed || userHasRegisteredOrCancelled)
+                'container-fluid': this.userHasLinkedCalendarOrChosenManual() && (userHasSubscribed || userHasRegisteredOrCancelled)
             },
             { container: !this.userHasLinkedCalendarOrChosenManual() },
             'dashboard'
@@ -129,21 +105,21 @@ const component = React.createClass({
                 style={{
                     height: '100vh',
                     overflow: 'scroll',
-                    background: `${!this.userHasLinkedCalendarOrChosenManual()
-                        ? '#f5f5f5'
-                        : '#fff'}`
+                    background: `${!this.userHasLinkedCalendarOrChosenManual() ? '#f5f5f5' : '#fff'}`
                 }}
             >
-                {widgetHasLoaded && !widgetHasAnAlias &&
-                    <WidgetWelcomeModal show={!widgetHasAnAlias} hide={() => {
-                        this.props.getWidget(this.props.params.eventCalWidgetUuid);
-                    }} lastKnownSuccessfulAlias={this.props.widgetState.lastKnownSuccessfulAlias}>
-                    </WidgetWelcomeModal>
-                }
+                {widgetHasLoaded &&
+                    !widgetHasAnAlias && (
+                        <WidgetWelcomeModal
+                            show={!widgetHasAnAlias}
+                            hide={() => {
+                                this.props.getWidget(this.props.params.eventCalWidgetUuid);
+                            }}
+                            lastKnownSuccessfulAlias={this.props.widgetState.lastKnownSuccessfulAlias}
+                        />
+                    )}
                 <div className={cn({ blur: widgetHasLoaded && !widgetHasAnAlias })}>
-                    <SuggestionModals
-                        status={get(this, 'props.appState.user.status')}
-                    />
+                    <SuggestionModals status={get(this, 'props.appState.user.status')} />
                     <AddedScriptModal
                         show={this.state.displayAddedScriptModal}
                         hide={() => {
@@ -151,63 +127,32 @@ const component = React.createClass({
                         }}
                     />
                     <Header
-                        doNotDisplayDashboardLink={
-                            !this.userHasLinkedCalendarOrChosenManual()
-                        }
+                        doNotDisplayDashboardLink={!this.userHasLinkedCalendarOrChosenManual()}
                         useFluidContainer={this.userHasLinkedCalendarOrChosenManual()}
                         loggedIn={true}
                     />
-                    {this.props.location.query.showSuccessModal &&
-                        !this.state.userHasSeenSuccessfulLinkModal && (
-                            <SuccessfulLinkModal />
-                        )}
-                    <div
-                        className={containerClassNames}
-                    >
+                    {this.props.location.query.showSuccessModal && !this.state.userHasSeenSuccessfulLinkModal && <SuccessfulLinkModal />}
+                    <div className={containerClassNames}>
                         <div className="row">
                             {connections &&
                                 onBoarding &&
-                                user && (
+                                user && settingsLoaded && (
                                     <Editor
                                         connections={connections}
                                         user={this.props.appState.user}
                                         appState={this.props.appState}
-                                        calendars={
-                                            this.props.appState.calendars
-                                        }
+                                        calendars={this.props.appState.calendars}
                                         authUrl={getCronofyAuthUrl()}
-                                        suggestions={
-                                            this.props.appState.suggestions &&
-                                            !this.props.eventcalState
-                                                .eventcalHasNoEvents
-                                        }
-                                        savingEvent={
-                                            this.props.eventSavingState
-                                                .savingEvent
-                                        }
-                                        suggestionToggleAction={
-                                            this.props.toggleSugesstions
-                                        }
-                                        eventcalRemovedAction={
-                                            this.props.eventcalRemoved
-                                        }
-                                        eventcalHasNoEvents={
-                                            this.props.eventcalState
-                                                .eventcalHasNoEvents
-                                        }
-                                        eventCalWidgetUuid={
-                                            this.props.params.eventCalWidgetUuid
-                                        }
-                                        onBoardingState={
-                                            this.props.onBoardingState
-                                        }
-                                        calendarBuildUrl={
-                                            config.calendarBuildUrl
-                                        }
+                                        suggestions={this.props.appState.suggestions && !this.props.eventcalState.eventcalHasNoEvents}
+                                        savingEvent={this.props.eventSavingState.savingEvent}
+                                        suggestionToggleAction={this.props.toggleSugesstions}
+                                        eventcalRemovedAction={this.props.eventcalRemoved}
+                                        eventcalHasNoEvents={this.props.eventcalState.eventcalHasNoEvents}
+                                        eventCalWidgetUuid={this.props.params.eventCalWidgetUuid}
+                                        onBoardingState={this.props.onBoardingState}
+                                        calendarBuildUrl={config.calendarBuildUrl}
                                         userHasSubscribed={userHasSubscribed}
-                                        postOnBoarding={
-                                            this.props.postOnBoarding
-                                        }
+                                        postOnBoarding={this.props.postOnBoarding}
                                         userSelectedScriptAdded={() => {
                                             this.props.postOnBoarding(
                                                 {

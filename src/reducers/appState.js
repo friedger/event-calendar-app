@@ -24,7 +24,8 @@ import {
 export default function appState(state = {
     calendars: [],
     suggestions: false,
-    widgets: []
+    widgets: [],
+    settingsLoaded: false
 }, action) {
     switch (action.type) {
     case EVENTCAL_REMOVED:
@@ -74,7 +75,7 @@ export default function appState(state = {
             calendarsLoading: false
         }, { calendars });
     case GET_SETTINGS_SUCCESS:
-        return Object.assign({}, state, action.payload.body);
+        return Object.assign({}, state, action.payload.body, { settingsLoaded: true });
     case CANVAS_BACKGROUND_MODIFIED:
         return Object.assign({}, state, { canvasBackgroundColor: action.payload });
     case GET_CONNECTIONS_SUCCESS:
