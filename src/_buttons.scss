@@ -159,6 +159,9 @@ button, a, .button {
             font-size: 12px;
             padding: 3px 11px;
         }
+        &.disabled {
+            cursor: default;
+        }
     }
 
     &.positive {

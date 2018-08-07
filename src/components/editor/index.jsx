@@ -15,8 +15,10 @@ import BeginTrial from './beginTrial';
 import BackToWeeblyMessage from './backToWeeblyMessage';
 import Loader from 'react-loader';
 import cn from 'classnames';
+import { withRouter } from 'react-router';
+import { browserHistory } from 'react-router';
 
-export default React.createClass({
+const Component = React.createClass({
     userReadyToBeShownEditor() {
         const { connections, onBoardingState } = this.props;
 
@@ -24,6 +26,12 @@ export default React.createClass({
             (connections && connections.length > 0) ||
             (onBoardingState && onBoardingState.selected_manual_events === true)
         );
+    },
+    componentDidMount() {
+        const onBoardingState = this.props.onBoardingState;
+        if ((onBoardingState.selected_manual_events || onBoardingState.linked_calendar) && (this.props.router.location.pathname.indexOf('link-calendar') > 0)){
+            window.location.href = '/editor';
+        }
     },
     render() {
         const { authUrl } = this.props;
@@ -106,5 +114,7 @@ export default React.createClass({
         );
     }
 });
+
+export default withRouter(Component);
 
 // this.props.savingEvent

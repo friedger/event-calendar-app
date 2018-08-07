@@ -6,8 +6,10 @@ const config = require('../../../../config');
 import React from 'react';
 import Collapse from 'react-collapse';
 import { Button, Modal } from 'react-bootstrap';
+import cn from 'classnames';
 
 import intercom from '../../../utils/intercom';
+import Loader from 'react-loader';
 
 import venobox from 'venobox/venobox/venobox.min.js';
 
@@ -20,7 +22,8 @@ export default React.createClass({
         return {
             displayIcsForm: false,
             showCronofyModal: false,
-            showFacebookModal: false
+            showFacebookModal: false,
+            manualEventsWasSelected: false
         };
     },
     componentDidMount() {
@@ -41,6 +44,12 @@ export default React.createClass({
 
         this.setState({ showCronofyModal: !this.state.showCronofyModal });
     },
+    handleManualSelection() {
+        if (!this.state.manualEventsWasSelected) {
+            this.setState({ manualEventsWasSelected: true });
+            return this.props.clickManualEvents();
+        }
+    },
     hitCronofy() {
         var child = window.open(this.props.authUrl, '_blank');
         var leftDomain = false;
@@ -48,7 +57,10 @@ export default React.createClass({
         const interval = setInterval(function() {
             try {
                 if (child.document.domain === document.domain) {
-                    if (leftDomain && child.document.readyState === 'complete') {
+                    if (
+                        leftDomain &&
+                        child.document.readyState === 'complete'
+                    ) {
                         child.close();
                         clearInterval(interval);
                         setTimeout(() => {
@@ -75,7 +87,7 @@ export default React.createClass({
 
         return (
             <div className="welcome-page-header">
-                <h2 style={{ 'position': 'relative' }}>
+                <h2 style={{ position: 'relative' }}>
                     <span style={{ 'padding-right': '10px' }}>
                         How would you like to add your events?
                     </span>{' '}
@@ -85,10 +97,15 @@ export default React.createClass({
                     <p>Don't worry, you can change your mind later.</p>
                 </div>
                 <div className="row">
-                    <Modal show={this.state.showCronofyModal} onHide={this.toggleModal}>
+                    <Modal
+                        show={this.state.showCronofyModal}
+                        onHide={this.toggleModal}
+                    >
                         <Modal.Header closeButton>
                             <Modal.Title>
-                                <span>You're about to be taken to our partner...</span>
+                                <span>
+                                    You're about to be taken to our partner...
+                                </span>
                             </Modal.Title>
                         </Modal.Header>
                         <div className="col-md-12 connection-modal">
@@ -97,62 +114,120 @@ export default React.createClass({
                             </div>
                             <div className="connection-modal__content">
                                 <p>
-                                    We use a third party service called <strong>Cronofy</strong> to
-                                    connect Event Calendar App to your Google, Apple, or Outlook
-                                    calendar. You will briefly be taken away from our site while you
-                                    connect.
+                                    We use a third party service called{' '}
+                                    <strong>Cronofy</strong> to connect Event
+                                    Calendar App to your Google, Apple, or
+                                    Outlook calendar. You will briefly be taken
+                                    away from our site while you connect.
                                 </p>
-                                <p>Don't worry, you only have to do this once!</p>
+                                <p>
+                                    Don't worry, you only have to do this once!
+                                </p>
                             </div>
-                            {this.props.user && this.props.user.bigcommerceUser
-                                ? <a
-                                      target="_blank"
-                                      onClick={this.hitCronofy}
-                                      className="action full-width"
-                                  >
-                                      Connect
-                                  </a>
-                                : <a href={this.props.authUrl} className="action full-width">
-                                      Connect
-                                  </a>}
+                            {this.props.user &&
+                            this.props.user.bigcommerceUser ? (
+                                <a
+                                    target="_blank"
+                                    onClick={this.hitCronofy}
+                                    className="action full-width"
+                                >
+                                    Connect
+                                </a>
+                            ) : (
+                                <a
+                                    href={this.props.authUrl}
+                                    className="action full-width"
+                                >
+                                    Connect
+                                </a>
+                            )}
                         </div>
                     </Modal>
 
-                    <FacebookIssueModal show={this.state.showFacebookModal} hide={() => {
-                        this.setState({ showFacebookModal: false });
-                    }}></FacebookIssueModal>
+                    <FacebookIssueModal
+                        show={this.state.showFacebookModal}
+                        hide={() => {
+                            this.setState({ showFacebookModal: false });
+                        }}
+                    />
 
-                    <ConnectionCard header={'Manually add events'} description={'Use for manually adding your events into Event Calendar App'}>
-                        <a href="#" className="button secondary" onClick={this.props.clickManualEvents}>
-                            📆 Get Started
+                    <ConnectionCard
+                        header={'Manually add events'}
+                        description={
+                            'Use for manually adding your events into Event Calendar App'
+                        }
+                    >
+                        <a
+                            href="#"
+                            className={cn("button secondary", {disabled: this.state.manualEventsWasSelected})}
+                            onClick={this.handleManualSelection}
+                        >
+                            <span
+                                className={cn('get-started-text', {
+                                    show: !this.state.manualEventsWasSelected
+                                })}
+                            >
+                                📆 Get Started
+                            </span>{' '}
+                            <span className={cn('get-started-loader', {
+                                show: this.state.manualEventsWasSelected
+                            })}>
+                                <Loader
+                                    type="spin"
+                                    color="#fff"
+                                    width={3}
+                                    radius={4}
+                                />
+                            </span>
                         </a>
                     </ConnectionCard>
 
                     <div className="col-md-12">
-                        <h3 className="welcome-page-header__or" style={{'padding-bottom': '20px'}}>Or sync with an existing calendar:</h3>
+                        <h3
+                            className="welcome-page-header__or"
+                            style={{ 'padding-bottom': '20px' }}
+                        >
+                            Or sync with an existing calendar:
+                        </h3>
                     </div>
 
                     <ConnectionCard
                         mostPopular={true}
-                        header={'Google, Apple, Outlook or Exchange (via Cronofy)'}
+                        header={
+                            'Google, Apple, Outlook or Exchange (via Cronofy)'
+                        }
                         description={
                             'The simplest way to connect your calendar to Event Calendar App'
                         }
                     >
-                        <a href="#" onClick={() => this.toggleModal()} className="button secondary">
+                        <a
+                            href="#"
+                            onClick={() => this.toggleModal()}
+                            className="button secondary"
+                        >
                             📆 Connect
                         </a>
                     </ConnectionCard>
 
-                    <ConnectionCard header={'Facebook'} description={'Use for connecting to Facebook events'}>
-                        <a href="#" onClick={() => this.setState({showFacebookModal: true})} className="button danger">
+                    <ConnectionCard
+                        header={'Facebook'}
+                        description={'Use for connecting to Facebook events'}
+                    >
+                        <a
+                            href="#"
+                            onClick={() =>
+                                this.setState({ showFacebookModal: true })}
+                            className="button danger"
+                        >
                             Temporarily disabled
                         </a>
                     </ConnectionCard>
 
                     <ConnectionCard
                         header={'ICS'}
-                        description={'Requires you to know the .ICS feed url of your calendar.'}
+                        description={
+                            'Requires you to know the .ICS feed url of your calendar.'
+                        }
                     >
                         <a
                             href="#"
@@ -163,21 +238,59 @@ export default React.createClass({
                         </a>
                     </ConnectionCard>
                 </div>
-                <div className="row" style={{'margin-bottom': '38px', 'text-align': 'center'}}>
+                <div
+                    className="row"
+                    style={{ 'margin-bottom': '38px', 'text-align': 'center' }}
+                >
                     <div className="col-md-12">
-                        <h3 style={{'border-top': '1px solid #c9c9c9', 'marginTop': '28px', 'padding-top': '33px'}}>Don't have a Calendar to sync to? 🤔</h3>
+                        <h3
+                            style={{
+                                'border-top': '1px solid #c9c9c9',
+                                marginTop: '28px',
+                                'padding-top': '33px'
+                            }}
+                        >
+                            Don't have a Calendar to sync to? 🤔
+                        </h3>
                         <div className="welcome-page-header__sub-text">
-                            <p>Register for a free calendar at any of the main calendar providers</p>
+                            <p>
+                                Register for a free calendar at any of the main
+                                calendar providers
+                            </p>
                         </div>
-                        <a target="_blank" href="https://www.google.com/calendar" className="create-calendar-with create-calendar-with--google">
-                            <i className="fa fa-google" aria-hidden="true"></i> GOOGLE
+                        <a
+                            target="_blank"
+                            href="https://www.google.com/calendar"
+                            className="create-calendar-with create-calendar-with--google"
+                        >
+                            <i
+                                className="fa fa-google"
+                                aria-hidden="true"
+                            />{' '}
+                            GOOGLE
                         </a>
-                        <a target="_blank" href="https://www.icloud.com/calendar" className="create-calendar-with create-calendar-with--apple">
-                            <i className="fa fa-apple" aria-hidden="true"></i> APPLE
+                        <a
+                            target="_blank"
+                            href="https://www.icloud.com/calendar"
+                            className="create-calendar-with create-calendar-with--apple"
+                        >
+                            <i
+                                className="fa fa-apple"
+                                aria-hidden="true"
+                            />{' '}
+                            APPLE
                         </a>
-                        <a target="_blank" href="https://office.live.com/start/Calendar.aspx" className="create-calendar-with create-calendar-with--outlook">
-                            <i className="fa fa-windows" aria-hidden="true"></i> Outlook
-                            </a>
+                        <a
+                            target="_blank"
+                            href="https://office.live.com/start/Calendar.aspx"
+                            className="create-calendar-with create-calendar-with--outlook"
+                        >
+                            <i
+                                className="fa fa-windows"
+                                aria-hidden="true"
+                            />{' '}
+                            Outlook
+                        </a>
                     </div>
                 </div>
             </div>
