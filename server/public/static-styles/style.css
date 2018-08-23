@@ -55,6 +55,9 @@ object.logo {
   .row-spacing__no-top {
     padding-top: 0px; }
 
+.widget {
+  margin-top: 20px; }
+
 .home-page .navigation,
 .shoppify-layout .navigation {
   background: url("/images/header.jpg");

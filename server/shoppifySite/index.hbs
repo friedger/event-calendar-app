@@ -117,7 +117,7 @@
                 </div>
             </div>
         </div>
-        <div class="container">
+        <div class="container widget">
             <div class="row">
                 <div class="col-md-12">
                     <div id="app-container"></div><script>(function () {
@@ -128,6 +128,20 @@
                         document.head.appendChild(integrationScript);
                         })();
                     </script>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row row-spacing center">
+                <div class="col-md-12">
+                    <div>
+                        {{#unless dev}}
+                        <p style="margin-top:0"><a class="secondary" href="https://api.eventcalendarapp.com/shoppify/register">Install on my website</a></p>
+                        {{/unless}}
+                        {{#if dev}}
+                        <p style="margin-top:0"><a class="secondary" href="http://dev.eventcalendarapp.com:3434/shoppify/register">Install on my website</a></p>
+                        {{/if}}
+                    </div>
                 </div>
             </div>
         </div>
