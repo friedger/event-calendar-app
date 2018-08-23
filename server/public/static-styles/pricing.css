@@ -1,0 +1,184 @@
+@charset "UTF-8";
+.pricing-info {
+  background: #f3f3f3; }
+
+.pricing__cta {
+  margin-bottom: 80px; }
+
+.pricing .header {
+  margin-bottom: 0px; }
+
+.pricing .plans-comparison {
+  margin-bottom: 60px; }
+  .pricing .plans-comparison img {
+    height: 25px;
+    width: 25px; }
+
+.pricing .center {
+  text-align: center; }
+
+.pricing .table > tbody tr:nth-child(odd) {
+  background: #fff; }
+
+.pricing .table th {
+  width: 20%; }
+
+.pricing .table > thead > tr > th,
+.pricing .table > tbody > tr > th,
+.pricing .table > tfoot > tr > th,
+.pricing .table > thead > tr > td,
+.pricing .table > tbody > tr > td,
+.pricing .table > tfoot > tr > td {
+  border-top: 0 !important;
+  padding: 5% 2%;
+  font-size: 14px;
+  vertical-align: center; }
+
+.pricing .table > thead > tr > th {
+  border-bottom: 0;
+  padding-top: 40px;
+  color: #393f46; }
+
+.pricing .faq {
+  text-align: left; }
+  .pricing .faq h2 {
+    font-weight: bold;
+    margin-bottom: 22px; }
+  .pricing .faq p {
+    font-size: 16px;
+    padding: 10px 0px;
+    font-weight: normal;
+    color: #5d656f;
+    line-height: 1.5; }
+
+.plans {
+  text-align: center;
+  margin-bottom: 20px; }
+  .plans .col-md-4 {
+    padding: 0;
+    margin: 0; }
+  .plans .professional {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+    z-index: 2; }
+  .plans h2 {
+    font-weight: bold; }
+  .plans .pricing-plan {
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    margin: 0 auto;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    background: #fff; }
+    .plans .pricing-plan ul {
+      padding: 0;
+      width: 90%;
+      margin: 0 auto;
+      list-style-type: none; }
+      .plans .pricing-plan ul li {
+        position: relative;
+        text-align: left;
+        padding: 8px 60px;
+        margin: 0;
+        color: #5d656f; }
+        .plans .pricing-plan ul li:before {
+          content: ' ';
+          background-image: url(/images/check-circle.png);
+          background-size: cover;
+          height: 20px;
+          width: 20px;
+          display: inline-block;
+          left: 26px;
+          position: absolute; }
+        .plans .pricing-plan ul li.negative {
+          color: #737f8c; }
+          .plans .pricing-plan ul li.negative:before {
+            content: ' ';
+            background-image: url(/images/x.png);
+            background-size: cover;
+            height: 20px;
+            width: 20px;
+            display: inline-block;
+            left: 26px;
+            position: absolute; }
+    .plans .pricing-plan__hero-container {
+      height: 272px; }
+      .plans .pricing-plan__hero-container img {
+        height: 100%;
+        max-height: 100%;
+        width: auto; }
+    .plans .pricing-plan__highlight {
+      background: #db4066;
+      padding: 5px;
+      color: #fff;
+      font-size: 11px;
+      position: absolute;
+      width: 100%;
+      font-weight: bold; }
+    .plans .pricing-plan__header {
+      padding-top: 40px;
+      color: #393f46;
+      letter-spacing: 2px; }
+    .plans .pricing-plan__price-container {
+      display: flex;
+      align-content: center;
+      flex-direction: column;
+      /* Lay out item’s contents vertically  */
+      align-items: center;
+      justify-content: center; }
+    .plans .pricing-plan__seperating-border {
+      height: 1px;
+      width: 74px;
+      background: #393f46;
+      color: #393f46; }
+    .plans .pricing-plan__under-price-text {
+      color: #5d656f;
+      padding-top: 3px; }
+    .plans .pricing-plan__price {
+      width: 100%;
+      font-size: 38px;
+      color: #393f46; }
+      .plans .pricing-plan__price__time-period {
+        font-size: 12px; }
+    .plans .pricing-plan__features {
+      padding: 10px 0px;
+      font-size: 14px;
+      padding: 25px 0px; }
+    .plans .pricing-plan__notes {
+      color: #737f8c;
+      margin-top: auto;
+      padding: 0px 40px 25px 40px;
+      font-size: 10px;
+      padding-bottom: 25px; }
+    .plans .pricing-plan__start-plan {
+      padding-bottom: 40px; }
+
+@media (min-width: 768px) {
+  .pricing .table > thead > tr > th,
+  .pricing .table > tbody > tr > th,
+  .pricing .table > tfoot > tr > th,
+  .pricing .table > thead > tr > td,
+  .pricing .table > tbody > tr > td,
+  .pricing .table > tfoot > tr > td {
+    border-top: 0 !important;
+    padding: 18px; }
+  .pricing .header {
+    margin-bottom: 160px; }
+  .pricing .table th {
+    width: auto; }
+  .pricing .table > thead > tr > th {
+    letter-spacing: 2px;
+    font-weight: normal;
+    text-transform: uppercase; }
+  .plans {
+    margin-bottom: 80px; }
+    .plans .professional {
+      transform: scale(1.1); }
+    .plans .pricing-plan {
+      margin-top: -130px;
+      margin-bottom: 50px; }
+      .plans .pricing-plan__hero-container img {
+        height: auto;
+        width: 100%; } }

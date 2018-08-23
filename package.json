@@ -7,7 +7,7 @@
     "start": "NODE_ENV=development node bin/www",
     "secure": "NODE_ENV=secureDev node bin/www",
     "build": "webpack --config ./webpack.dist.js",
-    "watch-css": "node-sass -w server/public/ -o server/public/",
+    "watch-css": "node-sass -w server/public/style.scss -o server/public/static-styles",
     "deploy": "npm run build && shipit production deploy"
   },
   "author": "Alex Perry",

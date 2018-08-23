@@ -5,8 +5,8 @@
         <title>Event Calendar App and Widget</title>
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,800,300' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="./style.css">
-        <link rel="stylesheet" href="./bootstrapGrid.css">
+        <link rel="stylesheet" href="/static-styles/style.css">
+        <link rel="stylesheet" href="/static-styles/bootstrapGrid.css">
 
         <meta name="viewport" content="width=device-width initial-scale=1" />
 
@@ -111,9 +111,9 @@
             </div>
         </div>
         <div class="container">
-            <div class="row row-spacing catch-line">
+            <div class="row row-spacing center">
                 <div class="col-md-12">
-                    <p>Engage your <strong>users</strong> and <strong>customers</strong> in an Event Calendar that they will <strong class="red">love.</strong></p>
+                    <h2>Engage your <strong>users</strong> and <strong>customers</strong> in an Event Calendar that they will <strong class="red">love.</strong></h2>
                 </div>
             </div>
         </div>
@@ -131,46 +131,12 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid feature-one testimonial">
-            <div class="container">
-                <div class="row row-spacing">
-                    <div class="col-md-12 what-customers-think">
-                        <h2>What our customers think</h2>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <p class="testimonial__content">"Event Calendar App is easy to use and extremely cost effective. I highly recommend to any CEO/entrepreneur who is seeking a way to streamline and bring awareness to company events. Having the ability to upload and tweak events via my mobile phone adds value while traveling."</p>
-                                <img class="avatar-image" src="/images/testimonial/coach.jpg" />
-                                <p class="testimonial__person-name">Coach Michele</p>
-                                <p class="testimonial__business-name">Michele Lee Ellis Consulting, LLC</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <p class="testimonial__content">"Great email support from developers. I've only had one issue in the past year and it was solved within an hour of reaching out!
-                                     Easy to integrate and implement into our custom website!"</p>
-                                <img class="avatar-image" src="https://dl.airtable.com/cHcrqCr6TYm9tnv26oD0_full_Logo%20-%20Jetty%20Rocks.jpg" />
-                                <p class="testimonial__person-name">Courtney</p>
-                                <p class="testimonial__business-name">Jetty Extracts</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row catch-line row-spacing">
-                <div class="col-md-12">
-                    <p><strong>Cancel within 7 days and you won't be charged a penny.</strong></p>
-                </div>
-            </div>
-        </div>
+        {{> testimonials }}
         <div class="container-fluid">
-            <div class="row catch-line">
+            <div class="row cta-section row-spacing">
                 <div class="col-md-12">
+                    <h1>Give your events the attention they deserve</h1>
+                    <p>Cancel within 7 days and you won't be charged a penny.</p>
                     {{#unless dev}}
                     <a class="secondary secondary--thick" href="https://api.eventcalendarapp.com/shoppify/register">Get your event calendar</a>
                     {{/unless}}
@@ -180,13 +146,7 @@
                 </div>
             </div>
         </div>
-        <div class="container">
-            <div class="row catch-line footer">
-                <div class="col-md-12">
-                    <div>© 2016 - EVENTCALENDARAPP</div>
-                </div>
-            </div>
-        </div>
+        {{> footer }}
     </div>
     <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script src="/scripts/venobox.js"></script>

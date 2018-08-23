@@ -36,7 +36,7 @@ a.svg:after {
 
 .navigation {
     text-align: right;
-    background: #2e3d4e;
+    background: $eca-blue;
     padding: 24px 0 79px;
 
     &__links {
@@ -106,13 +106,13 @@ a.svg:after {
                     a {
                         display: block;
                         width: 100%;
-                        color: #db4066;
+                        color: $pink;
                         transition: color 0.1s ease-in;
                         padding: 0;
                         margin: 0;
                     }
                     a:hover {
-                        color: #db4066;
+                        color: $pink;
                         text-decoration: underline;
                     }
                 }
@@ -165,7 +165,7 @@ a.svg:after {
     }
     &__mobile-navigation {
         background: #fff;
-        color: #000;
+        color: $dark;
         position: absolute;
         left: 0;
         right: 0;
@@ -184,11 +184,11 @@ a.svg:after {
             display: inline-block;
         }
         a {
-            color: #db4066;
+            color: $pink;
             transition: color 0.1s ease-in;
         }
         a:hover {
-            color: #6787ab;
+            color: $light-blue;
             text-decoration: none;
         }
         > ul {
@@ -212,7 +212,7 @@ a.svg:after {
             right: 30px;
             top: 15px;
             font-size: 30px;
-            color: #444;
+            color: $dark;
             padding: 10px;
             cursor: pointer;
         }
@@ -251,7 +251,7 @@ a.svg:after {
             right: 30px;
             top: 15px;
             font-size: 30px;
-            color: #444;
+            color: $dark;
             padding: 10px;
             cursor: pointer;
         }

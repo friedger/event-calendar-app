@@ -1,203 +1,28 @@
 @import './global.scss';
 @import './navigation.scss';
-@import './features.scss';
 @import './buttons.scss';
 @import './venobox.scss';
 @import './pricing.scss';
 @import './shopify.scss';
+@import './bootstraptables.scss';
+@import './testimonials.scss';
+@import './feature-showcase.scss';
+@import './footer.scss';
+@import './basic-feature.scss';
+@import './header.scss';
+@import './cta-section.scss';
 @import '../../src/_buttons.scss';
-
-img {
-    width: 100%;
-}
-
-.navigation {
-    &__logo {
-        a {
-            color:#fff;
-
-            &:hover {
-                color:#fff;
-            }
-        }
-    }
-}
-
-// .pricing {
-//     background:#fff;
-//     color:#444;
-// }
-
-.connection-icons {
-    i {
-        font-size: 30px;
-        padding: 22px 24px;
-        border: 1px solid;
-        margin: 10px;
-        border-radius: 100%;
-    }
-}
-
-.pricing, .shoppify-layout {
-    .header {
-        text-align: left;
-        h1 {
-            text-align: left;
-        }
-        .buy {
-            margin-left: 0;
-        }
-    }
-}
-
-.pricing-info {
-    background:#f3f3f3;
-    color:#444;
-}
-
-.faq {
-    background: #fff;
-    color:#444;
-}
-
-.header {
-    text-align: center;
-
-    p {
-        color: #fff;
-        font-size: 20px;
-        font-weight: 100;
-    }
-
-    a {
-        text-align: center;
-        color:#fff;
-
-        &.video {
-            margin-left:10px;
-        }
-
-        &:hover {
-            color: #fff;
-        }
-    }
-
-    .buy {
-        border: 3px solid #fff;
-        &.video {
-            padding: 12px 23px 12px;
-            margin:16px 27px 27px 27px;
-        }
-    }
-
-    h1 {
-        font-size: 50px;
-        color: #fff;
-        text-align: center;
-        font-weight: lighter;
-        margin-bottom: 0;
-    }
-}
-
-.shoppify-layout .demo-header h1 {
-    margin: 50px 0 16px;
-}
-
-.catch-line {
-    text-align: center;
-
-    p {
-        color: #999999;
-        font-weight: lighter;
-        font-size: 24px;
-    }
-}
-
-.pricing {
-    // background: #2e3d4e;
-    // color: #fff;
-}
-
-.red {
-    color: #ff6666;
-}
 
 .trusted-by {
     padding-bottom: 20px;
     padding-top: 7px;
 }
 
-.platforms p,
-.trusted-by p {
-    color: #999999;
-    font-weight: lighter;
-}
-
 .platforms,
 .trusted-by {
-    background: #f3f3f3;
+    background: $light-gray;
     text-align: center;
     margin: 0;
-}
-
-.feature-one {
-    background: #f3f3f3;
-    text-align: center;
-    font-size: 18px;
-    color: #444;
-    line-height: 1.5;
-    padding: 50px;
-    // margin-bottom:60px;
-    // margin-bottom: 40px;
-    h2 {
-        color: #444;
-    }
-}
-
-.feature-two {
-    // img {
-    //     width: 50%;
-    // }
-    p {
-        font-size: 18px;
-    }
-
-    .row {
-        padding-bottom: 80px;
-        // height: 850px;
-        height: auto;
-    }
-
-    &__content {
-        // padding-top:200px;
-    }
-    // .row:nth-child(1) {
-    //     background-repeat: no-repeat;
-    // background: url(/images/homepage/one.jpg) no-repeat 100% 0px;
-    // /* background-color: white; */
-    // background-size: 40%;
-    // }
-    .row:nth-child(2) {
-        // height: 900px;
-        height: auto;
-
-        img {
-            display: none;
-        }
-    }
-
-    .row:nth-child(3) {
-        //     background-repeat: no-repeat;
-        // background: url(/images/homepage/two.jpg) no-repeat 100% 0px;
-        // /* background-color: white; */
-        // background-size: 40%;
-        // height: 550px;
-        height: auto;
-    }
-}
-
-.platforms__header h2 {
-    font-weight: 300;
 }
 
 .platforms h1 {
@@ -220,33 +45,6 @@ img {
     max-width: 300px;
 }
 
-.row-spacing {
-    padding: 30px 0;
-}
-
-textarea {
-    width: 100%;
-}
-
-.footer {
-    padding: 21px 0;
-    color: #fff;
-}
-
-.footer-container {
-    background: #2e3d4e;
-    a {
-        color: #fff;
-    }
-    a:hover {
-        color: #fff;
-        text-decoration: underline;
-    }
-
-    .legal {
-        font-size:12px;
-    }
-}
 @media (min-width: 768px) {
     .platforms img,
     .trusted-by img {
@@ -254,35 +52,8 @@ textarea {
         height: 100px;
         max-width: 352px;
     }
-
-    .feature-two {
-        .row {
-            padding-bottom: 20px;
-            height: auto;
-        }
-
-        .row:nth-child(2) {
-            height: auto;
-        }
-
-        .row:nth-child(3) {
-            height: auto;
-        }
-    }
-    .vertical-align {
-        display: flex;
-        align-items: center;
-    }
 }
 @media (min-width: 992px) {
-    .feature-two {
-        padding: 40px 0px;
-        .row:nth-child(2) {
-            img {
-                display: block;
-            }
-        }
-    }
 
     .platforms img,
     .trusted-by img {
