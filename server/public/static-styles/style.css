@@ -56,7 +56,7 @@ object.logo {
     padding-top: 0px; }
 
 .widget {
-  margin-top: 20px; }
+  margin: 20px auto; }
 
 .home-page .navigation,
 .shoppify-layout .navigation {
