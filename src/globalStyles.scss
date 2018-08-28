@@ -4,6 +4,7 @@
 @import './uploadcare';
 @import './eventcalOverrides';
 @import './datepicker';
+@import './bootstraptables';
 
 html {
     height: 100%;
@@ -87,7 +88,7 @@ select {
 }
 
 p {
-    color: #333333;
+    color: $secondary;
     font-size: 16px;
     font-weight: normal;
 }

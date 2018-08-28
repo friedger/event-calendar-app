@@ -1,3 +1,5 @@
+@import '../../_variables';
+
 .back-to-weebly {
     margin-left: 13px;
     vertical-align: middle;
@@ -6,7 +8,7 @@
 .setting-title {
     font-size: 16px;
     font-weight: bold;
-    color: #444;
+    color: $primary;
     margin-bottom: 0;
     &--strike {
         text-decoration: line-through;

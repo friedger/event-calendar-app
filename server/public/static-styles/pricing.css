@@ -1,6 +1,6 @@
 @charset "UTF-8";
 .pricing-info {
-  background: #f3f3f3; }
+  background: #f2f2f3; }
 
 .pricing__cta {
   margin-bottom: 80px; }
@@ -48,7 +48,7 @@
     font-size: 16px;
     padding: 10px 0px;
     font-weight: normal;
-    color: #5d656f;
+    color: #5c6570;
     line-height: 1.5; }
 
 .plans {
@@ -82,7 +82,7 @@
         text-align: left;
         padding: 8px 60px;
         margin: 0;
-        color: #5d656f; }
+        color: #5c6570; }
         .plans .pricing-plan ul li:before {
           content: ' ';
           background-image: url(/images/check-circle.png);
@@ -134,7 +134,7 @@
       background: #393f46;
       color: #393f46; }
     .plans .pricing-plan__under-price-text {
-      color: #5d656f;
+      color: #5c6570;
       padding-top: 3px; }
     .plans .pricing-plan__price {
       width: 100%;
