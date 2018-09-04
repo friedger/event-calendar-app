@@ -33,7 +33,7 @@ export default React.createClass({
                 }
                 {this.state.currentStage === stages[1] &&
                 <div className="col-md-12 connection-modal">
-                    <div className="connection-modal__content">
+                    <div>
                         <PublicCalendarForm />
                     </div>
                 </div>

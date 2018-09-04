@@ -20,9 +20,9 @@ var Component = React.createClass({
         return (
             <div>
                 <div className="settings-space">
-                    <label className="setting-title">Choose a name</label>
+                    <label className="setting-title">Choose a name for your Event Calendar</label>
                     <p className="setting-sub-title">
-                        This forms the URL to your Event Calendar. You use this URL to link directly to your events or share them on social media. You can change this later. Lowercase numbers and letters only. No spaces.
+                        The name must be a single word. No uppercase letters or numbers. <strong>No spaces</strong>.
                     </p>
                     <div className="subdomain-input">
                         <input
@@ -70,6 +70,7 @@ var Component = React.createClass({
                                 !aliasFail && !aliasInvalid && <div>.eventcalendarapp.com</div>}
                         </div>
                     </div>
+                    <p className="setting-sub-title setting-sub-title--more-info"><a target="_blank" href="https://support.eventcalendarapp.com/faqs-and-troubleshooting/information-regarding-choosing-a-name-for-your-event-calendar">More info on this step</a></p>
                 </div>
                 {lastKnownSuccessfulAlias && displayDirectUrl &&
                 <div className="settings-space url-to-public-calendar">

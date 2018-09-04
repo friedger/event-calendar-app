@@ -1,4 +1,12 @@
 .public-calendar-form {
+    .setting-sub-title--more-info {
+        margin-bottom:0;
+        a {
+            text-align: left;
+            padding-top: 10px;
+            text-decoration: underline;
+        }
+    }
     .settings-space {
         padding: 8px 0px 12px 0;
         &--no-bottom-padding {

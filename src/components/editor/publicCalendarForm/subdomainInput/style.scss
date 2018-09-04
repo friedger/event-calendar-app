@@ -1,5 +1,8 @@
 .subdomain-input {
     display: flex;
+    a {
+        text-align:left;
+    }
     &__subdomain {
         border-right: 0;
         border-radius: 2px 0 0 2px !important;
