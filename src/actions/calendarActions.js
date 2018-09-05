@@ -107,24 +107,10 @@ export function getCalendars(eventCalWidgetUuid) {
                 })
             }
 
-            request
-                .get(`${config.apiUrl}/events?token=${token}&invalidateCache=true&pastEvents=true&widgetUuid=${eventCalWidgetUuid}`)
-                .end((err, res) => {
-                    if (err) {
-                        console.log('error getting events')
-                    }
-                    if (eventsResponseContainsEvents(res)) {
-                        dispatch({
-                            type: GET_CALENDARS_SUCCESS,
-                            payload: {res: getCalendarsRes, hasEvents: true}
-                        });
-                    } else {
-                        dispatch({
-                            type: GET_CALENDARS_SUCCESS,
-                            payload: {res: getCalendarsRes, hasEvents: false}
-                        });
-                    }
-                });
+            dispatch({
+                type: GET_CALENDARS_SUCCESS,
+                payload: {res: getCalendarsRes}
+            });
 
         });
     }
@@ -147,30 +133,12 @@ export function putCalendars(eventCalWidgetUuid, calendarId, selected) {
                     })
                 }
 
-                request
-                    .get(`${config.apiUrl}/events?token=${token}&invalidateCache=true&pastEvents=true&widgetUuid=${eventCalWidgetUuid}`)
-                    .end((err, res) => {
-                        if (err) {
-                            console.log('error getting events')
-                        }
-                        if (eventsResponseContainsEvents(res)) {
-                            dispatch({
-                                type: PUT_CALENDARS_SUCCESS,
-                                payload: { res: putCalendarsResponse, hasEvents: true, calendarId, selected }
-                            });
-                            var a = new MouseEvent('refreshCalendar', {});
-                            document.dispatchEvent(a);
-                        } else {
-                            dispatch({
-                                type: PUT_CALENDARS_SUCCESS,
-                                payload: {res:putCalendarsResponse, hasEvents: false, calendarId, selected}
-                            });
-                            setTimeout(() => {
-                                var a = new MouseEvent('refreshCalendar', {});
-                                document.dispatchEvent(a);
-                            }, 400); // Time it takes for css animation
-                        }
-                    });
+                dispatch({
+                    type: PUT_CALENDARS_SUCCESS,
+                    payload: { res: putCalendarsResponse, calendarId, selected }
+                });
+                var a = new MouseEvent('refreshCalendar', {});
+                document.dispatchEvent(a);
             });
     }
 }

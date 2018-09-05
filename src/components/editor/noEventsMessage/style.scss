@@ -31,8 +31,9 @@
 
     &__no-events-message-container {
         display: block;
-        position: relative;
-        z-index: 1;
+        position: absolute;
+        width: 100%;
+        z-index: 50;
 
         a {
             &:hover, &:focus {

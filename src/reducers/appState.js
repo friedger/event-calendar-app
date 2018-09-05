@@ -60,10 +60,6 @@ export default function appState(state = {
         return Object.assign({}, state, {
             widgetCreationError: false
         });
-    case PUT_CALENDARS:
-        return Object.assign({}, state, {
-            calendarsLoading: true
-        });
     case PUT_CALENDARS_SUCCESS:
         const calendars = state.calendars.map((calendar) => {
             if (action.payload.calendarId === calendar.calendar_id) {
@@ -71,9 +67,7 @@ export default function appState(state = {
             }
             return Object.assign({}, calendar);
         });
-        return Object.assign({}, state, {
-            calendarsLoading: false
-        }, { calendars });
+        return Object.assign({}, state, { calendars });
     case GET_SETTINGS_SUCCESS:
         return Object.assign({}, state, action.payload.body, { settingsLoaded: true });
     case CANVAS_BACKGROUND_MODIFIED:

@@ -59,7 +59,7 @@ const Component = React.createClass({
                                         radius={1}
                                         left='15px'
                                     /> Applying updates...</div></div>
-                                    {!this.props.eventcalHasNoEvents && (
+                                {!this.props.eventcalHasNoEvents && this.props.eventcalHasNoEvents !== undefined && (
                                         <Suggestions
                                             suggestionToggleAction={
                                                 this.props.suggestionToggleAction
@@ -78,7 +78,6 @@ const Component = React.createClass({
                                             <SuggestionInstructions show={this.props.suggestions} />
                                         </div>
                                     </div>
-                                    {this.props.eventcalHasNoEvents && <NoEventsMessage />}
                                     {this.props.userHasSubscribed && this.props.onBoardingState.user_clicked_added_script === false && !this.props.user.weeblyUser && <IntegrationSection
                                         weeblyUser={this.props.user.weeblyUser}
                                         bigcommerceUser={this.props.user.bigcommerceUser}
@@ -88,13 +87,16 @@ const Component = React.createClass({
                                         highlightCodeArea={!this.props.onBoardingState.user_clicked_added_script}
                                         userSelectedScriptAdded={this.props.userSelectedScriptAdded}
                                     />}
-                                    <EventCal
-                                        eventCalWidgetUuid={this.props.eventCalWidgetUuid}
-                                        show={!this.props.eventcalHasNoEvents}
-                                        eventcalRemovedAction={this.props.eventcalRemovedAction}
-                                        suggestionsActive={this.props.suggestions}
-                                        userId={this.props.user.userId}
-                                    />
+                                    <div className="eventcal-container">
+                                        {this.props.eventcalHasNoEvents && this.props.eventcalHasNoEvents !== undefined && <NoEventsMessage />}
+                                        <EventCal
+                                            eventCalWidgetUuid={this.props.eventCalWidgetUuid}
+                                            show={!this.props.eventcalHasNoEvents && this.props.eventcalHasNoEvents !== undefined}
+                                            eventcalRemovedAction={this.props.eventcalRemovedAction}
+                                            suggestionsActive={this.props.suggestions}
+                                            userId={this.props.user.userId}
+                                            />
+                                    </div>
                             </div>
                             <div class="col-md-12">
                                 {!this.props.onBoardingState.user_closed_weebly_dashboard_link && this.props.userHasSubscribed && this.props.user.weeblyUser &&
@@ -118,3 +120,5 @@ const Component = React.createClass({
 export default withRouter(Component);
 
 // this.props.savingEvent
+
+// this.props.eventcalHasNoEvents && this.props.eventcalHasNoEvents !== undefined &&

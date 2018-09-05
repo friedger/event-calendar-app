@@ -69,6 +69,13 @@ const component = React.createClass({
         this.props.getPlan();
         this.props.getWidget(this.props.params.eventCalWidgetUuid);
         this.props.getOnboarding();
+        document.addEventListener('ECA_events_loaded', () => {
+            window.eventCalendarAppUtilities.store.subscribe(() => {
+                const state = window.eventCalendarAppUtilities.store.getState();
+                this.props.widgetHasEvents(state.app.events.length > 0);
+            });
+        });
+
         document.addEventListener('ECA_events_loaded', this.eventsLoadedHandler);
     },
     eventsLoadedHandler() {

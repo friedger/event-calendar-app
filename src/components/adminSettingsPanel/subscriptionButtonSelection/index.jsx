@@ -88,7 +88,7 @@ var Component = React.createClass({
                                     <p className="calendar-selection__description">People will see this inside of their calendar application when they subscribe to your event calendar. <strong>It will take 30min for this change to take effect.</strong></p>
                                 </Col>
                                 <Col md={4}>
-                                    <FormControl type="text" placeholder="calendar" {...calendarName} onChange={(e) => this.inputOnChange(e, calendarName, handleSubmit)} onBlur={(e) => this.inputOnChange(e, calendarName, handleSubmit)}/>
+                                    <FormControl type="text" placeholder="calendar" {...calendarName} onChange={(e) => this.inputOnChange(e, calendarName, handleSubmit)} />
                                 </Col>
                             </Row>
                         </FormGroup>

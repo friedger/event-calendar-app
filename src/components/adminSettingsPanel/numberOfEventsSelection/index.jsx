@@ -45,7 +45,7 @@ var Component = React.createClass({
                                 <p className="calendar-selection__description"><strong>Applies to List view only</strong></p>
                             </Col>
                             <Col md={4}>
-                                <FormControl type="number" placeholder="5" {...numEventsToDisplay} onChange={(e) => this.inputOnChange(e, numEventsToDisplay, handleSubmit)} onBlur={(e) => this.inputOnChange(e, numEventsToDisplay, handleSubmit)}/>
+                                <FormControl type="number" min="1" placeholder="5" {...numEventsToDisplay} onChange={(e) => this.inputOnChange(e, numEventsToDisplay, handleSubmit)}/>
                             </Col>
                         </Row>
                         <Row className="settings-space">

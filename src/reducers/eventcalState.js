@@ -7,23 +7,17 @@ import {
     POST_MANUAL_EVENT_SUCCESS,
 } from '../actions/manualEventActions';
 
+import {
+    WIDGET_HAS_EVENTS
+} from '../actions';
+
 export default function eventCal(state = {
     eventcalHasNoEvents: false
 }, action) {
-    if (action.type === GET_CALENDARS_SUCCESS || action.type === PUT_CALENDARS_SUCCESS) {
-        if (action.payload.hasEvents) {
-            return Object.assign({}, state, {
-                eventcalHasNoEvents: false
-            });
-        }
-        return Object.assign({}, state, {
-            eventcalHasNoEvents: true
-        });
-    }
 
-    if (action.type === POST_MANUAL_EVENT_SUCCESS) {
+    if (action.type === WIDGET_HAS_EVENTS) {
         return Object.assign({}, state, {
-            eventcalHasNoEvents: false
+            eventcalHasNoEvents: !action.payload
         });
     }
 
