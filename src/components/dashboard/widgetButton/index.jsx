@@ -13,13 +13,20 @@ export default React.createClass({
     deleteWidget() {
         this.props.deleteAction(this.props.widget.uuid);
     },
+    getWidgetName(widget, number) {
+        if (widget.calendarAlias) {
+            return widget.calendarAlias.alias;
+        }
+
+        return `Calendar ${number}`;
+    },
     render() {
         return (
             <Link to={`/editor/${this.props.widget.uuid}`}>
             <div className="col-md-3">
                 <div className="widget-button">
                     <div className="widget-button__text">
-                        Calendar {this.props.number}
+                        {this.getWidgetName(this.props.widget, this.props.number)}
                     </div>
                     {this.props.deleteAction && <div className="widget-button__trash">
                         <i onClick={(e) => {
