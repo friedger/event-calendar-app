@@ -2,6 +2,14 @@
     position: static;
 }
 
+.eca-dashboard__no-filters-message-container {
+    a {
+        &:hover, &:focus {
+            text-decoration: none;
+        }
+    }
+}
+
 .noAvailableFilters {
     iframe {
         margin-top: 20px;
