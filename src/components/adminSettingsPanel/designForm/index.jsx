@@ -101,6 +101,7 @@ var Component = React.createClass({
                 listViewBorderColor,
                 listViewEventBottomMargin,
                 listViewTextColor,
+                secondaryTextColor,
                 canvasBackgroundColor,
                 gridViewBackgroundColor,
                 gridViewBorderColor,
@@ -401,6 +402,50 @@ var Component = React.createClass({
                             <LockedFeature columns={6} title={'Upgrade your account'} />
                         )}
                     </Row>
+                    <Row className="settings-space">
+                        <Col md={6}>
+                            <ControlLabel
+                                className={cn('setting-title', {
+                                    'setting-title--strike': !validWithPlan
+                                })}
+                            >
+                                Secondary Text Color:
+                            </ControlLabel>
+                            <p className="calendar-selection__description">The secondary text color.</p>
+                        </Col>
+                        {validWithPlan && (
+                            <Col md={6}>
+                                <div>
+                                    <ColourPicker
+                                        formField={secondaryTextColor}
+                                        handleSubmit={handleSubmit}
+                                        inputOnChange={picker => {
+                                            this.inputOnChange(
+                                                picker && picker.hex,
+                                                secondaryTextColor,
+                                                handleSubmit
+                                            );
+                                        }}
+                                        />
+                                    {!this.valueIsDefault('secondaryTextColor') && (
+                                        <button
+                                            onClick={this.resetToDefault.bind(
+                                                null,
+                                                'secondaryTextColor'
+                                            )}
+                                            type="button"
+                                            className="danger danger--small delete-color"
+                                        >
+                                            Reset to default
+                                        </button>
+                                    )}
+                                </div>
+                            </Col>
+                        )}
+                        {!validWithPlan && (
+                            <LockedFeature columns={6} title={'Upgrade your account'} />
+                        )}
+                    </Row>
                     <Row className="settings-space settings-space--center settings-space--bottom-padding-0">
                         <Col md={6}>
                             <ControlLabel className="setting-title" className={cn('setting-title', {
@@ -576,6 +621,7 @@ export default (Component = reduxForm(
             'listViewBorderColor',
             'listViewEventBottomMargin',
             'listViewTextColor',
+            'secondaryTextColor',
             'canvasBackgroundColor',
             'gridViewBackgroundColor',
             'gridViewBorderColor',
