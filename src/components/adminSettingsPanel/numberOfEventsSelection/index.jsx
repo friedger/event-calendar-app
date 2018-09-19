@@ -16,7 +16,7 @@ import debounce from 'lodash.debounce';
 
 var Component = React.createClass({
     componentWillMount() {
-        this.makeApiCall = debounce(values => this.props.putSettingsAction(values), 500);
+        this.makeApiCall = debounce(values => this.props.putSettingsAction(values, true), 500);
     },
     inputOnChange(e, field, handleSubmit) {
         field.onChange(e);

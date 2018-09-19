@@ -20,6 +20,7 @@ export const CANVAS_BACKGROUND_MODIFIED = 'CANVAS_BACKGROUND_MODIFIED';
 export const TOGGLE_SUGESSTIONS = 'TOGGLE_SUGESSTIONS';
 export const EVENTCAL_REMOVED = 'EVENTCAL_REMOVED';
 export const WIDGET_HAS_EVENTS = 'WIDGET_HAS_EVENTS';
+export const MANUALLY_TRIGGERED_REFRESH = 'MANUALLY_TRIGGERED_REFRESH';
 
 export const BLOW_STATE = 'BLOW_STATE';
 
@@ -183,6 +184,12 @@ export function widgetHasEvents(value) {
     return {
         type: WIDGET_HAS_EVENTS,
         payload: value
+    };
+}
+
+export function manuallyTriggeredRefresh() {
+    return {
+        type: MANUALLY_TRIGGERED_REFRESH
     };
 }
 

@@ -21,6 +21,7 @@ import request from 'superagent';
 var cookieUtil = require('../utils/cookieUtil').default;
 const config = require('../../config');
 import { reset } from 'redux-form';
+import triggerWidgetRefresh from '../utils/triggerWidgetRefresh';
 
 export function postManualEvent(values) {
     return dispatch => {
@@ -41,8 +42,7 @@ export function postManualEvent(values) {
                 payload: res.body
             });
 
-            var a = new MouseEvent('refreshCalendar', {});
-            document.dispatchEvent(a);
+            triggerWidgetRefresh({ breakCache: true });
         });
     };
 }
@@ -73,8 +73,8 @@ export function duplicateManualEvent(duplicateId) {
                 });
             });
 
-            var a = new MouseEvent('refreshCalendar', {});
-            document.dispatchEvent(a);
+            triggerWidgetRefresh({ breakCache: true });
+
         });
     };
 }
@@ -98,8 +98,8 @@ export function deleteManualEvent(values) {
                 payload: res.body
             });
 
-            var a = new MouseEvent('refreshCalendar', {});
-            document.dispatchEvent(a);
+            triggerWidgetRefresh({ breakCache: true });
+
         });
     };
 }

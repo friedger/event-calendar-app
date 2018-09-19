@@ -1,6 +1,7 @@
 import request from 'superagent';
 const config = require('../../config');
 var cookieUtil = require('../utils/cookieUtil').default;
+import triggerWidgetRefresh from '../utils/triggerWidgetRefresh';
 
 export const GET_AVAILABLE_FILTERS = 'GET_AVAILABLE_FILTERS';
 export const GET_AVAILABLE_FILTERS_SUCCESS = 'GET_AVAILABLE_FILTERS_SUCCESS';
@@ -69,8 +70,7 @@ export function postFilter(data) {
             });
 
             getAvailableFilters()(dispatch);
-            var a = new MouseEvent('refreshCalendar', {});
-            document.dispatchEvent(a);
+            triggerWidgetRefresh();
         });
     };
 }
@@ -98,8 +98,8 @@ export function deleteFilter(data) {
             });
 
             getAvailableFilters()(dispatch);
-            var a = new MouseEvent('refreshCalendar', {});
-            document.dispatchEvent(a);
+            triggerWidgetRefresh({ breakCache: true });
+
         });
     };
 }
@@ -127,9 +127,10 @@ export function assignFilter(filterData) {
                     filterData: filterData
                 }
             });
-            getAvailableFilters()(dispatch);
-            var a = new MouseEvent('refreshCalendar', {});
-            document.dispatchEvent(a);
+            setTimeout(() => {
+                getAvailableFilters()(dispatch);
+                triggerWidgetRefresh({ breakCache: true });
+            }, 4000);
         });
     };
 }
@@ -157,8 +158,7 @@ export function putFilter(filterData) {
             });
 
             getAvailableFilters()(dispatch);
-            var a = new MouseEvent('refreshCalendar', {});
-            document.dispatchEvent(a);
+            triggerWidgetRefresh({ breakCache: true });
         });
     };
 }

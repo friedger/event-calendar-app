@@ -17,12 +17,12 @@ import moment from 'moment-timezone';
 
 var Component = React.createClass({
     componentWillMount() {
-        this.makeApiCall = debounce(values => this.props.putSettingsAction(values), 500);
+        this.makeApiCall = debounce((values, breakCache) => this.props.putSettingsAction(values, breakCache), 500);
     },
-    inputOnChange(e, field, handleSubmit) {
+    inputOnChange(e, field, handleSubmit, breakCache) {
         field.onChange(e);
         setTimeout(() => {
-            handleSubmit(values => this.makeApiCall(values))();
+            handleSubmit(values => this.makeApiCall(values, breakCache))();
         });
     },
     render() {
@@ -46,8 +46,8 @@ var Component = React.createClass({
                             </Col>
                             <Col md={4}>
                                 <select {...timezone}
-                                    onChange={(e) => this.inputOnChange(e, timezone, handleSubmit)}
-                                    onBlur={(e) => this.inputOnChange(e, timezone, handleSubmit)}>
+                                    onChange={(e) => this.inputOnChange(e, timezone, handleSubmit, true)}
+                                    onBlur={(e) => this.inputOnChange(e, timezone, handleSubmit, true)}>
                                     {moment.tz.names().map(function (timezone, index) {
                                         return <option key={index}>{timezone}</option>
                                     })}

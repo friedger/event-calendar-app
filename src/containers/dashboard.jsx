@@ -70,10 +70,12 @@ const component = React.createClass({
         this.props.getWidget(this.props.params.eventCalWidgetUuid);
         this.props.getOnboarding();
         document.addEventListener('ECA_events_loaded', () => {
-            window.eventCalendarAppUtilities.store.subscribe(() => {
-                const state = window.eventCalendarAppUtilities.store.getState();
-                this.props.widgetHasEvents(state.app.events.length > 0);
-            });
+            // TODO: Hook this up to drive the updating indicator
+            // window.eventCalendarAppUtilities.store.subscribe(() => {
+            //     const state = window.eventCalendarAppUtilities.store.getState();
+            //     console.log(state, 'state')
+            //     this.props.widgetHasEvents(state.app.events.length > 0);
+            // });
         });
 
         document.addEventListener('ECA_events_loaded', this.eventsLoadedHandler);

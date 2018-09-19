@@ -18,6 +18,7 @@ import Filters from './filters';
 import AdminSettingsPanelHeader from '../components/adminSettingsPanel/header';
 import EventActions from '../components/adminSettingsPanel/eventActions';
 import escapeCSS from '../utils/escapeCSS';
+import triggerWidgetRefresh from '../utils/triggerWidgetRefresh';
 
 const mapState = ({ appState, eventState, manualEventState, onBoardingState }) => {
     return {
@@ -140,6 +141,10 @@ const component = React.createClass({
         }
         return false;
     },
+    refreshEventCalendar() {
+        this.props.manuallyTriggeredRefresh();
+        triggerWidgetRefresh({breakCache: true});
+    },
     render() {
         const content = "'Editing this event'";
         return (
@@ -241,6 +246,7 @@ const component = React.createClass({
                                     toggleConnectionsScreen={this.toggleConnectionsScreen}
                                     eventCalWidgetUuid={this.props.eventCalWidgetUuid}
                                     userStatus={get(this, 'props.appState.user.status')}
+                                    refreshEventCalendarAction={this.refreshEventCalendar}
                                     canvasBackgroundModified={this.props.canvasBackgroundModified}
                                 />
                             )}

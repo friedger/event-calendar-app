@@ -6,6 +6,7 @@ import {Input, Row, Col, Checkbox, FormGroup, ControlLabel} from 'react-bootstra
 import {reduxForm} from 'redux-form';
 import Loader from 'react-loader';
 import cn from 'classnames';
+import triggerWidgetRefresh from '../../../utils/triggerWidgetRefresh';
 
 var Component = React.createClass({
     formChange(id, event) {
@@ -59,14 +60,14 @@ var Component = React.createClass({
                         <hr></hr>
                     </Col>
                 </Row>
-                <Row className="settings-space">
+                <Row className="settings-space settings-space--bottom-padding-0">
                     <div className="col-md-7">
                         <span className="setting-title">Synced Calendars</span>
                         <p className="calendar-selection__description">External calendars we are currently synced to. Select those you would like to appear in your Events Calendar.</p>
                     </div>
                     <div className="col-md-5 calendar-selection__add-more-calendars">
                         <div className="text-header">
-                            <button className="action" onClick={this.props.toggleConnectionsScreen}>📆 Sync another calendar</button>
+                            <button style={{marginBottom: '5px'}} className="tertiary" onClick={this.props.toggleConnectionsScreen}>📆 Sync another calendar</button>
                         </div>
                     </div>
                     <Col md={12}>
@@ -92,6 +93,15 @@ var Component = React.createClass({
                     </Row>
                     </FormGroup>
                     </form>
+                </Col>
+                </Row>
+                <Row className="settings-space">
+                <Col md={7}>
+                    <span className="setting-title">Refresh synced events</span>
+                    <p className="calendar-selection__description">When you add any events to your synced calendars, click this button to refresh your Event Calendar (We do this automatically for you periodically).</p>
+                </Col>
+                <Col md={5} style={{'text-align': 'right'}}>
+                    <button className="action trigger-widget-refresh-button" onClick={() => this.props.refreshEventCalendarAction()}><i className="fa fa-refresh" aria-hidden="true"></i> Refresh events</button>
                 </Col>
                 </Row>
                 </div>

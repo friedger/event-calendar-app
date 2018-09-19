@@ -17,6 +17,7 @@ export const RESET_EVENT = 'RESET_EVENT';
 
 import request from 'superagent';
 var cookieUtil = require('../utils/cookieUtil').default;
+import triggerWidgetRefresh from '../utils/triggerWidgetRefresh';
 const config = require('../../config');
 import { destroy, reset } from 'redux-form';
 
@@ -92,8 +93,7 @@ export function putEvent(calendarId, uuid, values) {
                 payload: res
             });
 
-            var a = new MouseEvent('refreshCalendar', {});
-            document.dispatchEvent(a);
+            triggerWidgetRefresh({ breakCache: true });
         });
     };
 }

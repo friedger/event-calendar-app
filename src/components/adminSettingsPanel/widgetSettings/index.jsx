@@ -83,6 +83,7 @@ export default React.createClass({
                         fields={Object.keys(calendars)}
                         calendars={calendars}
                         show={this.state.settingsToDisplay === 'Event Sources'}
+                        refreshEventCalendarAction={this.props.refreshEventCalendarAction}
                     />
                     <DesignFrom
                         show={this.state.settingsToDisplay === 'Design'}

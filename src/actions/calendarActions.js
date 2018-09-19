@@ -22,12 +22,15 @@ export const DELETE_CALENDAR = 'DELETE_CALENDAR';
 export const DELETE_CALENDAR_SUCCESS = 'DELETE_CALENDAR_SUCCESS';
 export const DELETE_CALENDAR_ERROR = 'DELETE_CALENDAR_ERROR';
 
+export const MANUALLY_TRIGGERED_REFRESH = 'MANUALLY_TRIGGERED_REFRESH';
+
 if (typeof window !== 'undefined') {
     var cookieUtil = require('../utils/cookieUtil').default;
 }
 
 import request from 'superagent';
 import { deleteCalendarApiCall } from './apiActions';
+import triggerWidgetRefresh from '../utils/triggerWidgetRefresh';
 
 const config = require('../../config');
 
@@ -54,7 +57,7 @@ export function getSettings(eventCalWidgetUuid) {
     }
 }
 
-export function putSettings(eventCalWidgetUuid, values) {
+export function putSettings(eventCalWidgetUuid, values, breakCache) {
     return (dispatch) => {
         dispatch({
             type: PUT_SETTINGS
@@ -75,8 +78,8 @@ export function putSettings(eventCalWidgetUuid, values) {
                     type: PUT_SETTINGS_SUCCESS,
                     payload: res
                 });
-                var a = new MouseEvent('refreshCalendar', {});
-                document.dispatchEvent(a);
+
+                triggerWidgetRefresh({ breakCache: breakCache });
 
             });
     };
@@ -137,8 +140,8 @@ export function putCalendars(eventCalWidgetUuid, calendarId, selected) {
                     type: PUT_CALENDARS_SUCCESS,
                     payload: { res: putCalendarsResponse, calendarId, selected }
                 });
-                var a = new MouseEvent('refreshCalendar', {});
-                document.dispatchEvent(a);
+
+                triggerWidgetRefresh({ breakCache: true });
             });
     }
 }
@@ -188,4 +191,10 @@ export function deleteCalendar(data) {
         });
 
     }
+}
+
+export function manuallyTriggeredRefresh() {
+    return {
+        type: MANUALLY_TRIGGERED_REFRESH
+    };
 }
