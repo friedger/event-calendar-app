@@ -23,13 +23,13 @@ const config = require('../../config');
 import { reset } from 'redux-form';
 import triggerWidgetRefresh from '../utils/triggerWidgetRefresh';
 
-export function postManualEvent(values) {
+export function postManualEvent(values, widgetUuid) {
     return dispatch => {
         dispatch({
             type: POST_MANUAL_EVENT
         });
         const token = cookieUtil.getItem('eventcal-admin');
-        request.post(`${config.apiUrl}/manualEvents?token=${token}`).send(values).end((err, res) => {
+        request.post(`${config.apiUrl}/manualEvents?token=${token}`).send(Object.assign(values, { widgetUuid })).end((err, res) => {
             if (err) {
                 return dispatch({
                     type: POST_MANUAL_EVENT_ERROR,

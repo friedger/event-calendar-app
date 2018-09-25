@@ -44,7 +44,7 @@ var Component = React.createClass({
                                                 <div className="checkbox">
                                                     <input id={index + '-checkbox'} type="checkbox" onClick={this.formChange.bind(null, this.props.calendars[calendar].calendar_id)} {...field}/>
                                                     <label htmlFor={index + '-checkbox'}>
-                                                        <div className="hideOverflow">{this.props.calendars[calendar].calendar_name}</div>
+                                                        <div className="hideOverflow">{this.props.calendars[calendar].calendar_name ? ('Events from ' + this.props.calendars[calendar].calendar_name) : 'Manually created events'}</div>
                                                     </label>
                                                 </div>
                                             </Col>

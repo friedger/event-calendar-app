@@ -5,7 +5,6 @@ import {
     CANVAS_BACKGROUND_MODIFIED
 } from '../actions';
 import {
-    PUT_CALENDARS,
     GET_CALENDARS_SUCCESS,
     GET_SETTINGS_SUCCESS,
     GET_CONNECTIONS_SUCCESS,
@@ -21,12 +20,21 @@ import {
     WIDGET_ERROR_ACKNOWLEDGED
 } from '../actions/widgetActions';
 
-export default function appState(state = {
-    calendars: [],
-    suggestions: false,
-    widgets: [],
-    settingsLoaded: false
-}, action) {
+function orderCalendarsById(a, b) {
+    if (a.calendar_id < b.calendar_id) return -1;
+    if (a.calendar_id > b.calendar_id) return 1;
+    return 0;
+}
+
+export default function appState(
+    state = {
+        calendars: [],
+        suggestions: false,
+        widgets: [],
+        settingsLoaded: false
+    },
+    action
+) {
     switch (action.type) {
     case EVENTCAL_REMOVED:
         return Object.assign({}, state, {
@@ -45,6 +53,7 @@ export default function appState(state = {
             calendarsLoading: true
         });
     case GET_CALENDARS_SUCCESS:
+        action.payload.res.body.calendars.sort(orderCalendarsById);
         return Object.assign({}, state, action.payload.res.body, {
             calendarsLoading: false
         });
@@ -61,17 +70,23 @@ export default function appState(state = {
             widgetCreationError: false
         });
     case PUT_CALENDARS_SUCCESS:
-        const calendars = state.calendars.map((calendar) => {
+        const calendars = state.calendars.map(calendar => {
             if (action.payload.calendarId === calendar.calendar_id) {
-                return Object.assign({}, calendar, { selected: action.payload.selected });
+                return Object.assign({}, calendar, {
+                    selected: action.payload.selected
+                });
             }
             return Object.assign({}, calendar);
         });
         return Object.assign({}, state, { calendars });
     case GET_SETTINGS_SUCCESS:
-        return Object.assign({}, state, action.payload.body, { settingsLoaded: true });
+        return Object.assign({}, state, action.payload.body, {
+            settingsLoaded: true
+        });
     case CANVAS_BACKGROUND_MODIFIED:
-        return Object.assign({}, state, { canvasBackgroundColor: action.payload });
+        return Object.assign({}, state, {
+            canvasBackgroundColor: action.payload
+        });
     case GET_CONNECTIONS_SUCCESS:
         return Object.assign({}, state, {
             connections: action.payload,
@@ -82,20 +97,31 @@ export default function appState(state = {
             connectionsLoading: true
         });
     case DELETE_CALENDAR:
-        return Object.assign({}, state, { deletingCalendar: true }, {
-            connections: state.connections.map(connection => {
+        return Object.assign(
+                {},
+                state,
+                { deletingCalendar: true },
+            {
+                connections: state.connections.map(connection => {
+                    if (
+                            connection.calendarId &&
+                            connection.calendarId === action.payload.calendarId
+                        ) {
+                        connection.loading = true;
+                    }
 
-                if (connection.calendarId && (connection.calendarId === action.payload.calendarId)) {
-                    connection.loading = true;
-                }
+                    if (
+                            connection.cronofyAccessTokenId &&
+                            connection.cronofyAccessTokenId ===
+                                action.payload.cronofyAccessTokenId
+                        ) {
+                        connection.loading = true;
+                    }
 
-                if (connection.cronofyAccessTokenId && (connection.cronofyAccessTokenId === action.payload.cronofyAccessTokenId)) {
-                    connection.loading = true;
-                }
-
-                return connection;
-            })
-        });
+                    return connection;
+                })
+            }
+            );
     case DELETE_CALENDAR_SUCCESS:
         return Object.assign({}, state, { deletingCalendar: false });
     default:

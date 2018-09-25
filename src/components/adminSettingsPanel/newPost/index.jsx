@@ -13,7 +13,7 @@ export default React.createClass({
         };
     },
     submit(values) {
-        this.props.postManualEvent(values);
+        this.props.postManualEvent(values, this.props.eventCalWidgetUuid);
     },
     submitFail(reason) {
         this.setState({ validationError: true });

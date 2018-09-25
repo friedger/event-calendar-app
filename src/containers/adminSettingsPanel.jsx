@@ -106,12 +106,12 @@ const component = React.createClass({
     addNewEventClicked() {
         this.props.addNewEvent();
     },
-    postManualEvent(event) {
+    postManualEvent(event, widgetUuid) {
         if (localStorage && !localStorage.getItem('onboarding.addedEvent')) {
             localStorage.setItem('onboarding.addedEvent', 1);
             this.setState({ showFirstEventSuccessModal: true });
         }
-        this.props.postManualEvent(event);
+        this.props.postManualEvent(event, widgetUuid);
         this.setState({ eventHasBeenAdded: true });
         const calendarToDeselect = this.props.appState.calendars.find(
             calendar => calendar.calendar_name === 'Demo Calendar'
@@ -259,6 +259,7 @@ const component = React.createClass({
                                 manualEventsSelected={this.manualEventsSelected()}
                                 editEventClicked={this.editEventClicked}
                                 addNewEventClicked={this.addNewEventClicked}
+                                eventCalWidgetUuid={this.props.eventCalWidgetUuid}
                                 formValidationError={this.props.formValidationError}
                             />
                         )}

@@ -123,6 +123,7 @@ const component = React.createClass({
                             show={!widgetHasAnAlias}
                             hide={() => {
                                 this.props.getWidget(this.props.params.eventCalWidgetUuid);
+                                this.props.getCalendars(this.props.params.eventCalWidgetUuid);
                             }}
                             lastKnownSuccessfulAlias={this.props.widgetState.lastKnownSuccessfulAlias}
                         />
