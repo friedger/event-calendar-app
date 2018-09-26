@@ -2,16 +2,12 @@ import React from 'react';
 import {
     Row,
     Col,
-    Input,
-    Button,
-    HelpBlock,
     FormGroup,
     ControlLabel,
     FormControl,
-    Radio,
-    Form
+    Radio
 } from 'react-bootstrap';
-import {reduxForm} from 'redux-form';
+import { reduxForm } from 'redux-form';
 import debounce from 'lodash.debounce';
 
 var Component = React.createClass({
@@ -20,6 +16,10 @@ var Component = React.createClass({
     },
     inputOnChange(e, field, handleSubmit) {
         field.onChange(e);
+        if ((field.name === 'numEventsToDisplay') && (e.target.value === '')) {
+            // Don't want to trigger an update when the current value is removed because they are about to type another value
+            return;
+        }
         setTimeout(() => {
             handleSubmit(values => this.makeApiCall(values))();
         });

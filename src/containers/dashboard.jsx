@@ -59,7 +59,8 @@ const component = React.createClass({
     },
     componentWillUnmount() {
         this.props.blowState();
-        document.removeEventListener('ECA_events_loaded', this.eventsLoadedHandler);
+        document.removeEventListener('ECA_essential_loaded', this.ecaEssentialLoadedHandler);
+        this.unsubscribe();
     },
     componentDidMount() {
         this.props.getUser();
@@ -69,19 +70,18 @@ const component = React.createClass({
         this.props.getPlan();
         this.props.getWidget(this.props.params.eventCalWidgetUuid);
         this.props.getOnboarding();
-        document.addEventListener('ECA_events_loaded', () => {
-            // TODO: Hook this up to drive the updating indicator
-            // window.eventCalendarAppUtilities.store.subscribe(() => {
-            //     const state = window.eventCalendarAppUtilities.store.getState();
-            //     console.log(state, 'state')
-            //     this.props.widgetHasEvents(state.app.events.length > 0);
-            // });
-        });
-
-        document.addEventListener('ECA_events_loaded', this.eventsLoadedHandler);
+        document.addEventListener('ECA_essential_loaded', this.ecaEssentialLoadedHandler);
     },
-    eventsLoadedHandler() {
-        this.props.eventSaved();
+    ecaEssentialLoadedHandler() {
+        this.unsubscribe = window.eventCalendarAppUtilities.store.subscribe(() => {
+            const state = window.eventCalendarAppUtilities.store.getState();
+            console.log(state.app)
+            if (state.app.refreshLoading) {
+                this.props.widgetRefreshing();
+            } else {
+                this.props.widgetRefreshingFinished();
+            }
+        });
     },
     userHasLinkedCalendarOrChosenManual() {
         return (

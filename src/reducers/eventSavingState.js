@@ -9,19 +9,18 @@ import {
     MANUALLY_TRIGGERED_REFRESH
 } from '../actions/calendarActions';
 
+import {
+    WIDGET_REFRESHING,
+    WIDGET_REFRESHING_FINISHED
+} from '../actions/widgetActions';
+
 const defaultState = {};
 
 export default function eventState(state = defaultState, action) {
     switch (action.type) {
-    case PUT_CALENDARS:
+    case WIDGET_REFRESHING:
         return Object.assign({}, state, { savingEvent: true });
-    case PUT_EVENT:
-        return Object.assign({}, state, { savingEvent: true });
-    case PUT_SETTINGS:
-        return Object.assign({}, state, { savingEvent: true });
-    case MANUALLY_TRIGGERED_REFRESH:
-        return Object.assign({}, state, { savingEvent: true });
-    case EVENT_SAVED:
+    case WIDGET_REFRESHING_FINISHED:
         return Object.assign({}, state, { savingEvent: false });
     default:
         return state;

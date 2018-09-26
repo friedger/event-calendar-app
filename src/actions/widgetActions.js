@@ -14,6 +14,9 @@ export const DELETE_WIDGET = 'DELETE_WIDGET';
 export const DELETE_WIDGET_SUCCESS = 'DELETE_WIDGET_SUCCESS';
 export const DELETE_WIDGET_ERROR = 'DELETE_WIDGET_ERROR';
 
+export const WIDGET_REFRESHING = 'WIDGET_REFRESHING';
+export const WIDGET_REFRESHING_FINISHED = 'WIDGET_REFRESHING_FINISHED';
+
 export const PUT_WIDGET_PUBLICLY_AVAILABLE = 'PUT_WIDGET_PUBLICLY_AVAILABLE';
 export const PUT_WIDGET_PUBLICLY_AVAILABLE_SUCCESS =
     'PUT_WIDGET_PUBLICLY_AVAILABLE_SUCCESS';
@@ -174,8 +177,6 @@ export function putWidgetAlias(alias, uuid) {
                     });
                 }
 
-                console.log(alias)
-
                 dispatch({
                     type: PUT_WIDGET_SUCCESS,
                     payload: res.body,
@@ -188,5 +189,17 @@ export function putWidgetAlias(alias, uuid) {
 export function widgetErrorAcknowledged() {
     return {
         type: WIDGET_ERROR_ACKNOWLEDGED
+    };
+}
+
+export function widgetRefreshing() {
+    return {
+        type: WIDGET_REFRESHING
+    };
+}
+
+export function widgetRefreshingFinished() {
+    return {
+        type: WIDGET_REFRESHING_FINISHED
     };
 }
