@@ -60,7 +60,10 @@ const component = React.createClass({
     componentWillUnmount() {
         this.props.blowState();
         document.removeEventListener('ECA_essential_loaded', this.ecaEssentialLoadedHandler);
-        this.unsubscribe();
+        if (this.unsubscribe) {
+            // usubscribe may not be available if person leaves page before ECA_ESSENTIAL_LOADED fires
+            this.unsubscribe();
+        }
     },
     componentDidMount() {
         this.props.getUser();
