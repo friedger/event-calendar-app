@@ -13,7 +13,10 @@ import { browserHistory } from 'react-router';
 import ga from 'react-ga';
 require('es6-promise').polyfill();
 require('es6-object-assign').polyfill();
-
+import * as Sentry from '@sentry/browser';
+Sentry.init({
+    dsn: 'https://85bd9ddf5ee24ecf8bf218a41b09a3bf@sentry.io/1299008'
+});
 
 ga.initialize('UA-74477503-1');
 

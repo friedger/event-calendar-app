@@ -13,6 +13,7 @@
   "author": "Alex Perry",
   "license": "ISC",
   "dependencies": {
+    "@sentry/browser": "^4.1.1",
     "@tinymce/tinymce-react": "^2.2.0",
     "capitalize": "^1.0.0",
     "chart.js": "^1.1.1",
