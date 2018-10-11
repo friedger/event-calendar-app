@@ -36,7 +36,7 @@ const component = React.createClass({
             <div>
                 <Header loggedIn={true}/>
                 <div className="container">
-                    <div class="col-md-12" style={{'marginTop': '40px'}}>
+                    <div style={{'marginTop': '40px'}}>
                         <p>Please only use this page if you have been directed here by a member of the ECA team.</p>
                         <StripeCheckout
                             image="/images/logo-stripe.jpg"

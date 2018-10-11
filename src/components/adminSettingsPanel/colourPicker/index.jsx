@@ -18,25 +18,34 @@ export default React.createClass({
     },
     handleClickOutside(event) {
         if (this.refs && !this.refs['color-container'].contains(event.target)) {
-            this.setState({showPicker: false});
+            this.setState({ showPicker: false });
         }
     },
     render() {
         const { formField, handleSubmit, inputOnChange } = this.props;
         return (
             <div className="color-container" ref="color-container">
-                <div className="color-container__preview" style={{background: formField.value}}></div>
+                <div
+                    className="color-container__preview"
+                    style={{ background: formField.value }}
+                />
                 <FormControl
                     type="text"
+                    autoComplete="off"
                     {...formField}
                     onChange={e => {}}
-                    onClick={() => {
+                    onFocus={() => {
                         this.setState({ showPicker: true });
+                    }}
+                    onBlur={() => {
+                        this.setState({ showPicker: false });
                     }}
                 />
                 {this.state.showPicker && (
                     <ChromePicker
-                        color={formField.value === null ? false : formField.value}
+                        color={
+                            formField.value === null ? false : formField.value
+                        }
                         onChange={inputOnChange}
                     />
                 )}

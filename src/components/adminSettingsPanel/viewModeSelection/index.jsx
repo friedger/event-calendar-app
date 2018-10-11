@@ -1,6 +1,6 @@
 require('./styles.scss');
 
-import { Row, Col, FormGroup, ControlLabel, Radio } from 'react-bootstrap';
+import { Row, Col, FormGroup, ControlLabel } from 'react-bootstrap';
 import { reduxForm } from 'redux-form';
 import React from 'react';
 
@@ -42,7 +42,7 @@ var Component = React.createClass({
                             <Row className="viewmode-selection settings-space settings-space settings-space--bottom-padding-0">
                                 <Col md={12}>
                                     <ControlLabel className="setting-title">
-                                        Calendar layouts to display:
+                                        Calendar layouts to display
                                     </ControlLabel>
                                 </Col>
                                 <Col md={12}>
@@ -115,7 +115,7 @@ var Component = React.createClass({
                                             type="checkbox"
                                             {...boardView}
                                         />
-                                        <label htmlFor="gridview">
+                                        <label htmlFor="boardview">
                                             <div className="hideOverflow">
                                                 Tile View
                                             </div>
@@ -126,7 +126,7 @@ var Component = React.createClass({
                             <Row className="settings-space">
                                 <Col md={12}>
                                     <ControlLabel className="setting-title">
-                                        Default calendar layout:
+                                        Default calendar layout
                                     </ControlLabel>
                                 </Col>
                                 <Col md={12}>
@@ -136,55 +136,79 @@ var Component = React.createClass({
                                     </p>
                                 </Col>
                                 <Col md={4}>
-                                    <Radio
-                                        inline
-                                        name="defaultLayout"
-                                        {...defaultView}
-                                        onChange={e =>
-                                            this.defaultCalendarOnChange(
-                                                e,
-                                                defaultView,
-                                                handleSubmit
-                                            )}
-                                        checked={defaultView.value === 'list'}
-                                        value={'list'}
-                                    >
-                                        List View
-                                    </Radio>
+                                    <div className="radio">
+                                        <input
+                                            inline
+                                            name="defaultLayout"
+                                            {...defaultView}
+                                            id="selectListViewDefault"
+                                            onChange={e =>
+                                                this.defaultCalendarOnChange(
+                                                    e,
+                                                    defaultView,
+                                                    handleSubmit
+                                                )}
+                                                checked={defaultView.value === 'list'}
+                                                value={'list'}
+                                                type="radio"
+                                                >
+                                            </input>
+                                            <label htmlFor="selectListViewDefault">
+                                                <div className="hideOverflow">
+                                                    List
+                                                </div>
+                                            </label>
+                                    </div>
                                 </Col>
                                 <Col md={4}>
-                                    <Radio
-                                        inline
-                                        name="defaultLayout"
-                                        {...defaultView}
-                                        onChange={e =>
-                                            this.defaultCalendarOnChange(
-                                                e,
-                                                defaultView,
-                                                handleSubmit
-                                            )}
-                                        checked={defaultView.value === 'grid'}
-                                        value={'grid'}
-                                    >
-                                        Grid View
-                                    </Radio>
+                                    <div className="radio">
+                                        <input
+                                            inline
+                                            name="defaultLayout"
+                                            id="selectGridViewDefault"
+                                            {...defaultView}
+                                            onChange={e =>
+                                                this.defaultCalendarOnChange(
+                                                    e,
+                                                    defaultView,
+                                                    handleSubmit
+                                                )}
+                                                checked={defaultView.value === 'grid'}
+                                                value={'grid'}
+                                                type='radio'
+                                                >
+                                            </input>
+                                            <label htmlFor="selectGridViewDefault">
+                                                <div className="hideOverflow">
+                                                    Grid View
+                                                </div>
+                                            </label>
+                                    </div>
                                 </Col>
                                 <Col md={4}>
-                                    <Radio
-                                        inline
-                                        name="defaultLayout"
-                                        {...defaultView}
-                                        onChange={e =>
-                                            this.defaultCalendarOnChange(
-                                                e,
-                                                defaultView,
-                                                handleSubmit
-                                            )}
-                                        checked={defaultView.value === 'board'}
-                                        value={'board'}
-                                    >
-                                        Tile View
-                                    </Radio>
+                                    <div className="radio">
+                                        <input
+                                            inline
+                                            name="defaultLayout"
+                                            {...defaultView}
+                                            id="selectTileViewDefault"
+                                            onChange={e =>
+                                                this.defaultCalendarOnChange(
+                                                    e,
+                                                    defaultView,
+                                                    handleSubmit
+                                                )}
+                                                checked={defaultView.value === 'board'}
+                                                value={'board'}
+                                                type={'radio'}
+                                                >
+                                            </input>
+                                            <label htmlFor="selectTileViewDefault">
+                                                <div className="hideOverflow">
+                                                    Tile View
+                                                </div>
+                                            </label>
+                                    </div>
                                 </Col>
                             </Row>
                             <Row>

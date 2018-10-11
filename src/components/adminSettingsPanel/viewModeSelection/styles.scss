@@ -3,3 +3,11 @@
     margin-bottom: 10px;
     color:#636363;
 }
+
+
+    .checkbox-description {
+        &.locked {
+            padding-left: 0px;
+        }
+        padding-left: 36px;
+    }

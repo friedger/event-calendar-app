@@ -8,19 +8,22 @@ import * as manualEventActions from '../actions/manualEventActions';
 
 import WidgetSettings from '../components/adminSettingsPanel/widgetSettings';
 import EventSettings from '../components/adminSettingsPanel/eventSettings';
-import EmbedCode from '../components/editor/embedCode';
 import get from 'lodash.get';
 import featurePermissions from '../utils/featurePermissions';
 import NewPost from '../components/adminSettingsPanel/newPost';
 import AddedFirstEventSuccess from '../components/modals/addedFirstEventSuccess';
 import ManualEventsNotSelected from '../components/modals/manualEventsNotSelected';
-import Filters from './filters';
 import AdminSettingsPanelHeader from '../components/adminSettingsPanel/header';
 import EventActions from '../components/adminSettingsPanel/eventActions';
 import escapeCSS from '../utils/escapeCSS';
 import triggerWidgetRefresh from '../utils/triggerWidgetRefresh';
 
-const mapState = ({ appState, eventState, manualEventState, onBoardingState }) => {
+const mapState = ({
+    appState,
+    eventState,
+    manualEventState,
+    onBoardingState
+}) => {
     return {
         appState,
         eventState,
@@ -136,70 +139,72 @@ const component = React.createClass({
     manualEventsSelected() {
         if (this.props.appState && this.props.appState.calendars) {
             return this.props.appState.calendars.find(calendar => {
-                return calendar.calendar_type === 'manual' && calendar.selected === true;
+                return (
+                    calendar.calendar_type === 'manual' &&
+                    calendar.selected === true
+                );
             });
         }
         return false;
     },
     refreshEventCalendar() {
         this.props.manuallyTriggeredRefresh();
-        triggerWidgetRefresh({breakCache: true});
+        triggerWidgetRefresh({ breakCache: true });
     },
     render() {
-        const content = "'Editing this event'";
         return (
             <div className="dashboard-settings">
-                {this.eventActivated() &&
+                {this.eventActivated() && (
                     <style>
                         {`
-                            #event-calendar-app .calendar-list-view .calendar-list-event.uuid-${escapeCSS(this.props.eventState.uuid)}.col-md-12{
+                            #event-calendar-app .calendar-list-view .calendar-list-event.uuid-${escapeCSS(
+                                this.props.eventState.uuid
+                            )}.col-md-12{
                                 border: 3px solid #da4167 !important;
                                 border-bottom: 3px solid #da4167 !important;
                             }
-                            #event-calendar-app .calendar-list-event.uuid-${escapeCSS(this.props.eventState.uuid)}:after{
+                            #event-calendar-app .calendar-list-event.uuid-${escapeCSS(
+                                this.props.eventState.uuid
+                            )}:after{
                                 display: block;
                             }
                         `}
                     </style>
-                }
-                {/* Onboading modals*/}
+                )}
+                {/* START Onboading modals*/}
                 <AddedFirstEventSuccess
                     show={this.state.showFirstEventSuccessModal}
-                    hide={() => this.setState({ showFirstEventSuccessModal: false })}
+                    hide={() =>
+                        this.setState({ showFirstEventSuccessModal: false })
+                    }
                 />
                 <ManualEventsNotSelected
                     show={this.state.turnOnManualEventsModal}
-                    hide={() => this.setState({ turnOnManualEventsModal: false })}
+                    hide={() =>
+                        this.setState({ turnOnManualEventsModal: false })
+                    }
                     continueAnyway={() => {
                         this.props.openNewEventForm();
                         this.props.addNewEvent();
                         this.setState({ turnOnManualEventsModal: false });
                     }}
                 />
-                {/* Different Headers*/}
-                {this.eventActivated() && (
-                    <div
-                        onClick={() => this.props.exitEventSettings()}
-                        className="dashboard-header__close"
-                    >
-                        <i
-                            onClick={() => this.props.exitEventSettings()}
-                            className="fa fa-times"
-                            aria-hidden="true"
-                        />{' '}
-                    </div>
-                )}
-                {this.props.manualEventState.displayAddEventScreen && (
-                    <div
-                        onClick={() => this.exitAddEventScreen()}
-                        className="dashboard-header__close"
-                    >
-                        <i className="fa fa-times" aria-hidden="true" />{' '}
-                    </div>
-                )}
+                {/* END Onboading modals*/}
+
                 <AdminSettingsPanelHeader
                     eventActivated={this.eventActivated()}
-                    addingEvent={this.props.manualEventState.displayAddEventScreen}
+                    displayBackButton={this.props.manualEventState.displayAddEventScreen || this.eventActivated()}
+                    closeAction={() => {
+                        if (this.props.manualEventState.displayAddEventScreen) {
+                            this.exitAddEventScreen();
+                        }
+                        if (this.eventActivated()) {
+                            this.props.exitEventSettings();
+                        }
+                    }}
+                    addingEvent={
+                        this.props.manualEventState.displayAddEventScreen
+                    }
                     userIsAGuest={!this.props.userHasSubscribed}
                     eventCalWidgetUuid={this.props.eventCalWidgetUuid}
                     displayEmbedCode={
@@ -208,78 +213,109 @@ const component = React.createClass({
                         !this.props.manualEventState.displayAddEventScreen
                     }
                     user={get(this, 'props.appState.user')}
-
                 />
 
-                        {this.eventActivated() &&
-                            !this.props.eventState.eventSettingsLoading && (
-                                <EventSettings
-                                    demoEvent={this.props.eventState.demoEventSelected}
-                                    manualEventSelected={this.props.eventState.manualEventSelected}
-                                    validWithPlan={
-                                        get(this, 'props.appState.user.status') &&
-                                        featurePermissions.checkFeatureAvailability(
-                                            this.props.appState.user.status,
-                                            'event-settings'
-                                        )
-                                    }
-                                    putEventAction={this.props.putEvent.bind(
-                                        null,
-                                        this.props.eventState.calendar_id,
-                                        this.props.eventState.uuid
-                                    )}
-                                    deleteManualEvent={this.deleteManualEvent}
-                                    exitAction={this.props.exitEventSettings}
-                                />
-                            )}
-
-                        {!this.eventActivated() &&
-                            !this.props.eventState.eventSettingsLoading &&
-                            !this.props.manualEventState.displayAddEventScreen && (
-                                <WidgetSettings
-                                    key={1}
-                                    putCalendars={this.props.putCalendars}
-                                    calendarsLoading={this.props.appState.calendarsLoading}
-                                    calendars={this.props.appState.calendars}
-                                    putSettings={this.props.putSettings}
-                                    addEventClicked={this.addEventClicked}
-                                    toggleConnectionsScreen={this.toggleConnectionsScreen}
-                                    eventCalWidgetUuid={this.props.eventCalWidgetUuid}
-                                    userStatus={get(this, 'props.appState.user.status')}
-                                    refreshEventCalendarAction={this.refreshEventCalendar}
-                                    canvasBackgroundModified={this.props.canvasBackgroundModified}
-                                />
-                            )}
-
-                        {this.props.manualEventState.displayAddEventScreen && (
-                            <NewPost
-                                manualEventState={this.props.manualEventState}
-                                postManualEvent={this.postManualEvent}
-                                close={this.exitAddEventScreen}
-                                manualEventsSelected={this.manualEventsSelected()}
-                                editEventClicked={this.editEventClicked}
-                                addNewEventClicked={this.addNewEventClicked}
-                                eventCalWidgetUuid={this.props.eventCalWidgetUuid}
-                                formValidationError={this.props.formValidationError}
-                            />
-                        )}
                 {this.eventActivated() &&
+                    !this.props.eventState.eventSettingsLoading && (
+                        <EventSettings
+                            demoEvent={this.props.eventState.demoEventSelected}
+                            manualEventSelected={
+                                this.props.eventState.manualEventSelected
+                            }
+                            validWithPlan={
+                                get(this, 'props.appState.user.status') &&
+                                featurePermissions.checkFeatureAvailability(
+                                    this.props.appState.user.status,
+                                    'event-settings'
+                                )
+                            }
+                            putEventAction={this.props.putEvent.bind(
+                                null,
+                                this.props.eventState.calendar_id,
+                                this.props.eventState.uuid
+                            )}
+                            deleteManualEvent={this.deleteManualEvent}
+                            exitAction={this.props.exitEventSettings}
+                        />
+                    )}
+
+                {!this.eventActivated() &&
                     !this.props.eventState.eventSettingsLoading &&
-                <EventActions
-                    duplicateManualEventAction={this.duplicateManualEvent}
-                    eventDuplicationSuccess={this.props.manualEventState.eventDuplicationSuccess}
-                    eventDuplicationError={this.props.manualEventState.eventDuplicationError}
-                    duplicatingEvent={this.props.manualEventState.duplicatingEvent}
-                    displayDuplicationButton={this.props.eventState.manualEventSelected}
-                    exitAction={this.props.exitEventSettings}
-                    deleteManualEvent={this.props.eventState.manualEventSelected && this.deleteManualEvent}
-                />}
+                    !this.props.manualEventState.displayAddEventScreen && (
+                        <WidgetSettings
+                            key={1}
+                            putCalendars={this.props.putCalendars}
+                            calendarsLoading={
+                                this.props.appState.calendarsLoading
+                            }
+                            calendars={this.props.appState.calendars}
+                            putSettings={this.props.putSettings}
+                            addEventClicked={this.addEventClicked}
+                            toggleConnectionsScreen={
+                                this.toggleConnectionsScreen
+                            }
+                            eventCalWidgetUuid={this.props.eventCalWidgetUuid}
+                            userStatus={get(this, 'props.appState.user.status')}
+                            refreshEventCalendarAction={
+                                this.refreshEventCalendar
+                            }
+                            canvasBackgroundModified={
+                                this.props.canvasBackgroundModified
+                            }
+                        />
+                    )}
+
+                {this.props.manualEventState.displayAddEventScreen && (
+                    <NewPost
+                        manualEventState={this.props.manualEventState}
+                        postManualEvent={this.postManualEvent}
+                        close={this.exitAddEventScreen}
+                        manualEventsSelected={this.manualEventsSelected()}
+                        editEventClicked={this.editEventClicked}
+                        addNewEventClicked={this.addNewEventClicked}
+                        eventCalWidgetUuid={this.props.eventCalWidgetUuid}
+                        formValidationError={this.props.formValidationError}
+                    />
+                )}
+                {this.eventActivated() &&
+                    !this.props.eventState.eventSettingsLoading && (
+                        <EventActions
+                            duplicateManualEventAction={
+                                this.duplicateManualEvent
+                            }
+                            eventDuplicationSuccess={
+                                this.props.manualEventState
+                                    .eventDuplicationSuccess
+                            }
+                            eventDuplicationError={
+                                this.props.manualEventState
+                                    .eventDuplicationError
+                            }
+                            duplicatingEvent={
+                                this.props.manualEventState.duplicatingEvent
+                            }
+                            displayDuplicationButton={
+                                this.props.eventState.manualEventSelected
+                            }
+                            exitAction={this.props.exitEventSettings}
+                            deleteManualEvent={
+                                this.props.eventState.manualEventSelected &&
+                                this.deleteManualEvent
+                            }
+                        />
+                    )}
             </div>
         );
     },
     componentWillUnmount() {
-        document.removeEventListener('ECA_event-clicked', this.handleEventClick);
+        document.removeEventListener(
+            'ECA_event-clicked',
+            this.handleEventClick
+        );
     }
 });
 
-export default connect(mapState, mapDispatch)(component);
+export default connect(
+    mapState,
+    mapDispatch
+)(component);

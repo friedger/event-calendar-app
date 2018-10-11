@@ -40,12 +40,12 @@ var Component = React.createClass({
                 <Col md={12}>
                 <form ref='settingsForm' className="form-horizontal">
                     <FormGroup>
-                        <Row className="settings-space settings-space--center settings-space--bottom-padding-0">
-                            <Col md={8}>
-                                <ControlLabel className="setting-title">Calendar timezone:</ControlLabel>
+                        <Row className="settings-space settings-space--bottom-padding-0">
+                            <Col md={12}>
+                                <ControlLabel className="setting-title no-description">Calendar timezone:</ControlLabel>
                             </Col>
-                            <Col md={4}>
-                                <select {...timezone}
+                            <Col md={12}>
+                                <select className="form-control" {...timezone}
                                     onChange={(e) => this.inputOnChange(e, timezone, handleSubmit, true)}
                                     onBlur={(e) => this.inputOnChange(e, timezone, handleSubmit, true)}>
                                     {moment.tz.names().map(function (timezone, index) {
@@ -55,22 +55,37 @@ var Component = React.createClass({
                             </Col>
                         </Row>
                         <Row className="settings-space">
-                            <Col md={8}>
-                                <ControlLabel className="setting-title">Time format:</ControlLabel>
+                            <Col md={12}>
+                                <ControlLabel className="setting-title no-description">Time format:</ControlLabel>
                             </Col>
-                            <Col md={4}>
-                                <Radio inline name="timeformat" {...timeformat} onChange={(e) => this.inputOnChange(e, timeformat, handleSubmit)} checked={timeformat.value === 12 || timeformat.value === '12'} value={12}>12hr</Radio>
-                                <Radio inline name="timeformat" {...timeformat} onChange={(e) => this.inputOnChange(e, timeformat, handleSubmit)} checked={timeformat.value === 24 || timeformat.value === '24'} value={24}>24hr</Radio>
+                            <Col md={12}>
+                                <select className="form-control" {...timeformat}
+                                    onChange={(e) => this.inputOnChange(e, timeformat, handleSubmit, true)}
+                                    onBlur={(e) => this.inputOnChange(e, timeformat, handleSubmit, true)}>
+                                    <option key={1} value={12}>12hr</option>
+                                    <option key={2} value={24}>24hr</option>
+                                </select>
                             </Col>
                         </Row>
                         <Row className="settings-space">
-                            <Col md={8}>
-                                <ControlLabel className="setting-title">Display end times:</ControlLabel>
-                            </Col>
-                            <Col md={4}>
-                                <Radio inline name="timeformat" {...endTimes} onChange={(e) => this.inputOnChange(e, endTimes, handleSubmit)} checked={endTimes.value === true || endTimes.value === 'true'} value={true}>Yes</Radio>
-                                <Radio inline name="timeformat" {...endTimes} onChange={(e) => this.inputOnChange(e, endTimes, handleSubmit)} checked={endTimes.value === false || endTimes.value === 'false'} value={false}>No</Radio>
-                            </Col>
+                            <Col md={12}>
+
+                            <div className="checkbox">
+                                <input
+                                    id="endTimes"
+                                    name="endTimes"
+                                    onClick={e =>
+                                        this.inputOnChange(e, endTimes, handleSubmit)}
+                                    type="checkbox"
+                                    {...endTimes}
+                                />
+                            <label htmlFor="endTimes">
+                                    <div className="hideOverflow setting-title">
+                                        Display end times
+                                    </div>
+                                </label>
+                            </div>
+                        </Col>
                         </Row>
                         <Row>
                             <Col md={12}>

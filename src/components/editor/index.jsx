@@ -46,7 +46,7 @@ const Component = React.createClass({
                                 userId={this.props.user.userId}
                                 />
                         </div>
-                        <div className="col-sm-7 col-sm-pull-5">
+                        <div className="col-sm-7 col-sm-pull-5" style={{'boxShadow': '0 0 25px rgba(0,0,0,.11)'}}>
                             <div className="dashboard-header dashboard-header--left row">
                                 <div className="col-md-12">
                                     <span>Event calendar preview</span>
@@ -98,7 +98,7 @@ const Component = React.createClass({
                                             />
                                     </div>
                             </div>
-                            <div class="col-md-12">
+                            <div>
                                 {!this.props.onBoardingState.user_closed_weebly_dashboard_link && this.props.userHasSubscribed && this.props.user.weeblyUser &&
                                     <BackToWeeblyMessage close={() => {
                                             this.props.postOnBoarding({ user_closed_weebly_dashboard_link: true });

@@ -31,40 +31,61 @@ var Component = React.createClass({
                 pastEvents,
                 focusOnToday
             },
-            handleSubmit,
-            submitting
+            handleSubmit
         } = this.props;
         return (
             <Row className="settings-form">
                 <Col md={12}>
                 <form ref='settingsForm' className="form-horizontal">
                     <FormGroup>
-                        <Row className="settings-space settings-space--center settings-space--bottom-padding-0">
-                            <Col md={8}>
-                                <ControlLabel className="setting-title">How many events to display at once:</ControlLabel>
+                        <Row className="settings-space settings-space--bottom-padding-0">
+                            <Col md={12}>
+                                <ControlLabel className="setting-title">How many events to display at once</ControlLabel>
                                 <p className="calendar-selection__description"><strong>Applies to List and Tile view only</strong></p>
                             </Col>
-                            <Col md={4}>
+                            <Col md={12}>
                                 <FormControl type="number" min="1" placeholder="5" {...numEventsToDisplay} onChange={(e) => this.inputOnChange(e, numEventsToDisplay, handleSubmit)}/>
                             </Col>
                         </Row>
                         <Row className="settings-space">
-                            <Col md={8}>
-                                <ControlLabel className="setting-title">Display events in the past:</ControlLabel>
-                            </Col>
-                            <Col md={4}>
-                                <Radio inline name="pastEvents" {...pastEvents} onChange={(e) => this.inputOnChange(e, pastEvents, handleSubmit)} checked={pastEvents.value === true || pastEvents.value === 'true'} value={true}>Yes</Radio>
-                                <Radio inline name="pastEvents" {...pastEvents} onChange={(e) => this.inputOnChange(e, pastEvents, handleSubmit)} checked={pastEvents.value === false || pastEvents.value === 'false'} value={false}>No</Radio>
+
+                            <Col md={12}>
+                                <div className="checkbox">
+                                    <input
+                                        id="pastEvents"
+                                        name="pastEvents"
+                                        onClick={e =>
+                                            this.inputOnChange(e, pastEvents, handleSubmit)}
+                                        type="checkbox"
+                                        {...pastEvents}
+                                    />
+                                    <label htmlFor="pastEvents">
+                                        <div className="hideOverflow setting-title">
+                                            Display events from the past
+                                        </div>
+                                    </label>
+                                </div>
                             </Col>
                         </Row>
                         {(pastEvents.value === true || pastEvents.value === 'true') && <Row className="settings-space">
-                            <Col md={8}>
-                                <ControlLabel className="setting-title">Display todays date first:</ControlLabel>
-                                <p className="calendar-selection__description"><strong>Applies to List and Tile view only.</strong> Displays future events first, while still allowing access to past events</p>
-                            </Col>
-                            <Col md={4}>
-                                <Radio inline name="pastEvents" {...focusOnToday} onChange={(e) => this.inputOnChange(e, focusOnToday, handleSubmit)} checked={focusOnToday.value === true || focusOnToday.value === 'true'} value={true}>Yes</Radio>
-                                <Radio inline name="pastEvents" {...focusOnToday} onChange={(e) => this.inputOnChange(e, focusOnToday, handleSubmit)} checked={focusOnToday.value === false || focusOnToday.value === 'false'} value={false}>No</Radio>
+                            <Col md={10}>
+                                <div className="checkbox">
+                                    <input
+                                        id="focusOnToday"
+                                        name="focusOnToday"
+                                        onClick={e =>
+                                            this.inputOnChange(e, focusOnToday, handleSubmit)}
+                                        type="checkbox"
+                                        {...focusOnToday}
+                                    />
+                                    <label htmlFor="focusOnToday">
+                                        <div className="hideOverflow setting-title">
+                                            Display todays date first
+                                        </div>
+                                    </label>
+
+                                </div>
+                                <p className="checkbox-description calendar-selection__description"><strong>Applies to List and Tile view only.</strong> Displays future events first, while still allowing access to past events</p>
                             </Col>
                         </Row>}
                         <Row>

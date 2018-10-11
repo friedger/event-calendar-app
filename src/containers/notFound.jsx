@@ -20,8 +20,8 @@ const component = React.createClass({
     render() {
         return (
             <div className="container">
-                <div class="row">
-                    <div class="col-md-12">
+                <div className="row">
+                    <div className="col-md-12">
                         <h1>Whoops! This page doesn't exist.</h1>
                         <p>Head back to the <a href="/">homepage</a></p>
                     </div>

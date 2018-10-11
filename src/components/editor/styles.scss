@@ -11,7 +11,10 @@
     color: $primary;
     margin-bottom: 0;
     &--strike {
-        text-decoration: line-through;
+        opacity: 0.5;
+    }
+    &.no-description {
+        margin-bottom: 10px;
     }
 }
 
@@ -30,7 +33,7 @@
 }
 
 .calendar-settings {
-    border-left: 1px solid #eee;
+    background: #f2f2f2;
 
     .form-group {
         margin-bottom: 0;

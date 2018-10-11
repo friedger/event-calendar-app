@@ -1,7 +1,7 @@
 require('./style.scss');
 // require('./editor.scss');
 import React from 'react';
-import { Row, Col, FormGroup, ControlLabel, FormControl, Radio, HelpBlock } from 'react-bootstrap';
+import { Row, Col, FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
 import Datetime from 'react-datetime';
 import { reduxForm } from 'redux-form';
 import moment from 'moment';
@@ -13,6 +13,7 @@ import 'tinymce/themes/modern';
 import 'tinymce/plugins/link';
 import 'tinymce/plugins/code';
 import config from '../../../../config';
+import OptionToggle from '../optionToggleField';
 
 const validate = values => {
     const errors = {};
@@ -94,7 +95,7 @@ var Component = React.createClass({
                     )}
                     <Row className="settings-space">
                         <Col md={12}>
-                            <ControlLabel className={'setting-title'}>🖍 Event Name:</ControlLabel>
+                            <ControlLabel className={'setting-title'}>🖍 Event Name</ControlLabel>
                             <p>What is the name of your event?</p>
                         </Col>
                         <Col md={12}>
@@ -116,7 +117,7 @@ var Component = React.createClass({
                     <Row className="settings-space">
                         <Col md={12}>
                             <ControlLabel className={'setting-title'}>
-                                📕 Event description:
+                                📕 Event description
                             </ControlLabel>
                             <p>Some more information about your event</p>
                         </Col>
@@ -163,7 +164,7 @@ var Component = React.createClass({
                     </Row>
                     <Row className="settings-space">
                         <Col md={12}>
-                            <ControlLabel className={'setting-title'}>🌎 Location:</ControlLabel>
+                            <ControlLabel className={'setting-title'}>🌎 Location</ControlLabel>
                             <p>Where is your event taking place?</p>
                         </Col>
                         <Col md={12}>
@@ -186,7 +187,7 @@ var Component = React.createClass({
                     </Row>
                     <Row className="settings-space">
                         <Col md={12}>
-                            <ControlLabel className={'setting-title'}>🕐 Start:</ControlLabel>
+                            <ControlLabel className={'setting-title'}>🕐 Start</ControlLabel>
                             <p>What time does your event start?</p>
                         </Col>
                         <Col md={12}>
@@ -205,7 +206,7 @@ var Component = React.createClass({
                     </Row>
                     <Row className="settings-space">
                         <Col md={12}>
-                            <ControlLabel className={'setting-title'}>🕣 End:</ControlLabel>
+                            <ControlLabel className={'setting-title'}>🕣 End</ControlLabel>
                             <p>What time does your event end?</p>
                         </Col>
                         <Col md={12}>
@@ -229,10 +230,11 @@ var Component = React.createClass({
                     </Row>
                     <Row className="settings-space">
                         <Col md={12}>
-                            <ControlLabel className={'setting-title'}>🔁 Repeat:</ControlLabel>
+                            <ControlLabel className={'setting-title no-description'}>🔁 Repeat</ControlLabel>
                         </Col>
                         <Col md={12}>
                             <select
+                                className="form-control"
                                 {...repeat}
                                 disabled={this.props.disableInputs}
                                 onChange={repeatValue => {
@@ -249,37 +251,16 @@ var Component = React.createClass({
                         </Col>
                     </Row>
                     <Row className="settings-space">
-                        <Col md={8}>
-                            <ControlLabel className="setting-title">🌅 All day:</ControlLabel>
-                        </Col>
-                        <Col md={4}>
-                            <Radio
-                                inline
-                                name="allDayEvent"
-                                value="true"
-                                checked={allDay.value === true || allDay.value === 'true'}
-                                onChange={event => {
-                                    allDay.onChange(event);
-                                    setTimeout(() => this.inputChanged(), 0);
-                                }}
-                                disabled={this.props.disableInputs}
+                        <OptionToggle
+                            field={allDay}
+                            title="🌅 All day event"
+                            validWithPlan={true}
+                            inputOnClick={(event) => {
+                                allDay.onChange(event);
+                                setTimeout(() => this.inputChanged(), 0);
+                            }}
                             >
-                                Yes
-                            </Radio>
-                            <Radio
-                                inline
-                                name="allDayEvent"
-                                value="false"
-                                checked={allDay.value === false || allDay.value === 'false'}
-                                onChange={event => {
-                                    allDay.onChange(event);
-                                    setTimeout(() => this.inputChanged(), 0);
-                                }}
-                                disabled={this.props.disableInputs}
-                            >
-                                No
-                            </Radio>
-                        </Col>
+                        </OptionToggle>
                     </Row>
                     <Row>
                         <Col md={12}>

@@ -3,6 +3,7 @@ import { Row, Col, FormGroup, ControlLabel, Radio, FormControl } from 'react-boo
 import cn from 'classnames';
 import { reduxForm } from 'redux-form';
 import LockedFeature from '../lockedFeature';
+import OptionToggle from '../optionToggleField';
 
 var Component = React.createClass({
     inputOnChange(e, field, handleSubmit) {
@@ -26,68 +27,28 @@ var Component = React.createClass({
                     <form ref="settingsForm" className="form-horizontal">
                         <FormGroup>
                             <Row className="settings-space">
-                                <Col md={8}>
-                                    <ControlLabel
-                                        className={cn('setting-title', {
-                                            'setting-title--strike': !validWithPlan
-                                        })}
+                                <OptionToggle
+                                    field={subscriptionButton}
+                                    title={'Display subscription button'}
+                                    validWithPlan={validWithPlan}
+                                    lockedMessage={'Enable users to subscribe to your calendar'}
                                     >
-                                        Display subscription button:
-                                    </ControlLabel>
-                                </Col>
-                                {validWithPlan &&
-                                    <Col md={4}>
-                                        <Radio
-                                            inline
-                                            name="subscriptionButton"
-                                            {...subscriptionButton}
-                                            onChange={e =>
-                                                this.inputOnChange(
-                                                    e,
-                                                    subscriptionButton,
-                                                    handleSubmit
-                                                )}
-                                            checked={
-                                                subscriptionButton.value === true ||
-                                                subscriptionButton.value === 'true'
-                                            }
-                                            value={true}
-                                        >
-                                            Yes
-                                        </Radio>
-                                        <Radio
-                                            inline
-                                            name="subscriptionButton"
-                                            {...subscriptionButton}
-                                            onChange={e =>
-                                                this.inputOnChange(
-                                                    e,
-                                                    subscriptionButton,
-                                                    handleSubmit
-                                                )}
-                                            checked={
-                                                subscriptionButton.value === false ||
-                                                subscriptionButton.value === 'false'
-                                            }
-                                            value={false}
-                                        >
-                                            No
-                                        </Radio>
-                                    </Col>}
-                                {!validWithPlan && <LockedFeature columns={4} title={'Enable users to subscribe to your calendar'}/>}
+
+                                </OptionToggle>
+
                             </Row>
                             <Row className="settings-space">
-                                <Col md={8}>
+                                <Col md={12}>
                                     <ControlLabel
                                         className={cn('setting-title', {
                                             'setting-title--strike': !validWithPlan
                                         })}
                                     >
-                                        Calendar Name for subscribers:
+                                        Calendar Name for subscribers
                                     </ControlLabel>
                                     <p className="calendar-selection__description">People will see this inside of their calendar application when they subscribe to your event calendar. <strong>It will take 30min for this change to take effect.</strong></p>
                                 </Col>
-                                <Col md={4}>
+                                <Col md={12}>
                                     <FormControl type="text" placeholder="calendar" {...calendarName} onChange={(e) => this.inputOnChange(e, calendarName, handleSubmit)} />
                                 </Col>
                             </Row>

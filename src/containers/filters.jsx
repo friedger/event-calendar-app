@@ -88,12 +88,12 @@ const component = React.createClass({
                         e.preventDefault();
                         this.setState({ modalOpen: true });
                     }}
-                    className="secondary"
+                    className="secondary full-width"
                 >
                     Manage Filters
                 </button>
                 :
-                <LockedFeature columns={0} title={'Upgrade your account'} />
+                ''
                 }
                 <Modal
                     show={this.state.modalOpen}

@@ -33,7 +33,7 @@ export default React.createClass({
         }
     },
     render() {
-        const { handleSubmit, demoEvent, manualEventSelected, deleteManualEvent } = this.props;
+        const { demoEvent, manualEventSelected } = this.props;
         if (demoEvent) {
             return (
                 <div className={cn('event-settings show')}>

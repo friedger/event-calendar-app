@@ -1,8 +1,12 @@
 import React from 'react';
-import { Row, Col, FormGroup, ControlLabel, Radio, FormControl } from 'react-bootstrap';
+import {
+    Row,
+    Col,
+    FormGroup
+} from 'react-bootstrap';
 import cn from 'classnames';
 import { reduxForm } from 'redux-form';
-import LockedFeature from '../lockedFeature';
+import OptionToggle from '../optionToggleField';
 
 var Component = React.createClass({
     inputOnChange(e, field, handleSubmit) {
@@ -12,7 +16,11 @@ var Component = React.createClass({
         });
     },
     render() {
-        const { fields: { maps }, handleSubmit, validWithPlan } = this.props;
+        const {
+            fields: { maps },
+            handleSubmit,
+            validWithPlan
+        } = this.props;
         return (
             <Row
                 onClick={() => {
@@ -20,62 +28,31 @@ var Component = React.createClass({
                         this.setState({ showModal: true });
                     }
                 }}
-                className={cn('settings-form', { 'settings-form--invalid': !validWithPlan })}
+                className={cn('settings-form', {
+                    'settings-form--invalid': !validWithPlan
+                })}
             >
                 <Col md={12}>
                     <form ref="settingsForm" className="form-horizontal">
                         <FormGroup>
                             <Row className="settings-space">
-                                <Col md={8}>
-                                    <ControlLabel
-                                        className={cn('setting-title', {
-                                            'setting-title--strike': !validWithPlan
-                                        })}
-                                    >
-                                        Display Google Maps:
-                                    </ControlLabel>
-                                    <p className="calendar-selection__description">Displays a map embedded inside of your event</p>
-                                </Col>
-                                {validWithPlan &&
-                                    <Col md={4}>
-                                        <Radio
-                                            inline
-                                            name="maps"
-                                            {...maps}
-                                            onChange={e =>
-                                                this.inputOnChange(
-                                                    e,
-                                                    maps,
-                                                    handleSubmit
-                                                )}
-                                            checked={
-                                                maps.value === true ||
-                                                maps.value === 'true'
-                                            }
-                                            value={true}
-                                        >
-                                            Yes
-                                        </Radio>
-                                        <Radio
-                                            inline
-                                            name="maps"
-                                            {...maps}
-                                            onChange={e =>
-                                                this.inputOnChange(
-                                                    e,
-                                                    maps,
-                                                    handleSubmit
-                                                )}
-                                            checked={
-                                                maps.value === false ||
-                                                maps.value === 'false'
-                                            }
-                                            value={false}
-                                        >
-                                            No
-                                        </Radio>
-                                    </Col>}
-                                {!validWithPlan && <LockedFeature columns={4} title={'Enable users to subscribe to your calendar'}/>}
+                                <OptionToggle
+                                    validWithPlan={validWithPlan}
+                                    inputOnClick={e =>
+                                        this.inputOnChange(
+                                            e,
+                                            maps,
+                                            handleSubmit
+                                        )}
+                                    lockedMessage={
+                                        'Enable users to subscribe to your calendar'
+                                    }
+                                    field={maps}
+                                    title={'Display Google Maps'}
+                                    description={
+                                        'Displays a map embedded inside of your event'
+                                    }
+                                />
                             </Row>
                         </FormGroup>
                     </form>

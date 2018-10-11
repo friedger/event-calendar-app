@@ -100,7 +100,7 @@ var Component = React.createClass({
                     <span className="setting-title">Refresh synced events</span>
                     <p className="calendar-selection__description">When you add any events to your synced calendars, click this button to refresh your Event Calendar (We do this automatically for you periodically).</p>
                 </Col>
-                <Col md={5} style={{'text-align': 'right'}}>
+                <Col md={5} style={{'textAlign': 'right'}}>
                     <button className="action trigger-widget-refresh-button" onClick={() => this.props.refreshEventCalendarAction()}><i className="fa fa-refresh" aria-hidden="true"></i> Refresh events</button>
                 </Col>
                 </Row>

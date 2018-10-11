@@ -7,6 +7,7 @@ export default {
     gridViewBackgroundColor: '#fff',
     gridViewBorderColor: '#ddd',
     secondaryBackgroundColor: '#f7f7f7',
+    secondaryTextColor: '#5e5e5e',
     font: 'Open Sans',
     highlightColor: '#da4167'
 };

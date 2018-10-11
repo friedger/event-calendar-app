@@ -6,6 +6,7 @@ import { reduxForm } from 'redux-form';
 import debounce from 'lodash.debounce';
 import uploadcare from 'uploadcare-widget';
 import LockedFeature from '../lockedFeature';
+import LockedFeature2 from '../lockedFeature2';
 import { TwitterPicker } from 'react-color';
 import Filters from '../../../containers/filters';
 var timer;
@@ -159,14 +160,22 @@ var Component = React.createClass({
                 <FormGroup>
                     <Row className="settings-space">
                         <Col md={6}>
+                            <LockedFeature2 featureIsLocked={!validWithPlan} title="Upgrade your account">
+
                             <ControlLabel
                                 className={cn('setting-title', {
                                     'setting-title--strike': !validWithPlan
                                 })}
                             >
-                                Manage your filters:
+                                Manage your filters
                             </ControlLabel>
+                            {!validWithPlan &&
+                                <div className="locked-icon">
+                                    <i className="fa fa-lock" aria-hidden="true"></i>
+                                </div>
+                            }
                             <p>Sort your events into filters</p>
+                            </LockedFeature2>
                         </Col>
                         <Col md={6}>
                             <Filters />
@@ -179,14 +188,21 @@ var Component = React.createClass({
                     </Row>
                     <Row className="settings-space">
                         <Col md={6}>
+                            <LockedFeature2 featureIsLocked={!validWithPlan} title="Upgrade your account">
                             <ControlLabel
                                 className={cn('setting-title', {
                                     'setting-title--strike': !validWithPlan
                                 })}
                             >
-                                🖍 Event Color:
+                                🖍 Event Color
                             </ControlLabel>
+                            {!validWithPlan &&
+                                <div className="locked-icon">
+                                    <i className="fa fa-lock" aria-hidden="true"></i>
+                                </div>
+                            }
                             <p>Color code your event.</p>
+                            </LockedFeature2>
                         </Col>
                         {validWithPlan && (
                             <Col md={6}>
@@ -214,9 +230,6 @@ var Component = React.createClass({
                                 </div>
                             </Col>
                         )}
-                        {!validWithPlan && (
-                            <LockedFeature columns={6} title={'Upgrade your account'} />
-                        )}
                     </Row>
                     <Row>
                         <Col md={12}>
@@ -224,18 +237,25 @@ var Component = React.createClass({
                         </Col>
                     </Row>
                     <Row className="settings-space">
-                        <Col md={6}>
-                            <ControlLabel
-                                className={cn('setting-title', {
-                                    'setting-title--strike': !validWithPlan
-                                })}
-                            >
-                                🎟 Tickets Link:
-                            </ControlLabel>
-                            <p>Where can people buy tickets to your event?</p>
+                        <Col md={12}>
+                            <LockedFeature2 featureIsLocked={!validWithPlan} title="Upgrade your account">
+                                <ControlLabel
+                                    className={cn('setting-title', {
+                                        'setting-title--strike': !validWithPlan
+                                    })}
+                                >
+                                    🎟 Tickets Link
+                                </ControlLabel>
+                                {!validWithPlan &&
+                                    <div className="locked-icon">
+                                        <i className="fa fa-lock" aria-hidden="true"></i>
+                                    </div>
+                                }
+                                <p>Where can people buy tickets to your event?</p>
+                            </LockedFeature2>
                         </Col>
                         {validWithPlan && (
-                            <Col md={6}>
+                            <Col md={12}>
                                 <FormControl
                                     {...ticketsLink}
                                     type="text"
@@ -244,24 +264,28 @@ var Component = React.createClass({
                                 />
                             </Col>
                         )}
-                        {!validWithPlan && (
-                            <LockedFeature columns={6} title={'Upgrade your account'} />
-                        )}
                     </Row>
                     <Row className="settings-space">
-                        <Col md={6}>
+                        <Col md={12}>
+                            <LockedFeature2 featureIsLocked={!validWithPlan} title="Upgrade your account">
                             <ControlLabel
                                 className={cn('setting-title', {
                                     'setting-title--strike': !validWithPlan
                                 })}
                             >
                                 {' '}
-                                🎫 Tickets Text:
+                                🎫 Tickets Text
                             </ControlLabel>
+                            {!validWithPlan &&
+                                <div className="locked-icon">
+                                    <i className="fa fa-lock" aria-hidden="true"></i>
+                                </div>
+                            }
                             <p>What text would you like to display in the button?</p>
+                            </LockedFeature2>
                         </Col>
                         {validWithPlan && (
-                            <Col md={6}>
+                            <Col md={12}>
                                 <FormControl
                                     {...purchaseText}
                                     type="text"
@@ -273,9 +297,6 @@ var Component = React.createClass({
                                 />
                             </Col>
                         )}
-                        {!validWithPlan && (
-                            <LockedFeature columns={6} title={'Upgrade your account'} />
-                        )}
                     </Row>
                     <Row>
                         <Col md={12}>
@@ -284,15 +305,22 @@ var Component = React.createClass({
                     </Row>
                     <Row className="settings-space">
                         <Col md={6}>
+                            <LockedFeature2 featureIsLocked={!validWithPlan} title="Upgrade your account">
                             <ControlLabel
                                 className={cn('setting-title', {
                                     'setting-title--strike': !validWithPlan
                                 })}
                             >
                                 {' '}
-                                🌄 Image Url:
+                                🌄 Image Url
                             </ControlLabel>
+                            {!validWithPlan &&
+                                <div className="locked-icon">
+                                    <i className="fa fa-lock" aria-hidden="true"></i>
+                                </div>
+                            }
                             <p>The image to be displayed for your event.</p>
+                            </LockedFeature2>
                         </Col>
                         {validWithPlan && (
                             <Col md={6}>
@@ -315,21 +343,25 @@ var Component = React.createClass({
                                 )}
                             </Col>
                         )}
-                        {!validWithPlan && (
-                            <LockedFeature columns={6} title={'Upgrade your account'} />
-                        )}
                     </Row>
                     <Row className="settings-space">
                         <Col md={6}>
+                            <LockedFeature2 featureIsLocked={!validWithPlan} title="Upgrade your account">
                             <ControlLabel
                                 className={cn('setting-title', {
                                     'setting-title--strike': !validWithPlan
                                 })}
                             >
                                 {' '}
-                                🌄 Thumbnail Url:
+                                🌄 Thumbnail Url
                             </ControlLabel>
+                            {!validWithPlan &&
+                                <div className="locked-icon">
+                                    <i className="fa fa-lock" aria-hidden="true"></i>
+                                </div>
+                            }
                             <p>The image to display as the thumbnail.</p>
+                            </LockedFeature2>
                         </Col>
                         {validWithPlan && (
                             <Col md={6}>
@@ -351,9 +383,6 @@ var Component = React.createClass({
                                     </button>
                                 )}
                             </Col>
-                        )}
-                        {!validWithPlan && (
-                            <LockedFeature columns={6} title={'Upgrade your account'} />
                         )}
                     </Row>
                 </FormGroup>

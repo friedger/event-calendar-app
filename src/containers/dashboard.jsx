@@ -75,7 +75,6 @@ const component = React.createClass({
     ecaEssentialLoadedHandler() {
         this.unsubscribe = window.eventCalendarAppUtilities.store.subscribe(() => {
             const state = window.eventCalendarAppUtilities.store.getState();
-            console.log(state.app)
             if (state.app.refreshLoading) {
                 this.props.widgetRefreshing();
             } else {
