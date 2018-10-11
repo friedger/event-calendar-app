@@ -14,8 +14,10 @@
 
     {{#if isProd}}
         <!-- BEGIN TRACKJS -->
-        <script type="text/javascript">window._trackJs = { token: '4213d84a977b49eb95f205c2099e794d' };</script>
-        <script type="text/javascript" src="https://cdn.trackjs.com/releases/current/tracker.js"></script>
+        <script src="https://browser.sentry-cdn.com/4.1.0/bundle.min.js" crossorigin="anonymous"></script>
+        <script>
+        Sentry.init({ dsn: 'https://85bd9ddf5ee24ecf8bf218a41b09a3bf@sentry.io/1299008' });
+        </script>
         <!-- END TRACKJS -->
     {{/if}}
 
