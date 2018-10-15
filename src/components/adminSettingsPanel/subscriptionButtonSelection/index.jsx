@@ -31,9 +31,14 @@ var Component = React.createClass({
                                     field={subscriptionButton}
                                     title={'Display subscription button'}
                                     validWithPlan={validWithPlan}
+                                    inputOnClick={e =>
+                                        this.inputOnChange(
+                                            e,
+                                            subscriptionButton,
+                                            handleSubmit
+                                        )}
                                     lockedMessage={'Enable users to subscribe to your calendar'}
                                     >
-
                                 </OptionToggle>
 
                             </Row>
