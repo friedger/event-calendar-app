@@ -117,13 +117,16 @@ const component = React.createClass({
         this.props.postManualEvent(event, widgetUuid);
         this.setState({ eventHasBeenAdded: true });
         const calendarToDeselect = this.props.appState.calendars.find(
-            calendar => calendar.calendar_name === 'Demo Calendar'
+            calendar => (calendar.calendar_name === 'Demo Calendar') && (calendar.selected === true)
         );
-        this.props.putCalendars(
-            this.props.eventCalWidgetUuid,
-            calendarToDeselect.calendar_id,
-            false
-        );
+
+        if (calendarToDeselect) {
+            this.props.putCalendars(
+                this.props.eventCalWidgetUuid,
+                calendarToDeselect.calendar_id,
+                false
+            );
+        }
     },
     deleteManualEvent() {
         const currentlySelectedEvent = this.props.eventState;
