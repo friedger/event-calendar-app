@@ -48,6 +48,10 @@ a {
     padding-top:0;
 }
 
+.form-control[readonly] {
+    background-color: #fff;
+}
+
 .container {
     max-width: 900px !important;
 }
@@ -427,7 +431,7 @@ h1 {
     box-shadow: none;
 }
 
-.calendar-settings .form-control, .calendar-settings .radio label::before, .checkbox label::before {
+.calendar-settings .form-control, .calendar-settings .radio label::before, .calendar-settings .checkbox label::before {
     border:0;
 }
 
