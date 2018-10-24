@@ -1,0 +1,8 @@
+.trigger-widget-refresh-button {
+    [disabled] {
+        cursor: default;
+    }
+    &.animate-success {
+        cursor: default;
+    }
+}

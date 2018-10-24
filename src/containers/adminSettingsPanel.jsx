@@ -22,13 +22,15 @@ const mapState = ({
     appState,
     eventState,
     manualEventState,
-    onBoardingState
+    onBoardingState,
+    eventSavingState
 }) => {
     return {
         appState,
         eventState,
         manualEventState,
-        onBoardingState
+        onBoardingState,
+        eventSavingState
     };
 };
 
@@ -265,6 +267,7 @@ const component = React.createClass({
                             canvasBackgroundModified={
                                 this.props.canvasBackgroundModified
                             }
+                            savingEvent={this.props.eventSavingState.savingEvent}
                         />
                     )}
 

@@ -12,6 +12,15 @@ import SettingsCategorySelection from '../settingsCategorySelection';
 import SidePanelWrapper from '../sidePanelWrapper';
 import DesignFrom from '../designForm';
 import DesignPresets from '../designPresets';
+import {
+    Input,
+    Row,
+    Col,
+    Checkbox,
+    FormGroup,
+    ControlLabel
+} from 'react-bootstrap';
+import RefreshSyncedCalendarsButton from '../refreshSyncedCalendarsButton';
 
 var theTimeout;
 
@@ -83,7 +92,12 @@ export default React.createClass({
                         fields={Object.keys(calendars)}
                         calendars={calendars}
                         show={this.state.settingsToDisplay === 'Event Sources'}
-                        refreshEventCalendarAction={this.props.refreshEventCalendarAction}
+                    />
+                    <RefreshSyncedCalendarsButton
+                        savingEvent={this.props.savingEvent}
+                        refreshEventCalendarAction={
+                            this.props.refreshEventCalendarAction
+                        }
                     />
                     <DesignFrom
                         show={this.state.settingsToDisplay === 'Design'}
