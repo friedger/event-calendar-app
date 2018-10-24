@@ -7,6 +7,7 @@ import LockedFeature2 from '../lockedFeature2';
 export default React.createClass({
     render() {
         const { validWithPlan, handleSubmit, field } = this.props;
+        const ignoreClassForReactClickOutside = `react-ignore-field-${field.name}`;
         return (
             <Row className={`settings-space ${this.props.className}`}>
                 <LockedFeature2 featureIsLocked={!validWithPlan}>
@@ -35,6 +36,7 @@ export default React.createClass({
                                     formField={field}
                                     handleSubmit={handleSubmit}
                                     inputOnChange={this.props.inputOnChange}
+                                    ignoreClassForReactClickOutside={ignoreClassForReactClickOutside}
                                 />
                                 {!this.props.valueIsDefault && (
                                     <button
@@ -43,7 +45,7 @@ export default React.createClass({
                                             field.name
                                         )}
                                         type="button"
-                                        className="danger danger--small delete-color"
+                                        className={`danger danger--small delete-color ${ignoreClassForReactClickOutside}`}
                                     >
                                         Reset to default
                                     </button>

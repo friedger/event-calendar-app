@@ -22,7 +22,7 @@ var Component = React.createClass({
                 <div className="settings-space">
                     <label className="setting-title">Choose a name for your Event Calendar</label>
                     <p className="setting-sub-title">
-                        The name must be a single word. No uppercase letters or numbers. <strong>No spaces</strong>.
+                        The name must contain only letters, numbers and <strong>no spaces</strong>.
                     </p>
                     <div className="subdomain-input">
                         <input
@@ -63,13 +63,16 @@ var Component = React.createClass({
                                         className="fa fa-ban"
                                         aria-hidden="true"
                                     />{' '}
-                                    Invalid URL
+                                    Invalid Name
                                 </div>
                             )}
                             {!aliasSuccess &&
                                 !aliasFail && !aliasInvalid && <div>.eventcalendarapp.com</div>}
                         </div>
                     </div>
+                    {aliasInvalid && <p className="calendar-selection__description">
+                        Here's some valid examples: <strong>eventcalendarapp</strong>, <strong>yourcompanyname</strong> or <strong>sallyscoffee</strong>.
+                    </p>}
                     <p className="setting-sub-title setting-sub-title--more-info"><a target="_blank" href="https://support.eventcalendarapp.com/faqs-and-troubleshooting/information-regarding-choosing-a-name-for-your-event-calendar">More info on this step</a></p>
                 </div>
                 {lastKnownSuccessfulAlias && displayDirectUrl &&
