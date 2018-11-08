@@ -164,14 +164,14 @@ const component = React.createClass({
                         {`
                             #event-calendar-app .calendar-list-view .calendar-list-event.uuid-${escapeCSS(
                                 this.props.eventState.uuid
-                            )}.col-md-12{
+                            )}{
                                 border: 3px solid #da4167 !important;
                                 border-bottom: 3px solid #da4167 !important;
                             }
                             #event-calendar-app .calendar-list-event.uuid-${escapeCSS(
                                 this.props.eventState.uuid
                             )}:after{
-                                display: block;
+                                display: block !important;
                             }
                         `}
                     </style>
