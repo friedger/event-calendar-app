@@ -19,7 +19,7 @@ const options = {
     hover: { mode: 'index' }
 };
 
-export default React.createClass({
+const Statistic = React.createClass({
     getInitialState() {
         return {};
     },
@@ -93,3 +93,5 @@ export default React.createClass({
         );
     }
 });
+
+export default Statistic;

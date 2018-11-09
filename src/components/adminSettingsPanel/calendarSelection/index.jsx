@@ -8,7 +8,7 @@ import Loader from 'react-loader';
 import cn from 'classnames';
 import triggerWidgetRefresh from '../../../utils/triggerWidgetRefresh';
 
-var Component = React.createClass({
+var CalendarSelection = React.createClass({
     formChange(id, event) {
         this.props.onChange(id, event.target.checked);
     },
@@ -95,7 +95,7 @@ var Component = React.createClass({
                     </form>
                 </Col>
                 </Row>
-                
+
                 </div>
 
             }
@@ -104,10 +104,10 @@ var Component = React.createClass({
     }
 });
 
-export default Component = reduxForm({ // <----- THIS IS THE IMPORTANT PART!
+export default CalendarSelection = reduxForm({ // <----- THIS IS THE IMPORTANT PART!
   form: 'calendarSelection',
   destroyOnUnmount: false                       // a unique name for this form
-})(Component);
+})(CalendarSelection);
 
 import React from 'react';
 

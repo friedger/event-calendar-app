@@ -27,7 +27,7 @@ const validate = values => {
     return errors;
 };
 
-var Component = React.createClass({
+var NewPostForm = React.createClass({
     getInitialState() {
         return {
             editor: false
@@ -293,7 +293,7 @@ var Component = React.createClass({
     }
 });
 
-export default (Component = reduxForm(
+export default (NewPostForm = reduxForm(
     {
         // <----- THIS IS THE IMPORTANT PART!
         form: 'manualEventsForm', // a unique name for this form
@@ -329,4 +329,4 @@ export default (Component = reduxForm(
         }
         return { initialValues: state.eventState };
     }
-)(Component));
+)(NewPostForm));

@@ -50,7 +50,7 @@ const mapDispatch = dispatch => {
     );
 };
 
-const component = React.createClass({
+const ConnectionsContainer = React.createClass({
     contextTypes: {
         router: React.PropTypes.object.isRequired
     },
@@ -101,4 +101,4 @@ const component = React.createClass({
     }
 });
 
-export default connect(mapState, mapDispatch)(component);
+export default connect(mapState, mapDispatch)(ConnectionsContainer);

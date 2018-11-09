@@ -4,7 +4,7 @@ import React from 'react';
 const Link = require('react-router').Link;
 import {Button, Modal} from 'react-bootstrap';
 
-export default React.createClass({
+const WidgetButton = React.createClass({
     getInitialState() {
         return {
             modalOpen: false
@@ -54,3 +54,5 @@ export default React.createClass({
         )
     }
 });
+
+export default WidgetButton;

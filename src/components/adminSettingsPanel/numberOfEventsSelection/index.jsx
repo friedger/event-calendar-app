@@ -10,7 +10,7 @@ import {
 import { reduxForm } from 'redux-form';
 import debounce from 'lodash.debounce';
 
-var Component = React.createClass({
+var NumberOfEventsSelection = React.createClass({
     componentWillMount() {
         this.makeApiCall = debounce(values => this.props.putSettingsAction(values, true), 500);
     },
@@ -101,9 +101,9 @@ var Component = React.createClass({
     }
 });
 
-export default Component = reduxForm({ // <----- THIS IS THE IMPORTANT PART!
+export default NumberOfEventsSelection = reduxForm({ // <----- THIS IS THE IMPORTANT PART!
     form: 'settingsForm', // a unique name for this form
     fields: ['numEventsToDisplay', 'pastEvents', 'focusOnToday'],
     overwriteOnInitialValuesChange: false,
     destroyOnUnmount: false
-}, state => ({initialValues: state.appState}))(Component);
+}, state => ({initialValues: state.appState}))(NumberOfEventsSelection);

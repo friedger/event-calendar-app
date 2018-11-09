@@ -27,9 +27,9 @@ export default React.createClass({
                     />
                     <Collapse isOpened={this.state.expanded}>
                         <ul>
-                            {this.props.connections.map(connection => {
+                            {this.props.connections.map((connection, index) => {
                                 return (
-                                    <li>
+                                    <li key={index}>
                                         ⚡️ {connection.name}{' '}
                                         {this.props.deleteCalendar && <span
                                             onClick={e => {

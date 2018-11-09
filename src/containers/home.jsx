@@ -32,7 +32,7 @@ const mapDispatch = dispatch => {
     );
 };
 
-const component = React.createClass({
+const Home = React.createClass({
     componentDidMount() {
         this.props.getWidgets();
         this.props.getUser();
@@ -122,12 +122,13 @@ const component = React.createClass({
                         )}
                         {this.props.appState.widgets.map((widget, index, fullArr) => {
                             if (fullArr.length === 1) {
-                                return <WidgetButton widget={widget} number={index + 1} />;
+                                return <WidgetButton key={index} widget={widget} number={index + 1} />;
                             }
                             return (
                                 <WidgetButton
                                     deleteAction={this.props.deleteWidget}
                                     widget={widget}
+                                    key={index}
                                     number={index + 1}
                                 />
                             );
@@ -139,4 +140,4 @@ const component = React.createClass({
     }
 });
 
-export default connect(mapState, mapDispatch)(component);
+export default connect(mapState, mapDispatch)(Home);

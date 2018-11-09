@@ -10,7 +10,7 @@ import capitalize from 'capitalize';
 import getFacebookAuthUrl from '../../utils/getFacebookAuthUrl';
 import FacebookIssueModal from '../modals/facebookIssueModal';
 
-export default React.createClass({
+const Connections = React.createClass({
     getInitialState() {
         return {
             showCronofyModal: false,
@@ -44,7 +44,7 @@ export default React.createClass({
     },
     render() {
         return (
-            <div className="row" style={{ 'padding-left': '30px', 'padding-right': '30px' }}>
+            <div className="row" style={{ 'paddingLeft': '30px', 'paddingRight': '30px' }}>
                 <CronofyRedirectModal
                     show={this.state.showCronofyModal}
                     hide={this.toggleModal}
@@ -70,10 +70,11 @@ export default React.createClass({
                         <p>We currently source your calendars from the following places:</p>
                     </div>
                 )}
-                {Object.keys(this.props.groupedConnections).map(connectionName => {
+                {Object.keys(this.props.groupedConnections).map((connectionName, index) => {
                     return (
                         <Connection
                             name={capitalize(connectionName)}
+                            key={index}
                             connections={this.props.groupedConnections[connectionName]}
                             deleteCalendar={this.deleteCalendarMethods()[connectionName]}
                         />
@@ -125,3 +126,5 @@ export default React.createClass({
         );
     }
 });
+
+export default Connections;

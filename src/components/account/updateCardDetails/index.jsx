@@ -1,6 +1,6 @@
 require('./style.scss');
 import React from 'react';
-const StripeCheckout = require('react-stripe-checkout');
+import StripeCheckout from 'react-stripe-checkout';
 const config = require('../../../../config');
 
 export default React.createClass({

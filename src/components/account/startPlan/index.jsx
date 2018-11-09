@@ -1,7 +1,7 @@
 require('./style.scss');
 import React from 'react';
 const config = require('../../../../config');
-const StripeCheckout = require('react-stripe-checkout');
+import StripeCheckout from 'react-stripe-checkout';
 import cn from 'classnames';
 import { Modal } from 'react-bootstrap';
 import Loader from 'react-loader';

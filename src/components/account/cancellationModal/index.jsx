@@ -3,7 +3,7 @@ import React from 'react';
 import { Modal } from 'react-bootstrap';
 import Loader from 'react-loader';
 
-export default React.createClass({
+const CancellationModal = React.createClass({
     getInitialState() {
         return {
             modalOpen: false,
@@ -87,7 +87,7 @@ export default React.createClass({
                                 color="#000"
                                 width={2}
                                 radius={3}
-                                top={0}
+                                top={'0'}
                             />
                             <div className="cancellation-modal__loader-text">Fetching account details</div>
                             </div>
@@ -144,3 +144,5 @@ export default React.createClass({
         );
     }
 });
+
+export default CancellationModal;

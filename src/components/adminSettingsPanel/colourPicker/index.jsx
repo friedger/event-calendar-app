@@ -44,7 +44,6 @@ export default React.createClass({
                     type="text"
                     autoComplete="off"
                     readOnly="readonly"
-                    onselectstart={e => e.stopPropagation()}
                     {...formField}
                     onChange={e => {}}
                     onClick={() => {
