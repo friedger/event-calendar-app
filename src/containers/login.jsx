@@ -23,7 +23,7 @@ const mapDispatch = dispatch => {
     );
 };
 
-const component = React.createClass({
+const LoginContainer = React.createClass({
     contextTypes: {
         router: React.PropTypes.object.isRequired
     },
@@ -88,7 +88,7 @@ const component = React.createClass({
                             </div>
                         </Col>
                     </Row>
-                    <div className="container" style={{ maxWidth: '600px !important' }}>
+                    <div className="container" style={{ maxWidth: '600px' }}>
                         <Login router={this.context.router} />
                     </div>
                     <Row>
@@ -106,4 +106,4 @@ const component = React.createClass({
     }
 });
 
-export default connect(mapState, mapDispatch)(component);
+export default connect(mapState, mapDispatch)(LoginContainer);

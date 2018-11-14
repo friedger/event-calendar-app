@@ -1,7 +1,7 @@
 require('./style.scss');
 
 import React from 'react';
-import { Input, Button } from 'react-bootstrap';
+import { Button, FormControl, ControlLabel, FormGroup } from 'react-bootstrap';
 import { reduxForm } from 'redux-form';
 import { postLogin } from '../../../actions/apiActions';
 import { Row, Col } from 'react-bootstrap';
@@ -16,7 +16,7 @@ function noOpPromise() {
     });
 }
 
-var Component = React.createClass({
+var Login = React.createClass({
     render() {
         const {
             fields: { username, password },
@@ -28,7 +28,7 @@ var Component = React.createClass({
             <Row className="loginForm">
                 <Col md={12}>
                     <form
-                        onSubmit={handleSubmit((values) => {
+                        onSubmit={handleSubmit(values => {
                             return postLogin(values).then(
                                 () => {
                                     // Currently need to make user request /dashboard from the server
@@ -38,34 +38,48 @@ var Component = React.createClass({
                                 },
                                 () => {
                                     return Promise.reject({
-                                        _error: 'Login Failed. Wrong username or password'
+                                        _error:
+                                            'Login Failed. Wrong username or password'
                                     });
                                 }
                             );
                         })}
                     >
-                        <Input
-                            type="text"
-                            label="Username or Email"
-                            placeholder="Enter text"
-                            {...username}
-                        />
-                        <Input
-                            type="password"
-                            placeholder="Enter password"
-                            label="Password"
-                            {...password}
-                        />
+                        <FormGroup>
+                            <ControlLabel>Username or Email</ControlLabel>
+                            <FormControl
+                                type="text"
+                                label="Username or Email"
+                                placeholder="Enter text"
+                                {...username}
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                            <ControlLabel>Password</ControlLabel>
+                            <FormControl
+                                type="password"
+                                placeholder="Enter password"
+                                label="Password"
+                                {...password}
+                            />
+                        </FormGroup>
                         <Button
                             type="submit"
                             value="Login"
                             className="action-button"
                             disabled={submitting}
                         >
-                            <div className={cn({ 'opacity-0': submitting })}>LOG IN</div>
+                            <div className={cn({ 'opacity-0': submitting })}>
+                                LOG IN
+                            </div>
                             {submitting && (
                                 <div className="large-loader">
-                                    <Loader type="spin" color="#000" width={3} radius={7} />
+                                    <Loader
+                                        type="spin"
+                                        color="#000"
+                                        width={3}
+                                        radius={7}
+                                    />
                                 </div>
                             )}
                         </Button>
@@ -77,8 +91,8 @@ var Component = React.createClass({
     }
 });
 
-export default (Component = reduxForm({
+export default (Login = reduxForm({
     // <----- THIS IS THE IMPORTANT PART!
     form: 'contact', // a unique name for this form
     fields: ['username', 'password'] // all the fields in your form
-})(Component));
+})(Login));

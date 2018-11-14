@@ -46,7 +46,7 @@ const component = React.createClass({
         return (
             <div style={{ height: '100%' }}>
                 <div style={{ background: '#f5f5f5', height: '100%' }}>
-                    <div className="container" style={{ maxWidth: '600px !important' }}>
+                    <div className="container" style={{ maxWidth: '600px' }}>
                         <Row>
                             <Col md={12}>
                                 <div className="register-form__title">
