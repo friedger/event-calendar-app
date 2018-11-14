@@ -1,0 +1,24 @@
+@import '../../../variables.scss';
+
+
+.DateInput {
+    vertical-align: baseline;
+}
+
+.DateInput_input {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.CalendarDay__selected, .CalendarDay__selected:active, .CalendarDay__selected:hover {
+    background: $eca-blue;
+    border: 1px double $eca-blue;
+}
+
+.DayPickerKeyboardShortcuts_show__bottomRight {
+    border-right: 33px solid $eca-blue;
+}
+
+.DateInput_input__focused {
+    border-bottom: 2px solid #fff;
+}

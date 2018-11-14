@@ -1,19 +1,31 @@
-require('./style.scss');
 // require('./editor.scss');
+require('react-dates/lib/css/_datepicker.css');
+require('timepicker/jquery.timepicker.css');
+require('./react-dates-overrides.scss');
+require('./style.scss');
+const $ = window.$;
 import React from 'react';
-import { Row, Col, FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
-import Datetime from 'react-datetime';
+import {
+    Row,
+    Col,
+    FormGroup,
+    ControlLabel,
+    FormControl,
+    HelpBlock
+} from 'react-bootstrap';
 import { reduxForm } from 'redux-form';
 import moment from 'moment';
 import cn from 'classnames';
 import debounce from 'lodash.debounce';
 import { Editor } from '@tinymce/tinymce-react';
-import tinymce from 'tinymce';
+import tinymce from 'tinymce'; // eslint-disable-line
 import 'tinymce/themes/modern';
 import 'tinymce/plugins/link';
 import 'tinymce/plugins/code';
 import config from '../../../../config';
 import OptionToggle from '../optionToggleField';
+import 'react-dates/initialize';
+import { SingleDatePicker } from 'react-dates';
 
 const validate = values => {
     const errors = {};
@@ -30,17 +42,54 @@ const validate = values => {
 var NewPostForm = React.createClass({
     getInitialState() {
         return {
-            editor: false
+            editor: false,
+            startDate: moment(this.props.fields.start.value),
+            startDateFocused: false,
+            endDateFocused: false,
+            endDate: moment(this.props.fields.end.value)
         };
     },
-    onEditorStateChange(editorState) {
-        console.log(editorState.toString('html'));
+    onEditorStateChange() {
     },
     componentWillMount() {
-        tinyMCE.baseURL = `${config.appUrl}/tinymce`;
+        window.tinyMCE.baseURL = `${config.appUrl}/tinymce`;
         this.makeApiCall = debounce(values => {
             this.props.putEventAction(values);
         }, 1000);
+    },
+    componentDidMount() {
+        const timePickerStart = $('#timepicker-start');
+        timePickerStart.timepicker();
+        timePickerStart.timepicker('setTime', this.state.startDate.toDate());
+        timePickerStart.on('change', () => {
+            const startDate = this.state.startDate;
+            const timePickerDate = timePickerStart.timepicker('getTime');
+            if (!timePickerDate) {
+                return timePickerStart.timepicker(
+                    'setTime',
+                    startDate.toDate()
+                );
+            }
+            startDate.hour(timePickerDate.getHours());
+            startDate.minutes(timePickerDate.getMinutes());
+            this.props.fields.start.onChange(startDate.valueOf());
+            setTimeout(() => this.inputChanged(), 0);
+        });
+
+        const timepickerEnd = $('#timepicker-end');
+        timepickerEnd.timepicker();
+        timepickerEnd.timepicker('setTime', this.state.endDate.toDate());
+        timepickerEnd.on('change', () => {
+            const endDate = this.state.endDate;
+            const timePickerDate = timepickerEnd.timepicker('getTime');
+            if (!timePickerDate) {
+                return timepickerEnd.timepicker('setTime', endDate.toDate());
+            }
+            endDate.hour(timePickerDate.getHours());
+            endDate.minutes(timePickerDate.getMinutes());
+            this.props.fields.end.onChange(endDate.valueOf());
+            setTimeout(() => this.inputChanged(), 0);
+        });
     },
     inputChanged() {
         if (this.props.putToApiOnChange) {
@@ -53,34 +102,49 @@ var NewPostForm = React.createClass({
         }
     },
     handleChange() {
-        this.props.fields.shortDescription.onChange(this.state.editor.getContent({ format: 'text' }));
-        this.props.fields.eventDescription.onChange(this.state.editor.getContent());
+        this.props.fields.shortDescription.onChange(
+            this.state.editor.getContent({ format: 'text' })
+        );
+        this.props.fields.eventDescription.onChange(
+            this.state.editor.getContent()
+        );
         this.inputChanged();
     },
     render() {
         const {
-            fields: { eventName, eventDescription, eventLocation, start, end, repeat, allDay }
+            fields: {
+                eventName,
+                eventDescription,
+                eventLocation,
+                start,
+                end,
+                repeat,
+                allDay
+            }
         } = this.props;
-
         return (
             <form>
-                <FormGroup className={cn('new-post-form', { show: this.props.show })}>
+                <FormGroup
+                    className={cn('new-post-form', { show: this.props.show })}
+                >
                     {this.props.displayAdditionalOptionsMessage && (
                         <Row>
                             <Col md={12}>
                                 {!this.props.disableInputs && (
                                     <p className="sub-text">
-                                        Note - once you've added the event, you will then have the
-
-                                        option to add additional options such as images, thumbnails
-                                        and much more.
+                                        Note - once you've added the event, you
+                                        will then have the option to add
+                                        additional options such as images,
+                                        thumbnails and much more.
                                     </p>
                                 )}
                                 {this.props.disableInputs && (
                                     <p className="sub-text">
-                                        Click <strong>further customise event</strong> to add
-                                        additional information to your event, such as images,
-                                        tickets and more...
+                                        Click{' '}
+                                        <strong>further customise event</strong>{' '}
+                                        to add additional information to your
+                                        event, such as images, tickets and
+                                        more...
                                     </p>
                                 )}
                             </Col>
@@ -95,14 +159,18 @@ var NewPostForm = React.createClass({
                     )}
                     <Row className="settings-space">
                         <Col md={12}>
-                            <ControlLabel className={'setting-title'}>🖍 Event Name</ControlLabel>
+                            <ControlLabel className={'setting-title'}>
+                                🖍 Event Name
+                            </ControlLabel>
                             <p>What is the name of your event?</p>
                         </Col>
                         <Col md={12}>
                             <FormControl
                                 disabled={this.props.disableInputs}
                                 {...eventName}
-                                className={cn({ error: eventName.touched && eventName.error })}
+                                className={cn({
+                                    error: eventName.touched && eventName.error
+                                })}
                                 onChange={e => {
                                     eventName.onChange(e);
                                     setTimeout(() => this.inputChanged(), 0);
@@ -111,7 +179,9 @@ var NewPostForm = React.createClass({
                                 placeholder="Name of your event"
                             />
                             {eventName.touched &&
-                                eventName.error && <HelpBlock>{eventName.error}</HelpBlock>}
+                                eventName.error && (
+                                    <HelpBlock>{eventName.error}</HelpBlock>
+                                )}
                         </Col>
                     </Row>
                     <Row className="settings-space">
@@ -122,38 +192,74 @@ var NewPostForm = React.createClass({
                             <p>Some more information about your event</p>
                         </Col>
                         <Col md={12}>
-                            <div className={cn({'editor-validation-error': eventDescription.touched && eventDescription.error})}>
-                            <Editor
-                                initialValue={this.props.fields.eventDescription.value
-                                    ? this.props.fields.eventDescription.value.split('\n').map((item, i) => {
-                                        return '<p>' + item + '</p>';
-                                    }).join('')
-                                    : ''}
-                                init={{
-                                    formats: {
-                                        alignleft: {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'left'},
-                                        aligncenter: {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'center'},
-                                        alignright: {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'right'},
-                                        alignjustify: {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'full'},
-                                        underline: {inline : 'span', 'classes' : 'underline', exact : true}
-                                    },
-                                    plugins: 'link code',
-                                    menubar: false,
-                                    inline_styles : false,
-                                    toolbar: 'undo redo | formatselect | bold italic | link | alignleft aligncenter alignright | code |',
-                                    height: '250px',
-                                    setup: editor => {
-                                        this.setState({ editor });
-                                        editor.on('keyup change', () => {
-                                            this.handleChange();
-                                        });
+                            <div
+                                className={cn({
+                                    'editor-validation-error':
+                                        eventDescription.touched &&
+                                        eventDescription.error
+                                })}
+                            >
+                                <Editor
+                                    initialValue={
+                                        this.props.fields.eventDescription.value
+                                            ? this.props.fields.eventDescription.value
+                                                  .split('\n')
+                                                  .map((item) => {
+                                                      return (
+                                                          '<p>' + item + '</p>'
+                                                      );
+                                                  })
+                                                  .join('')
+                                            : ''
                                     }
-                                }}
-                            />
+                                    init={{
+                                        formats: {
+                                            alignleft: {
+                                                selector:
+                                                    'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img',
+                                                classes: 'left'
+                                            },
+                                            aligncenter: {
+                                                selector:
+                                                    'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img',
+                                                classes: 'center'
+                                            },
+                                            alignright: {
+                                                selector:
+                                                    'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img',
+                                                classes: 'right'
+                                            },
+                                            alignjustify: {
+                                                selector:
+                                                    'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img',
+                                                classes: 'full'
+                                            },
+                                            underline: {
+                                                inline: 'span',
+                                                classes: 'underline',
+                                                exact: true
+                                            }
+                                        },
+                                        plugins: 'link code',
+                                        menubar: false,
+                                        inline_styles: false,
+                                        toolbar:
+                                            'undo redo | formatselect | bold italic | link | alignleft aligncenter alignright | code |',
+                                        height: '250px',
+                                        setup: editor => {
+                                            this.setState({ editor });
+                                            editor.on('keyup change', () => {
+                                                this.handleChange();
+                                            });
+                                        }
+                                    }}
+                                />
                             </div>
                             {eventDescription.touched &&
                                 eventDescription.error && (
-                                    <HelpBlock>{eventDescription.error}</HelpBlock>
+                                    <HelpBlock>
+                                        {eventDescription.error}
+                                    </HelpBlock>
                                 )}
                         </Col>
                     </Row>
@@ -164,7 +270,9 @@ var NewPostForm = React.createClass({
                     </Row>
                     <Row className="settings-space">
                         <Col md={12}>
-                            <ControlLabel className={'setting-title'}>🌎 Location</ControlLabel>
+                            <ControlLabel className={'setting-title'}>
+                                🌎 Location
+                            </ControlLabel>
                             <p>Where is your event taking place?</p>
                         </Col>
                         <Col md={12}>
@@ -187,39 +295,74 @@ var NewPostForm = React.createClass({
                     </Row>
                     <Row className="settings-space">
                         <Col md={12}>
-                            <ControlLabel className={'setting-title'}>🕐 Start</ControlLabel>
+                            <ControlLabel className={'setting-title'}>
+                                🕐 Start
+                            </ControlLabel>
                             <p>What time does your event start?</p>
-                        </Col>
-                        <Col md={12}>
-                            <Datetime
-                                utc={true}
-                                inputProps={{
-                                    disabled: this.props.disableInputs
-                                }}
-                                value={moment(start.value)}
-                                onChange={date => {
+                            <SingleDatePicker
+                                date={this.state.startDate}
+                                onDateChange={date => {
+                                    if (!date) {
+                                        return;
+                                    }
+                                    const timePickerDate = $(
+                                        '#timepicker-start'
+                                    ).timepicker('getTime');
+                                    date.hour(timePickerDate.getHours());
+                                    date.minutes(timePickerDate.getMinutes());
+                                    this.setState({ startDate: date });
                                     start.onChange(date.valueOf());
                                     setTimeout(() => this.inputChanged(), 0);
                                 }}
+                                focused={this.state.startDateFocused}
+                                isOutsideRange={() => false}
+                                noBorder={true}
+                                onFocusChange={({ focused }) =>
+                                    this.setState({ startDateFocused: focused })
+                                }
+                                id="datepicker-start"
+                            />
+                            <input
+                                type="text"
+                                id="timepicker-start"
+                                autoComplete="off"
+                                className="time ui-timepicker-input"
                             />
                         </Col>
                     </Row>
                     <Row className="settings-space">
                         <Col md={12}>
-                            <ControlLabel className={'setting-title'}>🕣 End</ControlLabel>
+                            <ControlLabel className={'setting-title'}>
+                                🕣 End
+                            </ControlLabel>
                             <p>What time does your event end?</p>
-                        </Col>
-                        <Col md={12}>
-                            <Datetime
-                                inputProps={{
-                                    disabled: this.props.disableInputs
-                                }}
-                                utc={true}
-                                value={moment(end.value)}
-                                onChange={date => {
+                            <SingleDatePicker
+                                noBorder={true}
+                                date={this.state.endDate}
+                                onDateChange={date => {
+                                    if (!date) {
+                                        return;
+                                    }
+                                    const timePickerDate = $(
+                                        '#timepicker-end'
+                                    ).timepicker('getTime');
+                                    date.hour(timePickerDate.getHours());
+                                    date.minutes(timePickerDate.getMinutes());
+                                    this.setState({ endDate: date });
                                     end.onChange(date.valueOf());
                                     setTimeout(() => this.inputChanged(), 0);
                                 }}
+                                focused={this.state.endDateFocused}
+                                onFocusChange={({ focused }) =>
+                                    this.setState({ endDateFocused: focused })
+                                }
+                                id="datepicker-end"
+                            />
+                            <input
+                                type="text"
+                                id="timepicker-end"
+                                autoComplete="off"
+                                className="time ui-timepicker-input"
                             />
                         </Col>
                     </Row>
@@ -230,7 +373,11 @@ var NewPostForm = React.createClass({
                     </Row>
                     <Row className="settings-space">
                         <Col md={12}>
-                            <ControlLabel className={'setting-title no-description'}>🔁 Repeat</ControlLabel>
+                            <ControlLabel
+                                className={'setting-title no-description'}
+                            >
+                                🔁 Repeat
+                            </ControlLabel>
                         </Col>
                         <Col md={12}>
                             <select
@@ -255,12 +402,11 @@ var NewPostForm = React.createClass({
                             field={allDay}
                             title="🌅 All day event"
                             validWithPlan={true}
-                            inputOnClick={(event) => {
+                            inputOnClick={event => {
                                 allDay.onChange(event);
                                 setTimeout(() => this.inputChanged(), 0);
                             }}
-                            >
-                        </OptionToggle>
+                        />
                     </Row>
                     <Row>
                         <Col md={12}>
@@ -272,16 +418,19 @@ var NewPostForm = React.createClass({
                             <Col md={12}>
                                 {!this.props.disableInputs && (
                                     <p className="sub-text">
-                                        Note - once you've added the event, you will then have the
-                                        option to add additional options such as images, thumbnails
-                                        and much more.
+                                        Note - once you've added the event, you
+                                        will then have the option to add
+                                        additional options such as images,
+                                        thumbnails and much more.
                                     </p>
                                 )}
                                 {this.props.disableInputs && (
                                     <p className="sub-text">
-                                        Click <strong>further customise event</strong> to add
-                                        additional information to your event, such as images,
-                                        tickets and more...
+                                        Click{' '}
+                                        <strong>further customise event</strong>{' '}
+                                        to add additional information to your
+                                        event, such as images, tickets and
+                                        more...
                                     </p>
                                 )}
                             </Col>
@@ -290,6 +439,10 @@ var NewPostForm = React.createClass({
                 </FormGroup>
             </form>
         );
+    },
+    componentWillUnmount() {
+        $('#timepicker-start').off();
+        $('#timepicker-end').off();
     }
 });
 
