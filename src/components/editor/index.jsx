@@ -69,7 +69,7 @@ const Component = React.createClass({
                                     {this.props.user.weeblyUser && <button className="back-to-weebly secondary secondary--small">Back to Weebly</button>}
                                 </div>
                             </div>
-                            <div className="row dashboard-editor" style={{ padding: '0 30px', height: 'calc(100vh - 133px)', background: this.props.appState.canvasBackgroundColor }}>
+                            <div className="row dashboard-editor scrollable-area" style={{ padding: '0 30px', height: 'calc(100vh - 133px)', background: this.props.appState.canvasBackgroundColor }}>
                                 <div
                                     className="col-sm-12 dashboard-editor__content"
                                 >

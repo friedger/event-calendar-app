@@ -15,9 +15,6 @@ body {
     font-family: 'Open Sans', sans-serif;
     font-size:16px;
     height: 100%;
-    #app {
-        height: 100%;
-    }
 }
 
 a {
@@ -298,6 +295,7 @@ h1 {
     &__loading-indicator-container {
         opacity: 0;
         display: inline-block;
+        vertical-align: middle;
         &.display {
             animation-name: display;
             animation-duration: 0.3s;
@@ -315,7 +313,6 @@ h1 {
     }
     &__loading-indicator {
         transition: opacity 0.3s ease-in;
-        display: inline-block;
         position: relative;
         font-size: 11px;
         background: #db4066;

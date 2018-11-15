@@ -113,9 +113,9 @@ const component = React.createClass({
         }
         return (
             <div
+                id="editor-container"
                 style={{
                     height: '100vh',
-                    overflow: 'scroll',
                     background: `${!this.userHasLinkedCalendarOrChosenManual() ? '#f5f5f5' : '#fff'}`
                 }}
             >
