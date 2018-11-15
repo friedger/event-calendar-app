@@ -43,10 +43,10 @@ var NewPostForm = React.createClass({
     getInitialState() {
         return {
             editor: false,
-            startDate: moment(this.props.fields.start.value),
+            startDate: moment.utc(this.props.fields.start.value),
             startDateFocused: false,
             endDateFocused: false,
-            endDate: moment(this.props.fields.end.value)
+            endDate: moment.utc(this.props.fields.end.value)
         };
     },
     onEditorStateChange() {
@@ -60,7 +60,10 @@ var NewPostForm = React.createClass({
     componentDidMount() {
         const timePickerStart = $('#timepicker-start');
         timePickerStart.timepicker();
-        timePickerStart.timepicker('setTime', this.state.startDate.toDate());
+        var jsStartDate = new Date();
+        jsStartDate.setHours(this.state.startDate.hours());
+        jsStartDate.setMinutes(this.state.startDate.minutes());
+        timePickerStart.timepicker('setTime', jsStartDate);
         timePickerStart.on('change', () => {
             const startDate = this.state.startDate;
             const timePickerDate = timePickerStart.timepicker('getTime');
@@ -78,7 +81,10 @@ var NewPostForm = React.createClass({
 
         const timepickerEnd = $('#timepicker-end');
         timepickerEnd.timepicker();
-        timepickerEnd.timepicker('setTime', this.state.endDate.toDate());
+        var jsEndDate = new Date();
+        jsEndDate.setHours(this.state.endDate.hours());
+        jsEndDate.setMinutes(this.state.endDate.minutes());
+        timepickerEnd.timepicker('setTime', jsEndDate);
         timepickerEnd.on('change', () => {
             const endDate = this.state.endDate;
             const timePickerDate = timepickerEnd.timepicker('getTime');
