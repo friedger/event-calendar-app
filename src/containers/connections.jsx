@@ -14,7 +14,9 @@ const hasCronofyConnection = state => {
     }
 
     if (state.appState.connections) {
-        return state.appState.connections.find(connection => connection.type === 'cronofy');
+        return state.appState.connections.find(
+            connection => connection.type === 'cronofy'
+        );
     }
 };
 
@@ -26,7 +28,10 @@ const groupedConnectionsIntoTypes = state => {
         if (!collection[current.type]) {
             collection[current.type] = [];
         }
-        collection[current.type].push({ name: current.name, calendarId: current.calendarId });
+        collection[current.type].push({
+            name: current.name,
+            calendarId: current.calendarId
+        });
         return collection;
     }, {});
 };
@@ -68,31 +73,52 @@ const ConnectionsContainer = React.createClass({
     },
     render() {
         return (
-            <div style={{ background: '#f5f5f5', height: '100%', overflow: 'auto' }}>
+            <div
+                style={{
+                    background: '#f5f5f5',
+                    height: '100%',
+                    overflow: 'auto'
+                }}
+            >
                 <Header loggedIn={true} useFluidContainer={true} />
                 <div className="container-fluid">
                     <div className="row">
                         <AccountNavigation selected={'connections'} />
-                        <div className="col-md-9 account__container">
+                        <div
+                            className="col-md-9 account__container"
+                            style={{
+                                minHeight: 'calc(100vh - 74px)',
+                                height: '100%'
+                            }}
+                        >
                             <div className="row account__header account__header--purple">
                                 <div className="col-md-12">
                                     <h2>Connections</h2>
                                     <span className="account__header__subtitle">
-                                        Manage where Event Calendar App gets your events
+                                        Manage where Event Calendar App gets
+                                        your events
                                     </span>
                                 </div>
                             </div>
-                            {(this.props.loading || this.state.loading || this.props.deletingCalendar) &&
-                                <StripePaymentStatus accountLoading={true} />}
-                            {!this.props.loading &&
+                            {(this.props.loading ||
+                                this.state.loading ||
+                                this.props.deletingCalendar) && (
+                                <StripePaymentStatus accountLoading={true} />
+                            )}
+                            {!this.props.loading && (
                                 <Connections
                                     disconnectCronofy={this.disconnectCronofy}
-                                    cronofyConnection={this.props.cronofyConnection}
+                                    cronofyConnection={
+                                        this.props.cronofyConnection
+                                    }
                                     authUrl={getCronofyAuthUrl()}
-                                    groupedConnections={this.props.groupedConnections}
+                                    groupedConnections={
+                                        this.props.groupedConnections
+                                    }
                                     deleteCalendar={this.props.deleteCalendar}
                                     icsAddedAction={this.icsAddedAction}
-                                />}
+                                />
+                            )}
                         </div>
                     </div>
                 </div>
@@ -101,4 +127,7 @@ const ConnectionsContainer = React.createClass({
     }
 });
 
-export default connect(mapState, mapDispatch)(ConnectionsContainer);
+export default connect(
+    mapState,
+    mapDispatch
+)(ConnectionsContainer);

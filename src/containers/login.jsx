@@ -23,6 +23,8 @@ const mapDispatch = dispatch => {
     );
 };
 
+const PAGE_CLASS = 'login';
+
 const LoginContainer = React.createClass({
     contextTypes: {
         router: React.PropTypes.object.isRequired
@@ -33,6 +35,10 @@ const LoginContainer = React.createClass({
                 app_id: config.intercom
             });
         }
+        document.body.classList.add(PAGE_CLASS);
+    },
+    componentWillUnmount() {
+        document.body.classList.remove(PAGE_CLASS);
     },
     getInitialState() {
         return {
