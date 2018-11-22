@@ -91,6 +91,7 @@ var CalendarSelection = React.createClass({
                             )
                         })}
                     </Row>
+                    {this.props.children}
                     </FormGroup>
                     </form>
                 </Col>

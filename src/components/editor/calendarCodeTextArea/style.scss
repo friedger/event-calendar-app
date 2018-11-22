@@ -1,4 +1,5 @@
 .calendarCode {
+    padding: 0 15px;
     p {
         font-size: 14px;
         &.subtitle {
@@ -22,7 +23,7 @@
 
 .calendarcode-container--highlight {
     background: #da4167;
-    padding: 17px 0;
+    padding: 17px 15px;
     animation-name: color;
     animation-duration: 2s;
     animation-iteration-count: infinite;

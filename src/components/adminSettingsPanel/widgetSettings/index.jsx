@@ -92,13 +92,14 @@ export default React.createClass({
                         fields={Object.keys(calendars)}
                         calendars={calendars}
                         show={this.state.settingsToDisplay === 'Event Sources'}
-                    />
+                    >
                     <RefreshSyncedCalendarsButton
                         savingEvent={this.props.savingEvent}
                         refreshEventCalendarAction={
                             this.props.refreshEventCalendarAction
                         }
-                    />
+                        />
+                </CalendarSelection>
                     <DesignFrom
                         show={this.state.settingsToDisplay === 'Design'}
                         onFormChange={putSettings.bind(

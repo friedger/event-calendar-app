@@ -40,7 +40,7 @@ const component = React.createClass({
                 <Header loggedIn={true} useFluidContainer={true} />
                 <div className="container-fluid">
                     <div className="row">
-                        <AccountNavigation selected={'account'} />
+                        <AccountNavigation selected={'notifications'} />
                         <div
                             className="col-md-9 account__container"
                             style={{ 'minHeight': 'calc(100vh - 74px)', height: '100%' }}

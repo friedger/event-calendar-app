@@ -44,7 +44,7 @@ const Connections = React.createClass({
     },
     render() {
         return (
-            <div className="row" style={{ 'paddingLeft': '30px', 'paddingRight': '30px' }}>
+            <div className={`row ${this.props.className ? this.props.className : ''}`} style={{ 'paddingLeft': '30px', 'paddingRight': '30px' }}>
                 <CronofyRedirectModal
                     show={this.state.showCronofyModal}
                     hide={this.toggleModal}

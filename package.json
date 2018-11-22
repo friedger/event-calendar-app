@@ -37,6 +37,7 @@
     "oauth": "^0.9.14",
     "passport": "^0.3.2",
     "passport-twitter": "^1.0.4",
+    "prettier": "^1.15.2",
     "prop-types": "^15.5.10",
     "react": "^15.6.2",
     "react-addons-css-transition-group": "15.6.2",

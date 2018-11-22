@@ -10,29 +10,30 @@ export default React.createClass({
     componentDidMount() {
         addEventcalScript(this.props.userId);
         if (window.eventCalendarAppUtilities) {
-            window.eventCalendarAppUtilities.init(this.props.eventCalWidgetUuid);
+            window.eventCalendarAppUtilities.init(
+                this.props.eventCalWidgetUuid
+            );
         }
     },
     render() {
         return (
-            <Row>
-                <Col md={12}>
-                    <p>{this.props.headerText}</p>
-                    <div
-                        data-widgetuuid={this.props.eventCalWidgetUuid}
-                        className={cn(
-                            { show: this.props.show },
-                            { adjusted: this.props.suggestionsActive },
-                            'eca-app-container'
-                        )}
-                    />
-                </Col>
-            </Row>
+            <div>
+                <p>{this.props.headerText}</p>
+                <div
+                    data-widgetuuid={this.props.eventCalWidgetUuid}
+                    className={cn(
+                        { show: this.props.show },
+                        'eca-app-container'
+                    )}
+                />
+            </div>
         );
     },
     componentWillUnmount() {
         if (window.eventCalendarAppUtilities) {
-            window.eventCalendarAppUtilities.destroy(this.props.eventCalWidgetUuid);
+            window.eventCalendarAppUtilities.destroy(
+                this.props.eventCalWidgetUuid
+            );
         }
         this.props.eventcalRemovedAction();
     }

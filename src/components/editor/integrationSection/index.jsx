@@ -9,8 +9,7 @@ export default React.createClass({
     render() {
         const { weeblyUser, bigcommerceUser, shopifyUser, eventCalWidgetUuid, userId } = this.props;
         return (
-            <div>
-                <hr />
+            <div className="react-fragment">
                 {weeblyUser && (
                     <BackToWeeblyMessage></BackToWeeblyMessage>
                 )}

@@ -107,6 +107,7 @@ const ConnectionsContainer = React.createClass({
                             )}
                             {!this.props.loading && (
                                 <Connections
+                                    className="account__content"
                                     disconnectCronofy={this.disconnectCronofy}
                                     cronofyConnection={
                                         this.props.cronofyConnection

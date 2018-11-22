@@ -28,12 +28,10 @@ export default React.createClass({
     },
     render() {
         return (
-            <Row
-                className={cn('calendarcode-container', {
+                <div className={cn('calendarcode-container', 'calendarCode', {
                     'calendarcode-container--highlight': this.props.highlight
                 })}
-            >
-                <Col md={12} className="calendarCode">
+>
                     <p className="subtitle">Embed Code</p>
                     <p>
                         Copy this code to the part of your site you would like the Event
@@ -107,8 +105,7 @@ export default React.createClass({
                     {this.props.displayPublicCalendarForm &&
                         <PublicCalendarForm displayDirectUrl={true} />
                     }
-                </Col>
-            </Row>
+                </div>
         );
     }
 });
