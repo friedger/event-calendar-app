@@ -127,10 +127,8 @@ export function assignFilter(filterData) {
                     filterData: filterData
                 }
             });
-            setTimeout(() => {
-                getAvailableFilters()(dispatch);
-                triggerWidgetRefresh({ breakCache: true });
-            }, 4000);
+            getAvailableFilters()(dispatch);
+            triggerWidgetRefresh({ breakCache: true });
         });
     };
 }
