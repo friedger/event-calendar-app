@@ -33,7 +33,7 @@ export default React.createClass({
                     additionalNegativeHeight={this.state.additionalNegativeHeight}
                 >
                     <div className="row">
-                        <div className="col-md-12" style={{ height: 'calc(100vh - 133px)' }}>
+                        <div className="col-md-12">
                             {displayAddEventTip && (
                                 <div className="newPost__tip">
                                     🚧 Get started by adding your first event. Dont worry, you can

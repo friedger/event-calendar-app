@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "browserslist": [
+    "last 4 version"
+],
   "scripts": {
     "start": "NODE_ENV=development node bin/www",
     "secure": "NODE_ENV=secureDev node bin/www",
@@ -75,6 +78,7 @@
     "winston-logzio": "^1.0.3"
   },
   "devDependencies": {
+    "autoprefixer": "^9.3.1",
     "babel": "^6.3.26",
     "babel-core": "^6.4.5",
     "babel-loader": "^6.2.4",
@@ -93,6 +97,7 @@
     "json-loader": "^0.5.4",
     "node-sass": "^3.4.2",
     "nodemon": "^1.8.1",
+    "postcss-loader": "^3.0.0",
     "react-tools": "^0.10.0",
     "react-transform": "0.0.3",
     "react-transform-catch-errors": "^1.0.2",

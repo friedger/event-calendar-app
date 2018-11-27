@@ -23,7 +23,7 @@ import WidgetWelcomeModal from '../components/editor/widgetWelcomeModal';
 import cn from 'classnames';
 import getCronofyAuthUrl from '../utils/getCronofyAuthUrl';
 
-const mapState = ({ appState, form, eventcalState, eventState, onBoardingState, eventSavingState, widgetState }) => {
+const mapState = ({ appState, form, eventcalState, eventState, onBoardingState, eventSavingState, widgetState, account }) => {
     return {
         appState,
         form,
@@ -31,7 +31,8 @@ const mapState = ({ appState, form, eventcalState, eventState, onBoardingState, 
         eventState,
         onBoardingState,
         eventSavingState,
-        widgetState
+        widgetState,
+        account
     };
 };
 
@@ -153,6 +154,7 @@ const component = React.createClass({
                                         connections={connections}
                                         user={this.props.appState.user}
                                         appState={this.props.appState}
+                                        accountState={this.props.account}
                                         calendars={this.props.appState.calendars}
                                         authUrl={getCronofyAuthUrl()}
                                         suggestions={this.props.appState.suggestions && !this.props.eventcalState.eventcalHasNoEvents}

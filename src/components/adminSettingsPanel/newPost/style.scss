@@ -23,15 +23,9 @@
 }
 
 .new-post-container {
-    height: calc(100vh - 77px - 56px);
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
     display: flex;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
     flex-direction: column;
+    min-height: 0;
 }
 
 @keyframes color {

@@ -28,7 +28,7 @@ module.exports = {
                 test: /\.(s*)css$/,
                 loader: ExtractTextPlugin.extract(
                     // activate source maps via loader query
-                    'css?sourceMap!' + 'sass?sourceMap&'
+                    'css?sourceMap!' + 'sass?sourceMap&' + 'postcss-loader'
                 )
             },
             { include: /\.json$/, loaders: ['json-loader'] }
