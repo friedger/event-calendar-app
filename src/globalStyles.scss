@@ -5,6 +5,7 @@
 @import './eventcalOverrides';
 @import './datepicker';
 @import './bootstraptables';
+@import './_modal';
 
 html {
     height: 100%;
@@ -510,6 +511,10 @@ h1 {
 .help-block {
     color: #ee1817;
     font-weight: bold;
+}
+
+.modal-container {
+    padding: 0 30px 34px 30px;
 }
 
 #event-calendar-app .calendar-list-event:after {

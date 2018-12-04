@@ -25,7 +25,7 @@ button, a, .button {
             padding: 4px 17px;
         }
         &.disabled {
-            pointer: default;
+            cursor: default;
             &:hover {
                 text-decoration: none;
             }
@@ -132,6 +132,7 @@ button, a, .button {
         &:hover {
             background: #ee4a72;
             color:#fff;
+            text-decoration: none;
         }
         &--inverse {
             font-size: 14px;
@@ -210,6 +211,16 @@ button, a, .button {
             position: absolute;
             right: 15px;
         }
+    }
+
+    &.modal-embed {
+        // For use in full width buttons that sit at the bottom of modals
+        border-radius: 0 0 2px 2px;
+        margin: 0;
+        &:focus {
+            outline: 0;
+        }
+        border-bottom: 0;
     }
 
     &.submit-inline {

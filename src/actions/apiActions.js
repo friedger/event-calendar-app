@@ -139,3 +139,20 @@ export const putResetPassword = data => {
             });
     });
 };
+
+export const putCancelSubscription = (data) => {
+    const token = cookieUtil.getItem('eventcal-admin');
+
+    return new Promise((resolve, reject) => {
+        request
+            .put(`${config.apiUrl}/cancel?token=${token}`)
+            .send(data)
+            .end((err, res) => {
+                if (err) {
+                    var error = { _error: 'There was an error' };
+                    return reject(error);
+                }
+                resolve();
+            });
+    });
+}

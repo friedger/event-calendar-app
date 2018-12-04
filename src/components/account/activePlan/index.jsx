@@ -3,7 +3,7 @@ import React from 'react';
 import capitalize from 'capitalize';
 import UpdateCardDetails from '../updateCardDetails';
 import ShopifyCancellationInstructions from '../../modals/shopifyCancellationInstructions';
-import CancellationModal from '../../../containers/cancellationModal';
+import CancellationContainer from '../cancellationContainer';
 
 export default React.createClass({
     getInitialState() {
@@ -67,7 +67,14 @@ export default React.createClass({
                 </div>
                 {updateCardDetails && <UpdateCardDetails updateCardDetails={updateCardDetails} />}
                 <div className="active-plan__cancel">
-                    <CancellationModal></CancellationModal>
+                    <CancellationContainer>
+                        <a
+                            className=""
+                        >
+                            Request cancellation
+                        </a>
+
+                    </CancellationContainer>
                 </div>
                 <ShopifyCancellationInstructions show={this.state.modalOpen} />
             </div>
