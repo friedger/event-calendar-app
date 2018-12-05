@@ -86,8 +86,8 @@ const CancellationContainer = React.createClass({
                         <i className="fa fa-times" aria-hidden="true"></i>
                     </div>
                     {(this.state.stage === 1) && <CancellationModal
-                        subscriberCount={0}
-                        widgetViews={0}
+                        subscriberCount={subscriberCount}
+                        widgetViews={widgetViews}
                         shopifyUser={isShopifyUser}
                         loading={analyticsState.loading}
                         clickedContinue={() => this.setState({stage: 2})}
