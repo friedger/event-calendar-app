@@ -5,6 +5,7 @@ import TimezoneSelection from '../timezoneSelection';
 import CalendarSelection from '../calendarSelection';
 import ViewModeSelection from '../viewModeSelection';
 import MapsSelection from '../mapsSelection';
+import SocialSelection from '../socialSelection';
 import SubscriptionButtonSelection from '../subscriptionButtonSelection';
 import featurePermissions from '../../../utils/featurePermissions';
 import cn from 'classnames';
@@ -147,6 +148,14 @@ export default React.createClass({
                                 'maps'
                             )}
                         />
+                        <SocialSelection putSettingsAction={putSettings.bind(
+                            null,
+                            eventCalWidgetUuid
+                        )}
+                        validWithPlan={featurePermissions.checkFeatureAvailability(
+                            userStatus,
+                            'social'
+                        )}></SocialSelection>
                         <SubscriptionButtonSelection
                             validWithPlan={featurePermissions.checkFeatureAvailability(
                                 userStatus,
