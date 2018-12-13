@@ -80,9 +80,10 @@ const Component = React.createClass({
                                     <Suggestions suggestionToggleAction={this.props.suggestionToggleAction} />
                                 )}
                                 {this.props.user.weeblyUser && (
-                                    <button className="back-to-weebly secondary secondary--small">
+                                    <a href="https://www.weebly.com/editor/main.php"
+                                    target="_blank" className="back-to-weebly secondary secondary--small">
                                         Back to Weebly
-                                    </button>
+                                    </a>
                                 )}
                             </div>
                         </div>
