@@ -5,7 +5,7 @@ if (typeof window !== 'undefined') {
 import React from 'react';
 
 import * as appActions from '../../actions/index';
-const Link = require('react-router').Link;
+import { Link } from "react-router-dom";
 
 module.exports = React.createClass({
     render() {

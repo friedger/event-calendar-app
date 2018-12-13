@@ -3,21 +3,23 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import * as appActions from '../actions/index';
 import * as calendarActions from '../actions/calendarActions';
-const Link = require('react-router').Link;
 import WeeblyIframe from '../components/weeblyIframe';
 import WeeblyNoSubscriptionMessage from '../components/weeblyIframe/weeblyNoSubscriptionMessage';
 import WeeblyWelcomeMessage from '../components/weeblyIframe/weeblyWelcomeMessage';
 
-const mapState = ({appState}) => {
-    return {appState}
-}
+const mapState = ({ appState }) => {
+    return { appState };
+};
 
-const mapDispatch = (dispatch) => {
-    return bindActionCreators({
-        ...appActions,
-        ...calendarActions
-    }, dispatch);
-}
+const mapDispatch = dispatch => {
+    return bindActionCreators(
+        {
+            ...appActions,
+            ...calendarActions
+        },
+        dispatch
+    );
+};
 
 const component = React.createClass({
     contextTypes: {
@@ -28,8 +30,7 @@ const component = React.createClass({
         this.props.getConnections();
     },
     displayMessage(messageType) {
-
-        const {user, connections} = this.props.appState;
+        const { user, connections } = this.props.appState;
 
         if (!user) {
             return false;
@@ -45,12 +46,15 @@ const component = React.createClass({
     render() {
         return (
             <div>
-                {this.displayMessage('noSubscription') && <WeeblyNoSubscriptionMessage/>}
-                {this.displayMessage('welcome') && <WeeblyWelcomeMessage/>}
-                <WeeblyIframe/>
+                {this.displayMessage('noSubscription') && <WeeblyNoSubscriptionMessage />}
+                {this.displayMessage('welcome') && <WeeblyWelcomeMessage />}
+                <WeeblyIframe />
             </div>
-        )
+        );
     }
 });
 
-export default connect(mapState, mapDispatch)(component)
+export default connect(
+    mapState,
+    mapDispatch
+)(component);

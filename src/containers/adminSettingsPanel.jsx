@@ -17,6 +17,7 @@ import AdminSettingsPanelHeader from '../components/adminSettingsPanel/header';
 import EventActions from '../components/adminSettingsPanel/eventActions';
 import escapeCSS from '../utils/escapeCSS';
 import triggerWidgetRefresh from '../utils/triggerWidgetRefresh';
+import { withRouter } from "react-router-dom";
 
 const mapState = ({
     appState,
@@ -73,7 +74,7 @@ const component = React.createClass({
     },
 
     toggleConnectionsScreen() {
-        this.context.router.push('/connections');
+        this.props.history.push('/connections');
     },
     eventActivated() {
         return this.props.eventState.calendar_id && this.props.eventState.uuid;
@@ -321,7 +322,7 @@ const component = React.createClass({
     }
 });
 
-export default connect(
+export default withRouter(connect(
     mapState,
     mapDispatch
-)(component);
+)(component));

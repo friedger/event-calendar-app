@@ -18,5 +18,5 @@ export default {
             console.info('Failed to fire intercom event. Intercom does not exist');
         }
         Intercom('trackEvent', eventName);
-    }
+    }    
 }

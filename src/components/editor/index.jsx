@@ -5,7 +5,6 @@ import React from 'react';
 import Loader from 'react-loader';
 import cn from 'classnames';
 import { withRouter } from 'react-router';
-import { browserHistory } from 'react-router';
 
 import AdminSettingsPanel from '../../containers/adminSettingsPanel';
 import LinkCalendar from '../../containers/linkCalendar';
@@ -32,14 +31,14 @@ const Component = React.createClass({
         const onBoardingState = this.props.onBoardingState;
         if (
             (onBoardingState.selected_manual_events || onBoardingState.linked_calendar) &&
-            this.props.router.location.pathname.indexOf('link-calendar') > 0
+            this.props.location.pathname.indexOf('link-calendar') > 0
         ) {
             window.location.href = '/editor';
         }
     },
     render() {
         const { authUrl } = this.props;
-        const sizeOfHeader = '77px'
+        const sizeOfHeader = '77px';
         const showIntegrationSection =
             this.props.userHasSubscribed &&
             this.props.onBoardingState.user_clicked_added_script === false &&
@@ -56,14 +55,14 @@ const Component = React.createClass({
         return (
             <div style={{ height: '100%' }}>
                 <div style={{ height: '100%' }}>
-                    <div className="col-sm-5 calendar-settings col-sm-push-7" style={{height: `calc(100vh - ${nextStepBannerIsBeingDisplayed ? '123px' : sizeOfHeader})`}}>
+                    <div className="col-sm-5 calendar-settings col-sm-push-7" style={{ height: `calc(100vh - ${nextStepBannerIsBeingDisplayed ? '123px' : sizeOfHeader})` }}>
                         <AdminSettingsPanel
                             eventCalWidgetUuid={this.props.eventCalWidgetUuid}
                             userHasSubscribed={this.props.userHasSubscribed}
                             userId={this.props.user.userId}
                         />
                     </div>
-                    <div className="col-sm-7 col-sm-pull-5 event-calendar-preview" style={{ boxShadow: '0 0 25px rgba(0,0,0,.11)' }} style={{height: `calc(100vh - ${nextStepBannerIsBeingDisplayed ? '123px' : sizeOfHeader})`}}>
+                    <div className="col-sm-7 col-sm-pull-5 event-calendar-preview" style={{ boxShadow: '0 0 25px rgba(0,0,0,.11)' }} style={{ height: `calc(100vh - ${nextStepBannerIsBeingDisplayed ? '123px' : sizeOfHeader})` }}>
                         <div className="dashboard-header dashboard-header--left row">
                             <div className="col-md-12">
                                 <span>Event calendar preview</span>

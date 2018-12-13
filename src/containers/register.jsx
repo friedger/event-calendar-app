@@ -9,7 +9,7 @@ import { Row, Col } from 'react-bootstrap';
 import SocialProof from '../components/authentication/socialProof';
 import config from '../../config';
 import InlineSVG from 'svg-inline-react';
-const Link = require('react-router').Link;
+import { Link } from "react-router-dom";
 
 const mapState = ({ form, initialRegisterState }) => {
     return {

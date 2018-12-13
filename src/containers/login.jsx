@@ -6,7 +6,8 @@ import Login from '../components/authentication/login';
 import Header from '../components/header';
 import config from '../../config';
 import { Row, Col, Modal } from 'react-bootstrap';
-const Link = require('react-router').Link;
+import { Link } from "react-router-dom";
+import { parse } from 'query-string';
 
 const mapState = ({ loginState }) => {
     return {
@@ -41,8 +42,9 @@ const LoginContainer = React.createClass({
         document.body.classList.remove(PAGE_CLASS);
     },
     getInitialState() {
+        const query = parse(this.props.location.search);
         return {
-            showLoginModal: this.props.location.query.loginFailure
+            showLoginModal: query.loginFailure
         };
     },
     helpClick(e) {

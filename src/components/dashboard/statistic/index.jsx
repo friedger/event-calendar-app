@@ -3,7 +3,7 @@ import React from 'react';
 var LineChart = require('react-chartjs').Line;
 import Loader from 'react-loader';
 import cn from 'classnames';
-const Link = require('react-router').Link;
+import { Link } from "react-router-dom";
 
 const options = {
     title: { display: false },

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import * as appActions from '../actions/index';
-const Link = require('react-router').Link;
+import { Link } from "react-router-dom";
 import Header from '../components/header';
 import AccountErrorMessage from '../components/errorPages/accountErrorMessage';
 

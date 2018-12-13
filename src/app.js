@@ -1,15 +1,12 @@
-if (typeof window !== 'undefined') {
-    require('./globalStyles.scss');
-    require('./dashboard.scss');
-}
+require('./globalStyles.scss');
+require('./dashboard.scss');
 
 import ReactDOM from 'react-dom';
 import React from 'react'; //eslint-disable-line
-import routes from './routes.jsx';
-import {Router} from 'react-router';
+import Routes from './routes.jsx';
+import { BrowserRouter, Route } from 'react-router-dom';
 import store from './store';
 import { Provider } from 'react-redux';
-import { browserHistory } from 'react-router';
 import ga from 'react-ga';
 require('es6-promise').polyfill();
 require('es6-object-assign').polyfill();
@@ -23,23 +20,42 @@ if (window.NODE_ENV === 'production') {
 
 ga.initialize('UA-74477503-1');
 
-browserHistory.listen(function (location) {
+const withTracker = (WrappedComponent) => {
+    const trackPage = page => {
+        ga.pageview(page);
+        if (window.Intercom) {
+            window.Intercom('update');
+        }
+    };
 
-    if (location.pathname === '/dashboard/transaction-complete') {
-        window.google_trackConversion({
-            google_conversion_id: 1023858504,
-            google_conversion_label: "4MSoCIXN3GkQyK6b6AM",  // if provided, remove this line if not provided
-            google_remarketing_only: false,
-            google_conversion_language: "en",
-            google_conversion_format: "3",
-            google_conversion_color: "ffffff"
-        });
-    }
+    const HOC = React.createClass({
+        componentDidMount() {
+            const page = this.props.location.pathname;
+            trackPage(page);
+        },
 
-    ga.pageview(window.location.pathname);
-    if (window.Intercom) {
-        Intercom('update');
-    }
-});
+        componentWillReceiveProps(nextProps) {
+            const currentPage = this.props.location.pathname;
+            const nextPage = nextProps.location.pathname;
 
-ReactDOM.render(<Provider store={store}><Router history={browserHistory}>{routes(store)}</Router></Provider>, document.getElementById('app'));
+            if (currentPage !== nextPage) {
+                trackPage(nextPage);
+            }
+        },
+
+        render() {
+            return <WrappedComponent {...this.props} />;
+        }
+    });
+
+    return HOC;
+};
+
+ReactDOM.render(
+    <Provider store={store}>
+        <BrowserRouter>
+            <Route component={withTracker(Routes)} />
+        </BrowserRouter>
+    </Provider>,
+    document.getElementById('app')
+);

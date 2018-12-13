@@ -12,6 +12,8 @@ import * as widgetActions from '../actions/widgetActions';
 const cookieUtil = require('../utils/cookieUtil').default;
 const config = require('../../config');
 import get from 'lodash.get';
+import { parse } from 'query-string';
+import { withRouter } from "react-router-dom";
 
 import Editor from '../components/editor';
 import Header from '../components/header';
@@ -22,6 +24,8 @@ import WidgetWelcomeModal from '../components/editor/widgetWelcomeModal';
 
 import cn from 'classnames';
 import getCronofyAuthUrl from '../utils/getCronofyAuthUrl';
+import request from 'superagent';
+import intercom from '../utils/intercom';
 
 const mapState = ({ appState, form, eventcalState, eventState, onBoardingState, eventSavingState, widgetState, account }) => {
     return {
@@ -51,12 +55,37 @@ const mapDispatch = dispatch => {
     );
 };
 
-const component = React.createClass({
+const Dashboard = React.createClass({
     getInitialState() {
         return {
             userHasSeenSuccessfulLinkModal: cookieUtil.getItem('seen-successful-link-modal'),
             displayAddedScriptModal: false
         };
+    },
+    componentWillMount() {
+        if (this.props.location.pathname.indexOf('link-calendar') > -1) {
+            return intercom.trackEvent('visited-link-page-router-enter');
+        }
+        if (this.props.location.pathname.indexOf('editor') > -1) {
+            const token = cookieUtil.getItem('eventcal-admin');
+            if (!token) {
+                return this.props.history.replace({ pathname: '/login', query: { loginFailure: true } });
+            }
+            if (!this.props.match.params.eventCalWidgetUuid) {
+                // get the users default widget
+                return request.get(`${config.apiUrl}/widgets?token=${token}`).end((err, res) => {
+                    const defaultUuid = res.body && res.body[0] && res.body[0].uuid;
+                    if (defaultUuid) {
+                        this.props.history.replace(`/editor/${res.body[0].uuid}`);
+                        this.props.getWidget(res.body[0].uuid);
+                    } else {
+                        this.props.history.replace('/home/account-error');
+                    }
+                    intercom.trackEvent('visited-dashboard-router-enter');
+                });
+            }
+            intercom.trackEvent('visited-dashboard-router-enter');
+        }
     },
     componentWillUnmount() {
         this.props.blowState();
@@ -67,12 +96,15 @@ const component = React.createClass({
         }
     },
     componentDidMount() {
+        const eventCalWidgetUuid = this.props.match.params.eventCalWidgetUuid;
+        if (eventCalWidgetUuid) {
+            this.props.getWidget(eventCalWidgetUuid);
+        }
+        this.props.getCalendars(eventCalWidgetUuid);
+        this.props.getSettings(eventCalWidgetUuid);
         this.props.getUser();
-        this.props.getCalendars(this.props.params.eventCalWidgetUuid);
-        this.props.getSettings(this.props.params.eventCalWidgetUuid);
         this.props.getConnections();
         this.props.getPlan();
-        this.props.getWidget(this.props.params.eventCalWidgetUuid);
         this.props.getOnboarding();
         document.addEventListener('ECA_essential_loaded', this.ecaEssentialLoadedHandler);
     },
@@ -95,12 +127,13 @@ const component = React.createClass({
     render() {
         const { user, connections, settingsLoaded } = this.props.appState;
         const onBoarding = this.props.onBoardingState;
+        const match = this.props.match;
         const widgetHasAnAlias = get(this.props.widgetState, 'widget.alias');
         const widgetHasLoaded = get(this.props.widgetState, 'widget');
 
         const userHasRegisteredOrCancelled = user && (user.status === 'registered' || user.status === 'cancelled');
         const userHasSubscribed = user && (user.status !== 'cancelled' && user.status !== 'registered');
-
+        const query = parse(location.search);
         const containerClassNames = cn(
             {
                 'container-fluid': this.userHasLinkedCalendarOrChosenManual() && (userHasSubscribed || userHasRegisteredOrCancelled)
@@ -125,8 +158,8 @@ const component = React.createClass({
                         <WidgetWelcomeModal
                             show={!widgetHasAnAlias}
                             hide={() => {
-                                this.props.getWidget(this.props.params.eventCalWidgetUuid);
-                                this.props.getCalendars(this.props.params.eventCalWidgetUuid);
+                                this.props.getWidget(match.params.eventCalWidgetUuid);
+                                this.props.getCalendars(match.params.eventCalWidgetUuid);
                             }}
                             lastKnownSuccessfulAlias={this.props.widgetState.lastKnownSuccessfulAlias}
                         />
@@ -144,7 +177,7 @@ const component = React.createClass({
                         useFluidContainer={this.userHasLinkedCalendarOrChosenManual()}
                         loggedIn={true}
                     />
-                    {this.props.location.query.showSuccessModal && !this.state.userHasSeenSuccessfulLinkModal && <SuccessfulLinkModal />}
+                    {query.showSuccessModal && !this.state.userHasSeenSuccessfulLinkModal && <SuccessfulLinkModal />}
                     <div className={containerClassNames}>
                         <div className="row">
                             {connections &&
@@ -162,7 +195,7 @@ const component = React.createClass({
                                         suggestionToggleAction={this.props.toggleSugesstions}
                                         eventcalRemovedAction={this.props.eventcalRemoved}
                                         eventcalHasNoEvents={this.props.eventcalState.eventcalHasNoEvents}
-                                        eventCalWidgetUuid={this.props.params.eventCalWidgetUuid}
+                                        eventCalWidgetUuid={match.params.eventCalWidgetUuid}
                                         onBoardingState={this.props.onBoardingState}
                                         calendarBuildUrl={config.calendarBuildUrl}
                                         userHasSubscribed={userHasSubscribed}
@@ -188,4 +221,4 @@ const component = React.createClass({
     }
 });
 
-export default connect(mapState, mapDispatch)(component);
+export default withRouter(connect(mapState, mapDispatch)(Dashboard));

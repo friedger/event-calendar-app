@@ -1,6 +1,7 @@
 require('../components/dashboard/style.scss');
 
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import * as widgetActions from '../actions/widgetActions';

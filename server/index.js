@@ -60,7 +60,6 @@ app.use('/account', notLoggedInRedirect, renderApp);
 app.use('/notifications', notLoggedInRedirect, renderApp);
 app.use('/add-subscription', notLoggedInRedirect, renderDashboard);
 app.use('/link-calendar', notLoggedInRedirect, renderApp);
-app.use('/firsttime-link-calendar', notLoggedInRedirect, renderApp);
 app.use('/pricing', function (req, res, next) {
     res.render('./staticSite/pricing.hbs');
 });

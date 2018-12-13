@@ -7,6 +7,7 @@ import * as appActions from '../actions/index';
 
 import cookieUtil from '../utils/cookieUtil';
 const config = require('../../config');
+import { parse } from 'query-string';
 import Account from '../components/account';
 import StripePaymentStatus from '../components/account/stripePaymentStatus';
 import AccountNavigation from '../components/account/accountNavigation';
@@ -53,6 +54,8 @@ const component = React.createClass({
         } = this.props.account;
         const user = this.props.appState.user;
 
+        const query = parse(location.search);
+
         const accountProps =
             user && user.shopifyUser
                 ? { activePlan, beginPaymentUrl, shopifyUser: true, userHasNoPlan }
@@ -95,13 +98,13 @@ const component = React.createClass({
                                     paymentError ||
                                     updatingPaymentDetails ||
                                     updatedPaymentDetails ||
-                                    this.props.location.query.planUpdated ||
+                                    query.planUpdated ||
                                     accountLoading) && (
                                         <StripePaymentStatus
                                             paymentLoading={paymentLoading}
                                             paymentError={paymentError}
                                             paymentSuccess={paymentSuccess}
-                                            updateSuccessful={this.props.location.query.planUpdated}
+                                            updateSuccessful={query.planUpdated}
                                             accountLoading={accountLoading}
                                             updatedPaymentDetails={updatedPaymentDetails}
                                             updatingPaymentDetails={updatingPaymentDetails}

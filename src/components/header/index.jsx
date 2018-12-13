@@ -3,7 +3,7 @@ require('./style.scss');
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-const Link = require('react-router').Link;
+import { Link, NavLink } from 'react-router-dom';
 import get from 'lodash.get';
 
 import * as appActions from '../../actions/index';
@@ -62,9 +62,9 @@ var component = React.createClass({
                                             </a>
                                         </li>
                                         <li>
-                                            <Link className="bold" activeClassName="active" to="/login">
+                                            <NavLink className="bold" activeClassName="active" to="/login">
                                                 Login
-                                            </Link>
+                                            </NavLink>
                                         </li>
                                         <li>
                                             <a href="/register" className="secondary" style={{ display: 'inline' }}>
@@ -76,22 +76,27 @@ var component = React.createClass({
                                     <ul className="logged-in">
                                         {!this.props.doNotDisplayDashboardLink && (
                                             <li>
-                                                <Link activeClassName="active" to="/dashboard">
+                                                <NavLink activeClassName="active" to="/dashboard">
                                                     Dashboard
-                                                </Link>
+                                                </NavLink>
                                             </li>
                                         )}
                                         <li>
-                                            <Link activeClassName="active" to="/account">
+                                            <NavLink activeClassName="active" to="/account">
                                                 Account
-                                            </Link>
+                                            </NavLink>
                                         </li>
                                         <li>
                                             <a href="https://support.eventcalendarapp.com" target="_blank">
                                                 Help
                                             </a>
                                         </li>
-                                        <li onClick={() => appActions.logOut()}>
+                                        <li
+                                            onClick={e => {
+                                                e.preventDefault();
+                                                appActions.logOut();
+                                            }}
+                                        >
                                             <a href="#">Log Out</a>
                                         </li>
                                     </ul>

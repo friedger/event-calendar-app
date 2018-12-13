@@ -27,16 +27,12 @@ export const BLOW_STATE = 'BLOW_STATE';
 import request from 'superagent';
 const config = require('../../config');
 
-import { browserHistory } from 'react-router'
-
-if (typeof window !== 'undefined') {
-    var cookieUtil = require('../utils/cookieUtil').default;
-}
+var cookieUtil = require('../utils/cookieUtil').default;
 
 export function blowState() {
     return {
         type: 'BLOW_STATE'
-    }
+    };
 }
 
 export function getUser() {
@@ -54,7 +50,7 @@ export function getUser() {
                     return dispatch({
                         type: GET_USER_FAILURE,
                         error: err
-                    })
+                    });
                 }
 
                 if (window.location.href && window.location.href.indexOf('weebly-iframe') === -1 && config.intercom) {
@@ -73,7 +69,7 @@ export function getUser() {
                 });
 
             });
-    }
+    };
 }
 
 export function addUser(formState) {
@@ -83,13 +79,13 @@ export function addUser(formState) {
         });
         request
             .post(`${config.apiUrl}/users`)
-            .send({username: formState.username.value, password: formState.password.value, email: formState.email.value})
+            .send({ username: formState.username.value, password: formState.password.value, email: formState.email.value })
             .end((err, res) => {
                 if (err) {
                     return dispatch({
                         type: ADD_USER_FAILURE,
                         error: err
-                    })
+                    });
                 }
 
                 dispatch({
@@ -98,10 +94,10 @@ export function addUser(formState) {
                 });
 
             });
-    }
+    };
 }
 
-export function getOnboardingStatus(pushToEditorWhenDone) {
+export function getOnboardingStatus() {
     return (dispatch) => {
         const token = cookieUtil.getItem('eventcal-admin');
 
@@ -124,7 +120,7 @@ export function getOnboardingStatus(pushToEditorWhenDone) {
                 });
 
             });
-    }
+    };
 }
 
 export function postOnboarding(update) {
@@ -158,19 +154,19 @@ export function popuplateRegisterFormFromQuery(query) {
     return {
         type: POPULATE_REGISTER_FORM,
         payload: query
-    }
+    };
 }
 
-export function toggleSugesstions(){
+export function toggleSugesstions() {
     return {
         type: TOGGLE_SUGESSTIONS
-    }
+    };
 }
 
 export function eventcalRemoved() {
     return {
         type: EVENTCAL_REMOVED
-    }
+    };
 }
 
 export function canvasBackgroundModified(value) {
@@ -196,10 +192,11 @@ export function manuallyTriggeredRefresh() {
 export function logOut() {
     cookieUtil.removeItem('eventcal-admin');
     cookieUtil.removeItem('eventcal-admin', '/', '.eventcalendarapp.com');
+    cookieUtil.removeItem('eventcal-admin', '/', 'dev.eventcalendarapp.com');
     cookieUtil.removeItem('eventcal-admin', '/', 'localhost');
 
     if (window.Intercom) {
-        Intercom('shutdown');
+        window.Intercom('shutdown');
     }
-    window.location.href='/';
+    // window.location.href = '/';
 }

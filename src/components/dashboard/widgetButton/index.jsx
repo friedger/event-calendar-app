@@ -1,7 +1,7 @@
 require('./style.scss');
 
 import React from 'react';
-const Link = require('react-router').Link;
+import { Link } from "react-router-dom";
 import {Button, Modal} from 'react-bootstrap';
 
 const WidgetButton = React.createClass({

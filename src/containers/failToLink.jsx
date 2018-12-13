@@ -2,8 +2,9 @@ import { connect } from 'react-redux';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import * as appActions from '../actions/index';
-const Link = require('react-router').Link;
+import { Link } from "react-router-dom";
 import Header from '../components/header';
+import { withRouter } from "react-router-dom";
 
 import getCronofyAuthUrl from '../utils/getCronofyAuthUrl';
 
@@ -30,7 +31,7 @@ const component = React.createClass({
                         <h2 style={{'fontWeight': 'bold'}}>We need to connect to your calendar :(</h2>
                         <p>You can read more about why we need to connect to a calendar <a target="_blank" href="https://support.eventcalendarapp.com/connecting-your-calendar-events-to-event-calendar-app/why-do-i-have-to-connect-my-calendar-to-event-calendar-app">here</a>.</p>
                         <p>Once you've got your calendar account ready, <strong>try linking your calendar again.</strong></p>
-                        <a href='#' onClick={() => {this.context.router.push('link-calendar')}} className="start-trial">Back to link options</a>
+                        <a href='#' onClick={() => {this.props.history.push('link-calendar')}} className="start-trial">Back to link options</a>
                     </div>
                 </div>
             </div>
@@ -38,4 +39,4 @@ const component = React.createClass({
     }
 });
 
-export default connect(mapState, mapDispatch)(component)
+export default withRouter(connect(mapState, mapDispatch)(component));

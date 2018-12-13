@@ -7,6 +7,7 @@ import { postUsers, postLogin } from '../../../actions/apiActions';
 import { Row, Col } from 'react-bootstrap';
 import Loader from 'react-loader';
 import cn from 'classnames';
+import { withRouter } from "react-router-dom";
 
 function triggerRegistrationConversion() {
     if (window.google_trackConversion) {
@@ -65,7 +66,7 @@ var Component = React.createClass({
                                 })
                                 .then(
                                     () => {
-                                        return router.push('/link-calendar');
+                                        return this.props.history.push('/link-calendar');
                                     },
                                     err => {
                                         return Promise.reject(err);
@@ -121,7 +122,7 @@ var Component = React.createClass({
     }
 });
 
-export default (Component = reduxForm(
+export default Component = withRouter(reduxForm(
     {
         // <----- THIS IS THE IMPORTANT PART!
         form: 'register', // a unique name for this form

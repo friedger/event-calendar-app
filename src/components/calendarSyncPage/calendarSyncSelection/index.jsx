@@ -210,20 +210,6 @@ export default React.createClass({
                     </ConnectionCard>
 
                     <ConnectionCard
-                        header={'Facebook'}
-                        description={'Use for connecting to Facebook events'}
-                    >
-                        <a
-                            href="#"
-                            onClick={() =>
-                                this.setState({ showFacebookModal: true })}
-                            className="button danger"
-                        >
-                            Temporarily disabled
-                        </a>
-                    </ConnectionCard>
-
-                    <ConnectionCard
                         header={'ICS'}
                         description={
                             'Requires you to know the .ICS feed url of your calendar.'

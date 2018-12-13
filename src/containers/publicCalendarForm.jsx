@@ -24,9 +24,9 @@ const component = React.createClass({
     render() {
         const {
             putWidgetPubliclyAvailable,
-            putWidgetAlias,
-            params: { eventCalWidgetUuid }
+            putWidgetAlias
         } = this.props;
+        const eventCalWidgetUuid = this.props.match.params.eventCalWidgetUuid;
         return (
             <PublicCalendarForm
                 eventCalWidgetUuid={eventCalWidgetUuid}

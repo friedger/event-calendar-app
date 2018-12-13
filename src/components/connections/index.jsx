@@ -1,22 +1,19 @@
 require('./style.scss');
 import React from 'react';
 import Connection from '../connection';
-const config = require('../../../config');
 import AddIcsModal from '../modals/addIcsModal';
 import CronofyRedirectModal from '../modals/cronofyRedirectModal';
 import CronofyDisconnectModal from '../modals/cronofyDisconnectModal';
 import ConnectionCard from '../connectionCard';
 import capitalize from 'capitalize';
 import getFacebookAuthUrl from '../../utils/getFacebookAuthUrl';
-import FacebookIssueModal from '../modals/facebookIssueModal';
 
 const Connections = React.createClass({
     getInitialState() {
         return {
             showCronofyModal: false,
             showCronofyDisconnectModal: false,
-            icsModal: false,
-            showFacebookModal: false
+            icsModal: false
         };
     },
     deleteCalendarMethods() {
@@ -44,7 +41,7 @@ const Connections = React.createClass({
     },
     render() {
         return (
-            <div className={`row ${this.props.className ? this.props.className : ''}`} style={{ 'paddingLeft': '30px', 'paddingRight': '30px' }}>
+            <div className={`row ${this.props.className ? this.props.className : ''}`} style={{ paddingLeft: '30px', paddingRight: '30px' }}>
                 <CronofyRedirectModal
                     show={this.state.showCronofyModal}
                     hide={this.toggleModal}
@@ -102,17 +99,6 @@ const Connections = React.createClass({
                             Disconnect
                         </a>
                     )}
-                </ConnectionCard>
-                <FacebookIssueModal show={this.state.showFacebookModal} hide={() => {
-                    this.setState({ showFacebookModal: false });
-                }}></FacebookIssueModal>
-                <ConnectionCard
-                    header={'Facebook'}
-                    description={'Use for connecting to Facebook Page/Business events'}
-                >
-                    <a href="#" onClick={this.linkFacebookClicked} className="button secondary">
-                        Connect
-                    </a>
                 </ConnectionCard>
                 <ConnectionCard
                     header={'ICS'}

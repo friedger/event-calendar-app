@@ -6,28 +6,25 @@ import cn from 'classnames';
 
 export default React.createClass({
     getInitialState() {
-        return { activeSetting: this.props.options[0].name };
+        return { activeSetting: '' };
     },
     render() {
         return (
             <Row className={"settings-space settings-navigation"} style={{ border: 0 }}>
-                <div className="col-md-12">
-                    {this.props.options.map((option, index) => {
-                        return (<div
-                            key={index}
-                            onClick={() => {
-                                this.setState({ activeSetting: option.name })
-                                this.props.settingClicked(option.name);
-                            }}
-                            className={cn('setting', {
-                                'setting--active': this.state.activeSetting === option.name
-                            })}
-                            style={{width: `${100 / this.props.options.length}%`}}
-                            >
-                            {option.emoji} {option.name}
-                        </div>);
-                    })}
-                </div>
+                {this.props.options.map((option, index) => {
+                    return (<div
+                        key={index}
+                        onClick={() => {
+                            this.setState({ activeSetting: option.name })
+                            this.props.settingClicked(option.name);
+                        }}
+                        className={cn('setting col-md-12', {
+                            'setting--active': this.state.activeSetting === option.name
+                        })}
+                        >
+                        {option.emoji} {option.name}
+                    </div>);
+                })}
             </Row>
         );
     }

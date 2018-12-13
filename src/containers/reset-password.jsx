@@ -7,6 +7,7 @@ import Header from '../components/header';
 import { Row, Col } from 'react-bootstrap';
 import ResetPassword from '../components/authentication/resetPassword';
 import ChooseNewPassword from '../components/authentication/chooseNewPassword';
+import { parse } from 'query-string';
 
 const mapState = ({ loginState, passwordResetState }) => {
     return {
@@ -30,17 +31,21 @@ const component = React.createClass({
         router: React.PropTypes.object.isRequired
     },
     componentDidMount() {
+        const query = parse(this.props.location.search);
         if (this.userAtChooseNewPasswordPhase) {
             this.props.checkDetails({
-                code: this.props.location.query.code,
-                email: this.props.location.query.email
+                code: query.code,
+                email: query.email
             });
         }
     },
     userAtChooseNewPasswordPhase() {
-        return this.props.location.query.code && this.props.location.query.email;
+        const query = parse(this.props.location.search);
+        return query.code && query.email;
     },
     render() {
+        const query = parse(this.props.location.search);
+
         return (
             <div style={{ height: '100%' }}>
                 <Header />
@@ -59,8 +64,8 @@ const component = React.createClass({
                                 this.props.passwordResetState.codeInvalid) && (
                                 <ChooseNewPassword
                                     codeValid={this.props.passwordResetState.codeValid}
-                                    code={this.props.location.query.code}
-                                    email={this.props.location.query.email}
+                                    code={query.code}
+                                    email={query.email}
                                 />
                             )}
                     </div>
