@@ -6,7 +6,7 @@ import cn from 'classnames';
 
 export default React.createClass({
     getInitialState() {
-        return { activeSetting: '' };
+        return { activeSetting: this.props.options[0].name };
     },
     render() {
         return (
@@ -18,6 +18,7 @@ export default React.createClass({
                             this.setState({ activeSetting: option.name })
                             this.props.settingClicked(option.name);
                         }}
+                        style={{width: `${100 / this.props.options.length}%`}}
                         className={cn('setting col-md-12', {
                             'setting--active': this.state.activeSetting === option.name
                         })}
