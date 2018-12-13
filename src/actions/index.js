@@ -198,5 +198,5 @@ export function logOut() {
     if (window.Intercom) {
         window.Intercom('shutdown');
     }
-    // window.location.href = '/';
+    window.location.href = '/';
 }
