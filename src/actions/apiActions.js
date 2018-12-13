@@ -2,7 +2,7 @@ import request from 'superagent';
 const cookieUtil = require('../utils/cookieUtil').default;
 const config = require('../../config');
 
-export const postUsers = (formState, location) => {
+export const postUsers = (formState, query) => {
     return new Promise((resolve, reject) => {
         const postData = {
             username: formState.username,
@@ -10,8 +10,8 @@ export const postUsers = (formState, location) => {
             email: formState.email
         };
 
-        if (location.query && location.query.shop) {
-            postData.shop = location.query.shop;
+        if (query && query.shop) {
+            postData.shop = query.shop;
         }
 
         request

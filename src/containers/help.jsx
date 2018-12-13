@@ -22,9 +22,7 @@ const component = React.createClass({
     contextTypes: {
         router: React.PropTypes.object.isRequired
     },
-    componentWillMount() {
-        this.props.popuplateRegisterFormFromQuery(this.props.location.query);
-    },
+    componentWillMount() {},
     componentDidMount() {
         this.props.getUser();
     },

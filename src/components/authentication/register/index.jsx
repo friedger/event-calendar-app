@@ -59,7 +59,7 @@ var Component = React.createClass({
                 <Col md={12}>
                     <form
                         onSubmit={handleSubmit((values) => {
-                            return postUsers(values, this.props.location)
+                            return postUsers(values, this.props.query)
                                 .then(() => {
                                     triggerRegistrationConversion();
                                     return postLogin(values);
