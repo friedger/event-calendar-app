@@ -359,6 +359,7 @@ var NewPostForm = React.createClass({
                                     setTimeout(() => this.inputChanged(), 0);
                                 }}
                                 focused={this.state.endDateFocused}
+                                isOutsideRange={() => false}
                                 onFocusChange={({ focused }) =>
                                     this.setState({ endDateFocused: focused })
                                 }
