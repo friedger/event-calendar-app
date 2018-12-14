@@ -16,7 +16,7 @@ export default React.createClass({
             updatedPaymentDetails
         } = this.props;
         if (paymentLoading) {
-            $("html,body").animate({ scrollTop: 0 }, "slow");
+            $("#account-page-wrapper").animate({ scrollTop: 0 }, "slow");
         }
         if (accountLoading) {
             return (

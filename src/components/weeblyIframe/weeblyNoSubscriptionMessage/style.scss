@@ -1,9 +1,14 @@
+@import '../../../_variables';
+
 .weebly-no-subscription {
-    background: #ff5c5c;
+    background: $pink;
     color: #fff;
-    padding: 15px;
-    position: absolute;
+    padding: 16px;
     z-index: 1;
     width: 100%;
     text-align: center;
+    font-size: 14px;
+    i {
+        padding-right: 8px;
+    }
 }

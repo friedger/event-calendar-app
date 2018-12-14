@@ -70,6 +70,7 @@ const component = React.createClass({
                 };
         return (
             <div
+                id="account-page-wrapper"
                 style={{
                     height: '100%',
                     background: '#f5f5f5',

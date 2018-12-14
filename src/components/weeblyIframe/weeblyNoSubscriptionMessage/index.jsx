@@ -8,8 +8,9 @@ export default React.createClass({
     render() {
         return (
             <div className="weebly-no-subscription">
-                You currently have no active subscription. Your calendar will expire soon.
+                <i className="fa fa-info-circle" aria-hidden="true"></i>
+                Your Event Calendar will be disabled until your start a plan.
             </div>
-        )
+        );
     }
 });

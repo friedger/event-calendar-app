@@ -3,19 +3,30 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import * as appActions from '../actions/index';
 import * as calendarActions from '../actions/calendarActions';
+import * as onBoardingActions from '../actions/onBoardingActions';
 import WeeblyIframe from '../components/weeblyIframe';
 import WeeblyNoSubscriptionMessage from '../components/weeblyIframe/weeblyNoSubscriptionMessage';
-import WeeblyWelcomeMessage from '../components/weeblyIframe/weeblyWelcomeMessage';
 
-const mapState = ({ appState }) => {
-    return { appState };
+function shouldDisplayNoSubscriptionMessage({ appState: { user, connections }, onBoardingState }) {
+    return user &&
+    (user.status === 'registered' || user.status === 'cancelled') &&
+    connections &&
+    onBoardingState &&
+    (onBoardingState.linked_calendar || onBoardingState.selected_manual_events);
+}
+
+const mapState = (state) => {
+    return {
+        displayNoSubscriptionMessage: shouldDisplayNoSubscriptionMessage(state)
+    };
 };
 
 const mapDispatch = dispatch => {
     return bindActionCreators(
         {
             ...appActions,
-            ...calendarActions
+            ...calendarActions,
+            ...onBoardingActions
         },
         dispatch
     );
@@ -28,26 +39,19 @@ const component = React.createClass({
     componentDidMount() {
         this.props.getUser();
         this.props.getConnections();
+        this.props.getOnboarding();
     },
     displayMessage(messageType) {
-        const { user, connections } = this.props.appState;
-
-        if (!user) {
-            return false;
-        }
-
         const shouldMessageTypeBeDisplayed = {
-            noSubscription: user.status === 'registered' && connections && connections.length > 0,
-            welcome: connections && connections.length === 0
+            noSubscription: this.props.displayNoSubscriptionMessage
         };
 
         return shouldMessageTypeBeDisplayed[messageType];
     },
     render() {
         return (
-            <div>
+            <div className="weebly-iframe">
                 {this.displayMessage('noSubscription') && <WeeblyNoSubscriptionMessage />}
-                {this.displayMessage('welcome') && <WeeblyWelcomeMessage />}
                 <WeeblyIframe />
             </div>
         );

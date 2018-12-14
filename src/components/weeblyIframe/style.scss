@@ -1,36 +1,46 @@
-.weebly-iframe-container {
-    position: relative;
-    height: 100%;
-}
+@import '../../_variables';
+
 .weebly-iframe {
     height: 100%;
-    position: absolute;
-    margin: auto;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    background: #38495c;
-    a {
-        text-decoration: none;
-        border: 2px solid #fff;
-        color: #2e3d4e;
-        padding: 17px;
-        margin: 27px;
-        display: inline-block;
-        margin: 0 auto;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        text-align: center;
-        width: 260px;
-        margin: auto;
-        height: 62px;
-        color: #fff;
+    display: flex;
+    flex-direction: column;
+    background: $eca-blue;
+}
+
+.weebly-iframe-container {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    border-top: 4px solid $pink;
+    flex-direction: row;
+    padding: 0 48px;
+}
+.weebly-iframe-images {
+    display: block;
+    border-radius: 4px;
+    img {
+        border-radius: 4px;
+        width: 160px;
+        height: 160px;
     }
-    a:hover {
-        text-decoration: underline;
+}
+.weebly-iframe-content {
+    padding-left: 48px;
+    .button.secondary {
+        font-size: 16px;
+        margin-bottom: 14px;
+        padding: 12px 16px;
+        i {
+            padding-right: 8px;
+        }
+    }
+
+    p {
+        max-width: 600px;
+        margin-bottom: 0;
+        font-size: 14px;
+        color: #fff;
+        opacity: 0.8;
     }
 }

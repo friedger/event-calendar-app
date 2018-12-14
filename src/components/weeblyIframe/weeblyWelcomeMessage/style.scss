@@ -1,9 +1,14 @@
+@import '../../../_variables';
+
 .weebly-no-calendar-linked {
-    background: #6787ab;
+    background: $pink;
     color: #fff;
-    padding: 15px;
-    position: absolute;
+    padding: 16px;
     z-index: 1;
     width: 100%;
     text-align: center;
+    font-size: 14px;
+    i {
+        padding-right: 8px;
+    }
 }
