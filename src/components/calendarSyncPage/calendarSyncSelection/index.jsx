@@ -249,10 +249,7 @@ export default React.createClass({
                             href="https://www.google.com/calendar"
                             className="create-calendar-with create-calendar-with--google"
                         >
-                            <i
-                                className="fa fa-google"
-                                aria-hidden="true"
-                            />{' '}
+                            <i className="fab fa-google"></i>{' '}
                             GOOGLE
                         </a>
                         <a
@@ -260,10 +257,7 @@ export default React.createClass({
                             href="https://www.icloud.com/calendar"
                             className="create-calendar-with create-calendar-with--apple"
                         >
-                            <i
-                                className="fa fa-apple"
-                                aria-hidden="true"
-                            />{' '}
+                            <i className="fab fa-apple"></i>{' '}
                             APPLE
                         </a>
                         <a
@@ -271,10 +265,7 @@ export default React.createClass({
                             href="https://office.live.com/start/Calendar.aspx"
                             className="create-calendar-with create-calendar-with--outlook"
                         >
-                            <i
-                                className="fa fa-windows"
-                                aria-hidden="true"
-                            />{' '}
+                            <i className="fab fa-windows"></i>{' '}
                             Outlook
                         </a>
                     </div>

@@ -149,7 +149,7 @@ const Dashboard = React.createClass({
             <div
                 id="editor-container"
                 style={{
-                    height: '100vh',
+                    height: `${this.userHasLinkedCalendarOrChosenManual() ? '100vh' : 'auto'}`,
                     background: `${!this.userHasLinkedCalendarOrChosenManual() ? '#f5f5f5' : '#fff'}`
                 }}
             >
