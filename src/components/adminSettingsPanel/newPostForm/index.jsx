@@ -307,6 +307,7 @@ var NewPostForm = React.createClass({
                             <p>What time does your event start?</p>
                             <SingleDatePicker
                                 date={this.state.startDate}
+                                numberOfMonths={1}
                                 onDateChange={date => {
                                     if (!date) {
                                         return;
@@ -343,6 +344,7 @@ var NewPostForm = React.createClass({
                             </ControlLabel>
                             <p>What time does your event end?</p>
                             <SingleDatePicker
+                                numberOfMonths={1}
                                 noBorder={true}
                                 date={this.state.endDate}
                                 onDateChange={date => {
