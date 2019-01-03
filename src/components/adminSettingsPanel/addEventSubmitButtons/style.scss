@@ -1,7 +1,10 @@
 .addEventSubmitButtons {
     padding: 0 23px 0 30px;
     button {
-        margin-right: 5px;
+        margin-right: 24px;
+    }
+    .secondary--icon-only {
+        margin-right: 8px;
     }
     .tertiary:first-child {
         margin-left: 0;
@@ -10,6 +13,12 @@
     &__actions {
         border-top:1px solid #cbc9c9;
         padding: 20px 0;
+
+        &--submit-buttons {
+            display: flex;
+            flex-direction: row;
+        }
+
     }
 
     &__note {
@@ -19,19 +28,17 @@
 }
 
 .secondary {
-    transition: background 0.4s ease-in;
+    transition: background 0.2s ease-in;
 }
 
 .action {
-    transition: background 0.4s ease-in;
+    transition: background 0.2s ease-in;
 }
 
 button.secondary.animate-success {
     background: #67ab6e;
-    border-bottom: 2px solid #316937;
     &:hover {
         background: #67ab6e;
-        border-bottom: 2px solid #316937;
         text-decoration: none;
     }
 }

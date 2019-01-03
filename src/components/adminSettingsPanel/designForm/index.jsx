@@ -34,10 +34,10 @@ var Component = React.createClass({
         };
     },
     settingClicked(setting) {
-        this.setState({ settingClicked: setting });
+        this.setState({ settingClicked: setting.name });
     },
     desginSettingClicked(setting) {
-        this.setState({ designPageToDisplay: setting });
+        this.setState({ designPageToDisplay: setting.name });
     },
     componentWillMount() {
         this.makeApiCall = debounce(values => {
@@ -107,6 +107,8 @@ var Component = React.createClass({
                             { name: 'Presets', emoji: '' },
                             { name: 'Customise', emoji: '' }
                         ]}
+                        defaultOption='Presets'
+                        width='50%'
                         settingClicked={this.desginSettingClicked}
                     />
                 )}
@@ -253,6 +255,7 @@ var Component = React.createClass({
                                 { name: 'List view', emoji: '' },
                                 { name: 'Grid view', emoji: '' }
                             ]}
+                            width={'50%'}
                             settingClicked={this.settingClicked}
                         />
                         {this.state.settingClicked === 'List view' && (

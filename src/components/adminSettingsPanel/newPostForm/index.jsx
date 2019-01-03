@@ -116,6 +116,11 @@ var NewPostForm = React.createClass({
         );
         this.inputChanged();
     },
+    componentWillReceiveProps(nextProps) {
+        if (!this.props.disableInputs && nextProps.disableInputs) {
+            tinymce.activeEditor.getBody().setAttribute('contenteditable', false);
+        }
+    },
     render() {
         const {
             fields: {
@@ -308,6 +313,7 @@ var NewPostForm = React.createClass({
                             <SingleDatePicker
                                 date={this.state.startDate}
                                 numberOfMonths={1}
+                                disabled={this.props.disableInputs}
                                 onDateChange={date => {
                                     if (!date) {
                                         return;
@@ -331,6 +337,7 @@ var NewPostForm = React.createClass({
                             />
                             <input
                                 type="text"
+                                disabled={this.props.disableInputs}
                                 id="timepicker-start"
                                 autoComplete="off"
                                 className="time ui-timepicker-input"
@@ -346,6 +353,7 @@ var NewPostForm = React.createClass({
                             <SingleDatePicker
                                 numberOfMonths={1}
                                 noBorder={true}
+                                disabled={this.props.disableInputs}
                                 date={this.state.endDate}
                                 onDateChange={date => {
                                     if (!date) {
@@ -369,6 +377,7 @@ var NewPostForm = React.createClass({
                             />
                             <input
                                 type="text"
+                                disabled={this.props.disableInputs}
                                 id="timepicker-end"
                                 autoComplete="off"
                                 className="time ui-timepicker-input"
@@ -411,16 +420,12 @@ var NewPostForm = React.createClass({
                             field={allDay}
                             title="🌅 All day event"
                             validWithPlan={true}
+                            disabled={this.props.disableInputs}
                             inputOnClick={event => {
                                 allDay.onChange(event);
                                 setTimeout(() => this.inputChanged(), 0);
                             }}
                         />
-                    </Row>
-                    <Row>
-                        <Col md={12}>
-                            <hr />
-                        </Col>
                     </Row>
                     {this.props.displayAdditionalOptionsMessage && (
                         <Row>

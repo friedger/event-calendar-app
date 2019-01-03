@@ -2,6 +2,10 @@ button, a, .button {
     position: relative;
     cursor: pointer;
 
+    &:focus {
+        outline: 0;
+    }
+
     &.full-width {
         width: 100%;
     }
@@ -61,14 +65,12 @@ button, a, .button {
         display: inline-block;
         padding: 10px 20px;
         border: 0;
-        border-bottom: 2px solid #171c22;
         border-radius: 2px;
         font-size: 14px;
         font-weight: bold;
 
         &:hover {
             background: #5f82ab;
-            border-bottom: 2px solid #435b77;
         }
 
         &--skinny {
@@ -127,10 +129,9 @@ button, a, .button {
         cursor: pointer;
         font-weight: bold;
         background: #DA4167;
-        border-bottom: 2px solid #a3304d;
         text-align: center;
         &:hover {
-            background: #ee4a72;
+            background: #e65277;
             color:#fff;
             text-decoration: none;
         }
@@ -144,6 +145,11 @@ button, a, .button {
                 text-decoration: underline;
                 color: #DA4167;
             }
+        }
+        &--icon-only {
+            font-size: 24px;
+            color: #99a1a9;
+            transition: color 0.2s ease-in;
         }
         &--thick {
             padding: 15px 12px;
@@ -175,7 +181,6 @@ button, a, .button {
         padding: 10px;
         margin: 0 20px;
         border: 0;
-        border-bottom: 2px solid #188947;
         border-radius: 2px;
         font-size: 14px;
         font-weight: bold;
@@ -194,15 +199,13 @@ button, a, .button {
         text-shadow: none;
         display: inline-block;
         padding: 10px 0px;
-        margin: 0 20px;
         border: 0;
-        border-bottom: 2px solid #444;
         border-radius: 2px;
         font-size: 14px;
         font-weight: bold;
 
         &:hover {
-            text-decoration: none;
+            text-decoration: underline;
         }
 
         &--skinny {

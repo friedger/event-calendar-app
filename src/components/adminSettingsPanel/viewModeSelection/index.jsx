@@ -50,7 +50,7 @@ var Component = React.createClass({
                                         The default view cannot be de-selected
                                     </p>
                                 </Col>
-                                <Col md={4}>
+                                <Col md={12}>
                                     <div className="checkbox">
                                         <input
                                             disabled={
@@ -74,7 +74,7 @@ var Component = React.createClass({
                                         </label>
                                     </div>
                                 </Col>
-                                <Col md={4}>
+                                <Col md={12}>
                                     <div className="checkbox">
                                         <input
                                             disabled={
@@ -98,7 +98,7 @@ var Component = React.createClass({
                                         </label>
                                     </div>
                                 </Col>
-                                <Col md={4}>
+                                <Col md={12}>
                                     <div className="checkbox">
                                         <input
                                             disabled={
@@ -135,7 +135,7 @@ var Component = React.createClass({
                                         Event Calendar initially loads
                                     </p>
                                 </Col>
-                                <Col md={4}>
+                                <Col md={12}>
                                     <div className="radio">
                                         <input
                                             inline
@@ -160,7 +160,7 @@ var Component = React.createClass({
                                             </label>
                                     </div>
                                 </Col>
-                                <Col md={4}>
+                                <Col md={12}>
                                     <div className="radio">
                                         <input
                                             inline
@@ -185,7 +185,7 @@ var Component = React.createClass({
                                             </label>
                                     </div>
                                 </Col>
-                                <Col md={4}>
+                                <Col md={12}>
                                     <div className="radio">
                                         <input
                                             inline

@@ -32,7 +32,7 @@ export default React.createClass({
                 />
             {Object.keys(presets).map((presetName, index) => {
                     return (
-                        <div className="col-md-6" key={index}>
+                        <div className="col-md-12" key={index}>
                             <div
                                 className="preset"
                                 onClick={() => {

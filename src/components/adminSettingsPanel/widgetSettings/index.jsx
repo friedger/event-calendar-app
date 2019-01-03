@@ -29,7 +29,7 @@ export default React.createClass({
     getInitialState() {
         return {
             showComponent: this.props.show,
-            settingsToDisplay: 'Event Sources',
+            settingsToDisplay: '',
             designPageToDisplay: 'Presets'
         };
     },
@@ -72,14 +72,6 @@ export default React.createClass({
                         show: this.state.showComponent
                     })}
                 >
-                    <SettingsCategorySelection
-                        options={[
-                            { name: 'Event Sources', emoji: '🌍' },
-                            { name: 'Layout', emoji: '✏️' },
-                            { name: 'Design', emoji: '🎨' }
-                        ]}
-                        settingClicked={this.settingClicked}
-                    />
                     <CalendarSelection
                         onChange={putCalendars.bind(null, eventCalWidgetUuid)}
                         toggleConnectionsScreen={

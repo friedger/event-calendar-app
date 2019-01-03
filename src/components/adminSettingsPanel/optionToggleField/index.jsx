@@ -17,7 +17,7 @@ export default React.createClass({
                 title={lockedMessage}
                 featureIsLocked={!validWithPlan}
             >
-                <Col md={8}>
+                <Col md={12}>
                     <div
                         className={cn('checkbox', {
                             locked: !validWithPlan
@@ -30,6 +30,7 @@ export default React.createClass({
                                 onClick={this.props.inputOnClick}
                                 type="checkbox"
                                 {...field}
+                                disabled={this.props.disabled}
                             />
                         )}
                         <label htmlFor={field.name}>

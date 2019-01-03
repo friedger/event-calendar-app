@@ -25,10 +25,10 @@ export default React.createClass({
         }, 0);
     },
     settingClicked(settingName) {
-        if (settingName === 'Content & time') {
+        if (settingName.name === 'Content & time') {
             return this.setState({ displayNewPostForm: true, displaySettingsForAllEvents: false });
         }
-        if (settingName === 'Appearance') {
+        if (settingName.name === 'Appearance') {
             return this.setState({ displayNewPostForm: false, displaySettingsForAllEvents: true });
         }
     },
@@ -52,6 +52,8 @@ export default React.createClass({
                             { name: 'Content & time', emoji: '📝' },
                             { name: 'Appearance', emoji: '😍' }
                         ]}
+                        width={'50%'}
+                        defaultOption='Content & time'
                         settingClicked={this.settingClicked}
                     />}
                     {manualEventSelected && (

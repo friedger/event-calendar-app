@@ -21,6 +21,20 @@ body {
     }
 }
 
+.fade-enter {
+  opacity: 0;
+  z-index: 1;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 250ms ease-in;
+}
+.fade-exit.fade-exit-active {
+  opacity: 0;
+  transition: opacity 250ms ease-in;
+}
+
 #app {
     height: 100%;
 }
@@ -333,10 +347,12 @@ h1 {
         animation-iteration-count: infinite;
     }
     &__back {
-        position: absolute;
         font-size: 16px;
-        top: 3px;
+        top: 0px;
         font-weight: normal;
+        position: relative;
+        margin-top: 12px;
+        margin-bottom: 32px;
         cursor: pointer;
         display: flex;
         align-items: center;
@@ -358,7 +374,9 @@ h1 {
         }
     }
     &__event-settings {
-        text-align: center;
+        &--inline {
+            display: inline;
+        }
     }
     &__close {
         position: absolute;

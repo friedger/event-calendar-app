@@ -13,10 +13,9 @@ const cookieUtil = require('../utils/cookieUtil').default;
 const config = require('../../config');
 import get from 'lodash.get';
 import { parse } from 'query-string';
-import { withRouter } from "react-router-dom";
+import { withRouter } from 'react-router-dom';
 
 import Editor from '../components/editor';
-import Header from '../components/header';
 import SuccessfulLinkModal from '../components/modals/successfulLinkModal';
 import SuggestionModals from '../components/modals/suggestionModals';
 import AddedScriptModal from '../components/modals/addedScriptModal';
@@ -27,7 +26,7 @@ import getCronofyAuthUrl from '../utils/getCronofyAuthUrl';
 import request from 'superagent';
 import intercom from '../utils/intercom';
 
-const mapState = ({ appState, form, eventcalState, eventState, onBoardingState, eventSavingState, widgetState, account }) => {
+const mapState = ({ appState, form, eventcalState, eventState, onBoardingState, eventSavingState, widgetState, account, manualEventState }) => {
     return {
         appState,
         form,
@@ -36,7 +35,8 @@ const mapState = ({ appState, form, eventcalState, eventState, onBoardingState, 
         onBoardingState,
         eventSavingState,
         widgetState,
-        account
+        account,
+        manualEventState
     };
 };
 
@@ -136,7 +136,7 @@ const Dashboard = React.createClass({
         const query = parse(location.search);
         const containerClassNames = cn(
             {
-                'container-fluid': this.userHasLinkedCalendarOrChosenManual() && (userHasSubscribed || userHasRegisteredOrCancelled)
+                '': this.userHasLinkedCalendarOrChosenManual() && (userHasSubscribed || userHasRegisteredOrCancelled)
             },
             { container: !this.userHasLinkedCalendarOrChosenManual() },
             'dashboard'
@@ -172,14 +172,9 @@ const Dashboard = React.createClass({
                             this.setState({ displayAddedScriptModal: false });
                         }}
                     />
-                    <Header
-                        doNotDisplayDashboardLink={!this.userHasLinkedCalendarOrChosenManual()}
-                        useFluidContainer={this.userHasLinkedCalendarOrChosenManual()}
-                        loggedIn={true}
-                    />
                     {query.showSuccessModal && !this.state.userHasSeenSuccessfulLinkModal && <SuccessfulLinkModal />}
                     <div className={containerClassNames}>
-                        <div className="row">
+                        <div className={`${!this.userHasLinkedCalendarOrChosenManual() ? 'row' : ''}`}>
                             {connections &&
                                 onBoarding &&
                                 user && settingsLoaded && (
@@ -188,6 +183,7 @@ const Dashboard = React.createClass({
                                         user={this.props.appState.user}
                                         appState={this.props.appState}
                                         accountState={this.props.account}
+                                        eventState={this.props.eventState}
                                         calendars={this.props.appState.calendars}
                                         authUrl={getCronofyAuthUrl()}
                                         suggestions={this.props.appState.suggestions && !this.props.eventcalState.eventcalHasNoEvents}
@@ -200,6 +196,7 @@ const Dashboard = React.createClass({
                                         calendarBuildUrl={config.calendarBuildUrl}
                                         userHasSubscribed={userHasSubscribed}
                                         postOnBoarding={this.props.postOnBoarding}
+                                        manualEventState={this.props.manualEventState}
                                         userSelectedScriptAdded={() => {
                                             this.props.postOnBoarding(
                                                 {

@@ -22,7 +22,7 @@ export default React.createClass({
     render() {
         return (
             <button
-                className={cn('action', {
+                className={cn('secondary secondary--inverse', {
                     'animate-success': this.state.displaySuccessMessage,
                     'animate-error': this.state.displayErrorMessage
                 })}

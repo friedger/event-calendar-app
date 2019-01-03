@@ -12,7 +12,7 @@ export default React.createClass({
                             className="action"
                             onClick={() => this.props.exitAction()}
                         >
-                            Finish editing event
+                            Done
                         </button>
                         {this.props.displayDuplicationButton && <DuplicateEventButton
                             duplicatingEvent={this.props.duplicatingEvent}

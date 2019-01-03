@@ -5,19 +5,16 @@ import { Link } from "react-router-dom";
 export default React.createClass({
     render() {
         return (
-            <div className="theContainer">
+            <Link className="theContainer" to="/account">
                 <div className="start-trial-container">
-                    <p>
-                        Add this Event Calendar to your website{' '}
-                    </p>
                     <Link
-                        className="start-trial start-trial--no-margin"
+                        className="button secondary secondary--inverse"
                         to="/account"
                         >
-                        Start your free trial
+                        Add this Event Calendar to your site by starting a plan
                     </Link>
                 </div>
-            </div>
+            </Link>
         );
     }
 });

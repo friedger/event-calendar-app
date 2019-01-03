@@ -43,7 +43,7 @@ export default React.createClass({
                                 </p>
                                 <button
                                     onClick={this.props.addEventClicked}
-                                    className={cn('danger full-width', {
+                                    className={cn('full-width', {
                                         'animate-success': this.state.postingWasSuccess,
                                         'secondary': !this.props.validationError,
                                         'danger': this.props.validationError
@@ -75,24 +75,27 @@ export default React.createClass({
                 {this.state.displaySubmitButtons && (
                     <Row className="addEventSubmitButtons">
                         <Col md={12}>
-                            <div className="addEventSubmitButtons__actions">
-                                <button
-                                    onClick={this.props.editEventClicked}
-                                    className="secondary secondary"
-                                >
-                                    ✏️ Further customise event
-                                </button>
-                                <button
-                                    onClick={this.props.addNewEventClicked}
-                                    className="secondary secondary"
-                                >
-                                    + Add new event
-                                </button>
+                            <div className="addEventSubmitButtons__actions addEventSubmitButtons__actions--submit-buttons">
                                 <button
                                     onClick={this.props.close}
-                                    className="secondary secondary--inverse"
+                                    className="secondary"
+                                    style={{ 'align-self': 'center' }}
                                 >
                                     Finish adding events
+                                </button>
+                                <button
+                                    title="Further edit the event - images/ticket links etc"
+                                    onClick={this.props.editEventClicked}
+                                    className="secondary secondary--inverse secondary--icon-only"
+                                >
+                                    <i className="fas fa-paint-brush"></i>
+                                </button>
+                                <button
+                                    title="Add another event"
+                                    onClick={this.props.addNewEventClicked}
+                                    className="secondary secondary--inverse secondary--icon-only"
+                                >
+                                    <i className="fas fa-calendar-plus"></i>
                                 </button>
                             </div>
                         </Col>

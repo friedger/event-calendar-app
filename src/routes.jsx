@@ -21,6 +21,8 @@ import TermsOfUse from './containers/termsOfUse';
 import Home from './containers/home';
 import Account from './containers/account';
 
+export const EDITOR_PATH = '/editor/:eventCalWidgetUuid?';
+
 export default React.createClass({
     render() {
         return (
@@ -30,7 +32,7 @@ export default React.createClass({
                 <ProtectedRoute exact path="/dashboard/account-error" component={AccountError} />
                 <ProtectedRoute exact path="/dashboard/network-error" component={NetworkError} />
                 <Route path="/login" component={Login} />
-                <Route path="/editor/:eventCalWidgetUuid?" component={Dashboard} />
+                <Route path={EDITOR_PATH} component={Dashboard} />
                 <ProtectedRoute path="/account" component={Account} />
                 <Route
                     exact

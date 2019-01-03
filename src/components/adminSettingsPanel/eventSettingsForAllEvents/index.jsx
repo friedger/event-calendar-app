@@ -187,7 +187,7 @@ var Component = React.createClass({
                         </Col>
                     </Row>
                     <Row className="settings-space">
-                        <Col md={6}>
+                        <Col md={4}>
                             <LockedFeature2 featureIsLocked={!validWithPlan} title="Upgrade your account">
                             <ControlLabel
                                 className={cn('setting-title', {
@@ -205,7 +205,7 @@ var Component = React.createClass({
                             </LockedFeature2>
                         </Col>
                         {validWithPlan && (
-                            <Col md={6}>
+                            <Col md={8}>
                                 <div className="the-colour-picker">
                                     <TwitterPicker
                                         color={color.value === null ? false : color.value}

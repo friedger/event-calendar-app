@@ -42,6 +42,12 @@
     background: #f2f2f2;
     display: flex;
     flex-direction: column;
+    min-width: 400px;
+    transition: min-width 0.2s;
+
+    &.new-post-active {
+        min-width: 550px;
+    }
 
     .form-group {
         margin-bottom: 0;

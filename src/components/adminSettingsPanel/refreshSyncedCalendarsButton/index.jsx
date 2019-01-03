@@ -21,7 +21,7 @@ export default React.createClass({
         const refreshDone = this.state.refreshDone;
         return (
             <Row className="settings-space">
-                <Col md={7}>
+                <Col md={12}>
                     <span className="setting-title">Refresh synced events</span>
                     <p className="calendar-selection__description">
                         When you add any events to your synced calendars, click
@@ -29,13 +29,18 @@ export default React.createClass({
                         automatically for you periodically).
                     </p>
                 </Col>
-                <Col md={5} style={{ textAlign: 'right' }}>
+                <Col md={12} style={{ textAlign: 'right' }}>
                     <button
-                        className={cn('action trigger-widget-refresh-button', {
+                        className={cn('action full-width trigger-widget-refresh-button', {
                             'animate-success': refreshDone
                         })}
                         disabled={savingEvent}
-                        onClick={() => !savingEvent && !refreshDone && this.props.refreshEventCalendarAction()}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            if (!savingEvent && !refreshDone) {
+                                this.props.refreshEventCalendarAction();
+                            }
+                        }}
                     >
                         <i
                             className={cn('fa fa-refresh', {
