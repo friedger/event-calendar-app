@@ -18,7 +18,7 @@ export default React.createClass({
                                 webkitallowfullscreen="webkitallowfullscreen"
                                 width="100%"
                                 height="315"
-                                src="https://www.youtube.com/embed/LS99Dt1FXzQ"
+                                src="https://player.vimeo.com/video/310195699"
                                 frameborder="0"
                                 gesture="media"
                                 allowfullscreen
