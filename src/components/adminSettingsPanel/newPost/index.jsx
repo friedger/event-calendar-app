@@ -2,7 +2,6 @@ require('./style.scss');
 import React from 'react';
 import NewPostForm from '../newPostForm';
 import AddEventSubmitButtons from '../addEventSubmitButtons';
-import cn from 'classnames';
 import SidePanelWrapper from '../sidePanelWrapper';
 
 export default React.createClass({
@@ -13,9 +12,13 @@ export default React.createClass({
         };
     },
     submit(values) {
-        this.props.postManualEvent(values, this.props.eventCalWidgetUuid);
+        this.props.postManualEvent(values, this.props.eventCalWidgetUuid, () => {
+            setTimeout(() => {
+                this.props.editEventClicked();
+            }, 2000);
+        });
     },
-    submitFail(reason) {
+    submitFail() {
         this.setState({ validationError: true });
         this.refs.sidePanelWrapper.scrollToTop();
     },
@@ -44,7 +47,7 @@ export default React.createClass({
                                 ref="newPostForm"
                                 inputChanged={() => {
                                     if (this.state.validationError) {
-                                        this.setState({validationError: false});
+                                        this.setState({ validationError: false });
                                     }
                                 }}
                                 show={true}

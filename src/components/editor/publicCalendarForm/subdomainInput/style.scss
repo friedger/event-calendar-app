@@ -10,7 +10,8 @@
     }
     &__domain {
         color: #736f6f;
-        padding: 0 15px;
+        // padding: 0 15px;
+        padding: 6px 12px;
         display: flex;
         align-items: center;
         background: #dadada;
@@ -27,13 +28,12 @@
     &__public-url {
         text-align: left !important;
         // color: #444;
-        text-decoration: underline;
     }
 }
 
 .url-to-public-calendar{
     &__public-url {
+        font-size:14px;
         text-align: left !important;
-        text-decoration: underline;
     }
 }

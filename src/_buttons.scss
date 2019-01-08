@@ -19,12 +19,15 @@ button, a, .button {
         color: #999999;
         border:0;
         font-weight: bold;
-        border-bottom: 2px solid #bfbebe;
         padding: 10px;
         border-radius: 2px;
         font-size: 14px;
         display: inline-block;
         text-shadow: none;
+        &--inverse {
+            background:transparent;
+            color: #999;
+        }
         &.thin {
             padding: 4px 17px;
         }
@@ -149,7 +152,29 @@ button, a, .button {
         &--icon-only {
             font-size: 24px;
             color: #99a1a9;
-            transition: color 0.2s ease-in;
+            transition: all 0.2s ease-in;
+            padding-right: 16px;
+
+            &.animate-success {
+                color: #67ab6e;
+                background: transparent;
+                display: flex;
+                position: static;
+                // font-size:30px;
+                &:hover {
+                    background: transparent;
+                }
+            }
+            &.animate-error {
+                color: #ee1717;
+                background: transparent;
+                display: flex;
+                position: static;
+                // font-size:30px;
+                &:hover {
+                    background: transparent;
+                }
+            }
         }
         &--thick {
             padding: 15px 12px;

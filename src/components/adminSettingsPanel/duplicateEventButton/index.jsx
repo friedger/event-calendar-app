@@ -10,7 +10,7 @@ export default React.createClass({
             this.setState({ displaySuccessMessage: true });
             setTimeout(() => {
                 this.setState({ displaySuccessMessage: false });
-            }, 3000);
+            }, 1500);
         }
         if (nextProps.eventDuplicationError && this.props.duplicatingEvent) {
             this.setState({ displayErrorMessage: true });
@@ -22,16 +22,27 @@ export default React.createClass({
     render() {
         return (
             <button
-                className={cn('secondary secondary--inverse', {
+                title="Duplicate Event"
+                className={cn('secondary secondary--inverse secondary--icon-only', {
                     'animate-success': this.state.displaySuccessMessage,
                     'animate-error': this.state.displayErrorMessage
                 })}
-                disabled={(this.props.duplicatingEvent || this.state.displaySuccessMessage || this.state.displayErrorMessage)}
+                disabled={
+                    this.props.duplicatingEvent || this.state.displaySuccessMessage || this.state.displayErrorMessage
+                }
                 onClick={() => this.props.duplicateManualEventAction()}
             >
-                {!this.state.displaySuccessMessage && !this.state.displayErrorMessage && 'Duplicate event'}
-                {this.state.displaySuccessMessage && <span><i className="fa fa-check" aria-hidden="true" /> Event Duplicated</span>}
-                {this.state.displayErrorMessage && <span><i className="fa fa-ban" aria-hidden="true" /> Duplication failed</span>}
+                <i className="far fa-clone" />
+                {this.state.displaySuccessMessage && (
+                    <span style={{ 'font-size': '14px', 'padding-left': '18px', position: 'absolute', right: '20px' }}>
+                        Event Duplicated
+                    </span>
+                )}
+                {this.state.displayErrorMessage && (
+                    <span style={{ 'font-size': '14px', 'padding-left': '18px', position: 'absolute', right: '20px' }}>
+                        <i className="fa fa-ban" aria-hidden="true" /> Duplication failed
+                    </span>
+                )}
             </button>
         );
     }

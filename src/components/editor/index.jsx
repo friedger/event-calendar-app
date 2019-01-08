@@ -58,14 +58,14 @@ const Component = React.createClass({
         return (
             <div style={{ height: '100%' }}>
                 <div style={{ height: '100%', display: 'flex' }}>
-                    <div className={cn('calendar-settings container-fluid', { 'new-post-active': this.props.manualEventState.displayAddEventScreen || this.eventActivated() })} style={{ height: `calc(100vh - ${nextStepBannerIsBeingDisplayed ? '123px' : sizeOfHeader})` }}>
+                    <div className={cn('calendar-settings container-fluid', { 'new-post-active': this.props.manualEventState.displayAddEventScreen || this.eventActivated() })} style={{ height: `calc(100vh - ${nextStepBannerIsBeingDisplayed ? '0px' : sizeOfHeader})` }}>
                         <AdminSettingsPanel
                             eventCalWidgetUuid={this.props.eventCalWidgetUuid}
                             userHasSubscribed={this.props.userHasSubscribed}
                             userId={this.props.user.userId}
                         />
                     </div>
-                    <div className="event-calendar-preview container-fluid" style={{ boxShadow: '0 0 25px rgba(0,0,0,.11)' }} style={{ height: `calc(100vh - ${nextStepBannerIsBeingDisplayed ? '123px' : sizeOfHeader})`, flex: '1' }}>
+                    <div className="event-calendar-preview container-fluid" style={{ boxShadow: '0 0 25px rgba(0,0,0,.11)' }} style={{ height: `calc(100vh - ${nextStepBannerIsBeingDisplayed ? '0px' : sizeOfHeader})`, flex: '1' }}>
                         { /* <div className="dashboard-header dashboard-header--left row">
                             <div className="col-md-12">
                                 <span>Event calendar preview</span>

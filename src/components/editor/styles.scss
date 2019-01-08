@@ -10,6 +10,9 @@
     font-weight: bold;
     color: $primary;
     margin-bottom: 0;
+    &--sub {
+        font-weight: normal;
+    }
     &--strike {
         opacity: 0.5;
     }

@@ -109,6 +109,7 @@ var Component = React.createClass({
                         ]}
                         defaultOption='Presets'
                         width='50%'
+                        className="theme-option-selection"
                         settingClicked={this.desginSettingClicked}
                     />
                 )}
@@ -257,6 +258,7 @@ var Component = React.createClass({
                             ]}
                             width={'50%'}
                             settingClicked={this.settingClicked}
+                            defaultOption='List view'
                         />
                         {this.state.settingClicked === 'List view' && (
                             <NumericalField

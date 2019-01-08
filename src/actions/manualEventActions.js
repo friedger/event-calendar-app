@@ -23,7 +23,7 @@ const config = require('../../config');
 import { reset } from 'redux-form';
 import triggerWidgetRefresh from '../utils/triggerWidgetRefresh';
 
-export function postManualEvent(values, widgetUuid) {
+export function postManualEvent(values, widgetUuid, successCb) {
     return dispatch => {
         dispatch({
             type: POST_MANUAL_EVENT
@@ -41,6 +41,10 @@ export function postManualEvent(values, widgetUuid) {
                 type: POST_MANUAL_EVENT_SUCCESS,
                 payload: res.body
             });
+
+            if (successCb) {
+                successCb();
+            }
 
             triggerWidgetRefresh({ breakCache: true });
         });

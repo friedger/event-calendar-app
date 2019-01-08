@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export default React.createClass({
     getInitialState() {
         return {
-            modalOpen: false
+            modalOpen: this.props.modalOpen
         };
     },
     render() {

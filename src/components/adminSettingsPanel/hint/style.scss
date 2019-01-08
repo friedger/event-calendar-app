@@ -1,0 +1,24 @@
+.eca-hint {
+    background: #fdfaed;
+    border: 1px dashed #ac9f74;
+    padding: 12px 12px 0 12px;
+    overflow: auto;
+    p {
+        color: #574f34;
+        font-size: 14px;
+        line-height: 1.6;
+        &:last-child {
+            // padding-bottom: 12px;
+        }
+    }
+    margin-bottom: 32px;
+    margin-top: 24px;
+
+    &--secondary {
+        p {
+            color: #fff;
+        }
+        background: #ea2d65;
+        border: 0;
+    }
+}

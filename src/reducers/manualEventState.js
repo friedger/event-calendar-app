@@ -44,7 +44,8 @@ export default function manualEventState(state = {}, action) {
             state,
             {
                 postingEvent: false,
-                postedEvent: false
+                postedEvent: false,
+                displayAddEventScreen: true
             }
         );
     case GET_ONBOARDING_SUCCESS:

@@ -16,7 +16,7 @@ const CategoryHeader = props => {
                         onClick={backButtonAction}
                     >
                         <i className="fa fa-angle-left" aria-hidden="true" />
-                        <div className="text">Back</div>
+                        <div className="text">Editor Home</div>
                     </div>
                 )}
                 <div className={cn('dashboard-header__event-settings', { 'dashboard-header__event-settings--inline': props.children })}>{props.title}</div>

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { Route, Switch } from 'react-router-dom';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
+// import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 import { EDITOR_PATH } from '../routes';
 
@@ -18,6 +18,7 @@ import NewPost from '../components/adminSettingsPanel/newPost';
 import Sources from '../components/adminSettingsPanel/containers/sources';
 import Layout from '../components/adminSettingsPanel/containers/layout';
 import Design from '../components/adminSettingsPanel/containers/design';
+import Embed from '../components/adminSettingsPanel/containers/embed';
 import AddedFirstEventSuccess from '../components/modals/addedFirstEventSuccess';
 import ManualEventsNotSelected from '../components/modals/manualEventsNotSelected';
 import CategoryHeader from '../components/adminSettingsPanel/categoryHeader';
@@ -27,7 +28,6 @@ import SettingsCategorySelection from '../components/adminSettingsPanel/settings
 import SidePanelWrapper from '../components/adminSettingsPanel/sidePanelWrapper';
 import SidePanelContainer from '../components/adminSettingsPanel/sidePanelContainer';
 import SelectedEventStyle from '../components/adminSettingsPanel/selectedEventStyle';
-import EmbedCode from '../components/editor/embedCode';
 
 const mapState = ({ appState, eventState, manualEventState, onBoardingState, eventSavingState }) => {
     return {
@@ -66,6 +66,9 @@ const component = React.createClass({
         if (e.detail.opening) {
             if (this.userDoesNotNeedToAddAnEvent()) {
                 this.props.closeNewEventForm();
+                this.props.history.push(
+                    `/editor/${this.props.eventCalWidgetUuid}`
+                );
                 this.props.eventSelected(e.detail);
             }
         }
@@ -94,8 +97,7 @@ const component = React.createClass({
     },
     exitAddEventScreen() {
         if (this.userDoesNotNeedToAddAnEvent()) {
-            this.props.closeNewEventForm();
-            return this.props.addNewEvent();
+            return this.props.closeNewEventForm();
         }
         return alert('Add an event to continue');
     },
@@ -110,12 +112,12 @@ const component = React.createClass({
     addNewEventClicked() {
         this.props.addNewEvent();
     },
-    postManualEvent(event, widgetUuid) {
+    postManualEvent(event, widgetUuid, cb) {
         if (localStorage && !localStorage.getItem('onboarding.addedEvent')) {
             localStorage.setItem('onboarding.addedEvent', 1);
             this.setState({ showFirstEventSuccessModal: true });
         }
-        this.props.postManualEvent(event, widgetUuid);
+        this.props.postManualEvent(event, widgetUuid, cb);
         this.setState({ eventHasBeenAdded: true });
         const calendarToDeselect = this.props.appState.calendars.find(
             calendar => calendar.calendar_name === 'Demo Calendar' && calendar.selected === true
@@ -151,8 +153,7 @@ const component = React.createClass({
     render() {
         const displayAddEventForm = this.props.manualEventState.displayAddEventScreen;
         const displayEditEventForm = this.eventActivated() && !this.props.eventState.eventSettingsLoading;
-        const animationTime = 300;
-        const user = get(this, 'props.appState.user');
+        // const animationTime = 10;
         return (
             <div className="dashboard-settings">
                 {this.eventActivated() && <SelectedEventStyle uuid={this.props.eventState.uuid} />}
@@ -172,9 +173,7 @@ const component = React.createClass({
                     }}
                 />
                 {/* END Onboading modals*/}
-                <TransitionGroup>
                     {!displayAddEventForm && !displayEditEventForm && this.isEditorHomeRoute() && (
-                        <CSSTransition key={'something233'} classNames="fade" timeout={animationTime}>
                             <SidePanelContainer>
                                 <SidePanelWrapper scrollable={false}>
                                     <SettingsCategorySelection
@@ -187,26 +186,22 @@ const component = React.createClass({
                                     />
                                 </SidePanelWrapper>
                                 <CategoryHeader displayBackButton={false} title={'Customize'}>
-                                    {/* <EmbedCode
-                                        eventCalWidgetUuid={this.props.eventCalWidgetUuid}
-                                        userIsAGuest={!this.props.userHasSubscribed}
-                                        shopifyUser={user.shopifyUser}
-                                        bigcommerceUser={user.bigcommerceUser}
-                                        userId={user.userId}
-                                    /> */}
                                 </CategoryHeader>
                                 <SidePanelWrapper>
                                     <SettingsCategorySelection
                                         options={[
-                                            { name: 'Add Event', emoji: '👨‍💻', routeName: 'add-event', separate: true },
+                                            { name: 'Add Event', emoji: '👨‍💻', routeName: 'add-event' },
                                             {
                                                 name: 'Event Sources',
                                                 emoji: '🌍',
-                                                routeName: 'sources'
+                                                routeName: 'sources',
+                                                separate: true
                                             },
                                             { name: 'Settings', emoji: '🔧', routeName: 'layout' },
-                                            { name: 'Theme', emoji: '🎨', routeName: 'design' }
+                                            { name: 'Theme', emoji: '🎨', routeName: 'design' },
+                                            { name: 'Embed Instructions', routeName: 'embed', emoji: '🖥', separate: true, condition: () => this.props.userHasSubscribed }
                                         ]}
+                                        orientation="column"
                                         showArrows={true}
                                         settingClicked={setting => {
                                             if (setting.routeName === 'add-event') {
@@ -219,17 +214,14 @@ const component = React.createClass({
                                     />
                                 </SidePanelWrapper>
                             </SidePanelContainer>
-                        </CSSTransition>
                     )}
-                    <CSSTransition key={this.props.location.key} classNames="fade" timeout={animationTime}>
                         <Switch location={this.props.location}>
                             <Route exact path={`${EDITOR_PATH}/sources`} component={Sources} />
                             <Route exact path={`${EDITOR_PATH}/layout`} component={Layout} />
                             <Route exact path={`${EDITOR_PATH}/design`} component={Design} />
+                            <Route exact path={`${EDITOR_PATH}/embed`} component={Embed} />
                         </Switch>
-                    </CSSTransition>
                     {displayEditEventForm && (
-                        <CSSTransition key={'asoidjasiodjsaioj'} classNames="fade" timeout={animationTime}>
                             <SidePanelContainer>
                                 <CategoryHeader
                                     backButtonAction={this.props.exitEventSettings}
@@ -261,15 +253,14 @@ const component = React.createClass({
                                     duplicatingEvent={this.props.manualEventState.duplicatingEvent}
                                     displayDuplicationButton={this.props.eventState.manualEventSelected}
                                     exitAction={this.props.exitEventSettings}
+                                    addNewEventClicked={this.addNewEventClicked}
                                     deleteManualEvent={
                                         this.props.eventState.manualEventSelected && this.deleteManualEvent
                                     }
                                 />
                             </SidePanelContainer>
-                        </CSSTransition>
                     )}
                     {displayAddEventForm && (
-                        <CSSTransition key={'asoidjasiodjsaissssoj'} classNames="fade" timeout={animationTime}>
                             <SidePanelContainer>
                                 <CategoryHeader
                                     backButtonAction={this.exitAddEventScreen}
@@ -287,9 +278,7 @@ const component = React.createClass({
                                     formValidationError={this.props.formValidationError}
                                 />
                             </SidePanelContainer>
-                        </CSSTransition>
                     )}
-                </TransitionGroup>
             </div>
         );
     },

@@ -98,12 +98,12 @@ export default React.createClass({
                                 target="_blank"
                                 href="https://support.eventcalendarapp.com/third-party-platform-integration"
                             >
-                            <i className="fas fa-info-circle"></i>Specific platform instructions on how to add this to your website
+                            <i className="fas fa-info-circle"></i>Specific platform instructions
                             </a>
                         </div>
                     )}
                     {this.props.displayPublicCalendarForm &&
-                        <PublicCalendarForm displayDirectUrl={true} />
+                        <PublicCalendarForm displayDirectUrl={true} subdomainFlexDirection={'column'} viewmode={'adminpanel'} />
                     }
                 </div>
         );

@@ -1,5 +1,4 @@
 .calendarCode {
-    padding: 0 15px;
     p {
         font-size: 14px;
         &.subtitle {
@@ -18,6 +17,7 @@
         padding: 11px;
         font-size: 11px;
         border-radius: 1px;
+        margin-bottom: 4px;
     }
 }
 
@@ -25,6 +25,7 @@
     background: #da4167;
     padding: 17px 15px;
     animation-name: color;
+    border-radius: 4px;
     animation-duration: 2s;
     animation-iteration-count: infinite;
     textarea {
@@ -62,7 +63,8 @@
 
 .calendarCode__shopify {
     font-size:14px;
-    padding-top: 13px;
+    padding-top: 16px;
+    padding-bottom: 16px;
     a {
         text-align: left !important;
     }

@@ -15,12 +15,12 @@ export default React.createClass({
     componentWillReceiveProps(nextProps) {
         if (nextProps.postedEvent && this.props.postingEvent && !this.props.postedEvent) {
             this.setState({ postingWasSuccess: true });
-            setTimeout(() => {
-                this.setState({ displaySubmitButtons: true });
-                this.props.onButtonTypeSwitch();
-            }, 2000);
+            // setTimeout(() => {
+            //     this.setState({ displaySubmitButtons: true });
+            //     this.props.onButtonTypeSwitch();
+            // }, 2000);
         }
-
+        //
         if (
             this.props.postedEvent &&
             nextProps.postedEvent === false &&

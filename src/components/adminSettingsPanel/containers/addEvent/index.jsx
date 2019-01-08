@@ -48,12 +48,12 @@ const component = React.createClass({
         }
         return false;
     },
-    postManualEvent(event, widgetUuid) {
+    postManualEvent(event, widgetUuid, cb) {
         if (localStorage && !localStorage.getItem('onboarding.addedEvent')) {
             localStorage.setItem('onboarding.addedEvent', 1);
             this.setState({ showFirstEventSuccessModal: true });
         }
-        this.props.postManualEvent(event, widgetUuid);
+        this.props.postManualEvent(event, widgetUuid, cb);
         this.setState({ eventHasBeenAdded: true });
         const calendarToDeselect = this.props.appState.calendars.find(
             calendar => (calendar.calendar_name === 'Demo Calendar') && (calendar.selected === true)

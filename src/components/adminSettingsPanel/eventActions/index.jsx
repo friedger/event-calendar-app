@@ -22,13 +22,23 @@ export default React.createClass({
                             eventDuplicationSuccess={this.props.eventDuplicationSuccess}
                             eventDuplicationError={this.props.eventDuplicationError}
                         />}
+                        <button
+                            title="Add another event"
+                            onClick={() => {
+                                this.props.exitAction();
+                                this.props.addNewEventClicked();
+                            }}
+                            className="secondary secondary--inverse secondary--icon-only"
+                        >
+                            <i className="fas fa-calendar-plus"></i>
+                        </button>
                         {this.props.deleteManualEvent && (
                             <button
                                 onClick={() => this.props.deleteManualEvent()}
-                                className="secondary secondary--inverse event-actions__delete"
+                                className="secondary secondary--inverse secondary--icon-only event-actions__delete"
                                 title="Delete this event"
                             >
-                                🗑 Delete event
+                                <i className="fas fa-trash-alt"></i>
                             </button>
                         )}
                     </div>

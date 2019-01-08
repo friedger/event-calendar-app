@@ -23,7 +23,7 @@ var CalendarSelection = React.createClass({
                 <Row className="settings-space">
                     <div className="col-md-12">
                         <span className="setting-title">Manually add events</span>
-                        <p className="calendar-selection__description">Toggle manually added events from displaying in your Events Calendar</p>
+                        <p className="calendar-selection__description">All manually added events are grouped by the Event Calendar you added them to. Which manual events would you like to display?</p>
                     </div>
                     <Col md={12}>
                         <form>
@@ -56,13 +56,9 @@ var CalendarSelection = React.createClass({
                     </Col>
                 </Row>
                 <Row className="settings-space settings-space--bottom-padding-0">
-                    <div className="col-md-12 calendar-selection__add-more-calendars">
-                        <div className="text-header">
-                            <button style={{marginBottom: '5px'}} className="tertiary" onClick={this.props.toggleConnectionsScreen}>📆 Sync another calendar</button>
-                        </div>
-                    </div>
                     <div className="col-md-12">
                         <span className="setting-title">Synced Calendars</span>
+                        <span onClick={this.props.toggleConnectionsScreen} style={{float: 'right', 'padding-bottom': 0, 'padding-top': '2px'}} className="button secondary secondary--inverse">Sync more</span>
                         <p className="calendar-selection__description">External calendars we are currently synced to. Select those you would like to appear in your Events Calendar.</p>
                     </div>
                     <Col md={12}>

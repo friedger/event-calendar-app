@@ -37,6 +37,8 @@ const component = React.createClass({
                 aliasInvalid={this.props.widgetState.aliasInvalid}
                 lastKnownSuccessfulAlias={this.props.widgetState.lastKnownSuccessfulAlias}
                 displayDirectUrl={this.props.displayDirectUrl}
+                subdomainFlexDirection={this.props.subdomainFlexDirection}
+                viewmode={this.props.viewmode}
             />
         );
     }

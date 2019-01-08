@@ -28,6 +28,8 @@ var Component = React.createClass({
                                 aliasInvalid={this.props.aliasInvalid}
                                 lastKnownSuccessfulAlias={this.props.lastKnownSuccessfulAlias}
                                 displayDirectUrl={this.props.displayDirectUrl}
+                                subdomainFlexDirection={this.props.subdomainFlexDirection}
+                                viewmode={this.props.viewmode}
                             />
             </div>
         );

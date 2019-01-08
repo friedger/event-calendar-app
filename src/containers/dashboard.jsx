@@ -76,6 +76,11 @@ const Dashboard = React.createClass({
                 return request.get(`${config.apiUrl}/widgets?token=${token}`).end((err, res) => {
                     const defaultUuid = res.body && res.body[0] && res.body[0].uuid;
                     if (defaultUuid) {
+                        const query = parse(location.search);
+                        if (query.cronofySuccess) {
+                            this.props.history.replace(`/editor/${res.body[0].uuid}/sources?cronofySuccess=true`);
+                            return this.props.getWidget(res.body[0].uuid);
+                        }
                         this.props.history.replace(`/editor/${res.body[0].uuid}`);
                         this.props.getWidget(res.body[0].uuid);
                     } else {

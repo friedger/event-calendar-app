@@ -1,7 +1,6 @@
 require('./style.scss');
 
 import React from 'react';
-import { Row } from 'react-bootstrap';
 import cn from 'classnames';
 
 const SettingsCategorySelection = React.createClass({
@@ -10,8 +9,11 @@ const SettingsCategorySelection = React.createClass({
     },
     render() {
         return (
-            <Row className={'settings-space settings-navigation ' + this.props.className} style={{ border: 0 }}>
+            <div className={'settings-space settings-navigation ' + this.props.className + ' ' + this.props.orientation + '-orientation'} style={{ border: 0, 'flex-direction': this.props.orientation }}>
                 {this.props.options.map((option, index) => {
+                    if (option.condition && !option.condition()) {
+                        return null;
+                    }
                     return (
                         <div
                             key={index}
@@ -19,7 +21,7 @@ const SettingsCategorySelection = React.createClass({
                                 this.setState({ activeSetting: option.name });
                                 this.props.settingClicked(option);
                             }}
-                            className={cn('setting col-md-12', {
+                            className={cn('setting', {
                                 'setting--active': this.state.activeSetting === option.name,
                                 'setting--separate': option.separate,
                                 'setting--reverse': option.reverse
@@ -32,14 +34,15 @@ const SettingsCategorySelection = React.createClass({
                         </div>
                     );
                 })}
-            </Row>
+            </div>
         );
     }
 });
 
 SettingsCategorySelection.defaultProps = {
     width: '100%',
-    showArrows: false
+    showArrows: false,
+    orientation: 'row'
 };
 
 export default SettingsCategorySelection;

@@ -12,6 +12,8 @@ import triggerWidgetRefresh from '../../../../utils/triggerWidgetRefresh';
 import SidePanelWrapper from '../../sidePanelWrapper';
 import SidePanelContainer from '../../sidePanelContainer';
 import CategoryHeader from '../../categoryHeader';
+import Hint from '../../hint';
+import { parse } from 'query-string';
 
 const mapState = state => {
     return {
@@ -45,11 +47,15 @@ const component = React.createClass({
     render() {
         const { putCalendars, calendarsLoading, calendars } = this.props;
         const eventCalWidgetUuid = this.props.match.params.eventCalWidgetUuid;
+        const query = parse(location.search);
 
         return (
             <SidePanelContainer>
                 <CategoryHeader eventCalWidgetUuid={eventCalWidgetUuid} title={'Event Sources'} />
                 <SidePanelWrapper>
+                    {query.cronofySuccess && <Hint type='secondary'>
+                        <p><strong>Hey there! We've linked to your calendars successfully!</strong></p><p>It's likely the first thing you need to do is choose which of your calendars you want us to sync to. You can do this below.</p>
+                    </Hint>}
                     <CalendarSelection
                         onChange={putCalendars.bind(null, eventCalWidgetUuid)}
                         toggleConnectionsScreen={() => this.props.history.push('/connections')}

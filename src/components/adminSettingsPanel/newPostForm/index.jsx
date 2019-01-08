@@ -52,6 +52,7 @@ var NewPostForm = React.createClass({
     onEditorStateChange() {
     },
     componentWillMount() {
+        console.log('new post form mounted');
         window.tinyMCE.baseURL = `${config.appUrl}/tinymce`;
         this.makeApiCall = debounce(values => {
             this.props.putEventAction(values);
@@ -117,9 +118,9 @@ var NewPostForm = React.createClass({
         this.inputChanged();
     },
     componentWillReceiveProps(nextProps) {
-        if (!this.props.disableInputs && nextProps.disableInputs) {
-            tinymce.activeEditor.getBody().setAttribute('contenteditable', false);
-        }
+        // if (!this.props.disableInputs && nextProps.disableInputs) {
+        //     tinymce.activeEditor.getBody().setAttribute('contenteditable', false);
+        // }
     },
     render() {
         const {
@@ -133,6 +134,7 @@ var NewPostForm = React.createClass({
                 allDay
             }
         } = this.props;
+        console.log(this.props.fields, 'watch this');
         return (
             <form>
                 <FormGroup
@@ -223,6 +225,7 @@ var NewPostForm = React.createClass({
                                                   .join('')
                                             : ''
                                     }
+                                    disabled={this.props.disableInputs}
                                     init={{
                                         formats: {
                                             alignleft: {
@@ -455,6 +458,7 @@ var NewPostForm = React.createClass({
         );
     },
     componentWillUnmount() {
+        console.log('new post form unmounted');
         $('#timepicker-start').off();
         $('#timepicker-end').off();
     }
