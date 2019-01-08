@@ -15,7 +15,10 @@ import get from 'lodash.get';
 
 const mapState = state => {
     return {
-        userStatus: get(state, 'appState.user.status')
+        userStatus: get(state, 'appState.user.status'),
+        userId: get(state, 'appState.user.userId'),
+        shopifyUser: get(state, 'appState.user.shopifyUser'),
+        bigcommerceUser: get(state, 'appState.user.bigcommerceUser')
     };
 };
 
@@ -41,7 +44,7 @@ const component = React.createClass({
                         <p>Tip: There are two ways you can use your Event Calendar. Either add it to your site via the embed code, or use the direct url.</p>
                     </Hint>
                     <CalendarCodetextArea
-                        eventCalWidgetUuid={this.props.eventCalWidgetUuid}
+                        eventCalWidgetUuid={eventCalWidgetUuid}
                         userId={this.props.userId}
                         shopifyUser={this.props.shopifyUser}
                         bigcommerceUser={this.props.bigcommerceUser}
